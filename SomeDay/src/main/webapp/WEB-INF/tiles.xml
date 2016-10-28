@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<!-- Main -->
+	<definition name="main" template="/WEB-INF/views/tiles/layout.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/tiles/header.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/home.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/views/tiles/footer.jsp" />
+	</definition>
+	
+	<!-- NoticeList -->
+  	 <definition name="noticeList" extends="main">
+		<put-attribute name="body" value="/WEB-INF/views/notice/NoticeList.jsp" />
+	</definition>
+	
+	<!-- NoticeView -->
+	<definition name="noticeView" extends="main">
+		<put-attribute name="body" value="/WEB-INF/views/notice/NoticeView.jsp" />
+	</definition>
+	
+	<!-- NoticeForm -->
+	<definition name="noticeForm" extends="main">
+		<put-attribute name="body" value="/WEB-INF/views/notice/NoticeForm.jsp" />
+	</definition>
+	
+
+</tiles-definitions>
+
