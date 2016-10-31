@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="member">
+
+	<resultMap type="memberModel" id="memberModelRes">
+		<result property="idx" column="idx" />
+		<result property="id" column="id" />
+		<result property="nick" column="nick" />
+		<result property="pass" column="pass" />
+		<result property="name" column="name" />
+		<result property="age" column="age" />
+		<result property="gender" column="gender" />
+		<result property="area" column="area" />
+		<result property="email" column="email" />
+		<result property="phone" column="phone" />
+		<result property="num1" column="num1" />
+		<result property="num2" column="num2" />
+		<result property="addr1" column="addr1" />
+		<result property="addr2" column="addr2" />
+		<result property="intro" column="intro" />
+		<result property="score_avg" column="score_avg" />
+		<result property="authority" column="authority" />
+		<result property="times" column="times" />		
+		<result property="bloodgroup" column="bloodgroup" />
+		<result property="zipcode" column="zipcode" />
+		<result property="file_orgname" column="file_orgname" />
+		<result property="file_savname" column="file_savname" />	
+	</resultMap>
+	
+	<!-- 공통으로 사용할 select 절 정의 -->
+	<sql id="select-all-member">
+		SELECT * FROM MEMBER
+	</sql>
+	
+	<!-- my_idx가 여자인지 확인 -->
+	<select id="myGenderfemale" resultMap="memberModelRes" parameterType="Integer">
+		<include refid="select-all-member" />
+		WHERE GENDER = 'female' AND IDX = #{idx}
+	</select>
+	
+	<!-- my_idx가 남자인지 확인 -->
+	<select id="myGendermale" resultMap="memberModelRes" parameterType="Integer">
+		<include refid="select-all-member" />
+		WHERE GENDER = 'male' AND IDX = #{idx}
+	</select>
+
+</mapper>

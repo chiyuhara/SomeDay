@@ -1,0 +1,21 @@
+<!-- <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="today">
+
+	<resultMap type="todayModel" id="todayModelRes">
+		<result property="idx" column="idx" />
+		<result property="female_idx" column="female_idx" />
+		<result property="male_idx" column="male_idx" />
+		<result property="female_like" column="female_like" />
+		<result property="male_like" column="male_like" />
+		<result property="female_score" column="female_score" />
+		<result property="male_score" column="male_score" />
+		<result property="female_msg" column="female_msg" />
+		<result property="male_msg" column="male_msg" />
+		<result property="times" column="times" />
+	</resultMap>
+
+</mapper> -->

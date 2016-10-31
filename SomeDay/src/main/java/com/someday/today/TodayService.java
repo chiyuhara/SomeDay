@@ -1,5 +1,9 @@
 package com.someday.today;
 
-public class TodayService {
+import org.springframework.stereotype.Service;
+
+@Service
+public class TodayService implements TodayDao{
+	
 
 }

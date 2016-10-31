@@ -33,6 +33,10 @@
 		<put-attribute name="body" value="/WEB-INF/views/notice/NoticeModify.jsp" />
 	</definition>
 	
+	<!-- Today -->
+	<definition name="today" extends="main">
+		<put-attribute name="body" value="/WEB-INF/views/today/Today.jsp" />
+	</definition>
 
 </tiles-definitions>
 
