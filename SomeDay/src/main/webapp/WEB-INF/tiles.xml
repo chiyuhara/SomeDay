@@ -28,6 +28,11 @@
 		<put-attribute name="body" value="/WEB-INF/views/notice/NoticeForm.jsp" />
 	</definition>
 	
+	<!-- NoticeModifyForm -->
+	<definition name="noticeModify" extends="main">
+		<put-attribute name="body" value="/WEB-INF/views/notice/NoticeModify.jsp" />
+	</definition>
+	
 
 </tiles-definitions>
 

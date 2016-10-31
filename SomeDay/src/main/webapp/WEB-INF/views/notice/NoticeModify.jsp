@@ -52,33 +52,31 @@
 <body>
 
 	<div id="wrapper">
-		<form:form commandName="noticeModel" action="NoticeWrite" method="post">
+		<form:form commandName="noticeModel" action="NoticeModifySuccess" method="post"> 
 			<div id="page-wrapper">
 				<div class="row">
 					<div class="col-lg-12">
-						<h3 class="page-header">NOTICE 글쓰기</h3>
+						<h3 class="page-header">NOTICE 글 수정</h3>
 						<table class="table table-striped table-bordered table-hover"
 							id="dataTables-example">
-
+							
+						<form:input type="hidden" path="idx" value="${noticeModel.idx}" />
 							<thead>
-								<tr class="danger">
-									<th width="100">글제목</th>
-									<td colspan=3><input type="textarea" name="subject"
-										value="${noticeModel.subject}" /> <font color="red"><form:errors
-												path="subject" /></font></td>
+								<tr>
+									<th width="15%" align="center">글제목</th>
+									<td colspan=5><form:input path="subject" theme="simple"
+											value="${noticeModel.subject}" /></td>
 								</tr>
 							</thead>
-
+							<tr>
 							<tbody>
 
-
+							<!-- 글 내용 -->
 								<tr>
-									<!-- 글내용 -->
-									<th>글내용</th>
-									<td colspan=3 height=300 style="padding: 0px !important;">
-										<textarea name="content"
-											style="padding: 3px; margin: 1px; width: 100%; height: 98%;"></textarea>
-										<font color="red"><form:errors path="content" /></font>
+									<td colspan=6 height=300 style="padding: 0px !important;">
+										<form:textarea path="content" theme="simple"
+											value="${noticeModel.content}"
+											style="padding:3px; margin:0px; width: 100%; height: 100%;" />
 									</td>
 								</tr>
 							</tbody>
@@ -89,10 +87,8 @@
 			</div>
 			<!-- 취소 작성완료 버튼 -->
 			<div>
-				<input name="submit" type="submit" value="작성완료"
-					class="btn btn-default btn-xs">
-				<button type="button" onclick="noticeList();"
-					class="btn btn-primary">목록</button>
+				<input type="submit" value="작성완료" class="btn btn-primary"/>
+				<button type="button" onclick="noticeList();" class="btn btn-primary">목록</button>
 				<!-- 취소 작성완료 버튼 -->
 			</div>
 		</form:form>
