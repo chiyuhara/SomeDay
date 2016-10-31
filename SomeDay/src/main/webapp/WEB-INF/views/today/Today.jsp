@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+today페이지
 </body>
 </html>

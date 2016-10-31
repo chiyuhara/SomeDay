@@ -19,15 +19,22 @@ PUBLIC " - //mybatis.org//DTD Config 3.0//EN"
 
 	<!-- ModelMapping -->
 	<typeAliases>
-		
 		<!--  Notice board  -->
 		<typeAlias type="com.someday.notice.NoticeModel" alias="noticeModel" />
-		
+		<!--  Member -->
+		<typeAlias type="com.someday.today.MemberModel" alias="memberModel" />
+		<!--  Today  -->
+		<!-- <typeAlias type="com.someday.today.TodayModel" alias="todayModel" /> -->
 	</typeAliases>
 	
 	<!-- SQL 정의한 xml문서 Mapping -->
 	<mappers>
+		<!--  Notice board  -->
 		<mapper resource="mybatis/config/NoticeSQL.xml" />
+		<!--  Member --> 
+		<mapper resource="mybatis/config/MemberSQL.xml" />
+		<!--  Today  -->
+		<!-- <mapper resource="mybatis/config/TodayQL.xml" /> -->
 	</mappers>
 
 </configuration>
