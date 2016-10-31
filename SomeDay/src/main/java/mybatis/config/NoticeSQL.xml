@@ -52,5 +52,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			WHERE
 				IDX = #{idx}	
 	</update>
+	
+	<!-- 제목검색 -->
+	<select id="noticeSearch0" resultMap="noticeModelRes" parameterType="String">
+		SELECT * FROM NOTICE_BOARD
+		 WHERE subject like #{search}
+		 ORDER BY IDX DESC
+	</select>
+	
+	<!-- 내용검색 -->
+	<select id="noticeSearch1" resultMap="noticeModelRes" parameterType="String">
+		SELECT * FROM NOTICE_BOARD
+		WHERE content like #{search}
+		ORDER BY IDX DESC
+	</select>
+
+	<!-- 작성자검색 -->
+	<select id="noticeSearch2" resultMap="noticeModelRes" parameterType="String">
+		SELECT * FROM NOTICE_BOARD
+		WHERE writer like #{search}
+		ORDER BY IDX DESC
+	</select>
 
 </mapper>

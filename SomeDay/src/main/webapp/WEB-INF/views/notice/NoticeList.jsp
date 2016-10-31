@@ -54,7 +54,7 @@
 		<div class="row">
 			<div style="text-align: center;">
 				<div id="dataTables-example_filter" class="dataTables_filter">
-					<form action="">
+					<form>
 						<select class="slcte" name="searchNum" id="searchNum">
 
 							<option value="0">제목</option>

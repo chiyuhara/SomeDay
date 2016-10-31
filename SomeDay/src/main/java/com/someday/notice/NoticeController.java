@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.someday.notice.NoticeModel;
+//페이징
+import com.someday.util.Paging;
 import com.someday.validator.NoticeValidator;
 
 @Controller
@@ -21,18 +24,61 @@ public class NoticeController {
 
 	@Resource(name = "noticeService")
 	private NoticeService noticeService;
+	//검색을 위한 변수 설정 
+	private int searchNum;
+	private String isSearch;
+	
+//페이징을 위한 변수 설정
+//	private int currentPage = 1;	 
+//	private int totalCount; 		 
+//	private int blockCount = 10;	 
+//	private int blockPage = 5; 	 
+//	private String pagingHtml;  
+//	private Paging page;
 
 	// 공지 목록
 	@RequestMapping(value = "/notice/NoticeList")
-	public ModelAndView NoticeList(HttpServletRequest request, NoticeModel noticeModel)
-			throws UnsupportedEncodingException {
+	
+		/*public ModelAndView NoticeList(HttpServletRequest request, NoticeModel noticeModel)
+		throws UnsupportedEncodingException {
 		System.out.println("공지목록 실행");
 		ModelAndView mav = new ModelAndView();
 		List<NoticeModel> noticeList = noticeService.noticeList();
 		mav.addObject("noticeList", noticeList);
 		mav.setViewName("noticeList");
 
+		return mav;*/
+	
+		//페이징 없이 검색만 있는 게시판 목록 
+		public ModelAndView noticeList(HttpServletRequest request) throws UnsupportedEncodingException{
+		ModelAndView mav = new ModelAndView();
+		List<NoticeModel> noticeList = noticeService.noticeList();
+		
+		String isSearch = request.getParameter("isSearch");
+		if(isSearch != null) isSearch = new String(isSearch.getBytes("8859_1"), "UTF-8");
+				
+		if(isSearch != null)
+		{
+			searchNum = Integer.parseInt(request.getParameter("searchNum"));
+
+			if(searchNum==0)
+				noticeList = noticeService.noticeSearch0(isSearch);
+			else if(searchNum==1)
+				noticeList = noticeService.noticeSearch1(isSearch);
+			else if(searchNum==2)
+				noticeList = noticeService.noticeSearch2(isSearch);
+			
+			mav.addObject("isSearch", isSearch);
+			mav.addObject("searchNum", searchNum);
+			mav.addObject("noticeList", noticeList);
+			mav.setViewName("noticeList");
+			return mav;
+		}
+
+		mav.addObject("noticeList", noticeList);
+		mav.setViewName("noticeList");
 		return mav;
+	
 	}
 
 	// 공지 상세보기

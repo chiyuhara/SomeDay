@@ -21,4 +21,11 @@ public interface NoticeDao {
 	// 글수정
 	int noticeModify(NoticeModel noticeModel);
 
+	// 검색 (0=제목, 1=내용, 2=이름)
+	List<NoticeModel> noticeSearch0(String search);
+
+	List<NoticeModel> noticeSearch1(String search);
+
+	List<NoticeModel> noticeSearch2(String search);
+
 }
