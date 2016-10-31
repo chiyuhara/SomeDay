@@ -5,7 +5,7 @@
 <head>
 <script type="text/javascript">
 	var onWrite = function() {
-		location.href = 'noticeWrite';
+		location.href = 'NoticeWrite';
 	};
 </script>
 <title>지브롱</title>

@@ -25,8 +25,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<!-- 글 상세보기 -->
-	<select id="noticeView" resultMap="noticeModelRes"
-		parameterType="Integer">
+	<select id="noticeView" resultMap="noticeModelRes" parameterType="Integer">
 		SELECT * FROM NOTICE_BOARD
 		WHERE IDX = #{idx}
 	</select>
@@ -38,5 +37,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES
 		(NOTICE_BOARD_IDX_SEQ.NEXTVAL, #{subject}, #{content}, 1,2)
 	</insert>
+	
+	<!-- 글삭제 -->
+	<delete id="noticeDelete" parameterType="noticeModel" >
+			DELETE FROM NOTICE_BOARD WHERE IDX=#{idx}
+	</delete>
+	
+	<!-- 글수정 -->
+	<update id="noticeModify" parameterType="noticeModel">
+			UPDATE NOTICE_BOARD
+			SET
+				SUBJECT = #{subject},
+				CONTENT = #{content}
+			WHERE
+				IDX = #{idx}	
+	</update>
 
 </mapper>

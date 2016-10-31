@@ -53,7 +53,7 @@ public class NoticeController {
 	}
 
 	// 공지 쓰기 폼
-	@RequestMapping(value = "/notice/noticeWrite", method = RequestMethod.GET)
+	@RequestMapping(value = "/notice/NoticeWrite", method = RequestMethod.GET)
 	public ModelAndView noticeForm(HttpServletRequest request) {
 		System.out.println("글쓰기 폼 실행");
 		ModelAndView mav = new ModelAndView();
@@ -63,7 +63,7 @@ public class NoticeController {
 	}
 
 	// 공지사항 글쓰기
-	@RequestMapping(value = "/notice/noticeWrite", method = RequestMethod.POST)
+	@RequestMapping(value = "/notice/NoticeWrite", method = RequestMethod.POST)
 	public ModelAndView noticeWrite(@ModelAttribute("noticeModel") NoticeModel noticeModel, BindingResult result,
 			HttpServletRequest request, HttpSession session) {
 		System.out.println("글쓰기ex 실행");
@@ -86,6 +86,54 @@ public class NoticeController {
 		mav.setViewName("redirect:NoticeList");
 
 		return mav;
+	}
+
+	// 공지사항 삭제
+	@RequestMapping("/notice/NoticeDelete")
+	public ModelAndView noticeDelete(HttpServletRequest request) {
+		System.out.println("공지 삭제");
+		ModelAndView mav = new ModelAndView();
+		int idx = Integer.parseInt(request.getParameter("idx"));
+		noticeService.noticeDelete(idx);
+		mav.setViewName("redirect:NoticeList");
+
+		return mav;
+	}
+
+	// 공지사항 수정폼
+	@RequestMapping("/notice/NoticeModify")
+	public ModelAndView noticeModifyForm(@ModelAttribute("noticeModel") NoticeModel noticeModel, BindingResult result,
+			HttpServletRequest request) {
+		System.out.println("공지 수정 폼");
+		ModelAndView mav = new ModelAndView();
+		noticeModel = noticeService.noticeView(noticeModel.getIdx());
+
+		String content = noticeModel.getContent().replaceAll("<br />", "\r\n");
+		noticeModel.setContent(content);
+
+		mav.addObject("noticeModel", noticeModel);
+		mav.setViewName("noticeModify");
+
+		return mav;
+	}
+	
+	//공지 수정 완료
+	@RequestMapping("/notice/NoticeModifySuccess")
+	public ModelAndView noticeModify(@ModelAttribute("noticeModel") NoticeModel noticeModel, HttpServletRequest request){
+
+		System.out.println("공지 수정");
+		
+		ModelAndView mav = new ModelAndView("redirect:NoticeView");
+		
+		
+		String content = noticeModel.getContent().replaceAll("\r\n", "<br />");
+		noticeModel.setContent(content);
+		
+		noticeService.noticeModify(noticeModel);
+			
+		mav.addObject("idx", noticeModel.getIdx());
+			
+		return mav;	
 	}
 
 }

@@ -12,6 +12,18 @@
 	var onList = function() {
 		location.href = 'NoticeList';
 	};
+	
+	var onModify = function(){
+		location.href = 'NoticeModify?idx=${noticeModel.idx}';
+	};
+
+	function Delete() {
+		if (confirm("게시글이 삭제됩니다.") == true) {
+			location.href = 'NoticeDelete?idx=${noticeModel.idx}';
+		} else {
+			return;
+		}
+	}
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>공지 및 이벤트 상세보기</title>
@@ -78,7 +90,10 @@ body {
 				bgcolor="#FFF2E6">${noticeModel.content}</td>
 		</tr>
 	</table>
-	<button type="button" onclick="onList()" class="btn btn-primary">목록</button></br>
+	<button type="button" onclick="onList()" class="btn btn-primary">목록</button>
+	<button type="button" onclick="onModify()" class="btn btn-primary">수정</button>
+	<button type="button" onclick="Delete()" class="btn btn-primary">삭제</button>
 	
+	<br>
 </tbody>
 </html>

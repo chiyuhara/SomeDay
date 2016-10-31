@@ -30,5 +30,17 @@ public class NoticeService implements NoticeDao {
 	public int noticeWrite(NoticeModel noticeModel) {
 		return sqlSessionTemplate.insert("notice.noticeWrite", noticeModel);
 	}
+	
+	//글삭제
+	@Override
+	public int noticeDelete(int idx) {
+		return sqlSessionTemplate.delete("notice.noticeDelete",idx); 
+	}
+	
+	//글수정
+	@Override
+	public int noticeModify(NoticeModel noticeModel) {
+		return sqlSessionTemplate.update("notice.noticeModify",noticeModel); 
+	}
 
 }
