@@ -49,5 +49,26 @@
 	</table>
 
 	<button type="button" onclick="onWrite()" class="btn btn-primary">글쓰기</button>
+	
+	<!-- 검색 -->
+		<div class="row">
+			<div style="text-align: center;">
+				<div id="dataTables-example_filter" class="dataTables_filter">
+					<form action="">
+						<select class="slcte" name="searchNum" id="searchNum">
+
+							<option value="0">제목</option>
+							<option value="1">내용</option>
+							<option value="2">글쓴이</option>
+						</select> <input class="txte" type="text" name="isSearch" id="isSearch" />
+						<span class="btn btnC_03 btnP_04 mr10"> 
+						<input type="submit" value="검색" style="font-size: 11px; padding-bottom: 20; 
+						       vertical-align: middle;" />
+						</span>
+					</form>
+				</div>
+			</div>
+		</div>
+	
 </body>
 </html>

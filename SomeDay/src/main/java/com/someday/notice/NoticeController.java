@@ -87,5 +87,7 @@ public class NoticeController {
 
 		return mav;
 	}
+	
+	// 검색기능 
 
 }
