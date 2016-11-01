@@ -28,4 +28,5 @@ public interface NoticeDao {
 
 	List<NoticeModel> noticeSearch2(String search);
 
+
 }

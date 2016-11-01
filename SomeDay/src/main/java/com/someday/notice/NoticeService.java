@@ -62,5 +62,7 @@ public class NoticeService implements NoticeDao {
 	public List<NoticeModel> noticeSearch2(String search) {
 		return sqlSessionTemplate.selectList("notice.noticeSearch2", "%" + search + "%");
 	}
+	
+	
 
 }
