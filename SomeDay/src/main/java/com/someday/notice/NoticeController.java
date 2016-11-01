@@ -21,24 +21,34 @@ import com.someday.validator.NoticeValidator;
 
 @Controller
 public class NoticeController {
+	
+	//파일 업로드 
+	private static final String uploadPath = "E:\\app3\\d_pro\\src\\main\\webapp\\resources\\reviewUpload\\";
 
 	@Resource(name = "noticeService")
 	private NoticeService noticeService;
+	
 	//검색을 위한 변수 설정 
 	private int searchNum;
 	private String isSearch;
 	
-//페이징을 위한 변수 설정
-//	private int currentPage = 1;	 
-//	private int totalCount; 		 
-//	private int blockCount = 10;	 
-//	private int blockPage = 5; 	 
-//	private String pagingHtml;  
-//	private Paging page;
-
+	//페이징을 위한 변수 설정
+	private int currentPage = 1;	 
+	private int totalCount; 		 
+	private int blockCount = 10;	 
+	private int blockPage = 5; 	 
+	private String pagingHtml;  
+	private Paging page;
+	
+	//댓글을 위한 변수 설정 
+	private int comment_count;
+	private int commupdate1;
+	private String commenter;
+	
 	// 공지 목록
 	@RequestMapping(value = "/notice/NoticeList")
-	
+		
+		//목록만 있을 때 
 		/*public ModelAndView NoticeList(HttpServletRequest request, NoticeModel noticeModel)
 		throws UnsupportedEncodingException {
 		System.out.println("공지목록 실행");
@@ -46,11 +56,10 @@ public class NoticeController {
 		List<NoticeModel> noticeList = noticeService.noticeList();
 		mav.addObject("noticeList", noticeList);
 		mav.setViewName("noticeList");
-
 		return mav;*/
 	
 		//페이징 없이 검색만 있는 게시판 목록 
-		public ModelAndView noticeList(HttpServletRequest request) throws UnsupportedEncodingException{
+		/*public ModelAndView noticeList(HttpServletRequest request) throws UnsupportedEncodingException{
 		ModelAndView mav = new ModelAndView();
 		List<NoticeModel> noticeList = noticeService.noticeList();
 		
@@ -78,9 +87,62 @@ public class NoticeController {
 		mav.addObject("noticeList", noticeList);
 		mav.setViewName("noticeList");
 		return mav;
+		
+	}*/
 	
-	}
+	public ModelAndView noticeList(HttpServletRequest request) throws UnsupportedEncodingException{
+		
+		ModelAndView mav = new ModelAndView();
+		
+		if(request.getParameter("currentPage") == null || request.getParameter("currentPage").trim().isEmpty() || request.getParameter("currentPage").equals("0")) {
+            currentPage = 1;
+        } else {
+            currentPage = Integer.parseInt(request.getParameter("currentPage"));
+        }
 
+		List<NoticeModel> noticeList;	
+		
+		String isSearch = request.getParameter("isSearch");
+		if(isSearch != null) isSearch = new String(isSearch.getBytes("8859_1"), "UTF-8");
+		
+		if(isSearch != null)
+		{
+			searchNum = Integer.parseInt(request.getParameter("searchNum"));
+
+			if(searchNum==0){
+				noticeList = noticeService.noticeSearch0(isSearch);
+			} else if(searchNum==1) {
+				noticeList = noticeService.noticeSearch1(isSearch);
+			} else if(searchNum==2) {
+				noticeList = noticeService.noticeSearch2(isSearch);
+			}
+			
+			noticeList = noticeService.noticeList();
+		
+			totalCount = noticeList.size();
+			page = new Paging(currentPage, totalCount, blockCount, blockPage, "noticeList", searchNum, isSearch);
+			pagingHtml = page.getPagingHtml().toString();
+		
+			int lastCount = totalCount;
+		
+			if(page.getEndCount() < totalCount)
+				lastCount = page.getEndCount() + 1;
+			
+			noticeList = noticeList.subList(page.getStartCount(), lastCount);
+		
+			mav.addObject("isSearch", isSearch);
+			mav.addObject("searchNum", searchNum);
+			mav.addObject("totalCount", totalCount);
+			mav.addObject("pagingHtml", pagingHtml);
+			mav.addObject("currentPage", currentPage);
+			mav.addObject("noticeList", noticeList);
+			mav.setViewName("noticeList");
+		
+		} 
+		return mav;
+		
+	}
+	
 	// 공지 상세보기
 	@RequestMapping(value = "/notice/NoticeView")
 	public ModelAndView noticeView(HttpServletRequest request) {
@@ -133,8 +195,6 @@ public class NoticeController {
 
 		return mav;
 	}
-	
-	// 검색기능 
 
 	// 공지사항 삭제
 	@RequestMapping("/notice/NoticeDelete")

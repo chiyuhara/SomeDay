@@ -69,6 +69,6 @@
 				</div>
 			</div>
 		</div>
-	
+	<div class="paging">${pagingHtml}</div>
 </body>
 </html>
