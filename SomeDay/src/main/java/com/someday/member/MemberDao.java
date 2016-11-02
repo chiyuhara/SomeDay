@@ -2,6 +2,7 @@ package com.someday.member;
 
 import java.util.List;
 
+
 import com.someday.member.MemberModel;
 
 public interface MemberDao {
@@ -23,8 +24,16 @@ public interface MemberDao {
 	
 	//my_idx 성별이 남자인지
 	MemberModel myGendermale(int idx);
+	
+	//로그인
+	public MemberModel memberLogin(MemberModel mem);
+	
+	//아이디 
+	public MemberModel getMember(String id);
+
+	//아이디찾기
+	public MemberModel idFindByName(MemberModel member);
+	
+	//비밀번호찾기
+	public MemberModel pwFindById(MemberModel member);
 }
-
-
-
-

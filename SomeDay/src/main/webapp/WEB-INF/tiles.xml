@@ -13,6 +13,11 @@
 		<put-attribute name="footer" value="/WEB-INF/views/tiles/footer.jsp" />
 	</definition>
 	
+	<!-- admin -->
+	<definition name="admin" template="/WEB-INF/views/layout/admin/layout.jsp">
+		<put-attribute name="body" value="/WEB-INF/views/layout/admin/container.jsp" />
+	</definition>
+	
 	<!-- NoticeList -->
   	 <definition name="noticeList" extends="main">
 		<put-attribute name="body" value="/WEB-INF/views/notice/NoticeList.jsp" />
@@ -37,6 +42,24 @@
 	<definition name="today" extends="main">
 		<put-attribute name="body" value="/WEB-INF/views/today/Today.jsp" />
 	</definition>
+
+	<definition name="idFindOk" extends="main">
+		<put-attribute name="body" value="/WEB-INF/views/member/idFindOk.jsp" />
+	</definition>
+	
+	<definition name="loginForm" extends="main">
+		<put-attribute name="body" value="/WEB-INF/views/member/loginForm.jsp" />
+	</definition>
+	
+	<!-- admin -->
+	<definition name="adminForm" extends="admin">
+		<put-attribute name="body" value="/WEB-INF/views/layout/admin/main.jsp" />
+	</definition>
+	
+	<definition name="memberadminList" extends="admin">
+		<put-attribute name="body" value="/WEB-INF/views/admin/memberadminList.jsp" />
+	</definition>
+
 
 </tiles-definitions>
 

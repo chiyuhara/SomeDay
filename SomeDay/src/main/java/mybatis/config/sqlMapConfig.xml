@@ -25,6 +25,11 @@ PUBLIC " - //mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.someday.member.MemberModel" alias="memberModel" />
 	 	<typeAlias type="com.someday.member.ZipcodeModel" alias="zipcodeModel" />
 		
+		<!-- member -->
+		<typeAlias type="com.someday.member.MemberModel" alias="memberModel" />
+		<typeAlias type="com.someday.member.ZipcodeModel" alias="zipcodeModel" />
+		
+		
 		<!--  Notice board  -->
 		<typeAlias type="com.someday.notice.NoticeModel" alias="noticeModel" />
 		
@@ -40,6 +45,7 @@ PUBLIC " - //mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="mybatis/config/MemberSQL.xml" />
 		<!--  Today  -->
 		<mapper resource="mybatis/config/TodaySQL.xml" />
+
 	</mappers>
 
 </configuration>
