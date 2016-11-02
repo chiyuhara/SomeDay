@@ -87,7 +87,8 @@ body {
 		<tr>
 			<td align="center" bgcolor="#FFC8C8">글내용</td>
 			<td align="left" colspan="3" height="100" style="padding: 10px 5px;"
-				bgcolor="#FFF2E6">${noticeModel.content}</td>
+				bgcolor="#FFF2E6">${noticeModel.content}
+				</td>
 		</tr>
 	</table>
 	<button type="button" onclick="onList()" class="btn btn-primary">목록</button>
