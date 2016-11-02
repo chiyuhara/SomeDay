@@ -13,6 +13,11 @@
 		<put-attribute name="footer" value="/WEB-INF/views/tiles/footer.jsp" />
 	</definition>
 	
+	<!-- admin -->
+	<definition name="admin" template="/WEB-INF/views/layout/admin/layout.jsp">
+		<put-attribute name="body" value="/WEB-INF/views/layout/admin/container.jsp" />
+	</definition>
+	
 	<!-- NoticeList -->
   	 <definition name="noticeList" extends="main">
 		<put-attribute name="body" value="/WEB-INF/views/notice/NoticeList.jsp" />
@@ -26,6 +31,34 @@
 	<!-- NoticeForm -->
 	<definition name="noticeForm" extends="main">
 		<put-attribute name="body" value="/WEB-INF/views/notice/NoticeForm.jsp" />
+	</definition>
+	
+	<!-- Member -->
+	<definition name="member" extends="main">
+	
+		<put-attribute name="body" value="/WEB-INF/views/member/memberJoin.jsp" />
+	</definition>
+	
+	<definition name="memberEnd" extends="main">
+		
+		<put-attribute name="body" value="/WEB-INF/views/member/memberJoinEnd.jsp" />
+	</definition>
+	
+	<definition name="idFindOk" extends="main">
+		<put-attribute name="body" value="/WEB-INF/views/member/idFindOk.jsp" />
+	</definition>
+	
+	<definition name="loginForm" extends="main">
+		<put-attribute name="body" value="/WEB-INF/views/member/loginForm.jsp" />
+	</definition>
+	
+	<!-- admin -->
+	<definition name="adminForm" extends="admin">
+		<put-attribute name="body" value="/WEB-INF/views/layout/admin/main.jsp" />
+	</definition>
+	
+	<definition name="memberadminList" extends="admin">
+		<put-attribute name="body" value="/WEB-INF/views/admin/memberadminList.jsp" />
 	</definition>
 	
 

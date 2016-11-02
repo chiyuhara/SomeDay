@@ -20,6 +20,11 @@ PUBLIC " - //mybatis.org//DTD Config 3.0//EN"
 	<!-- ModelMapping -->
 	<typeAliases>
 		
+		<!-- member -->
+		<typeAlias type="com.someday.member.MemberModel" alias="memberModel" />
+		<typeAlias type="com.someday.member.ZipcodeModel" alias="zipcodeModel" />
+		
+		
 		<!--  Notice board  -->
 		<typeAlias type="com.someday.notice.NoticeModel" alias="noticeModel" />
 		
@@ -28,6 +33,7 @@ PUBLIC " - //mybatis.org//DTD Config 3.0//EN"
 	<!-- SQL 정의한 xml문서 Mapping -->
 	<mappers>
 		<mapper resource="mybatis/config/NoticeSQL.xml" />
+		<mapper resource="mybatis/config/MemberSQL.xml" />
 	</mappers>
 
 </configuration>
