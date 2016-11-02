@@ -18,11 +18,17 @@ public interface MemberDao {
 	//아이디 찾기
 	public MemberModel inputIdCheck(String id) throws Exception;
 	
-	//my_idx 성별이 여자인지
+	//today: my_idx 성별이 여자인지
 	MemberModel myGenderfemale(int idx);
 	
-	//my_idx 성별이 남자인지
+	//today: my_idx 성별이 남자인지
 	MemberModel myGendermale(int idx);
+	
+	//today: 나의정보
+	MemberModel my(int idx);
+	
+	//today: 상대방정보
+	MemberModel target(int idx);
 }
 
 

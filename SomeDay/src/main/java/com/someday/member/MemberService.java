@@ -92,16 +92,28 @@ public class MemberService implements MemberDao{
 	return sqlSessionTemplate.selectOne("member.getMemberById",id);
 				
 	}
-	//my_idx 성별이 여자인지
+	//today: my_idx 성별이 여자인지
 	@Override
 	public MemberModel myGenderfemale(int idx) {
 		return sqlSessionTemplate.selectOne("member.myGenderfemale", idx);
 	}
 		
-	//my_idx 성별이 남자인지
+	//today: my_idx 성별이 남자인지
 	@Override
 	public MemberModel myGendermale(int idx) {
 		return sqlSessionTemplate.selectOne("member.myGendermale", idx);
+	}
+	
+	//today: 나의정보
+	@Override
+	public MemberModel my(int idx){
+		return sqlSessionTemplate.selectOne("member.target", idx);
+	}
+	
+	//today: 상대방정보
+	@Override
+	public MemberModel target(int idx){
+		return sqlSessionTemplate.selectOne("member.target", idx);
 	}
 }
 
