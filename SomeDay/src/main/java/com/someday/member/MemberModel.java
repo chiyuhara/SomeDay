@@ -1,6 +1,8 @@
-package com.someday.today;
+package com.someday.member;
 
 import java.util.Date;
+
+import oracle.sql.TIMESTAMP;
 
 public class MemberModel {
 	
@@ -8,25 +10,29 @@ public class MemberModel {
 	private String id;
 	private String nick;
 	private String pass;
+	private String pass2;
 	private String name;
 	private int age;
 	private String gender;
 	private String area;
 	private String email;
+	private String email2;
+	private String selectEmail;
 	private String phone;
+	private String phone2;
+	private String phone3;
 	private String num1;
 	private String num2;
 	private String addr1;
 	private String addr2;
 	private String intro;
-	private int score_avg;
-	private String authority;
 	private Date times;
 	private String bloodgroup;
 	private String zipcode;
-
 	private String file_orgname;
 	private String file_savname;
+	private String score_avg;
+	private String authority;
 	public int getIdx() {
 		return idx;
 	}
@@ -50,6 +56,12 @@ public class MemberModel {
 	}
 	public void setPass(String pass) {
 		this.pass = pass;
+	}
+	public String getPass2() {
+		return pass2;
+	}
+	public void setPass2(String pass2) {
+		this.pass2 = pass2;
 	}
 	public String getName() {
 		return name;
@@ -81,11 +93,35 @@ public class MemberModel {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	public String getEmail2() {
+		return email2;
+	}
+	public void setEmail2(String email2) {
+		this.email2 = email2;
+	}
+	public String getSelectEmail() {
+		return selectEmail;
+	}
+	public void setSelectEmail(String selectEmail) {
+		this.selectEmail = selectEmail;
+	}
 	public String getPhone() {
 		return phone;
 	}
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+	public String getPhone2() {
+		return phone2;
+	}
+	public void setPhone2(String phone2) {
+		this.phone2 = phone2;
+	}
+	public String getPhone3() {
+		return phone3;
+	}
+	public void setPhone3(String phone3) {
+		this.phone3 = phone3;
 	}
 	public String getNum1() {
 		return num1;
@@ -117,18 +153,6 @@ public class MemberModel {
 	public void setIntro(String intro) {
 		this.intro = intro;
 	}
-	public int getScore_avg() {
-		return score_avg;
-	}
-	public void setScore_avg(int score_avg) {
-		this.score_avg = score_avg;
-	}
-	public String getAuthority() {
-		return authority;
-	}
-	public void setAuthority(String authority) {
-		this.authority = authority;
-	}
 	public Date getTimes() {
 		return times;
 	}
@@ -159,4 +183,18 @@ public class MemberModel {
 	public void setFile_savname(String file_savname) {
 		this.file_savname = file_savname;
 	}
+	public String getScore_avg() {
+		return score_avg;
+	}
+	public void setScore_avg(String score_avg) {
+		this.score_avg = score_avg;
+	}
+	public String getAuthority() {
+		return authority;
+	}
+	public void setAuthority(String authority) {
+		this.authority = authority;
+	}
+	
+	
 }

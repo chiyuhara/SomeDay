@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="member">
 
-	<resultMap type="memberModel" id="memberModelRes">
+	<resultMap type="memberModel" id="memberRes">
 		<result property="idx" column="idx" />
 		<result property="id" column="id" />
 		<result property="nick" column="nick" />
@@ -30,19 +30,104 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="file_savname" column="file_savname" />	
 	</resultMap>
 	
-	<!-- 공통으로 사용할 select 절 정의 -->
+	<!-- 우편번호리절트맵정의 -->
+ 	<resultMap type="zipcodeModel" id="zipcodeRes">
+		<result property="zipcode" column="zipcode"/>
+		<result property="area1" column="area1"/>
+		<result property="area2" column="area2"/>
+		<result property="area3" column="area3"/>
+		<result property="area4" column="area4"/>
+	</resultMap>
+	
+	
+		<!-- 공통으로 사용할 select 절 정의 -->
 	<sql id="select-all-member">
 		SELECT * FROM MEMBER
 	</sql>
 	
+	<!-- 공통으로 사용할 where-idx 절 정의 -->
+	<sql id="where-idx">
+		WHERE IDX = #{idx}
+	</sql>
+	
+	<select id="selectAll-member" resultMap="memberRes" parameterType="memberModel">
+		<include refid="select-all-member" />
+		 ORDER BY IDX DESC
+	</select>
+	
+	<select id="selectOne" resultMap="memberRes" parameterType="int">
+		<include refid="select-all-member" />
+		<include refid="where-idx" />
+	</select>
+	
+	<!-- 회원가입 -->
+	<insert id="insertMember" parameterType="memberModel">
+		INSERT INTO MEMBER(
+		idx,
+		id,
+		nick,
+		pass,
+		name,
+		bloodgroup,
+		area,
+		email,
+		phone,
+		num1,
+		num2,
+		zipcode,
+		addr1,
+		addr2,
+		intro,
+		times
+		)
+		VALUES (
+		MEMBER_IDX_SEQ.NEXTVAL,
+		#{id},
+		#{nick},
+		#{pass},
+		#{name},
+		#{bloodgroup},
+		#{area},
+		#{email},
+		#{phone},
+		#{num1},
+		#{num2},
+		#{zipcode},
+		#{addr1},
+		#{addr2},
+		#{intro},
+		sysdate
+		)
+	</insert>
+	
+	<!--성별 나이 등록-->
+ 	<update id="AgeGender" parameterType="memberModel">
+			UPDATE MEMBER SET 
+			AGE = #{age},
+			GENDER = #{gender}
+			WHERE ID = #{id}
+	</update>
+	
+	<!-- 아이디 중복 확인 -->
+	<select id="getMemberById" resultMap="memberRes" parameterType="string">
+		<include refid="select-all-member" />
+		WHERE ID = #{id}
+	</select>
+
+	
+	<!-- 우편번호 찾기 -->
+	<select id="zipcodeCheck" parameterType="zipcodeModel" resultMap="zipcodeRes">
+			select * from zipcode where AREA3 like '%'||#{area3}||'%'
+	</select>
+	
 	<!-- my_idx가 여자인지 확인 -->
-	<select id="myGenderfemale" resultMap="memberModelRes" parameterType="Integer">
+	<select id="myGenderfemale" resultMap="memberRes" parameterType="Integer">
 		<include refid="select-all-member" />
 		WHERE GENDER = 'female' AND IDX = #{idx}
 	</select>
 	
 	<!-- my_idx가 남자인지 확인 -->
-	<select id="myGendermale" resultMap="memberModelRes" parameterType="Integer">
+	<select id="myGendermale" resultMap="memberRes" parameterType="Integer">
 		<include refid="select-all-member" />
 		WHERE GENDER = 'male' AND IDX = #{idx}
 	</select>

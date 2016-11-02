@@ -13,16 +13,21 @@ PUBLIC " - //mybatis.org//DTD Config 3.0//EN"
         <setting name="useColumnLabel"            value="true"/>  
         <setting name="useGeneratedKeys"          value="false"/>  
         <setting name="defaultExecutorType"       value="SIMPLE"/>  
-        <setting name="defaultStatementTimeout"   value="25000"/>  
+        <setting name="defaultStatementTimeout"   value="25000"/> 
+        <setting name="jdbcTypeForNull" value="NULL"/> 
 	</settings>
 
-
+	
+	
 	<!-- ModelMapping -->
 	<typeAliases>
+		<!-- member -->
+		<typeAlias type="com.someday.member.MemberModel" alias="memberModel" />
+	 	<typeAlias type="com.someday.member.ZipcodeModel" alias="zipcodeModel" />
+		
 		<!--  Notice board  -->
 		<typeAlias type="com.someday.notice.NoticeModel" alias="noticeModel" />
-		<!--  Member -->
-		<typeAlias type="com.someday.today.MemberModel" alias="memberModel" />
+		
 		<!--  Today  -->
 		<!-- <typeAlias type="com.someday.today.TodayModel" alias="todayModel" /> -->
 	</typeAliases>

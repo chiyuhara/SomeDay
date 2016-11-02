@@ -1,0 +1,155 @@
+package com.someday.member;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Properties;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.log4j.Logger;
+import org.springframework.dao.DuplicateKeyException;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.someday.member.MemberService;
+import com.someday.member.ZipcodeModel;
+import com.someday.validator.MemberValidator;
+import com.someday.member.MemberModel;
+
+@Controller
+@RequestMapping("/member")
+public class MemberController {
+
+	Logger log = Logger.getLogger(this.getClass());
+	
+	 @Resource(name="memberService")
+	   private MemberService memberService;
+	 
+	   private List<ZipcodeModel> zipcodeList = new ArrayList<ZipcodeModel>();
+	   private MemberModel memberModel = new MemberModel();
+	   ModelAndView mav = new ModelAndView();
+
+	  /*회원가입폼*/
+	@RequestMapping("/member")
+	public ModelAndView memberStep1(){
+	   
+		 ModelAndView mav = new ModelAndView();
+		  
+	   mav.setViewName("member/join");
+	   return mav;
+	}
+	/*회원가입*/
+	@RequestMapping("/memberjoin")
+	public ModelAndView memberJoin(@ModelAttribute("member") MemberModel member,
+								   BindingResult result) {
+		
+		System.out.println(member.getId());
+		System.out.println(member.getPass());
+		System.out.println(member.getName());
+		System.out.println(member.getEmail());
+		System.out.println(member.getNick());
+		System.out.println(member.getArea());
+		System.out.println(member.getAddr1());
+		System.out.println(member.getAddr2());
+		System.out.println(member.getPhone());
+		System.out.println(member.getNum1());	
+		System.out.println(member.getNum2());
+		System.out.println(member.getIntro());
+		System.out.println(member.getZipcode());
+		
+/*		new MemberValidator().validate(member, result);
+        
+        // 에러가있으면 회원가입폼으로 넘어감
+        if(result.hasErrors()) {
+       	 
+       	ModelAndView mav = new ModelAndView();
+       	 System.out.println(member.getEmail());
+           mav.setViewName("join");
+           return mav;
+        }*/
+        try{
+        	member.setPhone(member.getPhone3()+"-"+member.getPhone()+"-"+member.getPhone2()); //폰넘버 합치기
+        	
+        	if(member.getEmail2() != null){	//이메일 주소가 널이 아니면 실행
+        		member.setEmail(member.getEmail()+"@"+member.getEmail2());
+			} else { // 이메일 주소가 널일시 실행
+				member.setEmail(member.getEmail()+"@"+member.getSelectEmail());
+			}
+			memberService.insertMember(member);
+			
+			/*나이 성별 등록*/
+			memberService.AgeGender(member);
+			
+			mav.addObject("member", member);
+			mav.setViewName("member/join");
+			return mav;
+        	} catch (DuplicateKeyException e) {
+                // db에서 id의 제약조건을 unique로 바꿨기 때문에 중복된 아이디로 가입하려하면 DuplicateKeyException이 뜨게되고
+                // 예외처리로 properties파일에 등록된 "invalid"의 내용이 나오게 만들고 회원가입폼으로 돌아가게했음.
+                // 아이디 중복검사
+                result.reject("invalid", null);
+                mav.setViewName("member/join");
+                return mav;
+        	}
+	}
+	
+	  @RequestMapping(value="/zipcodeCheckForm")
+      public ModelAndView zipcodeCheckForm( HttpServletRequest req) throws Exception{
+         ModelAndView mv = new ModelAndView();
+
+             mv.setViewName("check/zipcodeCheck");
+          return mv;
+   }
+      /*회원가입시 우편번호 검색 로직*/ 
+      @RequestMapping(value="/zipcodeCheck")
+      public ModelAndView zipcodeCheck( @ModelAttribute ZipcodeModel zipcodeModel ,HttpServletRequest req) throws Exception{
+         
+    	 ModelAndView mv = new ModelAndView();
+         
+         int chk=100;
+
+         zipcodeList = memberService.zipcodeCheck(zipcodeModel);
+             
+         mv.addObject("zipcode", zipcodeList);
+                
+         if(zipcodeList.size() == 0){
+        	 chk =0;
+         }else{
+        	 chk=1;
+         }
+             mv.addObject("chk",chk);
+             mv.setViewName("check/zipcodeCheck");
+             return mv;
+          }   
+      //아이디 찾기 
+      @RequestMapping(value="/inputIdCheck")
+      public ModelAndView inputIdCheck(String id) throws Exception {
+    	  
+    	  System.out.println(id);
+    	  ModelAndView mv = new ModelAndView();
+    	  
+    	  int ick = 100;
+    	  
+    	  memberModel = memberService.inputIdCheck(id);
+    	  if(memberModel == null){
+    		  ick= 0;
+    	  } else {
+    		  ick = 1;
+    	  }
+    	  
+    	  mv.addObject("member",memberModel); // 쿼리 결과값
+    	  mv.addObject("ick",ick); // 아이디 있나없나
+    	  mv.setViewName("check/inputIdCheck");
+    	  return mv;
+    	  
+    	  
+      }
+
+}
