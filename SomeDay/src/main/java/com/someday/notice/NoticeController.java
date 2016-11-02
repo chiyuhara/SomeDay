@@ -101,6 +101,7 @@ public class NoticeController {
         }
 
 		List<NoticeModel> noticeList;	
+		noticeList = noticeService.noticeList();
 		
 		String isSearch = request.getParameter("isSearch");
 		if(isSearch != null) isSearch = new String(isSearch.getBytes("8859_1"), "UTF-8");
@@ -116,8 +117,6 @@ public class NoticeController {
 			} else if(searchNum==2) {
 				noticeList = noticeService.noticeSearch2(isSearch);
 			}
-			
-			noticeList = noticeService.noticeList();
 		
 			totalCount = noticeList.size();
 			page = new Paging(currentPage, totalCount, blockCount, blockPage, "noticeList", searchNum, isSearch);
@@ -139,6 +138,25 @@ public class NoticeController {
 			mav.setViewName("noticeList");
 		
 		} 
+		totalCount = noticeList.size();
+		page = new Paging(currentPage, totalCount, blockCount, blockPage, "noticeList", searchNum, isSearch);
+		pagingHtml = page.getPagingHtml().toString();
+	
+		int lastCount = totalCount;
+	
+		if(page.getEndCount() < totalCount)
+			lastCount = page.getEndCount() + 1;
+		
+		noticeList = noticeList.subList(page.getStartCount(), lastCount);
+		
+		mav.addObject("isSearch", isSearch);
+		mav.addObject("searchNum", searchNum);
+		mav.addObject("totalCount", totalCount);
+		mav.addObject("pagingHtml", pagingHtml);
+		mav.addObject("currentPage", currentPage);
+		mav.addObject("noticeList", noticeList);
+		mav.setViewName("noticeList");
+	
 		return mav;
 		
 	}

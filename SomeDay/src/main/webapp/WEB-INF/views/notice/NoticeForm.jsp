@@ -81,6 +81,7 @@
 										<font color="red"><form:errors path="content" /></font>
 									</td>
 								</tr>
+								
 							</tbody>
 
 						</table>
