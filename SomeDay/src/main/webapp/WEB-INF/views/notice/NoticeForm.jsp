@@ -11,7 +11,7 @@
 	function noticeList() {
 		if (confirm("목록으로 가시겠습니까?") == true) {
 			location.href = 'NoticeList';
-		} else {
+		}  {
 			return;
 		}
 	}

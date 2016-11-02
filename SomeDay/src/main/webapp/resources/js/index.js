@@ -2,19 +2,19 @@
 
 function passwdcheck() {
 		if (!document.passwdcheckform.password.value) {
-			alert("ºñ¹Ð¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
+			alert("ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½");
 			document.passwdcheckform.password.focus();
 			return false;
 		}
 		if (document.passwdcheckform.password.value != document.passwdcheckform.password2.value) {
-			alert("ºñ¹Ð¹øÈ£¸¦ µ¿ÀÏÇÏ°Ô ÀÔ·ÂÇÏ¼¼¿ä");
+			alert("ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Ô·ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½");
 			document.passwdcheckform.password2.focus();
 			return false;
 		}
-		if (confirm("Å»ÅðÇÏ°Ú½À´Ï±î?")) {
+		if (confirm("Å»ï¿½ï¿½ï¿½Ï°Ú½ï¿½ï¿½Ï±ï¿½?")) {
 
-		} else {
-			alert("Ãë¼ÒµÇ¾ú½À´Ï´Ù");
+		}  {
+			alert("ï¿½ï¿½ÒµÇ¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½");
 			window.location.href = 'memberMF.action';
 			return false;
 		}
@@ -22,22 +22,22 @@ function passwdcheck() {
 function checkForm() {
 	var ok1 = document.getElementById("OK1");
 	var ok2 = document.getElementById("OK2");
-	if (ok1.checked == true && ok2.checked == true)// Ã¼Å©¹Ú½ºÀÇ ¼Ó¼º checked¼Ó¼ºÀÌ true¸é
+	if (ok1.checked == true && ok2.checked == true)// Ã¼Å©ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½Ó¼ï¿½ checkedï¿½Ó¼ï¿½ï¿½ï¿½ trueï¿½ï¿½
 	{
-		window.location.href = "joinForm.action"; // ´ÙÀ½ÆäÀÌÁö·ÎÀÌµ¿ ÀÌµ¿
-	} else {
-		alert("¾à°ü¿¡ µ¿ÀÇÇÏ¼Å¾ßÇÕ´Ï´Ù.");
+		window.location.href = "joinForm.action"; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½ ï¿½Ìµï¿½
+	}  {
+		alert("ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¼Å¾ï¿½ï¿½Õ´Ï´ï¿½.");
 		return false;
 	}
 }
 function findidcheckIt(){
 	if (!document.findform.name.value) {
-		alert("ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä");
+		alert("ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½");
 		document.findform.name.focus();
 		return false;
 	}
 	if(!document.findform.phone.value){
-		alert("ÈÞ´ëÆù¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
+		alert("ï¿½Þ´ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½");
 		document.findform.phone.focus();
 		return false;
 	}
@@ -52,12 +52,12 @@ function findid() {
 }
 function findpasswordcheckIt(){
 	if (!document.findpasswordform.id.value) {
-		alert("¾ÆÀÌµð¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
+		alert("ï¿½ï¿½ï¿½Ìµï¿½ ï¿½Ô·ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½");
 		document.findpasswordform.id.focus();
 		return false;
 	}
 	if (!document.findpasswordform.phone.value) {
-		alert("ÈÞ´ëÆù¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
+		alert("ï¿½Þ´ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½");
 		document.findpasswordform.phone.focus();
 		return false;
 	}
@@ -75,18 +75,18 @@ function begin() {
 }
 function idCheck() {
 	if (!document.idcheckform.id.value) {
-		alert("¾ÆÀÌµð¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
+		alert("ï¿½ï¿½ï¿½Ìµï¿½ ï¿½Ô·ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½");
 		return false;
 	}
 }
 
 
 function logout() {
-	if (confirm("·Î±×¾Æ¿ô ÇÏ½Ã°Ú½À´Ï±î?")) {
-		alert("ÀÌ¿ëÇØÁÖ¼Å¼­ °¨»çÇÕ´Ï´Ù");
+	if (confirm("ï¿½Î±×¾Æ¿ï¿½ ï¿½Ï½Ã°Ú½ï¿½ï¿½Ï±ï¿½?")) {
+		alert("ï¿½Ì¿ï¿½ï¿½ï¿½ï¿½Ö¼Å¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½");
 		window.location.href = 'memberLO2.action';
-	} else {
-		alert("Ãë¼ÒµÇ¾ú½À´Ï´Ù");
+	}  {
+		alert("ï¿½ï¿½ÒµÇ¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½");
 	}
 }
 function zipCheck() {
@@ -99,7 +99,7 @@ function zipCheck() {
 }
 function openConfirmId(joinform) {
 	if (joinform.id.value == "") {
-		alert("¾ÆÀÌµð¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
+		alert("ï¿½ï¿½ï¿½Ìµï¿½ ï¿½Ô·ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½");
 		return;
 	}
 	url = "checkForm.action?id=" + joinform.id.value;
@@ -118,35 +118,35 @@ function openmodifyPassword() {
 }
 function joinCheck() {
 	if (!document.joinform.id.value) {
-		alert("¾ÆÀÌµð¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
+		alert("ï¿½ï¿½ï¿½Ìµï¿½ ï¿½Ô·ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½.");
 		return false;
 	}
 	if (!document.joinform.password.value) {
-		alert("ºñ¹Ð¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
+		alert("ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½");
 		return false;
 	}
 	if (!document.joinform.password.value != !document.joinform.password2.value) {
-		alert("ºñ¹Ð¹øÈ£¸¦ µ¿ÀÏÇÏ°Ô ÀÔ·ÂÇÏ¼¼¿ä");
+		alert("ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Ô·ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½");
 		return false;
 	}
 	if (!document.joinform.name.value) {
-		alert("ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä");
+		alert("ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½");
 		return false;
 	}
 	if (!document.joinform.jumin1.value || !document.joinform.jumin2.value) {
-		alert("»ýÀÏÀ» ÀÔ·ÂÇÏ¼¼¿ä");
+		alert("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½");
 		return false;
 	}
 	if (!document.joinform.phone.value) {
-		alert("ÇÚµåÆù ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
+		alert("ï¿½Úµï¿½ï¿½ï¿½ ï¿½ï¿½È£ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½");
 		return false;
 	}
 	if (!document.joinform.zipcode.value) {
-		alert("¿ìÆí¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
+		alert("ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½");
 		return false;
 	}
 	if (!document.joinform.address.value) {
-		alert("ÁÖ¼Ò¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
+		alert("ï¿½Ö¼Ò¸ï¿½ ï¿½Ô·ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½");
 		return false;
 	}
 }
@@ -155,18 +155,18 @@ function back() {
 }
 function checknum() {
 	if (event.keyCode < 48 || event.keyCode > 57) {
-		alert("¼ýÀÚ¸¸ ÀÔ·ÂÇÏ¼¼¿ä");
+		alert("ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½Ô·ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½");
 		event.returnValue = false;
 	}
 }
 function checkIt() {
 	if (!document.loginform.id.value) {
-		alert("¾ÆÀÌµð¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
+		alert("ï¿½ï¿½ï¿½Ìµï¿½ ï¿½Ô·ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½");
 		document.loginform.id.focus();
 		return false;
 	}
 	if (!document.loginform.password.value) {
-		alert("ºñ¹Ð¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
+		alert("ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½");
 		document.loginform.password.focus();
 		return false;
 	}
@@ -174,7 +174,7 @@ function checkIt() {
 }
 function dongCheck() {
 	if (document.zipform.area3.value == "") {
-		alert("µ¿ ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä");
+		alert("ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½");
 		document.zipform.area3.focus();
 		return;
 	}

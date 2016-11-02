@@ -1,4 +1,4 @@
-<!-- <?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper 
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
@@ -15,7 +15,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="male_score" column="male_score" />
 		<result property="female_msg" column="female_msg" />
 		<result property="male_msg" column="male_msg" />
-		<result property="times" column="times" />
+		<!-- <result property="times" column="times" /> -->
 	</resultMap>
+	
+	<!-- 공통으로 사용할 select 절 정의 -->
+	<sql id="select-all-meeting">
+		SELECT * FROM MEETING
+	</sql>
+	
+	<!-- 여자입장에서 참여한 미팅 찾기 -->
+	<select id="female_today" resultMap="todayModelRes" parameterType="Integer">
+		<include refid="select-all-meeting" />
+		MEETING WHERE FEMALE_IDX = #{idx} AND TRUNC(TIMES) = TRUNC(SYSDATE)
+	</select>
 
-</mapper> -->
+</mapper>

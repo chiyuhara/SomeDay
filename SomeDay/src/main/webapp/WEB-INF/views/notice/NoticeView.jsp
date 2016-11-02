@@ -20,7 +20,7 @@
 	function Delete() {
 		if (confirm("게시글이 삭제됩니다.") == true) {
 			location.href = 'NoticeDelete?idx=${noticeModel.idx}';
-		} else {
+		}  {
 			return;
 		}
 	}
@@ -44,7 +44,7 @@ body {
 				return false;
 			}
 
-			else if (frm.content.value == "") {
+			 if (frm.content.value == "") {
 				alert("입력해주세요");
 				return false;
 			}
