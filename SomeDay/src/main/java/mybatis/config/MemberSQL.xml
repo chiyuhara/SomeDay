@@ -140,7 +140,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 아이디 찾기 쿼리문 정의 -->
 	<select id="getMember" parameterType="String" resultMap="memberRes">
-		<include refid="select-all-m" />
+		<include refid="select-all-member" />
 		WHERE id = #{id}
 	</select>
 	

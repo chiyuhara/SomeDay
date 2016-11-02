@@ -37,7 +37,7 @@ public class MemberController {
 	   ModelAndView mav = new ModelAndView();
 
 	  /*È¸¿ø°¡ÀÔÆû*/
-	@RequestMapping("/member")
+	@RequestMapping("/memberForm")
 	public ModelAndView memberStep1(){
 	   
 		 ModelAndView mav = new ModelAndView();
