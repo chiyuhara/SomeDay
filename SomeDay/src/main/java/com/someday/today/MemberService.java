@@ -24,4 +24,16 @@ public class MemberService implements MemberDao{
 	public MemberModel myGendermale(int idx) {
 		return sqlSessionTemplate.selectOne("member.myGendermale", idx);
 	}
+	
+	//나의 회원정보를 가져옴
+	@Override
+	public MemberModel my(int idx){
+		return sqlSessionTemplate.selectOne("member.target", idx);
+	}
+	
+	//상대방 회원정보를 가져옴
+	@Override
+	public MemberModel target(int idx){
+		return sqlSessionTemplate.selectOne("member.target", idx);
+	}
 }

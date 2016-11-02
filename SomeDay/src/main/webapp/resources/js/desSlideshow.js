@@ -35,7 +35,7 @@
             g.find(".nav").css("display","block");
             g.css("background","none");
             play();
-        }else{
+        }{
             g.find(".switchBigPic").css("display","block");
             g.find(".nav").css("display","block");
             g.css("background","none");

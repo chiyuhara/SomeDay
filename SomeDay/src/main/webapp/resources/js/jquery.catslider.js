@@ -34,7 +34,7 @@
 				this.$categories.hide();
 				$currcat.show();
 			}
-			else {
+			 {
 				$currcat.addClass( 'mi-current' );
 			}
 			// current nav category
@@ -101,7 +101,7 @@
 				}, $newcatchild.length * 90 );
 
 			}
-			else {
+			 {
 
 				$currcat.hide();
 				$newcat.show();
@@ -134,7 +134,7 @@
 				instance[ options ].apply( instance, args );
 			});
 		}
-		else {
+		 {
 			this.each(function() {
 				instance ? instance._init() : instance = $.data( this, 'catslider', new $.CatSlider( options, this ) );
 			});

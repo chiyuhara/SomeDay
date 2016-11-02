@@ -90,7 +90,7 @@
 				( page > this.current ) ? d = 'next' : d = 'prev';
 			
 			}
-			else {
+			 {
 			
 				d = dir;
 			
@@ -105,7 +105,7 @@
 					++this.bgpositer;
 				
 				}
-				else {
+				 {
 				
 					classTo		= 'da-slide-toright';
 					classFrom	= 'da-slide-fromleft';
@@ -253,7 +253,7 @@
 					});
 					
 				}
-				else {
+				 {
 				
 					this.$el.on( 'webkitTransitionEnd.cslider transitionend.cslider OTransitionEnd.cslider', function( event ) {
 					
@@ -301,7 +301,7 @@
 			});
 		
 		} 
-		else {
+		 {
 		
 			this.each(function() {
 			

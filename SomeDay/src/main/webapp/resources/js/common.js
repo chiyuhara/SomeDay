@@ -38,12 +38,12 @@ function set_Embed()
     parameter += "<param name='quality' value='high'>\n";
     parameter += "<Param name='bgcolor' value=#FFFFFF>\n";
     }
-    else if ( getType == 'webftp')
+     if ( getType == 'webftp')
     {
         clsid = "EF256D78-3982-4F12-900B-AD8B254A43BD";
         codebase = "http://echosting.cafe24.com/ftpclient/Cafe24FtpCtl21.cab#version=1,0,2,7";
     }
-    else if ( getType == 'filelinkftp')
+     if ( getType == 'filelinkftp')
     {
         clsid = "EF256D78-3982-4F12-900B-AD8B254A43BD";
         codebase = "http://echosting.cafe24.com/ftpclient/Cafe24FtpCtl14.cab#version=1,0,2,4";
@@ -111,7 +111,7 @@ function set_Embed()
     
         if (getType == 'streaming')
             html = embed;
-        else
+        
             html = obj + parameter + embed + end_embed;
     
         document.write( html );

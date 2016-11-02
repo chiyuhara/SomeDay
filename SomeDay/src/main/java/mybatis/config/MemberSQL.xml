@@ -46,5 +46,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<include refid="select-all-member" />
 		WHERE GENDER = 'male' AND IDX = #{idx}
 	</select>
+	
+	<!-- target 회원정보 가져옴 -->
+	<select id="target" resultMap="memberModelRes" parameterType="Integer">
+		<include refid="select-all-member" />
+		WHERE IDX = #{idx}
+	</select>
 
 </mapper>
