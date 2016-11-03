@@ -51,11 +51,13 @@ public class MemberValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "id", "id");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "pass", "pass");
 		
+
 		if(member.getPass().equals(member.getPass2()) == false) {
 			errors.rejectValue("pass2", "pass2");
 		}
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "name");
   	    ValidationUtils.rejectIfEmpty(errors, "email", "email");
+
 	}
 
 }

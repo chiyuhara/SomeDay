@@ -53,7 +53,7 @@
 			<beans:list>
 				<beans:value>messages.boardMessage_ko</beans:value>
 				<!-- <beans:value>messages.adminMessage_ko</beans:value> -->
-				<!-- <beans:value>messages.memberMessage_ko</beans:value> -->
+				<beans:value>messages.memberMessage_ko</beans:value>
 			</beans:list>
 		</beans:property>
 	</beans:bean>

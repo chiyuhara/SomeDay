@@ -23,43 +23,44 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="intro" column="intro" />
 		<result property="score_avg" column="score_avg" />
 		<result property="authority" column="authority" />
-		<result property="times" column="times" />		
+		<result property="times" column="times" />
 		<result property="bloodgroup" column="bloodgroup" />
 		<result property="zipcode" column="zipcode" />
 		<result property="file_orgname" column="file_orgname" />
-		<result property="file_savname" column="file_savname" />	
+		<result property="file_savname" column="file_savname" />
 	</resultMap>
-	
+
 	<!-- 우편번호리절트맵정의 -->
- 	<resultMap type="zipcodeModel" id="zipcodeRes">
-		<result property="zipcode" column="zipcode"/>
-		<result property="area1" column="area1"/>
-		<result property="area2" column="area2"/>
-		<result property="area3" column="area3"/>
-		<result property="area4" column="area4"/>
+	<resultMap type="zipcodeModel" id="zipcodeRes">
+		<result property="zipcode" column="zipcode" />
+		<result property="area1" column="area1" />
+		<result property="area2" column="area2" />
+		<result property="area3" column="area3" />
+		<result property="area4" column="area4" />
 	</resultMap>
-	
-	
+
+
 	<!-- 공통으로 사용할 select 절 정의 -->
 	<sql id="select-all-member">
 		SELECT * FROM MEMBER
 	</sql>
-	
+
 	<!-- 공통으로 사용할 where-idx 절 정의 -->
 	<sql id="where-idx">
 		WHERE IDX = #{idx}
 	</sql>
-	
-	<select id="selectAll-member" resultMap="memberRes" parameterType="memberModel">
+
+	<select id="selectAll-member" resultMap="memberRes"
+		parameterType="memberModel">
 		<include refid="select-all-member" />
-		 ORDER BY IDX DESC
+		ORDER BY IDX DESC
 	</select>
-	
+
 	<select id="selectOne" resultMap="memberRes" parameterType="int">
 		<include refid="select-all-member" />
 		<include refid="where-idx" />
 	</select>
-	
+
 	<!-- 회원가입 -->
 	<insert id="insertMember" parameterType="memberModel">
 		INSERT INTO MEMBER(
@@ -99,43 +100,81 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		sysdate
 		)
 	</insert>
-	
-	<!--성별 나이 등록-->
- 	<update id="AgeGender" parameterType="memberModel">
-			UPDATE MEMBER SET 
-			AGE = #{age},
-			GENDER = #{gender}
-			WHERE ID = #{id}
+
+	<!--성별 나이 등록 -->
+	<update id="AgeGender" parameterType="memberModel">
+		UPDATE MEMBER SET
+		AGE = #{age},
+		GENDER = #{gender}
+		WHERE ID = #{id}
 	</update>
-	
+
 	<!-- 아이디 중복 확인 -->
 	<select id="getMemberById" resultMap="memberRes" parameterType="string">
 		<include refid="select-all-member" />
 		WHERE ID = #{id}
 	</select>
 
-	
+
 	<!-- 우편번호 찾기 -->
-	<select id="zipcodeCheck" parameterType="zipcodeModel" resultMap="zipcodeRes">
-			select * from zipcode where AREA3 like '%'||#{area3}||'%'
+	<select id="zipcodeCheck" parameterType="zipcodeModel"
+		resultMap="zipcodeRes">
+		select * from zipcode where AREA3 like '%'||#{area3}||'%'
 	</select>
-	
+
 	<!-- my_idx가 여자인지 확인 -->
 	<select id="myGenderfemale" resultMap="memberRes" parameterType="Integer">
 		<include refid="select-all-member" />
 		WHERE GENDER = 'female' AND IDX = #{idx}
 	</select>
-	
+
 	<!-- my_idx가 남자인지 확인 -->
 	<select id="myGendermale" resultMap="memberRes" parameterType="Integer">
 		<include refid="select-all-member" />
 		WHERE GENDER = 'male' AND IDX = #{idx}
 	</select>
-	
+
+	<!-- 로그인 체크 -->
+	<select id="login" parameterType="memberModel" resultMap="memberRes">
+		select
+		* from member where id=#{id} and pass=#{pass}
+	</select>
+
+	<!-- 아이디 찾기 쿼리문 정의 -->
+	<select id="getMember" parameterType="String" resultMap="memberRes">
+		<include refid="select-all-member" />
+		WHERE id = #{id}
+	</select>
+
+	<!-- 이름으로 비밀번호 와 아이디 찾기 -->
+	<select id="idfind" parameterType="memberModel" resultMap="memberRes">
+		select *
+		from member
+		where name = #{name} and num1 = #{num1} and num2 = #{num2}
+	</select>
+
+	<select id="pwfind" parameterType="memberModel" resultMap="memberRes">
+		select *
+		from member
+		where name = #{name} and id = #{id} and num1 = #{num1} and num2 = #{num2}
+	</select>
+
+	<!-- 전체검색 -->
+	<select id="memberSearch0" resultMap="memberRes" parameterType="String">
+		SELECT * FROM member
+		WHERE idx like #{search}
+		or id like #{search}
+		or name like #{search}
+		or phone like #{search}
+		or email like #{search}
+		or zipcode like #{search}
+		or addr1 like #{search}
+		ORDER BY idx DESC
+	</select>
+
 	<!-- my, target 회원정보 가져옴 -->
 	<select id="target" resultMap="memberRes" parameterType="Integer">
 		<include refid="select-all-member" />
 		WHERE IDX = #{idx}
 	</select>
-
 </mapper>
