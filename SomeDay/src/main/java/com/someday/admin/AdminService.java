@@ -11,8 +11,8 @@ import com.someday.member.MemberModel;
 
 @Service
 public class AdminService implements AdminDao{
-	@Resource(name="sqlSessionTemplate")
-	private SqlSessionTemplate sqlSessionTemplate;
+	   @Resource(name="sqlSessionTemplate")
+	   private SqlSessionTemplate sqlSessionTemplate;
 	
 	//회원목록 출력
 	@Override

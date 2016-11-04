@@ -2,20 +2,26 @@ package com.someday.member;
 
 import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
 
 import com.someday.member.MemberModel;
+import com.someday.util.FileUtils;
 
 @Service
 public class MemberService implements MemberDao{
 
    @Resource(name="sqlSessionTemplate")
-   
    private SqlSessionTemplate sqlSessionTemplate;
+   
+   @Resource(name="fileUtils")
+   private FileUtils fileUtils;
+
 
    @Override   //회원가입
    public Object insertMember(MemberModel mem) {
@@ -84,7 +90,23 @@ public class MemberService implements MemberDao{
             }
          return sqlSessionTemplate.update("member.AgeGender", ag);
          }
-         
+   //아이디로 Idx찾기
+   @Override
+   public Object Idx(MemberModel mem){
+	   return sqlSessionTemplate.selectOne("member.selectIdx",mem);
+   }
+   //파일 업로드
+   @Override
+   public Object UpdateFile(MemberModel up, HttpServletRequest request) throws Exception{
+	   
+		List<Map<String, Object>> list = fileUtils.parseInsertFileInfo(up, request);
+			System.out.println(list);
+			for(int i=0, size=list.size(); i<size; i++){
+			return sqlSessionTemplate.update("member.updateFile", list.get(i));
+			}
+			return list;
+	
+   }
    //아이디 중복체크
    @Override
    public MemberModel inputIdCheck(String id) throws Exception {
