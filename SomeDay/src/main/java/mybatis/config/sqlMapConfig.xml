@@ -33,6 +33,9 @@ PUBLIC " - //mybatis.org//DTD Config 3.0//EN"
 		<!--  Notice board  -->
 		<typeAlias type="com.someday.notice.NoticeModel" alias="noticeModel" />
 		
+		<!--  Notice comment  -->
+		<typeAlias type="com.someday.notice.NoticecommModel" alias="noticecommModel" />
+		
 		<!--  Today  -->
 		<typeAlias type="com.someday.today.TodayModel" alias="todayModel" />
 	</typeAliases>

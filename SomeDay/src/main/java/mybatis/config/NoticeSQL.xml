@@ -17,6 +17,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="file_savname" column="file_savname" />
 	</resultMap>
 
+	<resultMap type="noticecommModel" id="noticecommModelRes">
+		<result property="idx" column="idx" />
+		<result property="originidx" column="originidx" />
+		<result property="writer" column="writer" />
+		<result property="content" column="content" />
+		<result property="times" column="times" />
+	</resultMap>
+
 
 	<!-- 글목록 -->
 	<select id="noticeList" resultMap="noticeModelRes">
@@ -25,7 +33,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<!-- 글 상세보기 -->
-	<select id="noticeView" resultMap="noticeModelRes" parameterType="Integer">
+	<select id="noticeView" resultMap="noticeModelRes"
+		parameterType="Integer">
 		SELECT * FROM NOTICE_BOARD
 		WHERE IDX = #{idx}
 	</select>
@@ -37,41 +46,68 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES
 		(NOTICE_BOARD_IDX_SEQ.NEXTVAL, #{subject}, #{content}, 1,2)
 	</insert>
-	
+
 	<!-- 글삭제 -->
-	<delete id="noticeDelete" parameterType="noticeModel" >
-			DELETE FROM NOTICE_BOARD WHERE IDX=#{idx}
+	<delete id="noticeDelete" parameterType="noticeModel">
+		DELETE FROM NOTICE_BOARD WHERE IDX=#{idx}
 	</delete>
-	
+
 	<!-- 글수정 -->
 	<update id="noticeModify" parameterType="noticeModel">
-			UPDATE NOTICE_BOARD
-			SET
-				SUBJECT = #{subject},
-				CONTENT = #{content}
-			WHERE
-				IDX = #{idx}	
+		UPDATE NOTICE_BOARD
+		SET
+		SUBJECT = #{subject},
+		CONTENT = #{content}
+		WHERE
+		IDX = #{idx}
 	</update>
-	
+
 	<!-- 제목검색 -->
-	<select id="noticeSearch0" resultMap="noticeModelRes" parameterType="String">
+	<select id="noticeSearch0" resultMap="noticeModelRes"
+		parameterType="String">
 		SELECT * FROM NOTICE_BOARD
-		 WHERE subject like #{search}
-		 ORDER BY IDX DESC
+		WHERE subject like #{search}
+		ORDER BY IDX DESC
 	</select>
-	
+
 	<!-- 내용검색 -->
-	<select id="noticeSearch1" resultMap="noticeModelRes" parameterType="String">
+	<select id="noticeSearch1" resultMap="noticeModelRes"
+		parameterType="String">
 		SELECT * FROM NOTICE_BOARD
 		WHERE content like #{search}
 		ORDER BY IDX DESC
 	</select>
 
 	<!-- 작성자검색 -->
-	<select id="noticeSearch2" resultMap="noticeModelRes" parameterType="String">
+	<select id="noticeSearch2" resultMap="noticeModelRes"
+		parameterType="String">
 		SELECT * FROM NOTICE_BOARD
 		WHERE writer like #{search}
 		ORDER BY IDX DESC
 	</select>
+
+	<!-- 댓글목 -->
+	<select id="noticecommList" resultMap="noticecommModelRes"
+		parameterType="Integer">
+		SELECT * FROM NOTICE_COMMENT
+		WHERE ORIGINIDX = #{idx}
+		ORDER BY IDX ASC
+	</select>
+
+	<!-- 댓글 쓰기 -->
+	<insert id="noticecommWrite" parameterType="noticecommModel">
+		INSERT INTO
+		NOTICE_COMMENT(IDX, ORIGINIDX, CONTENT, TIMES )
+		values(NOTICE_COMMENT_IDX_SEQ.NEXTVAL, #{originidx}, #{content},
+		sysdate)
+	</insert>
+
+	<!-- 댓글 삭제 -->
+	<delete id="noticecommDelete" parameterType="noticecommModel">
+		DELETE
+		NOTICE_COMMENT
+		WHERE
+		idx = #{idx}
+	</delete>
 
 </mapper>
