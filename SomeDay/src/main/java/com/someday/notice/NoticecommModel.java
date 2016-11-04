@@ -2,51 +2,46 @@ package com.someday.notice;
 
 import java.util.Date;
 
+import oracle.sql.TIMESTAMP;
+
 public class NoticecommModel {
 	
-	private int content_num;
-	private int comment_num; 
-	private String commenter;
-	private String commentt;
-	private Date reg_date;
-	private int comment_count;
+	private int idx;
+	private int originidx;
+	private String writer;
+	private String content;
+	private Date times;
 	
-
-	public int getContent_num() {
-		return content_num;
+	public Date getTimes() {
+		return times;
 	}
-	public void setContent_num(int content_num) {
-		this.content_num = content_num;
+	public void setTimes(Date times) {
+		this.times = times;
 	}
-	public int getComment_num() {
-		return comment_num;
+	public int getIdx() {
+		return idx;
 	}
-	public void setComment_num(int comment_num) {
-		this.comment_num = comment_num;
+	public void setIdx(int idx) {
+		this.idx = idx;
 	}
-	public String getCommenter() {
-		return commenter;
+	public int getOriginidx() {
+		return originidx;
 	}
-	public void setCommenter(String commenter) {
-		this.commenter = commenter;
+	public void setOriginidx(int originidx) {
+		this.originidx = originidx;
 	}
-	public String getCommentt() {
-		return commentt;
+	public String getWriter() {
+		return writer;
 	}
-	public void setCommentt(String commentt) {
-		this.commentt = commentt;
+	public void setWriter(String writer) {
+		this.writer = writer;
 	}
-	public Date getReg_date() {
-		return reg_date;
+	public String getContent() {
+		return content;
 	}
-	public void setReg_date(Date reg_date) {
-		this.reg_date = reg_date;
+	public void setContent(String content) {
+		this.content = content;
 	}
-	public int getComment_count() {
-		return comment_count;
-	}
-	public void setComment_count(int comment_count) {
-		this.comment_count = comment_count;
-	}
+	
 
 }

@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
 
+import com.someday.notice.NoticecommModel;
 import com.someday.notice.NoticeModel;
 
 @Service
@@ -62,7 +63,28 @@ public class NoticeService implements NoticeDao {
 	public List<NoticeModel> noticeSearch2(String search) {
 		return sqlSessionTemplate.selectList("notice.noticeSearch2", "%" + search + "%");
 	}
-	
-	
+
+	// ´ñ±Ûº¸±â
+	@Override
+	public List<NoticecommModel> noticecommList(int idx) {
+		return sqlSessionTemplate.selectList("notice.noticecommList", idx);
+	}
+
+	// ´ñ±Û¾²±â
+	@Override
+	public int noticecommWrite(NoticecommModel noticecommModel) {
+		return sqlSessionTemplate.insert("notice.noticecommWrite", noticecommModel);
+	}
+
+	// ´ñ±Û»èÁ¦
+	@Override
+	public int noticecommDelete(NoticecommModel noticecommModel) {
+		return sqlSessionTemplate.delete("notice.noticecommDelete", noticecommModel);
+	}
+
+	// ´ñ±Û 1 ÇÏ¶ô
+	public int noticecommUpdate2(int idx) {
+		return sqlSessionTemplate.update("notice.noticecommUpdate2", idx);
+	}
 
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -12,15 +13,16 @@
 	var onList = function() {
 		location.href = 'NoticeList';
 	};
-	
-	var onModify = function(){
+
+	var onModify = function() {
 		location.href = 'NoticeModify?idx=${noticeModel.idx}';
 	};
 
 	function Delete() {
 		if (confirm("게시글이 삭제됩니다.") == true) {
 			location.href = 'NoticeDelete?idx=${noticeModel.idx}';
-		}  {
+		}
+		{
 			return;
 		}
 	}
@@ -44,7 +46,7 @@ body {
 				return false;
 			}
 
-			 if (frm.content.value == "") {
+			if (frm.content.value == "") {
 				alert("입력해주세요");
 				return false;
 			}
@@ -87,14 +89,42 @@ body {
 		<tr>
 			<td align="center" bgcolor="#FFC8C8">글내용</td>
 			<td align="left" colspan="3" height="100" style="padding: 10px 5px;"
-				bgcolor="#FFF2E6">${noticeModel.content}
-				</td>
+				bgcolor="#FFF2E6">${noticeModel.content}</td>
 		</tr>
 	</table>
+
+
+	<!-- 댓글 -->
+	<div>
+	
+		<tr>
+			<c:if test="${fn:length(noticecommList) eq 0}">
+				<br/><center>등록된 댓글이 없습니다</center><br/>
+			</c:if>
+			<c:forEach var="noticecommList" items="${noticecommList}">
+				<br></br><td>${noticecommList.writer }님|${noticecommList.content}</td>
+			</c:forEach>
+		</tr>
+		
+		
+		<form:form commandName="noticecommList" action="NoticecommWrite" method="post">
+		<input type="hidden" name="originidx" value="${noticeModel.idx}"/>
+			<tr>
+						
+				<textarea name="content" style="margin: 10px; width: 849px; height: 55px;"></textarea>
+				<input name="submit" type="submit" value="댓글쓰기" class="btn btn-default btn-xs" />
+				
+			</tr>
+		</form:form>
+		
+		
+		
+		
+	</div>
+
 	<button type="button" onclick="onList()" class="btn btn-primary">목록</button>
 	<button type="button" onclick="onModify()" class="btn btn-primary">수정</button>
 	<button type="button" onclick="Delete()" class="btn btn-primary">삭제</button>
-	
-	<br>
+
 </tbody>
 </html>
