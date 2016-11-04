@@ -106,21 +106,33 @@ public class MemberService implements MemberDao{
    //아이디찾기
    @Override
    public MemberModel idFindByName(MemberModel member) {
-	   return sqlSessionTemplate.selectOne("member.idfind", member);
+      return sqlSessionTemplate.selectOne("member.idfind", member);
    }
    //비밀번호 찾기
    @Override
    public MemberModel pwFindById(MemberModel member) {
-	   return sqlSessionTemplate.selectOne("member.pwfind", member);
+      return sqlSessionTemplate.selectOne("member.pwfind", member);
    }
    //로그인
    @Override
    public MemberModel memberLogin(MemberModel mem) {
-	   return sqlSessionTemplate.selectOne("member.login", mem);
+      return sqlSessionTemplate.selectOne("member.login", mem);
     }
    //아이디
    @Override
    public MemberModel getMember(String id) {
-	   return sqlSessionTemplate.selectOne("member.getMember", id);
-	}
+      return sqlSessionTemplate.selectOne("member.getMember", id);
+   }
+   
+   //today: 나의정보
+ 	@Override
+ 	public MemberModel my(int idx){
+ 		return sqlSessionTemplate.selectOne("member.target", idx);
+ 	}
+ 	
+ 	//today: 상대방정보
+ 	@Override
+ 	public MemberModel target(int idx){
+ 		return sqlSessionTemplate.selectOne("member.target", idx);
+ 	}   
 }

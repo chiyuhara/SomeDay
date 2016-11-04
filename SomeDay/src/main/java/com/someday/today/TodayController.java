@@ -51,20 +51,27 @@ public class TodayController {
 			System.out.println("로그인한계정은 여자");
 			// 여자가 속한 미팅찾기
 			TodayModel female_today = todayService.female_today(myGenderfemale.getIdx());
-			System.out.println("미팅 idx : " + female_today.getIdx());
-			System.out.println("상대방 남자 idx : " + female_today.getMale_idx());
-			my = memberService.my(idx);
-			target = memberService.target(female_today.getMale_idx());
-			System.out.println("상대방 남자 이름 : " + target.getName());
+
+			if (female_today != null) {
+				System.out.println("미팅 idx : " + female_today.getIdx());
+				System.out.println("상대방 남자 idx : " + female_today.getMale_idx());
+				my = memberService.my(idx);
+				target = memberService.target(female_today.getMale_idx());
+				System.out.println("상대방 남자 이름 : " + target.getName());
+				mav.addObject("my", my);
+				mav.addObject("target", target);
+				mav.setViewName("today");
+			} else {
+				my = memberService.my(idx);
+				mav.addObject("my", my);
+				mav.addObject("target", null);
+				mav.setViewName("today");
+			}
+
 		}
 		if (myGendermale != null) {
 			System.out.println("로그인한계정은 남자");
 		}
-
-		mav.addObject("my", my);
-		mav.addObject("target", target);
-		mav.setViewName("today");
-
 		return mav;
 	}
 
