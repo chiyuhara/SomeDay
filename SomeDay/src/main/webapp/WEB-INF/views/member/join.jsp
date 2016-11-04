@@ -3,8 +3,8 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
-<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <script type="text/javascript" src="/app/Eclog/js/cid.generate.js?vs=811645615d6b4844b2208aa3b5af791b"></script>
 <script type="text/javascript" src="http://wcs.naver.net/wcslog.js"></script>
 <script type="text/javascript">var EC_SDE_SHOP_NUM = 1;var SHOP = {getLanguage : function() { return "ko_KR"; },getCurrency : function() { return "KRW"; },getFlagCode : function() { return "KR"; },isMultiShop : function() { return true; },isDefaultShop : function() { return true; },getProductVer : function() { return 2; },isSDE : function() { return true; }};</script>
@@ -209,18 +209,19 @@
 	    	  f.intro.focus();
 	    	  return false;
 	      }
-
+	      if(f.fileup.value.length == 3){
+	    	  alert("더이상 생성되지 않습니다");
+	    	  return false;
+	      }
 
 	   }
 </script>
-
-
 <link rel="stylesheet" type="text/css" href="/ind-script/optimizer.php?filename=06118f634a443f6e176680a1d0672b7553eb8064_1469556636&type=css&" />
 
-<form:form commandName="member" action="memberjoin" method="post" name="join" onsubmit="return check()">
+<form:form commandName="member" action="memberjoin" method="post" name="join" onsubmit="return check()" enctype="multipart/form-data">
 <h3>기본정보</h3>
 <p class="required">회원가입을 위한 필수입력 항목을 입력해 주십시오.</p>
-<div class="boardWrite ">
+<div class="board_view ">
         <table border="1" summary="">
 <caption>회원 기본정보</caption>
 
@@ -334,17 +335,71 @@ $("#selectEmail option:selected").each(function () {
 						<font class="BFONT">간단한 소개를 입력해주세요</font>
 				</td>
 			</tr>
+			<tr>
+<th scope="row">파일첨부</td>
+			<td><div id="fileDiv">
+				<input type="file" id="file" name="file">
+					<a href="#this" class="btn" id="delete" name="delete">삭제</a>
+					<a href="#this" class="btn" id="addFile">파일 추가</a>
+
+				</td>
+			</div>
+			</tr>
+<script type="text/javascript">
+		var gfv_count = 1;
+		var up = 0;
+		$(document).ready(function(){
+			$("#addFile").on("click", function(e){ //파일 추가 버튼
+				up++;
+				if(up == 3){
+					up = 2;
+					alert("더이상 생성되지 않습니다");
+					fn_deleteFile(this);
+				}
+				e.preventDefault();
+				fn_addFile();
+			
+				$("a[name='delete']").on("click", function(e){ //삭제 버튼
+					if(up != 2){
+						up--;
+					}if(up == 2){
+						up = 1;
+					}
+					
+					
+					e.preventDefault();
+					fn_deleteFile($(this));
+				});
+			});
+
+		});
+		
+		function fn_addFile(){
+			var str = "<p><input type='file' name='file_"+(gfv_count++)+"'><a href='#this' class='btn' name='delete'> 삭제</a></p>";
+			$("#fileDiv").append(str);
+			$("a[name='delete']").on("click", function(e){ //삭제 버튼
+				e.preventDefault();
+				fn_deleteFile($(this));
+			});
+		}
+		
+		function fn_deleteFile(obj){
+			obj.parent().remove();
+		}
+	</script>
 </tbody>
 </table>
 </div>
 
+			
 
 </tbody>
 </table>
 </div>
 <div class="btnArea">
+ 	<input type="image" src="/pet/resources/images/SkinImg/btn_member_join.gif" name="Submit" value="" style="border:0px;" />
         <a href="/index.html"><img src="/web/upload/goodymallSkin/mypage/btn_member_cancel.gif" alt="회원가입취소"/></a>
-       <input type="image" src="/pet/resources/images/SkinImg/btn_member_join.gif" name="Submit" value="" style="border:0px;" />
+      
     </div>
 </div>
 </form:form>

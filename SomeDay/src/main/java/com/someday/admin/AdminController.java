@@ -27,7 +27,7 @@ import com.someday.util.Paging;
 
 
 @Controller
-/*@RequestMapping("/admin")*/
+@RequestMapping("/admin")
 public class AdminController {
 	@Resource
 	private AdminService adminService;

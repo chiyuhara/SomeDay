@@ -4,7 +4,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="member">
-
 	<resultMap type="memberModel" id="memberRes">
 		<result property="idx" column="idx" />
 		<result property="id" column="id" />
@@ -49,7 +48,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<sql id="where-idx">
 		WHERE IDX = #{idx}
 	</sql>
-
+	
+	<!-- 아이디로 idx 찾기 -->
+   <select id="selectIdx" resultMap="memberRes" parameterType="memberModel">
+    SELECT IDX FROM MEMBER
+   	WHERE ID = #{id}
+   </select>
+   
 	<select id="selectAll-member" resultMap="memberRes"
 		parameterType="memberModel">
 		<include refid="select-all-member" />
@@ -107,6 +112,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		AGE = #{age},
 		GENDER = #{gender}
 		WHERE ID = #{id}
+	</update>
+	
+	 <!-- 사진업로드 -->
+	<update id="updateFile" parameterType="memberModel">
+			UPDATE MEMBER SET 
+			FILE_ORGNAME = #{File_orgname},
+			FILE_SAVNAME = #{File_savname}
+			<include refid="where-idx" />
 	</update>
 
 	<!-- 아이디 중복 확인 -->

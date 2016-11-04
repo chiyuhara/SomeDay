@@ -1,6 +1,7 @@
 package com.someday.member;
 
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 
 import com.someday.member.MemberModel;
 
@@ -14,8 +15,16 @@ public interface MemberDao {
 
 	// 나이성별등록
 	public Object AgeGender(MemberModel ag);
-
-	// 아이디 찾기
+	
+	//아이디로 IDX 찾기
+	public Object Idx(MemberModel mem);
+	
+	//파일업로드
+	public Object UpdateFile(MemberModel up, HttpServletRequest request) throws Exception;
+	//우리가 화면에서 전송한 모든 데이터는 HttpServletRequest에 담겨서 전송되고, 그것을 HandlerMethodArgumentResolver를 이용하여 MemberModel에 담아주었다
+	//텍스트 데이터 뿐만아니라 전송한 파일정보도 함께 담겨있다
+	
+	//아이디 찾기
 	public MemberModel inputIdCheck(String id) throws Exception;
 
 	// my_idx 성별이 여자인지
