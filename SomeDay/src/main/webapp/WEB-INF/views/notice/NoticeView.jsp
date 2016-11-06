@@ -102,7 +102,12 @@ body {
 				<br/><center>등록된 댓글이 없습니다</center><br/>
 			</c:if>
 			<c:forEach var="noticecommList" items="${noticecommList}">
-				<br></br><td>${noticecommList.writer }님|${noticecommList.content}</td>
+				<br></br>
+			<td>${noticecommList.writer }님|${noticecommList.content}
+				<a href="noticecommDelete?originidx=${noticecommList.originidx}&idx=${noticeModel.idx}" class="btn btnC_01 btnP_02">
+				<span class="btn btnC_05 reply_btn">삭제</span>
+				</a>
+			</td>
 			</c:forEach>
 		</tr>
 		
