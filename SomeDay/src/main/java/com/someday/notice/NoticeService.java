@@ -64,7 +64,7 @@ public class NoticeService implements NoticeDao {
 		return sqlSessionTemplate.selectList("notice.noticeSearch2", "%" + search + "%");
 	}
 
-	// ´ñ±Ûº¸±â
+	// ´ñ±Û¸ñ·Ï 
 	@Override
 	public List<NoticecommModel> noticecommList(int idx) {
 		return sqlSessionTemplate.selectList("notice.noticecommList", idx);
@@ -82,9 +82,5 @@ public class NoticeService implements NoticeDao {
 		return sqlSessionTemplate.delete("notice.noticecommDelete", noticecommModel);
 	}
 
-	// ´ñ±Û 1 ÇÏ¶ô
-	public int noticecommUpdate2(int idx) {
-		return sqlSessionTemplate.update("notice.noticecommUpdate2", idx);
-	}
 
 }

@@ -27,14 +27,15 @@ public interface NoticeDao {
 	List<NoticeModel> noticeSearch1(String search);
 
 	List<NoticeModel> noticeSearch2(String search);
-	
-	//´ñ±Û 
+
+	// ´ñ±Û¸ñ·Ï 
 	List<NoticecommModel> noticecommList(int idx);
-	
-	//´ñ±Û¾²±â 
+
+	// ´ñ±Û¾²±â
 	int noticecommWrite(NoticecommModel noticecommModel);
 
-	//´ñ±Û»èÁ¦
+	// ´ñ±Û»èÁ¦
 	int noticecommDelete(NoticecommModel noticecommModel);
+
 
 }

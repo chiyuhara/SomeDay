@@ -86,7 +86,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		ORDER BY IDX DESC
 	</select>
 
-	<!-- 댓글목 -->
+	<!-- 댓글 목록 -->
 	<select id="noticecommList" resultMap="noticecommModelRes"
 		parameterType="Integer">
 		SELECT * FROM NOTICE_COMMENT
@@ -104,10 +104,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 댓글 삭제 -->
 	<delete id="noticecommDelete" parameterType="noticecommModel">
-		DELETE
+		DELETE FROM
 		NOTICE_COMMENT
 		WHERE
-		idx = #{idx}
+		IDX = #{idx}
 	</delete>
+
 
 </mapper>
