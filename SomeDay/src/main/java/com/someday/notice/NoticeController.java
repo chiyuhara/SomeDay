@@ -283,7 +283,7 @@ public class NoticeController {
 	@RequestMapping(value = "/notice/NoticecommWrite", method = RequestMethod.POST)
 	public ModelAndView noticecommWrite(NoticecommModel noticecommModel, HttpServletRequest request) {
 		System.out.println("댓글쓰기ex 실행");
-		System.out.println("글번" +noticecommModel.getOriginidx());
+		System.out.println("글번호" +noticecommModel.getOriginidx());
 		ModelAndView mav = new ModelAndView();
 		//new NoticeValidator().validate(noticecommModel, result);
 
@@ -296,20 +296,20 @@ public class NoticeController {
 		
 		return mav;
 	}
-	
+
 	//댓글삭제 
 	@RequestMapping(value="/notice/noticecommDelete")
 	public ModelAndView noticecommDelete(HttpServletRequest request, NoticeModel noticeModel, NoticecommModel noticecommModel){			   
 			ModelAndView mav = new ModelAndView();
 			
-			System.out.println(noticecommModel.getOriginidx());
+			System.out.println("댓글삭제 ex 실행");
+			System.out.println("삭제될 댓글번호" + noticecommModel.getIdx());
 			
-			int idx = noticeModel.getIdx();
+			int no = noticeModel.getIdx();
 			noticeService.noticecommDelete(noticecommModel);
 			noticeService.noticeView(noticeModel.getIdx());
-			noticeService.noticecommUpdate2(idx);
 			
-			mav.setViewName("redirect:/notice/noticeView?idx="+noticeModel.getIdx());
+			mav.setViewName("redirect:/notice/noticeView?no="+noticeModel.getIdx());
 			
 			return mav;
 	}
