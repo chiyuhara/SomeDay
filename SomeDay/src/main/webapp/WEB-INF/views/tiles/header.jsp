@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html lang="ko">
 <head>
 <title>SOME DAY</title>
@@ -34,19 +35,26 @@
  <div id="header_top">
  <div class="wrap">
 <section id="ol_before">
-    <form name="foutlogin" action="http://www.lovehanda.com/bbs/login_check.php" onsubmit="return fhead_submit(this);" method="post" autocomplete="off">
+    <form:form commandName="member" name="headerlogin" action="${contextpath}/someday/member/login" onsubmit="return fhead_submit(this);" method="post" autocomplete="off">
     <fieldset>
-        <input type="hidden" name="url" value="%2F">
-
-        <input type="text" id="ol_id" name="mb_id"  title="회원아이디" placeholder="ID" required class="required" maxlength="20">
-        <input type="password" name="mb_password" id="ol_pw" title="비밀번호"  placeholder="PW" required class="required" maxlength="20">
+    <c:if test="${session_member_id == null }">
+        <input type="text" id="ol_id" name="id"  title="회원아이디" placeholder="ID" required class="required" maxlength="20">
+        <input type="password" name="pass" id="ol_pw" title="비밀번호"  placeholder="PW" required class="required" maxlength="20">
         <input type="submit" id="ol_submit" value="로그인">
         <div id="ol_svc">
-            <a href="/SomDay/member/join/"><b>회원가입</b></a>
+            <a href="${contextpath}/someday/member/memberForm"><b>회원가입</b></a>
             <a href="http://www.lovehanda.com/bbs/password_lost.php" id="ol_password_lost">ID/PW분실</a>
         </div>
+        </c:if>
+        <c:if test="${session_member_id != null }">
+      	  <div id="ol_svc">
+      	  <strong>${session_member_name}&nbsp;님</strong>     
+      	  <a href="http://www.lovehanda.com/bbs/member_confirm.php?url=register_form.php" id="ol_after_info">정보수정</a>
+      	  <a href="${contextpath}/someday/member/logout" id="ol_after_logout">로그아웃</a>
+		  </div>
+        </c:if>
     </fieldset>
-    </form>
+    </form:form>
 </section>
 <div id="header">
 <div class="wrap">

@@ -43,7 +43,7 @@ public class MemberController {
 		   
 			 ModelAndView mav = new ModelAndView();
 			  
-		   mav.setViewName("member/join");
+		   mav.setViewName("memberForm");
 		   return mav;
 		}
 		/*회원가입*/
@@ -69,7 +69,7 @@ public class MemberController {
 				memberService.UpdateFile(member, request);
 				
 				mav.addObject("member", member);
-				mav.setViewName("member/join");
+				mav.setViewName("main");
 				return mav;
 	      
 	        }
@@ -82,7 +82,7 @@ public class MemberController {
    }
 
    //로그인동작 및 세션 생성
-   @RequestMapping(value="/member/login", method=RequestMethod.POST)
+   @RequestMapping(value="/login", method=RequestMethod.POST)
    public ModelAndView memberLogin(HttpServletRequest request, MemberModel mem) {
 
       MemberModel result = memberService.memberLogin(mem);
@@ -99,19 +99,19 @@ public class MemberController {
       
          session.setAttribute("TOKEN_SAVE_CHECK", "TRUE");
                  
-         mav.setViewName("member/loginSuccess");
+         mav.setViewName("main");
          return mav;
       }
       
       //System.out.println("로그인 실패");         
-      mav.setViewName("member/loginError");
+      mav.setViewName("main");
       return mav;
          
    }
    
    
-   
-   /*@RequestMapping("/logout.dog")
+   //로그 아웃
+   @RequestMapping("/logout")
    public ModelAndView memberLogout(HttpServletRequest request, MemberModel mem){
       
       HttpSession session = request.getSession(false);
@@ -119,11 +119,9 @@ public class MemberController {
       if(session!=null){
          session.invalidate();
       }
-      mav.addObject("member", new MemberModel());
-      //ModelAndView mav = new ModelAndView();
-      mav.setViewName("member/logout");
+      mav.setViewName("main");
       return mav;
-   }*/
+   }
 
       
 

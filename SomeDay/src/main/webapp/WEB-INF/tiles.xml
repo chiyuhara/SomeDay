@@ -59,6 +59,11 @@
 	<definition name="memberadminList" extends="admin">
 		<put-attribute name="body" value="/WEB-INF/views/admin/memberadminList.jsp" />
 	</definition>
+	
+	<!-- Member -->
+	<definition name="memberForm" extends ="main">
+		<put-attribute name="body" value="/WEB-INF/views/member/join.jsp"/>
+	</definition>
 
 
 </tiles-definitions>

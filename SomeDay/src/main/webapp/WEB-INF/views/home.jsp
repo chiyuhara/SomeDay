@@ -7,9 +7,9 @@
 </head>
 <body>
 <h1>
-	
+	Hello world!
 </h1>
 
-<P>   </P>
+<P>	The time on the server is ${serverTime}.</P>
 </body>
 </html>

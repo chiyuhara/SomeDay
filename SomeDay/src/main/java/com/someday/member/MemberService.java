@@ -101,6 +101,7 @@ public class MemberService implements MemberDao{
 	   
 		List<Map<String, Object>> list = fileUtils.parseInsertFileInfo(up, request);
 			System.out.println(list);
+			
 			for(int i=0, size=list.size(); i<size; i++){
 			return sqlSessionTemplate.update("member.updateFile", list.get(i));
 			}
