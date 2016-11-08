@@ -43,9 +43,7 @@ public class NoticeController {
 	private Paging page;
 
 	// 댓글을 위한 변수 설정
-	private int comment_count;
-	private int commupdate1;
-	private String commenter;
+	private int commentcount;
 
 	// 공지 목록
 	@RequestMapping(value = "/notice/NoticeList")
@@ -172,12 +170,14 @@ public class NoticeController {
 		NoticeModel noticeModel = noticeService.noticeView(idx);
 
 		/* noticeService.noticeUpdateReadcount(idx); //조회수 1 증가 */
-		
+		 
 		List<NoticecommModel> noticecommList;
 		noticecommList = noticeService.noticecommList(idx);
+		commentcount = noticecommList.size();
 
 		mav.addObject("noticeModel", noticeModel);
 		mav.addObject("noticecommList", noticecommList);
+		mav.addObject("commentcount", commentcount);
 		mav.setViewName("noticeView");
 
 		return mav;
@@ -305,11 +305,10 @@ public class NoticeController {
 			System.out.println("댓글삭제 ex 실행");
 			System.out.println("삭제될 댓글번호" + noticecommModel.getIdx());
 			
-			int no = noticeModel.getIdx();
 			noticeService.noticecommDelete(noticecommModel);
 			noticeService.noticeView(noticeModel.getIdx());
 			
-			mav.setViewName("redirect:/notice/noticeView?no="+noticeModel.getIdx());
+			mav.setViewName("redirect:/notice/NoticeView?idx=" + noticecommModel.getOriginidx());
 			
 			return mav;
 	}

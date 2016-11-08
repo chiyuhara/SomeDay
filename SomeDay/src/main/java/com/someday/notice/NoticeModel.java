@@ -14,8 +14,16 @@ public class NoticeModel {
 	
 	private String file_orgname;
 	private String file_savname;
+
+	private String cnt;
 	
 
+	public String getCnt() {
+		return cnt;
+	}
+	public void setCnt(String cnt) {
+		this.cnt = cnt;
+	}
 	public int getIdx() {
 		return idx;
 	}

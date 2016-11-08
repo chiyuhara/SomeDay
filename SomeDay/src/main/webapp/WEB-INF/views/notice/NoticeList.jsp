@@ -39,7 +39,7 @@
 					</c:url>
 
 					<td align="center">${list.idx}</td>
-					<td style="text-align: left;"><a href="${viewURL}">${list.subject}</a>
+					<td style="text-align: left;"><a href="${viewURL}">${list.subject}[${list.cnt}]</a>
 					</td>
 					<td align="center">${list.type}</td>
 					<td align="center">${list.writer}</td>

@@ -105,7 +105,7 @@ body {
 				<br></br>
 			<td>${noticecommList.writer }님|${noticecommList.content}
 				
-				<a href="noticecommDelete?idx=${noticecommList.idx}&idx=${noticeModel.idx}" 
+				<a href="noticecommDelete?idx=${noticecommList.idx}&originidx=${noticecommList.originidx}" 
 				
 				class="btn btnC_01 btnP_02">
 				<span class="btn btnC_05 reply_btn">삭제</span>

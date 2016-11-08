@@ -28,7 +28,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 글목록 -->
 	<select id="noticeList" resultMap="noticeModelRes">
-		SELECT * FROM NOTICE_BOARD
+		SELECT BOARD.IDX, BOARD.TYPE,
+		BOARD.WRITER, BOARD.SUBJECT, BOARD.CONTENT, BOARD.TIMES,
+		BOARD.READHIT, BOARD.FILE_ORGNAME, BOARD.FILE_SAVNAME,
+		(SELECT COUNT(*)FROM NOTICE_COMMENT WHERE NOTICE_COMMENT.ORIGINIDX =
+		BOARD.IDX) AS CNT
+		FROM NOTICE_BOARD BOARD
 		ORDER BY IDX DESC
 	</select>
 
@@ -49,7 +54,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 글삭제 -->
 	<delete id="noticeDelete" parameterType="noticeModel">
-		DELETE FROM NOTICE_BOARD WHERE IDX=#{idx}
+		DELETE FROM NOTICE_BOARD
+		WHERE IDX=#{idx}
 	</delete>
 
 	<!-- 글수정 -->
