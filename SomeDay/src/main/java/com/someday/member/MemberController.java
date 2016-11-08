@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.someday.member.MemberService;
 import com.someday.member.ZipcodeModel;
+import com.someday.notice.NoticeModel;
 import com.someday.validator.MemberValidator;
 import com.someday.member.MemberModel;
 
@@ -76,10 +77,14 @@ public class MemberController {
 
 
    //로그인 폼
-   @RequestMapping(value="/member/login", method=RequestMethod.GET)
-   public String loginForm() {
-      return "loginForm";
-   }
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public ModelAndView noticeForm(HttpServletRequest request) {
+		System.out.println("로그인 폼 실행");
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("memberModel", new MemberModel());
+		mav.setViewName("loginForm");
+		return mav;
+	}
 
    //로그인동작 및 세션 생성
    @RequestMapping(value="/login", method=RequestMethod.POST)
@@ -110,7 +115,8 @@ public class MemberController {
    }
    
    
-   //로그 아웃
+
+   //로그아웃
    @RequestMapping("/logout")
    public ModelAndView memberLogout(HttpServletRequest request, MemberModel mem){
       
@@ -120,18 +126,19 @@ public class MemberController {
          session.invalidate();
       }
       mav.setViewName("main");
+      
       return mav;
    }
 
-      
-
-  	@RequestMapping(value = "/member/memberIdFind", method = RequestMethod.GET)
+   	//아이디 찾기 폼
+  	@RequestMapping(value = "/memberIdFind", method = RequestMethod.GET)
   	public ModelAndView memberFindForm() {
   		mav.setViewName("member/idFind");
   		return mav;
   	}
-
-  	@RequestMapping(value = "/member/memberIdFind", method = RequestMethod.POST)
+  	
+  	//아이디 찾기
+  	@RequestMapping(value = "/memberIdFind", method = RequestMethod.POST)
   	public ModelAndView memberIdFind(@ModelAttribute("member") MemberModel member, HttpServletRequest request) {
 
   		int memberFindChk;
@@ -160,13 +167,13 @@ public class MemberController {
   	}
 
   	// 비밀번호찾기
-  	@RequestMapping(value = "/member/memberPwFind", method = RequestMethod.GET)
+  	@RequestMapping(value = "/memberPwFind", method = RequestMethod.GET)
   	public ModelAndView memberPwFindForm() {
   		mav.setViewName("member/pwFind");
   		return mav;
   	}
 
-  	@RequestMapping(value = "/member/memberPwFind", method = RequestMethod.POST)
+  	@RequestMapping(value = "/memberPwFind", method = RequestMethod.POST)
   	public ModelAndView memberPwFind(@ModelAttribute("member") MemberModel member, HttpServletRequest request) {
 
   		int memberFindChk;
@@ -254,6 +261,91 @@ public class MemberController {
     	  
     	  
       }
+      
+        //회원정보수정
+    	@RequestMapping("/memberModify")
+    	public ModelAndView memberModify(@ModelAttribute("member") MemberModel member, BindingResult result,
+    			HttpSession session) {
+    		session.getAttribute("session_member_id");
+
+    		if (session.getAttribute("session_member_id") != null) {
+    			String id = (String) session.getAttribute("session_member_id");
+    			member = memberService.getMember(id);
+
+    			mav.addObject("member", member);
+    			mav.setViewName("memberModify");
+    			return mav;
+    		} else {
+
+    			mav.setViewName("loginConfirm");
+    			return mav;
+    		}
+    	}
+        
+    	//회원정보 수정완료
+    	@RequestMapping("/memberModifyEnd")
+    	public ModelAndView memberModifyEnd(@ModelAttribute("member") MemberModel member, BindingResult result) {
+    		// Validation Binding
+    		/*new MemberValidator().validate(member, result);*/
+    	
+    		try {
+    			// 유효성검사에 통과하면
+    			memberService.memberModify(member);
+    			mav.setViewName("memberModifyEnd");
+    			return mav;
+    		} catch (DuplicateKeyException e) {
+    			// db에서 id의 제약조건을 unique로 바꿨기 때문에 중복된 아이디로 가입하려하면
+    			// DuplicateKeyException이 뜨게되고
+    			// 예외처리로 properties파일에 등록된 "invalid"의 내용이 나오게 만들고 회원가입폼으로 돌아가게했음.
+    			// 아이디 중복검사
+    			result.reject("invalid", null);
+    			System.out.println("캐치에러");
+    			mav.setViewName("memberModify");
+    			return mav;
+    		}
+
+    	}
+    	
+    	//회원탈퇴
+    	@RequestMapping("/memberOutForm")
+     	public ModelAndView memberOutForm() {
+     		mav.setViewName("memberOut");
+     		return mav;
+     	}
+     	
+     	@RequestMapping("/memberDelete")
+     	public ModelAndView memberDelete(@ModelAttribute("member") MemberModel member, BindingResult result, HttpSession session, HttpServletRequest request) {
+     		
+     		MemberModel memberModel; // 쿼리 결과 값을 저장할 객체
+     		
+     		String id;
+     		String pass;
+     		pass = request.getParameter("pass");
+     		int deleteCheck;
+     		
+     		//해당 아이디의 정보를 가져온다
+     		id = session.getAttribute("session_member_id").toString();
+     		memberModel = (MemberModel) memberService.getMember(id);
+     		
+     		
+     		
+     		if(memberModel.getPass().equals(pass)) {
+     			//패스워드가 맞으면
+     			deleteCheck = 1;
+     			//삭제 쿼리 수행
+     			memberService.memberDelete(id);
+     			session.removeAttribute("session_member_id");
+     			session.removeAttribute("session_member_name");
+     		/*	session.removeAttribute("session_member_no");*/
+     		}
+     		else {
+     			deleteCheck = -1; //패스워드가 안맞을때
+     		}
+     		
+     		mav.addObject("deleteCheck", deleteCheck);
+     		mav.setViewName("memberDelete");
+     		return mav;
+     	}
 
 }
 

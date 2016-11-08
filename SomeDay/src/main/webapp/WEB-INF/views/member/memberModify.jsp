@@ -29,19 +29,19 @@
 
 		var f = document.memberModify;
 
-		if (f.password.value == "") {
+		if (f.pass.value == "") {
 			alert("비밀번호를 입력하세요");
-			f.password.focus();
+			f.pass.focus();
 			return false;
 		}
 
-		else if (f.password.value != f.password2.value) {
+		else if (f.pass.value != f.pass2.value) {
 			alert("비밀번호가 일치하지 않습니다");
-			f.password.value = "";
-			f.password2.value = "";
-			f.password.focus();
+			f.pass.value = "";
+			f.pass2.value = "";
+			f.pass.focus();
 			return false;
-		}
+		} 
 		else if (f.name.value == "") {
 			alert("이름을 입력하세요");
 			f.name.focus();
@@ -62,7 +62,7 @@
 	}
 	
 	function openZipcode(){
-		var url="zipcodeCheckForm.dog";
+		var url="zipcodeCheckForm";
 		open(url, "confirm","toolbar=no, location=no, status=no, menubar=no, scrollbars=yes, resizable=no, width=410, height=400");
 	}
 
@@ -81,8 +81,8 @@
 
 <div class="titleArea">
     <h2><img src="/pet/resources/images/SkinImg/modify.jpg" alt="회원가입"></h2>
-</div>
-			<form:form commandName="member" action="memberModifyEnd.dog"
+</div> 
+			<form:form commandName="member" action="adminmemberModifyEnd"
 				method="post" name="memberModify" onsubmit="return check()">
 				<div class="xans-element- xans-member xans-member-join">
 
@@ -92,81 +92,68 @@
 						<p class="required">정보 수정이 가능합니다.</p>
 						<div class="boardWrite "></div>
 						<table border="1" summary="">
-							<caption>회원가입</caption>
+							<!-- <caption>회원가입</caption> -->
 
 
 						</table>
 						<table border="1" summary="">
-							<caption>회원 기본정보</caption>
+							<!-- <caption>회원 기본정보</caption> -->
 
 							<tbody>
 								<tr>
 									<th scope="row">아이디</th>
 									<td>${member.id }<form:input type="hidden"
-											class="txt w200" path="id" onclick="this.value=''" />
+											class="txt w200" path="id" />
 									</td>
 								</tr>
 								<tr>
 									<th scope="row">비밀번호</th>
 									<td><form:input type="password" class="txt w200"
-											path="password" onclick="this.value=''" /> <font color="red"><form:errors
-												path="password" /></font></td>
+											path="pass"  /> <font color="red"><form:errors
+												path="pass" /></font></td>
 								</tr>
 								<tr>
 									<th scope="row">비밀번호 확인</th>
 									<td><form:input type="password" class="txt w200"
-											path="password2" onclick="this.value=''" /> <font color="red"><form:errors
-												path="password2" /></font></td>
+											path="pass2"  /> <font color="red"><form:errors
+												path="pass2" /></font></td>
 								</tr>
 
 
 								<tr>
 									<th scope="row" id="nameTitle">이름</th>
 									<td><form:input type="text" name="name" class="txt w200" path="name"
-											onclick="this.value=''" /> <font color="red"><form:errors
+											 /> <font color="red"><form:errors
 												path="name" /></font></td>
 								</tr>
-								<tr>
-
-									<!-- 아래의 내용은 개인정보보호정책상 삭제되면 안되는 부분입니다. 개인을 구별할 수 있는 고유식별정보(주민등록번호, 여권번호, 외국인등록번호, 국제운전면허증등)를 수집 혹은 이용할 경우 꼭 필요한 문구입니다. 삭제시 법적제제를 받을 수 있습니다. -->
-								</tr>
-								<tr id="identification_check_nonauth" class="displaynone">
-									<th scope="row">개인정보사용체크</th>
-									<td>
-										<p>
-											회사는 회원의 본인확인 및 서비스제공을 위하여 고유식별정보를 수집하여 보관하며 개인정보취급방침에 따라 <br>보유
-												및 이용합니다. 고유식별정보 제공을 거부하는 경우 서비스 이용이 제한됩니다.
-										</p>
-										<p></p>
-									</td>
-								</tr>
+								
 								<tr class="">
 
 								</tr>
 								<tr>
 									<th scope="row">주소</th>
 									<td><form:input type="text" class="txt w200"
-											path="zipcode" onclick="this.value=''" id="zipcode"
+											path="zipcode"  id="zipcode"
 											readonly="true" /> <a href="#none" title="우편번호(새창으로 열기)"
 										onclick="return openZipcode()" id="postBtn"><img
 											src="http://img.echosting.cafe24.com/design/skin/default/member/btn_zip.gif"
 											alt="우편번호"></a><br> <form:input type="text"
-												class="inputTypeText" path="addr" onclick="this.value=''"
+												class="inputTypeText" path="addr1" 
 												id="addr1" readonly="true" /> <form:input type="text"
-												class="inputTypeText" path="addr2" onclick="this.value=''"
+												class="inputTypeText" path="addr2" 
 												id="addr2" /></td>
 								</tr>
 
 								<tr>
 									<th scope="row">휴대전화</th>
 									<td><form:input type="text" class="txt w200" path="phone"
-											maxlength="11" onclick="this.value=''" /> <span class="ibk">"
+											maxlength="11"  /> <span class="ibk">"
 											- " 없이 입력하세요.</span></td>
 								</tr>
 								<tr>
 									<th scope="row">이메일</th>
 									<td><form:input type="text" class="txt w200" path="email"
-											onclick="this.value=''" id="email1" /> <font color="red"><form:errors
+											 id="email1" /> <font color="red"><form:errors
 												path="email" /></font></td>
 								</tr>
 
@@ -177,7 +164,7 @@
 
 					<div class="btnArea">
 					
-						 <a href="memberWith.dog" class="btn btnC_03 btnF_02">
+						 <a href="memberOutForm" class="btn btnC_03 btnF_02">
 						 <img
 							src="/pet/resources/images/SkinImg/outbtn.jpg"
 							alt="회원탈퇴" />
@@ -185,14 +172,12 @@
 					<%-- <a href="memberDelete.dog?mem_id=${member.id}" class="btn btnC_03 btnF_02 mr10">
 					<span>회원탈퇴</span>
 				</a> --%>
-						<a href="main.dog"><img
-							src="/pet/resources/images/SkinImg/btn_member_cancel.gif"
-							alt="회원가입취소" /></a>
+						<a href="/someday/"><img src="<!-- /pet/resources/images/SkinImg/btn_member_cancel.gif -->" alt="수정취소" /></a>
 						
 						<!-- <input TYPE="IMAGE" src="/pet/resources/images/SkinImg/btn_member_join.gif" name="Submit" value="Submit" /> -->
 						<!-- <input type="submit" name="submit"/> -->
 						
-						<input type="image" src="/pet/resources/images/SkinImg/btn_member_modify.gif" onclick="submit" />
+						<input type="image" src="/pet/resources/images/SkinImg/btn_member_modify.gif"  onclick="submit" />
 					</div>
 				</div>
 			</form:form>

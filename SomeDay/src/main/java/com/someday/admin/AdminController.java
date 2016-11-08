@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,14 +26,15 @@ import com.someday.member.MemberService;
 import com.someday.util.Paging;
 
 
-
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
 	@Resource
 	private AdminService adminService;
+	@Resource(name = "memberService")
+	private MemberService memberService;
 	
-	//페이징
+	//페이징 
 	private int searchNum;
 	private String isSearch;
 	
@@ -114,6 +116,41 @@ public class AdminController {
 			
 			return mav;
 		}
+				 
+		//회원 1명 View 상세보기
+		// 회원정보수정
+	  	@RequestMapping("/admin/adminmemberModify")
+	  	public ModelAndView memberModify(MemberModel member, HttpServletRequest request) {		  		 		
+	  		
+ 			member =  memberService.getMember(member.getId());
+ 	
+ 			mav.addObject("member", member);
+ 			mav.setViewName("memberadminModify");
+ 			return mav;
+	  	}
+	  	
+	  	//회원수정 등록
+	    @RequestMapping("/admin/adminmemberModifyEnd")
+ 		public ModelAndView adminmemberModifyEnd(MemberModel member) {
+ 		
+		System.out.println("수정시작");
+		
+ 			adminService.adminmemberModify(member);
+ 			mav.setViewName("redirect:/admin/memberadminList");
+ 			return mav;
+	    }
+	    
+	  //회원삭제하기
+		 @RequestMapping("/admin/adminMemberDelete")
+			public ModelAndView memberDelete(HttpServletRequest request){		
+			 String id = request.getParameter("id");
+			 adminService.memberDelete(id);
+			 mav.setViewName("redirect:/admin/memberadminList");
+				
+			 return mav;	
+		}
+		
+		
 		
 		
     	

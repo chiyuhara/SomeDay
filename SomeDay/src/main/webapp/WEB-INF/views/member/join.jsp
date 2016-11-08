@@ -217,7 +217,6 @@
 	   }
 </script>
 <link rel="stylesheet" type="text/css" href="/ind-script/optimizer.php?filename=06118f634a443f6e176680a1d0672b7553eb8064_1469556636&type=css&" />
-
 <form:form commandName="member" action="memberjoin" method="post" name="join" onsubmit="return check()" enctype="multipart/form-data">
 <h3>기본정보</h3>
 <p class="required">회원가입을 위한 필수입력 항목을 입력해 주십시오.</p>

@@ -8,7 +8,7 @@ public class ZipcodeModel {
 	private String area3;
 	private String area4;
 	public String getZipcode() {
-		return zipcode;
+		return zipcode; 
 	}
 	public void setZipcode(String zipcode) {
 		this.zipcode = zipcode;
