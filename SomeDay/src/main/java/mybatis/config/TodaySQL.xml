@@ -28,5 +28,58 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<include refid="select-all-meeting" />
 		MEETING WHERE FEMALE_IDX = #{idx} AND TRUNC(TIMES) = TRUNC(SYSDATE)
 	</select>
+	
+	<!-- 남자입장에서 참여한 미팅 찾기 -->
+	<select id="male_today" resultMap="todayModelRes" parameterType="Integer">
+		<include refid="select-all-meeting" />
+		MEETING WHERE MALE_IDX = #{idx} AND TRUNC(TIMES) = TRUNC(SYSDATE)
+	</select>
+	
+	
+	<!-- 미팅 여자 중복 확인 -->
+	<select id="meeting_femalecheck" resultMap="todayModelRes" parameterType="Integer">
+		<include refid="select-all-meeting" />
+		WHERE FEMALE_IDX=#{idx} AND TRUNC(TIMES)=TRUNC(SYSDATE)
+	</select>
+	
+	<!-- 미팅 남자 중복 확인 -->
+	<select id="meeting_malecheck" resultMap="todayModelRes" parameterType="Integer">
+		<include refid="select-all-meeting" />
+		WHERE MALE_IDX=#{idx} AND TRUNC(TIMES)=TRUNC(SYSDATE)
+	</select>
+	
+	<!-- 임시쿼리, 미팅 생성 -->
+	<insert id="insertMeeting" parameterType="todayModel">
+		INSERT INTO MEETING(
+		IDX,
+		FEMALE_IDX,
+		MALE_IDX,
+		TIMES
+		)
+		VALUES (
+		MEETING_IDX_SEQ.NEXTVAL,
+		#{female_idx},
+		#{male_idx},
+		TRUNC(SYSDATE)
+		)
+	</insert>
+	
+	<!-- 여자가 좋아요를 누름 -->
+	<update id="female_like" parameterType="Integer">
+			UPDATE MEETING
+			SET
+				FEMALE_LIKE = 1
+			WHERE
+				IDX = #{idx}	
+	</update>
+	
+	<!-- 남자가 좋아요를 누름 -->
+	<update id="male_like" parameterType="Integer">
+			UPDATE MEETING
+			SET
+				MALE_LIKE = 1
+			WHERE
+				IDX = #{idx}	
+	</update>
 
 </mapper>

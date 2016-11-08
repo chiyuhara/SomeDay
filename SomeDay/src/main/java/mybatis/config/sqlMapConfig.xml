@@ -38,6 +38,9 @@ PUBLIC " - //mybatis.org//DTD Config 3.0//EN"
 		
 		<!--  Today  -->
 		<typeAlias type="com.someday.today.TodayModel" alias="todayModel" />
+		
+		<!-- Matching -->
+		<typeAlias type="com.someday.matching.MatchingModel" alias="matchingModel"/>
 	</typeAliases>
 	
 	<!-- SQL 정의한 xml문서 Mapping -->

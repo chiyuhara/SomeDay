@@ -14,7 +14,7 @@ import com.someday.member.MemberModel;
 import com.someday.util.FileUtils;
 
 @Service
-public class MemberService implements MemberDao{
+public class MemberService implements MemberDao {
 
    @Resource(name="sqlSessionTemplate")
    private SqlSessionTemplate sqlSessionTemplate;
@@ -171,5 +171,5 @@ public class MemberService implements MemberDao{
 	public Object memberDelete(String id) {
 		return sqlSessionTemplate.delete("member.deleteMember", id);
    }
-   
+
 }
