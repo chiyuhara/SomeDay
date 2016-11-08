@@ -40,7 +40,7 @@ function openPwfind(){
 
 
 
-<form:form commandName="member" action="${contextPath}/someday/member/login" method="post" name="joinform" >
+<form:form commandName="memberModel" action="${contextPath}/someday/member/login" method="post" name="joinform" >
 <div class="xans-element- xans-member xans-member-login" >
 
 <div class="login">
@@ -50,13 +50,13 @@ function openPwfind(){
             <label class="id"><img src="/pet/resources/images/SkinImg/id.gif" alt="id"/> 
             
             
-            <form:input id="member_id" name="id" class="inputTypeText" type="text"  path="id"  />
-          <%--   <form:input class="inputTypeText" path="id" id="member_id" name="id" type="text" /> --%> </label>
+            <form:input id="member_id" name="id" class="inputTypetext" type="text"  path="id"  />
+          <%--   <form:input class="inputTypetext" path="id" id="member_id" name="id" type="text" /> --%> </label>
             
             
             <label class="password"><img src="/pet/resources/images/SkinImg/pw.gif" alt="PW"/> 
             
-            <form:input id="member_pass" name="pass" type="pass"  path="pass" />
+            <form:input id="member_pass" name="pass" type="password"  path="pass" />
             
             <%-- <form:input id="member_passwd" type="password" path="password" /> --%></label>
             
@@ -81,7 +81,7 @@ function openPwfind(){
         <p>아직 오키독키 회원이 아니십니까?<br/>회원을 위한 다양한 혜택이 준비되어 있습니다. </p>
     </div>
 <div class="join_btn">
-        <a href="/pet/member/member.dog"><img src="/pet/resources/images/SkinImg/btn_join.gif" alt="회원가입"/></a>
+        <a href="/someday/member/member"><img src="/pet/resources/images/SkinImg/btn_join.gif" alt="회원가입"/></a>
     </div>
 
 </div>

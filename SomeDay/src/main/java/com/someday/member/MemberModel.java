@@ -8,7 +8,7 @@ public class MemberModel {
    
    private int idx;
    private String id;
-   private String nick;
+   private String nick; 
    private String pass;
    private String pass2;
    private String name;

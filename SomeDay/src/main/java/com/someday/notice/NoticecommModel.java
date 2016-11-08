@@ -12,6 +12,7 @@ public class NoticecommModel {
 	private String content;
 	private Date times;
 	
+
 	public Date getTimes() {
 		return times;
 	}

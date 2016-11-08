@@ -97,9 +97,9 @@ public class MemberService implements MemberDao{
    }
    //파일 업로드
    @Override
-   public Object UpdateFile(MemberModel up, HttpServletRequest request) throws Exception{
+   public Object UpdateFile(int index, HttpServletRequest request) throws Exception{
 	   
-		List<Map<String, Object>> list = fileUtils.parseInsertFileInfo(up, request);
+		List<Map<String, Object>> list = fileUtils.parseInsertFileInfo(index, request);
 			System.out.println(list);
 			
 			for(int i=0, size=list.size(); i<size; i++){
@@ -136,12 +136,13 @@ public class MemberService implements MemberDao{
    public MemberModel pwFindById(MemberModel member) {
       return sqlSessionTemplate.selectOne("member.pwfind", member);
    }
+
    //로그인
    @Override
    public MemberModel memberLogin(MemberModel mem) {
       return sqlSessionTemplate.selectOne("member.login", mem);
     }
-   //아이디
+   //아이디 찾기 쿼리문
    @Override
    public MemberModel getMember(String id) {
       return sqlSessionTemplate.selectOne("member.getMember", id);
@@ -158,4 +159,23 @@ public class MemberService implements MemberDao{
  	public MemberModel target(int idx){
  		return sqlSessionTemplate.selectOne("member.target", idx);
  	}   
+ 	
+ 	//회원정보 가져오기
+ 	@Override
+ 	public MemberModel memberList(int idx){
+ 		return sqlSessionTemplate.selectOne("member.selectOne", idx);
+ 	}
+   
+   //회원정보 수정
+   @Override
+	public Object memberModify(MemberModel member) {
+		return sqlSessionTemplate.update("member.updateMember", member);
+	} 
+   
+   //회원탈퇴
+   @Override
+	public Object memberDelete(String id) {
+		return sqlSessionTemplate.delete("member.deleteMember", id);
+   }
+   
 }

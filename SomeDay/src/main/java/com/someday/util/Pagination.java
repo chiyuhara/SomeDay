@@ -8,7 +8,7 @@ public class Pagination {
 	private int totalItemCount;
 
 	public int getCurrentPage() {
-		int page = this.page;
+		int page = this.page; 
 		if (page < 1) {
 			page = 1;
 		}
