@@ -25,7 +25,7 @@ import com.someday.validator.NoticeValidator;
 public class NoticeController {
 
 	// 파일 업로드
-	private static final String uploadPath = "/SomeDay/src/main/webapp/resources/Upload/";
+	private static final String uploadPath = "/src/main/webapp/resources/Upload";
 
 	@Resource(name = "noticeService")
 	private NoticeService noticeService;
@@ -214,20 +214,11 @@ public class NoticeController {
 //			return "noticeForm";
 //		}
 
-		String content = noticeModel.getContent().replaceAll("\r\n", "<br />");
-		noticeModel.setContent(content);
-		
-		//업로드
-		MultipartFile multipartFile = multipartHttpServletRequest.getFile("file");
-    	String filename = multipartFile.getOriginalFilename();
-        	if (filename != ""){ 
-			    noticeModel.setFile_savname(System.currentTimeMillis()+"_"+multipartFile.getOriginalFilename());
-			    String savimagename = System.currentTimeMillis()+"_"+multipartFile.getOriginalFilename();
-		        FileCopyUtils.copy(multipartFile.getInputStream(), new FileOutputStream(uploadPath+"/"+savimagename));
-		        noticeModel.setFile_savname(savimagename);
-        	}else{
-        		noticeModel.setFile_savname("NULL");		
-        	}
+		//사진 업로드
+		noticeService.UpdateFile(noticeModel, multipartHttpServletRequest);
+        	
+        	System.out.println(noticeModel.getFile_savname());
+    		System.out.println(noticeModel.getFile_orgname());
 
 		noticeService.noticeWrite(noticeModel);
 
