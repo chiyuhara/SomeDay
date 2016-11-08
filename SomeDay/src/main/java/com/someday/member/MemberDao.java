@@ -29,6 +29,8 @@ public interface MemberDao {
 	
 	//today: 상대방정보
 	MemberModel target(int idx);
+	
+	
 }
 
 

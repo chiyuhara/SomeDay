@@ -39,6 +39,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="area4" column="area4"/>
 	</resultMap>
 	
+	<!-- 커플 가능한 수 -->
+	<resultMap type="matchingModel" id="matchingRes">
+		<result property="small" column="small"/>
+	</resultMap>
+	
 	
 	<!-- 공통으로 사용할 select 절 정의 -->
 	<sql id="select-all-member">
@@ -136,6 +141,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="target" resultMap="memberRes" parameterType="Integer">
 		<include refid="select-all-member" />
 		WHERE IDX = #{idx}
+	</select>
+	
+	<!-- 남자1명 랜덤 -->
+	<select id="random_male" resultMap="memberRes" parameterType="memberModel">
+		SELECT * FROM (SELECT * FROM MEMBER ORDER BY dbms_random.value) WHERE rownum = 1 AND GENDER = 'male'
+	</select>
+	<!-- 여자1명 랜덤 -->
+	<select id="random_female" resultMap="memberRes" parameterType="memberModel">
+		SELECT * FROM (SELECT * FROM MEMBER ORDER BY dbms_random.value) WHERE rownum = 1 AND GENDER = 'female'
+	</select>
+	
+	<!-- 현재 회원수로 가능한 매칭 합 -->
+	<select id="all_matching_num" resultMap="matchingRes" parameterType="matchingModel">
+		WITH total AS (
+			SELECT 
+			COUNT(CASE WHEN GENDER = 'female' THEN 1 END) AS female_total , 
+			COUNT(CASE WHEN GENDER = 'male' THEN 1 END) AS male_total  
+			FROM MEMBER
+		)
+		SELECT (<![CDATA[ CASE WHEN female_total < male_total THEN female_total ELSE male_total END]]>) AS small FROM total
 	</select>
 
 </mapper>

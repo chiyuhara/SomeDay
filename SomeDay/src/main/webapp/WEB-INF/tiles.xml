@@ -37,6 +37,12 @@
 	<definition name="today" extends="main">
 		<put-attribute name="body" value="/WEB-INF/views/today/Today.jsp" />
 	</definition>
+	
+	<!-- TodayView -->
+	<definition name="todayView" extends="main">
+		<put-attribute name="body" value="/WEB-INF/views/today/TodayView.jsp" />
+	</definition>
+	
 
 </tiles-definitions>
 
