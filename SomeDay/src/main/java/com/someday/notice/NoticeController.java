@@ -45,7 +45,7 @@ public class NoticeController {
 	private String pagingHtml;  
 	private Paging page;
 	
-	//댓글을 위한 변수 설정 
+	//댓글을 위한 변수 설정  
 	private int comment_count;
 	private int commupdate1;
 	private String commenter;

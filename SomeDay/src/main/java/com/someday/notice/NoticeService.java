@@ -20,7 +20,7 @@ public class NoticeService implements NoticeDao {
 	public List<NoticeModel> noticeList() {
 		return sqlSessionTemplate.selectList("notice.noticeList");
 	}
-
+ 
 	// 공지 글 보기
 	@Override
 	public NoticeModel noticeView(int idx) {

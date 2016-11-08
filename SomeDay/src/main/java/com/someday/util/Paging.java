@@ -11,7 +11,7 @@ public class Paging {
 	private int endCount;	 // 한 페이지에서 보여줄 게시글의 끝 번호
 	private int startPage;	 // 시작 페이지
 	private int endPage;	 // 마지막 페이지
-	private String dogName;
+	private String dogName; 
 
 	private StringBuffer pagingHtml;
 

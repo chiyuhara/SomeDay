@@ -11,7 +11,7 @@ public class NoticeModel {
 	private String content;
 	private Date times;
 	private int readhit;
-	
+	 
 	private String file_orgname;
 	private String file_savname;
 	

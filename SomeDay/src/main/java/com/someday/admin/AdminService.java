@@ -19,11 +19,23 @@ public class AdminService implements AdminDao{
 	public List<MemberModel> memberList() {
 		return sqlSessionTemplate.selectList("member.memberList");
 	}
-	
+	 
 	//회원목록 검색
 	@Override
 	public List<MemberModel> memberSearch0(String search) {
 		return sqlSessionTemplate.selectList("member.memberSearch0", "%"+search+"%"); 
+	}
+			
+	//회원수정하기
+	@Override
+	public Object adminmemberModify(MemberModel member) {
+		return sqlSessionTemplate.update("member.adminupdateMember", member);
+	}
+	
+	//회원삭제
+	@Override
+	public int memberDelete(String id) {
+		return sqlSessionTemplate.delete("member.deleteMember",id);
 	}
 		
 		

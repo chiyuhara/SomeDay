@@ -12,7 +12,7 @@ public interface NoticeDao {
 	// 공지 글 상세보기
 	NoticeModel noticeView(int idx);
 
-	// 글쓰기
+	// 글쓰기 
 	int noticeWrite(NoticeModel noticeModel);
 
 	// 글삭제

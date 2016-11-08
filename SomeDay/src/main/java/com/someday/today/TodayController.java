@@ -1,4 +1,4 @@
-package com.someday.today;
+/*package com.someday.today;
 
 import java.io.UnsupportedEncodingException;
 import java.util.List;
@@ -102,3 +102,4 @@ public class TodayController {
 	}
 
 }
+*/

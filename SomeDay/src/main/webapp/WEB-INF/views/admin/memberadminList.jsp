@@ -67,7 +67,7 @@ function delchk(){
 								</thead>
 								<tbody>
 								<c:forEach var="memberlist"  items="${memberlist}" varStatus="stat">
-								<c:url var="viewURL" value="adminmemberModify" >
+								<c:url var="viewURL" value="/admin/adminmemberModify" >
 									<c:param name="id" value="${memberlist.id }" />
 								</c:url>									
 									<tr class="gradeA even" role="row">
@@ -80,11 +80,11 @@ function delchk(){
 										<%-- <td style="text-align:center;vertical-align:middle;">${memberlist.point}</td> --%>										
 										<td style="text-align:center;vertical-align:middle;"><fmt:formatDate value="${memberlist.times}" pattern="YY.MM.dd HH:mm" /></td>
 										<td style="text-align:center;vertical-align:middle;">
-											<a href="${viewURL}"><input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png"></a>&nbsp;&nbsp;
-										<c:url var="viewURL2" value="adminMemberDelete" >
+											<a href="${viewURL}"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png"></a>&nbsp;&nbsp;
+										<c:url var="viewURL2" value="/admin/adminMemberDelete" >
 											<c:param name="id" value="${memberlist.id }" />							
 										</c:url>	
-										 <a href="${viewURL2}"><input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Trash_font_awesome.svg/32px-Trash_font_awesome.svg.png" onclick="return delchk()"></a></td>									
+										 <a href="${viewURL2}"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Trash_font_awesome.svg/32px-Trash_font_awesome.svg.png" onclick="return delchk()"></a></td>									
 									</tr>
 								</c:forEach>
 								<!--  등록된 상품이 없을때 -->

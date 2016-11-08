@@ -11,7 +11,7 @@ public class NoticecommModel {
 	private Date reg_date;
 	private int comment_count;
 	
-
+   
 	public int getContent_num() {
 		return content_num;
 	}

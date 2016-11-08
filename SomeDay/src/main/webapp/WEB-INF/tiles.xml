@@ -42,13 +42,32 @@
 	<definition name="today" extends="main">
 		<put-attribute name="body" value="/WEB-INF/views/today/Today.jsp" />
 	</definition>
-
+	
+	<!-- Member -->
 	<definition name="idFindOk" extends="main">
 		<put-attribute name="body" value="/WEB-INF/views/member/idFindOk.jsp" />
 	</definition>
 	
 	<definition name="loginForm" extends="main">
 		<put-attribute name="body" value="/WEB-INF/views/member/loginForm.jsp" />
+	</definition>
+	
+	<definition name="memberModify" extends="main">
+		<put-attribute name="body" value="/WEB-INF/views/member/memberModify.jsp" />
+	</definition>
+	
+	<definition name="memberModifyEnd" extends="main">
+		<put-attribute name="body" value="/WEB-INF/views/member/memberModifyEnd.jsp" />
+	</definition>
+	
+	<!-- 회원탈퇴 폼 -->
+	<definition name="memberOut" extends="main">
+		<put-attribute name="body" value="/WEB-INF/views/member/memberOut.jsp" />
+	</definition>
+	
+	<!-- 회원탈퇴  -->
+	<definition name="memberDelete" extends="main">
+		<put-attribute name="body" value="/WEB-INF/views/member/memberDelete.jsp" />
 	</definition>
 	
 	<!-- admin -->
@@ -58,6 +77,10 @@
 	
 	<definition name="memberadminList" extends="admin">
 		<put-attribute name="body" value="/WEB-INF/views/admin/memberadminList.jsp" />
+	</definition>
+	
+	<definition name="memberadminModify" extends="admin">
+		<put-attribute name="body" value="/WEB-INF/views/admin/memberModify.jsp" />
 	</definition>
 
 
