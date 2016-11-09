@@ -60,9 +60,9 @@
 							<li><a href="#">Q&A</a></li>
 						</ul></li>
 
-					<li><a href="about.html">오늘의인연</a></li>
+					<li><a href="today">오늘의인연</a></li>
 					<li><a href="about.html">마이페이지</a></li>
-					<li><a href="about.html">공지&이벤트</a></li>
+					<li><a href="notice/NoticeList">공지&이벤트</a></li>
 
 				</ul>
 			</div>
