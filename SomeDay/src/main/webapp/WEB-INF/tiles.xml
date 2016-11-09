@@ -43,6 +43,21 @@
 		<put-attribute name="body" value="/WEB-INF/views/today/TodayView.jsp" />
 	</definition>
 	
+	<!-- Admin -->
+<!-- 	<definition name="memberadminList" extends="admin">
+		<put-attribute name="body" value="/WEB-INF/views/admin/memberadminList.jsp" />
+	</definition> -->
+	
+
+	<!-- Member -->
+	<definition name="memberForm" extends ="main">
+		<put-attribute name="body" value="/WEB-INF/views/member/join.jsp"/>
+	</definition>
+	
+<!-- 	<definition name="memberadminModify" extends="admin">
+		<put-attribute name="body" value="/WEB-INF/views/admin/memberModify.jsp" />
+	</definition> -->
+
 
 </tiles-definitions>
 

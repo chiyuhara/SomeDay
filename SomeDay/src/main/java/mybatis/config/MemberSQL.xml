@@ -37,7 +37,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       <result property="area3" column="area3" />
       <result property="area4" column="area4" />
    </resultMap>
-   
+
    <!-- 커플 가능한 수 -->
 	<resultMap type="matchingModel" id="matchingRes">
 		<result property="small" column="small"/>
@@ -138,6 +138,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       select * from zipcode where AREA3 like '%'||#{area3}||'%'
    </select>
    
+   <!-- 회원정보 가져오기 -->
+   <select id="selectMember" parameterType="memberModel" resultMap="memberRes">
+     <include refid="select-all-member" />
+  	 <include refid="where-idx" />
+   </select>
+   
    <!-- 회원정보 수정 -->
    <update id="updateMember" parameterType="memberModel"> 
       UPDATE MEMBER SET 
@@ -153,7 +159,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       WHERE
        ID = #{id}
    </delete> 
-    
 
    <!-- my_idx가 여자인지 확인 -->
    <select id="myGenderfemale" resultMap="memberRes" parameterType="Integer">
@@ -233,6 +238,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="random_male" resultMap="memberRes" parameterType="memberModel">
 		SELECT * FROM (SELECT * FROM MEMBER ORDER BY dbms_random.value) WHERE rownum = 1 AND GENDER = 'male'
 	</select>
+	
 	<!-- 여자1명 랜덤 -->
 	<select id="random_female" resultMap="memberRes" parameterType="memberModel">
 		SELECT * FROM (SELECT * FROM MEMBER ORDER BY dbms_random.value) WHERE rownum = 1 AND GENDER = 'female'
@@ -248,4 +254,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 		SELECT (<![CDATA[ CASE WHEN female_total < male_total THEN female_total ELSE male_total END]]>) AS small FROM total
 	</select> 
+	
 </mapper>
