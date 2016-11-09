@@ -1,13 +1,17 @@
 package com.someday.notice;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
 
 import com.someday.notice.NoticecommModel;
+import com.someday.util.FileUtils;
+import com.someday.member.MemberModel;
 import com.someday.notice.NoticeModel;
 
 @Service
@@ -15,6 +19,9 @@ public class NoticeService implements NoticeDao {
 
 	@Resource(name = "sqlSessionTemplate")
 	private SqlSessionTemplate sqlSessionTemplate;
+	
+	@Resource(name="fileUtils")
+	   private FileUtils fileUtils;
 
 	// 공지 글 목록
 	@Override
@@ -33,6 +40,20 @@ public class NoticeService implements NoticeDao {
 	public int noticeWrite(NoticeModel noticeModel) {
 		return sqlSessionTemplate.insert("notice.noticeWrite", noticeModel);
 	}
+	
+	//파일 업로드
+	   @Override
+	   public Object UpdateFile(NoticeModel noticeModel, HttpServletRequest request) throws Exception{
+		   
+			List<Map<String, Object>> list = fileUtils.parseInsertFileInfo1(noticeModel, request);
+				System.out.println(list);
+				
+				for(int i=0, size=list.size(); i<size; i++){
+				return sqlSessionTemplate.update("member.updateFile", list.get(i));
+				}
+				return list;
+		
+	   }
 
 	// 글삭제
 	@Override

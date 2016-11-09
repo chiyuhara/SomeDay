@@ -65,9 +65,11 @@ public class MemberController {
 				
 				/*아이디로 IDX찾기*/
 				MemberModel idx = (MemberModel)memberService.Idx(member);
-				member.setIdx(idx.getIdx());
+				
+				int index =(idx.getIdx());
+				System.out.println("index 결과" + index);
 				/*사진 업로드*/
-				memberService.UpdateFile(member, request);
+				memberService.UpdateFile(index, request);
 				
 				mav.addObject("member", member);
 				mav.setViewName("main");
@@ -113,8 +115,6 @@ public class MemberController {
       return mav;
          
    }
-   
-   
 
    //로그아웃
    @RequestMapping("/logout")
@@ -261,7 +261,24 @@ public class MemberController {
     	  
     	  
       }
-      
+      //회원정보 가져오기
+      	@RequestMapping("/MypageView")
+      	public ModelAndView mypageView(@ModelAttribute("member") MemberModel member, HttpSession session){
+      		
+      	session.getAttribute("session_member_idx");
+      	if (session.getAttribute("session_member_idx") != null) {
+      	int idx = (int) session.getAttribute("session_member_idx");
+      	System.out.println(idx);
+      	
+      	memberModel = memberService.memberList(idx);
+      	ModelAndView mav = new ModelAndView();
+			  
+		  mav.setViewName("memberadminModify");
+		  return mav;
+      	}
+      	mav.setViewName("memberadminModify");
+      	return mav;
+      	}
         //회원정보수정
     	@RequestMapping("/memberModify")
     	public ModelAndView memberModify(@ModelAttribute("member") MemberModel member, BindingResult result,

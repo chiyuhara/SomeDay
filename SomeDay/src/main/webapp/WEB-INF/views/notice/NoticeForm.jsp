@@ -11,7 +11,8 @@
 	function noticeList() {
 		if (confirm("목록으로 가시겠습니까?") == true) {
 			location.href = 'NoticeList';
-		}  {
+		}
+		{
 			return;
 		}
 	}
@@ -52,7 +53,8 @@
 <body>
 
 	<div id="wrapper">
-		<form:form commandName="noticeModel" action="NoticeWrite" method="post">
+		<form:form commandName="noticeModel" action="NoticeWrite"
+			method="post" enctype="multipart/form-data">
 			<div id="page-wrapper">
 				<div class="row">
 					<div class="col-lg-12">
@@ -81,7 +83,14 @@
 										<font color="red"><form:errors path="content" /></font>
 									</td>
 								</tr>
-								
+
+								<tr>
+									<!-- 파일 -->
+									<th>파일</th>
+									<td colspan=3><input type="file" name="file"
+										value="${noticeModel.file_savname}" /></td>
+								</tr>
+
 							</tbody>
 
 						</table>
