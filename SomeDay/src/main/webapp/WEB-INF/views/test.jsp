@@ -1,99 +1,186 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<html lang="ko">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>SOME DAY</title>
-<link rel="stylesheet" href="http://www.lovehanda.com/theme/basic/css/default.css">
-<link rel="stylesheet" href="http://www.lovehanda.com/skin/latest/basic/style.css">
-<link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css">
-<link type="text/css" href="http://www.lovehanda.com/theme/basic/css/jquery-ui.css" rel="stylesheet" />
-<link type="text/css" href="http://www.lovehanda.com/theme/basic/css/ck_style.css" rel="stylesheet" />
-<script src="http://www.lovehanda.com/js/jquery-1.8.3.min.js"></script>
-<script src="http://www.lovehanda.com/js/jquery.menu.js"></script>
-<script src="http://www.lovehanda.com/js/common.js"></script>
-<script src="http://www.lovehanda.com/js/wrest.js"></script>
-<script src="http://www.lovehanda.com/js/myscript.js"></script>
-<script src="http://www.lovehanda.com/js/ckshow_Img1.5.js"></script>
-<script src="http://chang.peopleweb.biz/inc/jquery.cksliding.js"></script>
+<meta charset="utf-8">
+<!-- This file has been downloaded from Bootsnipp.com. Enjoy! -->
+<title>SignUp &amp;&amp; Login - Bootsnipp.com</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet">
+<style type="text/css">
+::selection {
+	background-color: #b5e2e7;
+}
+
+::-moz-selection {
+	background-color: #8ac7d8;
+}
+
+body {
+	background: #3CC;
+}
+
+.container {
+	display: -webkit-flex;
+	display: flex;
+	height: 100%;
+}
+
+#logbox {
+	padding: 10px;
+	margin: 50px auto;
+	width: 340px;
+	background-color: #fff;
+	-webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+	-moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+}
+
+h1 {
+	text-align: center;
+	font-size: 175%;
+	color: #757575;
+	font-weight: 300;
+}
+
+h1, input {
+	font-family: "Open Sans", Helvetica, sans-serif;
+}
+
+.input {
+	width: 75%;
+	height: 50px;
+	display: block;
+	margin: 0 auto 15px;
+	padding: 0 15px;
+	border: none;
+	border-bottom: 2px solid #ebebeb;
+}
+
+.input:focus {
+	outline: none;
+	border-bottom-color: #3CC !important;
+}
+
+.input:hover {
+	border-bottom-color: #dcdcdc;
+}
+
+.input:invalid {
+	box-shadow: none;
+}
+
+.pass:-webkit-autofill {
+	-webkit-box-shadow: 0 0 0 1000px white inset;
+}
+
+.inputButton {
+	position: relative;
+	width: 85%;
+	height: 50px;
+	display: block;
+	margin: 30px auto 30px;
+	color: white;
+	background-color: #3CC;
+	border: none;
+	-webkit-box-shadow: 0 5px 0 #2CADAD;
+	-moz-box-shadow: 0 5px 0 #2CADAD;
+	box-shadow: 0 5px 0 #2CADAD;
+}
+
+.inputButton:hover {
+	top: 2px;
+	-webkit-box-shadow: 0 3px 0 #2CADAD;
+	-moz-box-shadow: 0 3px 0 #2CADAD;
+	box-shadow: 0 3px 0 #2CADAD;
+}
+
+.inputButton:active {
+	top: 5px;
+	box-shadow: none;
+}
+
+.inputButton:focus {
+	outline: none;
+}
+
+.navbar-brand {
+	font-size: xx-large;
+	font-weight: bold;
+	font-family: cursive;
+}
+</style>
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 </head>
+<body>
+	<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>TALHA</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-<script type="text/javascript">
-   
-   
-   var onSearch = function(){
-      
-      submit();
-   };
-   
-      
-</script>
-
+</head>
 <body>
 
-   
- <div id="header_top">
- <div class="wrap">
-<section id="ol_before">
-    <form:form commandName="member" name="headerlogin" action="${contextpath}/someday/member/login" onsubmit="return fhead_submit(this);" method="post" autocomplete="off">
-    <fieldset>
-    <c:if test="${session_member_id == null }">
-        <input type="text" id="ol_id" name="id"  title="회원아이디" placeholder="ID" required class="required" maxlength="20">
-        <input type="password" name="pass" id="ol_pw" title="비밀번호"  placeholder="PW" required class="required" maxlength="20">
-        <input type="submit" id="ol_submit" value="로그인">
-        <div id="ol_svc">
-            <a href="${contextpath}/someday/member/memberForm"><b>회원가입</b></a>
-            <a href="http://www.lovehanda.com/bbs/password_lost.php" id="ol_password_lost">ID/PW분실</a>
-        </div>
-        </c:if>
-        <c:if test="${session_member_id != null }">
-           <div id="ol_svc">
-           <strong>${session_member_name}&nbsp;님</strong>     
-           <a href="http://www.lovehanda.com/bbs/member_confirm.php?url=register_form.php" id="ol_after_info">정보수정</a>
-           <a href="${contextpath}/someday/member/logout" id="ol_after_logout">로그아웃</a>
-        </div>
-        </c:if>
-    </fieldset>
-    </form:form>
-</section>
-<div id="header">
-<div class="wrap">
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#myNavbar">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
 
-<div class="header_q">
-   <h1><a href="" title=""><img src="/someday/resources/images/SkinImg/logo.png" alt="" style="width:250px;" /></a></h1>      
-   <div class="search_main">
-      <div class="search_inner">
-      </div>
-   </div>
+				<a class="navbar-brand" href="#">Talha</a>
 
-      <ul id="topMenu">
-                  <li>
-            <a href="/intro.html" class="m"><h1>SOME DAY 가이드</h1></a>
-                        <dl class="dl1">
-                              <dd class="dd1"><a href="/intro.html" class="s ">이용하기</a></dd>
-                              <dd class="dd1"><a href="/load.html" class="s ">FAQ</a></dd>
-                              <dd class="dd1"><a href="/friend.html" class="s ">Q&A</a></dd>
-                           </dl>
-                     </li>
-                  <li>
-            <a href="/use.html" class="m"><h1>오늘의인연</h1></a>
-                        <dl class="dl1">
-                              <dd class="dd1"><a href="/use.html" class="s ">오늘의인연</a></dd>
-                           </dl>
-                     </li>
-                  <li>
-            <a href="/love.html" class="m"><h1>마이페이지</h1></a>
-                        <dl class="dl1">
-                              <dd class="dd1"><a href="/love.html" class="s ">마이페이지</a></dd>
-                           </dl>
-                     </li>
-                  <li>
-            <a href="/after.html" class="m"><h1>공지&이벤트</h1></a>
-                        <dl class="dl1">
-                              <dd class="dd1"><a href="/after.html" class="s ">공지</a></dd>
-                              <dd class="dd1"><a href="/after.html" class="s ">이벤트</a></dd>
-                           </dl>
-                     </li>
-                  
-               </ul>   </div> 
-</div>
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+
+				<ul class="nav navbar-nav navbar-right">
+
+
+					<div class="collapse navbar-collapse"
+						id="bs-example-navbar-collapse-1">
+
+						<form id="signin" class="navbar-form navbar-right" role="form">
+
+							<div class="input-group">
+								<span class="input-group-addon"><i
+									class="glyphicon glyphicon-user"></i></span> <input id="email"
+									type="email" class="form-control" name="email" value=""
+									placeholder="Email Address">
+							</div>
+
+							<div class="input-group">
+								<span class="input-group-addon"><i
+									class="glyphicon glyphicon-lock"></i></span> <input id="password"
+									type="password" class="form-control" name="password" value=""
+									placeholder="Password">
+							</div>
+
+							<button type="submit" class="btn btn-primary">Login</button>
+						</form>
+
+					</div>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+</body>
+</html>
+<script type="text/javascript">
+	
+</script>
+</body>
+</html>
