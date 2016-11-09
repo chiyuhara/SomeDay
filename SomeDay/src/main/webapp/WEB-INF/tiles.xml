@@ -44,9 +44,9 @@
 	</definition>
 	
 	<!-- Admin -->
-	<definition name="memberadminList" extends="admin">
+<!-- 	<definition name="memberadminList" extends="admin">
 		<put-attribute name="body" value="/WEB-INF/views/admin/memberadminList.jsp" />
-	</definition>
+	</definition> -->
 	
 
 	<!-- Member -->
@@ -54,13 +54,9 @@
 		<put-attribute name="body" value="/WEB-INF/views/member/join.jsp"/>
 	</definition>
 	
-	<definition name="MypageView" extends="main">
-		<put-attribute name="body" value="/WEB-INF/views/member/mypageView.jsp"/>
-	</definition>
-	
-	<definition name="memberadminModify" extends="admin">
+<!-- 	<definition name="memberadminModify" extends="admin">
 		<put-attribute name="body" value="/WEB-INF/views/admin/memberModify.jsp" />
-	</definition>
+	</definition> -->
 
 
 </tiles-definitions>
