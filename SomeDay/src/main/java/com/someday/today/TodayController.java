@@ -1,4 +1,4 @@
-/*package com.someday.today;
+package com.someday.today;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -188,4 +188,3 @@ public class TodayController {
 	}
 
 }
-*/
