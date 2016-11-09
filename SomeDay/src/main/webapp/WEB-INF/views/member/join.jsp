@@ -271,7 +271,7 @@
                 <td><input id="email" name="email" fw-filter="isFill" fw-label="이메일" fw-alone="N" fw-msg="" value="" type="text"  />@     
                 <input id="email2" name="email2" fw-label="이메일" fw-alone="N" fw-msg=""  value="" type="text" disabled value="- 이메일 선택  -" />
                 <select id="selectEmail" name="selectEmail">
-					<option value="" selected="selected">- 이메일 선택 -</option>
+					<option value="" selected="selected">- 이메일 선택  -</option>
 					<option value="naver.com">naver.com</option>
 					<option value="daum.net">daum.net</option>
 					<option value="nate.com">nate.com</option>

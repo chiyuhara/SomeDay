@@ -54,6 +54,18 @@
 		<put-attribute name="body" value="/WEB-INF/views/member/join.jsp"/>
 	</definition>
 	
+	<definition name="MypageView" extends ="main">
+		<put-attribute name="body" value="/WEB-INF/views/member/mypageView.jsp"/>
+	</definition>
+	
+	<definition name="MypageModify" extends ="main">
+		<put-attribute name="body" value="/WEB-INF/views/member/mypageModify.jsp"/>
+	</definition>
+	
+	<definition name="loginForm" extends ="main">
+		<put-attribute name="body" value="/WEB-INF/views/member/loginForm.jsp"/>
+	</definition>
+	
 <!-- 	<definition name="memberadminModify" extends="admin">
 		<put-attribute name="body" value="/WEB-INF/views/admin/memberModify.jsp" />
 	</definition> -->

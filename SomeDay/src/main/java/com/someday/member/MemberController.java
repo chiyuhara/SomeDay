@@ -203,11 +203,7 @@ public class MemberController {
   			}
   		}
   	}
-
-  	
-   
-      
-
+  	  /*우편번호폼*/
 	  @RequestMapping(value="/zipcodeCheckForm")
       public ModelAndView zipcodeCheckForm( HttpServletRequest req) throws Exception{
          ModelAndView mv = new ModelAndView();
@@ -261,6 +257,7 @@ public class MemberController {
     	  
     	  
       }
+
       //회원정보 가져오기
       	@RequestMapping("/MypageView")
       	public ModelAndView mypageView(@ModelAttribute("member") MemberModel member, HttpSession session){
@@ -272,54 +269,53 @@ public class MemberController {
       	
       	memberModel = memberService.memberList(idx);
       	ModelAndView mav = new ModelAndView();
-			  
-		  mav.setViewName("memberadminModify");
+		  mav.addObject("member", memberModel);	  
+		  mav.setViewName("MypageView");
 		  return mav;
       	}
-      	mav.setViewName("memberadminModify");
+      	mav.setViewName("MypageView");
       	return mav;
       	}
-        //회원정보수정
-    	@RequestMapping("/memberModify")
-    	public ModelAndView memberModify(@ModelAttribute("member") MemberModel member, BindingResult result,
-    			HttpSession session) {
-    		session.getAttribute("session_member_id");
-
-    		if (session.getAttribute("session_member_id") != null) {
-    			String id = (String) session.getAttribute("session_member_id");
-    			member = memberService.getMember(id);
-
-    			mav.addObject("member", member);
-    			mav.setViewName("memberModify");
-    			return mav;
-    		} else {
-
-    			mav.setViewName("loginConfirm");
-    			return mav;
-    		}
-    	}
         
-    	//회원정보 수정완료
-    	@RequestMapping("/memberModifyEnd")
-    	public ModelAndView memberModifyEnd(@ModelAttribute("member") MemberModel member, BindingResult result) {
-    		// Validation Binding
-    		/*new MemberValidator().validate(member, result);*/
-    	
-    		try {
-    			// 유효성검사에 통과하면
-    			memberService.memberModify(member);
-    			mav.setViewName("memberModifyEnd");
-    			return mav;
-    		} catch (DuplicateKeyException e) {
-    			// db에서 id의 제약조건을 unique로 바꿨기 때문에 중복된 아이디로 가입하려하면
-    			// DuplicateKeyException이 뜨게되고
-    			// 예외처리로 properties파일에 등록된 "invalid"의 내용이 나오게 만들고 회원가입폼으로 돌아가게했음.
-    			// 아이디 중복검사
-    			result.reject("invalid", null);
-    			System.out.println("캐치에러");
-    			mav.setViewName("memberModify");
-    			return mav;
+    	//회원정보 수정폼
+    	@RequestMapping("/MypageModify")
+    	public ModelAndView memberModifyEnd(@ModelAttribute("member") MemberModel member, HttpSession session) {
+        
+    		session.getAttribute("session_member_idx");
+          	if (session.getAttribute("session_member_idx") != null) {
+          	int idx = (int) session.getAttribute("session_member_idx");
+          	System.out.println(idx);
+          	
+          	memberModel = memberService.memberList(idx);
+          	//String phone = ;
+
+          	//폰넘버 나누기
+          	String[] ph = memberModel.getPhone().split("-");
+          	
+          	memberModel.setPhone3(ph[0]);
+          	memberModel.setPhone(ph[1]);
+          	memberModel.setPhone2(ph[2]);
+          	
+          	//이메일 나누기
+          	String[] em = memberModel.getEmail().split("@");
+          	
+          	memberModel.setEmail(em[0]);
+          	if(em[1] != "naver.com" || em[1] != "daum.net" || em[1] != "nate.com" || em[1] != "hotmail.com" || 
+          			em[1] != "yahoo.com" || em[1] != "empas.com" || em[1] != "korea.com" || em[1] != "dreamwiz.com" ||
+          			em[1] != "gmail.com"){
+          		memberModel.setEmail2(em[1]);
+          	} else {
+          		memberModel.setSelectEmail(em[1]);
+          	}
+          	
+
+          	ModelAndView mav = new ModelAndView();
+    		  mav.addObject("member", memberModel);	  
+    		  mav.setViewName("MypageModify");
+    		  return mav;
     		}
+          	mav.setViewName("MypageModify");
+          	return mav;
 
     	}
     	
