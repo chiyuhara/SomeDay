@@ -203,11 +203,7 @@ public class MemberController {
   			}
   		}
   	}
-
-  	
-   
-      
-
+  	  /*우편번호폼*/
 	  @RequestMapping(value="/zipcodeCheckForm")
       public ModelAndView zipcodeCheckForm( HttpServletRequest req) throws Exception{
          ModelAndView mv = new ModelAndView();
@@ -261,6 +257,7 @@ public class MemberController {
     	  
     	  
       }
+
       //회원정보 가져오기
       	@RequestMapping("/MypageView")
       	public ModelAndView mypageView(@ModelAttribute("member") MemberModel member, HttpSession session){
@@ -273,10 +270,10 @@ public class MemberController {
       	memberModel = memberService.memberList(idx);
       	ModelAndView mav = new ModelAndView();
 			  
-		  mav.setViewName("memberadminModify");
+		  mav.setViewName("MypageView");
 		  return mav;
       	}
-      	mav.setViewName("memberadminModify");
+      	mav.setViewName("MypageView");
       	return mav;
       	}
         //회원정보수정

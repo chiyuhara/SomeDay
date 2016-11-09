@@ -19,7 +19,7 @@ import com.someday.notice.NoticeModel;
 @Component("fileUtils")	//Component 어노테이션을 이용하여 이 객체의 관리를 스프링이 담당하도록한다
 public class FileUtils {
 	
-	private static final String filePath = "/src/main/webapp/resources/Upload";//파일이 저장될 위치
+	private static final String filePath = "C:\\dev\\file\\";//파일이 저장될 위치
 	
 	public List<Map<String,Object>> parseInsertFileInfo(int index, HttpServletRequest request) throws Exception{
 		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;
