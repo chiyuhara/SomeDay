@@ -2,9 +2,6 @@ package com.someday.notice;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
-import com.someday.member.MemberModel;
 import com.someday.notice.NoticeModel;
 
 public interface NoticeDao {
@@ -17,9 +14,6 @@ public interface NoticeDao {
 
 	// 글쓰기 
 	int noticeWrite(NoticeModel noticeModel);
-	
-	//파일업로드
-	public Object UpdateFile(NoticeModel noticeModel, HttpServletRequest request) throws Exception;
 
 	// 글삭제
 	int noticeDelete(int idx);

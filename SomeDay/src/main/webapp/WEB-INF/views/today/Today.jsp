@@ -6,11 +6,11 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
 <body>
+<div class="container">
+
+        <div class="row">
+            <div class="box">
 	<form name="todayAction" method="post" />
 	<table width="600" border="0" cellspacing="0" cellpadding="0">
 
@@ -100,5 +100,9 @@
 		</c:otherwise>
 		</c:choose>
 	<br><br>
+	</table>
+	</div>
+	</div>
+	</div>
 </body>
 </html>

@@ -11,18 +11,12 @@
 	function noticeList() {
 		if (confirm("목록으로 가시겠습니까?") == true) {
 			location.href = 'NoticeList';
-		}
-		{
+		}  {
 			return;
 		}
 	}
 </script>
 
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script src="http://code.jquery.com/jquery-migrate-1.1.0.js"></script>
-<link href="/pet/resources/admincss/bootstrap.min.css" rel="stylesheet">
-<link href="/pet/resources/css/reset.css" rel="stylesheet">
-<link href="/pet/resources/admincss/sb-admin-2.css" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style type="text/css">
 .contents-wrap {
@@ -53,8 +47,7 @@
 <body>
 
 	<div id="wrapper">
-		<form:form commandName="noticeModel" action="NoticeWrite"
-			method="post" enctype="multipart/form-data">
+		<form:form commandName="noticeModel" action="NoticeWrite" method="post">
 			<div id="page-wrapper">
 				<div class="row">
 					<div class="col-lg-12">
@@ -83,14 +76,7 @@
 										<font color="red"><form:errors path="content" /></font>
 									</td>
 								</tr>
-
-								<tr>
-									<!-- 파일 -->
-									<th>파일</th>
-									<td colspan=3><input type="file" name="file"
-										value="${noticeModel.file_savname}" /></td>
-								</tr>
-
+								
 							</tbody>
 
 						</table>
