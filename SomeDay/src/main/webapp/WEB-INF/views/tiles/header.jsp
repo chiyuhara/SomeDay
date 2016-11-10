@@ -60,7 +60,15 @@
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="${contextpath}/someday/가이드">SOMEDAY 가이드</a></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">SOMEDAY 가이드</span>
+					</a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#">이용하기</a></li>
+							<li><a href="#">FAQ</a></li>
+							<li><a href="#">Q&A</a></li>
+						</ul>
+					</li>
 					<li><a href="${contextpath}/someday/today">오늘의인연</a></li>
 					<li><a href="${contextpath}/someday/my">마이페이지</a></li>
 					<li><a href="${contextpath}/someday/notice/NoticeList">공지&이벤트</a></li>
