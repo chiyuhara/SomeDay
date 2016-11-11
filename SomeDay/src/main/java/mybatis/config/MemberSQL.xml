@@ -212,22 +212,37 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       WHERE IDX = #{idx}
    </select>
    
+   <!-- 회원목록 -->
+   <select id="memberList" resultMap="memberRes">
+		SELECT * FROM MEMBER ORDER BY idx DESC
+	</select>
+   
    <!-- 관리자  회원수정-->
    <update id="adminupdateMember" parameterType="memberModel"> 
-      <!-- UPDATE MEMBER SET 
-         pass = #{pass}, 
-         name = #{name},         
-         zipcode = #{zipcode},     
-         addr = #{addr},    
-         phone = #{phone},
-          email = #{email}
-      where id = #{id} -->
-      UPDATE MEMBER SET 
-      name = #{name},       
-      phone = #{phone},
-       email = #{email} 
-      where id = #{id}  
-    </update>
+		<!-- UPDATE MEMBER SET 
+			pass = #{pass}, 
+			name = #{name},			
+			zipcode = #{zipcode},  	
+			addr = #{addr}, 	
+			phone = #{phone},
+	 		email = #{email}
+		where id = #{id} -->
+		UPDATE MEMBER SET
+		pass = #{pass},
+		nick = #{nick},  
+		name = #{name},
+		bloodgroup = #{bloodgroup},
+     	email = #{email},
+        phone = #{phone},
+        num1 = #{num1},
+        num2 = #{num2},
+        <!-- zipcode = #{zipcode},
+        addr1 = #{addr1},
+        addr2 = #{addr2}, --> 
+		intro = #{intro}
+		where id = #{id}  
+ 	</update>
+
     
     <!-- 남자1명 랜덤 -->
 	<select id="random_male" resultMap="memberRes" parameterType="memberModel">
@@ -248,4 +263,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 		SELECT (<![CDATA[ CASE WHEN female_total < male_total THEN female_total ELSE male_total END]]>) AS small FROM total
 	</select> 
+
+	 
+
 </mapper>
