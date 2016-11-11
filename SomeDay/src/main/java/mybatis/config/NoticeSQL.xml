@@ -43,14 +43,37 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT * FROM NOTICE_BOARD
 		WHERE IDX = #{idx}
 	</select>
+	
+	<!-- 조회수 1증가 -->
+	<update id="noticeUpdateReadhit" parameterType="noticeModel">
+			UPDATE NOTICE_BOARD
+			SET
+				READHIT = READHIT + 1
+			WHERE
+				IDX = #{idx}	
+	</update>
 
 	<!-- 글쓰기 -->
-	<insert id="noticeWrite" parameterType="noticeModel">
+	<insert id="noticeWrite" parameterType="noticeModel" >
 		INSERT INTO
-		NOTICE_BOARD(IDX, SUBJECT, CONTENT, FILE_ORGNAME, FILE_SAVNAME)
+		NOTICE_BOARD(IDX, TYPE, SUBJECT, READHIT, CONTENT, TIMES)
 		VALUES
-		(NOTICE_BOARD_IDX_SEQ.NEXTVAL, #{subject}, #{content}, #{file_orgname}, #{file_savname})
+		(NOTICE_BOARD_IDX_SEQ.NEXTVAL, #{type} , #{subject}, 0, #{content}, #{times})
 	</insert>
+	
+	<!-- 아이디로 idx 찾기 -->
+   <select id="noticeselectIdx" parameterType="noticeModel" resultMap="noticeModelRes">
+    SELECT IDX FROM NOTICE_BOARD
+      WHERE TIMES = #{times}
+   </select>
+	
+	<!-- 사진업로드 -->
+   <update id="updateFile" parameterType="noticeModel">
+         UPDATE NOTICE_BOARD SET 
+         FILE_ORGNAME = #{File_orgname},
+         FILE_SAVNAME = #{File_savname}
+         WHERE IDX = #{idx}
+   </update>
 
 	<!-- 글삭제 -->
 	<delete id="noticeDelete" parameterType="noticeModel">

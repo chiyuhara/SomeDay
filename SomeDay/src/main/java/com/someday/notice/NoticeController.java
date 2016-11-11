@@ -2,7 +2,10 @@ package com.someday.notice;
 
 import java.io.FileOutputStream;
 import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -17,15 +20,13 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.someday.member.MemberModel;
 //페이징
 import com.someday.util.Paging;
 import com.someday.validator.NoticeValidator;
 
 @Controller
 public class NoticeController {
-
-	// 파일 업로드
-	private static final String uploadPath = "/src/main/webapp/resources/Upload";
 
 	@Resource(name = "noticeService")
 	private NoticeService noticeService;
@@ -173,13 +174,15 @@ public class NoticeController {
 		int idx = Integer.parseInt(request.getParameter("idx"));
 
 		NoticeModel noticeModel = noticeService.noticeView(idx);
-
-		/* noticeService.noticeUpdateReadcount(idx); //조회수 1 증가 */
-		 
+		noticeService.noticeUpdateReadhit(idx); //조회수 1증가 
+		
 		List<NoticecommModel> noticecommList;
 		noticecommList = noticeService.noticecommList(idx);
 		commentcount = noticecommList.size();
 
+		System.out.println(noticeModel.getFile_savname());
+		System.out.println("노티스모델 안에가지고있는 값" +noticeModel.getType());
+		
 		mav.addObject("noticeModel", noticeModel);
 		mav.addObject("noticecommList", noticecommList);
 		mav.addObject("commentcount", commentcount);
@@ -200,11 +203,12 @@ public class NoticeController {
 
 	// 공지사항 글쓰기
 	@RequestMapping(value = "/notice/NoticeWrite", method = RequestMethod.POST)
-	public String reviewWrite(NoticeModel noticeModel,  BindingResult result,
-			MultipartHttpServletRequest multipartHttpServletRequest) throws Exception, Exception{
+	public String reviewWrite(NoticeModel noticeModel,  BindingResult result, String type,
+								MultipartHttpServletRequest multipartHttpServletRequest) throws Exception, Exception{
 		System.out.println("글쓰기ex 실행");
 		System.out.println(noticeModel.getSubject());
 		System.out.println(noticeModel.getContent());
+		
 		ModelAndView mav = new ModelAndView();
 
 		new NoticeValidator().validate(noticeModel, result);
@@ -213,15 +217,27 @@ public class NoticeController {
 //			mav.setViewName("noticeForm");
 //			return "noticeForm";
 //		}
+		
+		//타입 
 
-		//사진 업로드
-		noticeService.UpdateFile(noticeModel, multipartHttpServletRequest);
-        	
-        	System.out.println(noticeModel.getFile_savname());
-    		System.out.println(noticeModel.getFile_orgname());
-
+		//날짜 및 시간 
+		Date currentTime = new Date ( );
+		System.out.println ( currentTime );
+		
+		noticeModel.setTimes(currentTime);
+		
 		noticeService.noticeWrite(noticeModel);
-
+		
+		//idx 가져오기 
+		NoticeModel idx = (NoticeModel)noticeService.Idx(noticeModel);
+		System.out.println(idx.getIdx());
+		
+		int index =(idx.getIdx());
+		System.out.println("index 결과" + index);
+		
+		//사진 업로드
+		noticeService.UpdateFile(index, multipartHttpServletRequest);
+    	
 		mav.setViewName("redirect:NoticeList");
 		
 		return "redirect:NoticeList";
@@ -241,8 +257,8 @@ public class NoticeController {
 
 	// 공지사항 수정폼
 	@RequestMapping("/notice/NoticeModify")
-	public ModelAndView noticeModifyForm(@ModelAttribute("noticeModel") NoticeModel noticeModel, BindingResult result,
-			HttpServletRequest request) {
+	public ModelAndView noticeModifyForm(@ModelAttribute("noticeModel") NoticeModel noticeModel, 
+			BindingResult result, HttpServletRequest request) {
 		System.out.println("공지 수정 폼");
 		ModelAndView mav = new ModelAndView();
 		noticeModel = noticeService.noticeView(noticeModel.getIdx());
@@ -261,9 +277,10 @@ public class NoticeController {
 	public ModelAndView noticeModify(@ModelAttribute("noticeModel") NoticeModel noticeModel,
 			HttpServletRequest request) {
 
-		System.out.println("공지 수정");
+		System.out.println("공지수정");
 
 		ModelAndView mav = new ModelAndView("redirect:NoticeView");
+		System.out.println("현재페이지:" + currentPage);
 
 		String content = noticeModel.getContent().replaceAll("\r\n", "<br />");
 		noticeModel.setContent(content);
@@ -271,7 +288,7 @@ public class NoticeController {
 		noticeService.noticeModify(noticeModel);
 
 		mav.addObject("idx", noticeModel.getIdx());
-
+		System.out.println("수정 후 페이지:" + currentPage);
 		return mav;
 	}
 	

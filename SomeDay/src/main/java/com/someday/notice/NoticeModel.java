@@ -57,8 +57,8 @@ public class NoticeModel {
 	public Date getTimes() {
 		return times;
 	}
-	public void setTimes(Date times) {
-		this.times = times;
+	public void setTimes(Date dTime) {
+		this.times = dTime;
 	}
 	public int getReadhit() {
 		return readhit;

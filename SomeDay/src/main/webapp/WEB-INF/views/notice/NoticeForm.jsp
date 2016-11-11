@@ -53,8 +53,7 @@
 <body>
 
 	<div id="wrapper">
-		<form:form commandName="noticeModel" action="NoticeWrite"
-			method="post" enctype="multipart/form-data">
+		<form:form commandName="noticeModel" action="NoticeWrite" method="post" enctype="multipart/form-data">
 			<div id="page-wrapper">
 				<div class="row">
 					<div class="col-lg-12">
@@ -62,36 +61,41 @@
 						<table class="table table-striped table-bordered table-hover"
 							id="dataTables-example">
 
-							<thead>
-								<tr class="danger">
-									<th width="100">글제목</th>
-									<td colspan=3><input type="textarea" name="subject"
-										value="${noticeModel.subject}" /> <font color="red"><form:errors
-												path="subject" /></font></td>
-								</tr>
-							</thead>
+							<tr class="danger">
+								<th width="100">글제목</th>
+								<td colspan=3><input type="textarea" name="subject" value="${noticeModel.subject}" /> 
+								<form:errors path="subject" /></font></td>
+							</tr>
 
-							<tbody>
+							<!-- 타입  -->
+							<tr>
+							<th width="15%" align="center">글타입</th>
+							<td>
+							
+							<form:select path="type">
+               				<form:option value="공지사항" label="공지사항" />
+               				<form:option value="이벤트 " label="이벤트" />
+							</form:select>
+							
+							<td>
+							</tr>
 
+							<!-- 글내용 -->
+							<tr>
+								<th>글내용</th>
+								<td colspan=3 height=300 style="padding: 0px !important;">
+									<textarea name="content" style="padding: 3px; margin: 1px; width: 100%; height: 98%;"></textarea>
+									<font color="red"><form:errors path="content" /></font>
+								</td>
+							</tr>
 
-								<tr>
-									<!-- 글내용 -->
-									<th>글내용</th>
-									<td colspan=3 height=300 style="padding: 0px !important;">
-										<textarea name="content"
-											style="padding: 3px; margin: 1px; width: 100%; height: 98%;"></textarea>
-										<font color="red"><form:errors path="content" /></font>
-									</td>
-								</tr>
+							<!-- 파일 -->
+							<tr>
+								<th>첨부파일</th>
+								<td colspan=3><input type="file" name="file"
+									value="${noticeModel.file_savname}" /></td>
+							</tr>
 
-								<tr>
-									<!-- 파일 -->
-									<th>파일</th>
-									<td colspan=3><input type="file" name="file"
-										value="${noticeModel.file_savname}" /></td>
-								</tr>
-
-							</tbody>
 
 						</table>
 					</div>
