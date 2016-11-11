@@ -44,8 +44,16 @@
 	</definition>
 	
 	<!-- Member -->
-	<definition name="idFindOk" extends="main">
-		<put-attribute name="body" value="/WEB-INF/views/member/idFindOk.jsp" />
+	<definition name="findForm" extends="main">
+		<put-attribute name="body" value="/WEB-INF/views/member/findForm.jsp" />
+	</definition>
+	<!-- 아이디 찾기 -->
+	<definition name="idFindForm" extends="main">
+		<put-attribute name="body" value="/WEB-INF/jsp/member/idFindOK.jsp" />
+	</definition>
+	<!-- 비밀번호 찾기 찾기 -->
+	<definition name="pwdFindForm" extends="main">
+		<put-attribute name="body" value="/WEB-INF/jsp/member/pwdFindOK.jsp" />
 	</definition>
 	
 	<definition name="loginForm" extends="main">
@@ -79,16 +87,17 @@
 		<put-attribute name="body" value="/WEB-INF/views/admin/memberadminList.jsp" />
 	</definition>
 	
-
+	<definition name="memberadminModify" extends="admin">
+		<put-attribute name="body" value="/WEB-INF/views/admin/memberModify.jsp" />
+	</definition>
+	
+		
+	
 	<!-- Member -->
 	<definition name="memberForm" extends ="main">
 		<put-attribute name="body" value="/WEB-INF/views/member/join.jsp"/>
 	</definition>
 	
-	<definition name="memberadminModify" extends="admin">
-		<put-attribute name="body" value="/WEB-INF/views/admin/memberModify.jsp" />
-	</definition>
-
-
+	
 </tiles-definitions>
 

@@ -43,12 +43,15 @@
         <input type="submit" id="ol_submit" value="로그인">
         <div id="ol_svc">
             <a href="${contextpath}/someday/member/memberForm"><b>회원가입</b></a>
-            <a href="http://www.lovehanda.com/bbs/password_lost.php" id="ol_password_lost">ID/PW분실</a>
+            <a href="${contextpath}/someday/member/findForm" >ID/PW분실</a>
         </div>
         </c:if>
         <c:if test="${session_member_id != null }">
       	  <div id="ol_svc">
-      	  <strong>${session_member_name}&nbsp;님</strong>     
+      	  <strong>${session_member_name}&nbsp;님</strong> 
+      	  <c:if test="${session_member_name == 'admin' }">
+					<li><a href="${contextpath}/someday/admin/admin">관리자페이지</a></li> 	
+				</c:if>    
       	  <a href="http://www.lovehanda.com/bbs/member_confirm.php?url=register_form.php" id="ol_after_info">정보수정</a>
       	  <a href="${contextpath}/someday/member/logout" id="ol_after_logout">로그아웃</a>
 		  </div>

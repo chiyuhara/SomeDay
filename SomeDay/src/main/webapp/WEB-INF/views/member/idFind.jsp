@@ -17,7 +17,7 @@
 				<h3><center>
 					<img src="/pet/resources/images/SkinImg/h3_find_id.GIF"
 						alt="아이디 찾기" />
-				</center></h3>
+				</center></h3> 
 
 				<div class="findId">
 					<table>

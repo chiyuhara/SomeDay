@@ -109,7 +109,7 @@ public class MemberController {
       }
       
       //System.out.println("로그인 실패");         
-      mav.setViewName("main");
+      mav.setViewName("/member/loginError");
       return mav;
          
    }
@@ -129,13 +129,23 @@ public class MemberController {
       
       return mav;
    }
+   
+   //아이디,비밀번호 찾기 폼
+   @RequestMapping("/findForm")
+   public ModelAndView findForm() {
+	   
+	   ModelAndView mav = new ModelAndView();
 
-   	//아이디 찾기 폼
+	   mav.setViewName("findForm");
+	   return mav;
+   }
+
+   	/*//아이디 찾기 폼
   	@RequestMapping(value = "/memberIdFind", method = RequestMethod.GET)
   	public ModelAndView memberFindForm() {
   		mav.setViewName("member/idFind");
   		return mav;
-  	}
+  	}*/
   	
   	//아이디 찾기
   	@RequestMapping(value = "/memberIdFind", method = RequestMethod.POST)
@@ -154,10 +164,11 @@ public class MemberController {
   			if (member.getName().equals(member.getName()) && member.getNum1().equals(member.getNum1()) && member.getNum2().equals(member.getNum2())) {
   				memberFindChk = 1; // 회원가입되어 있음, 닉네임 일치
   				mav.addObject("member", member);
+  				mav.addObject("member1", null);
   				mav.addObject("memberFindChk", memberFindChk);
-  				mav.setViewName("member/idFindOk");
+  				mav.setViewName("findForm");
   				return mav;
-  			} else {
+  			} else { 
   				memberFindChk = -1; // 이름 , 닉네임 틀림
   				mav.addObject("memberFindChk", memberFindChk);
   				mav.setViewName("member/idFindError");
@@ -166,12 +177,12 @@ public class MemberController {
   		}
   	}
 
-  	// 비밀번호찾기
+  	/*// 비밀번호찾기
   	@RequestMapping(value = "/memberPwFind", method = RequestMethod.GET)
   	public ModelAndView memberPwFindForm() {
   		mav.setViewName("member/pwFind");
   		return mav;
-  	}
+  	}*/
 
   	@RequestMapping(value = "/memberPwFind", method = RequestMethod.POST)
   	public ModelAndView memberPwFind(@ModelAttribute("member") MemberModel member, HttpServletRequest request) {
@@ -191,9 +202,10 @@ public class MemberController {
   			
   			if (member.getName().equals(member.getName()) && member.getId().equals(member.getId()) && member.getNum1().equals(member.getNum1()) && member.getNum2().equals(member.getNum2())) {
   				memberFindChk = 1; // 회원가입되어 있음, 닉네임 일치
-  				mav.addObject("member", member);
+  				mav.addObject("member", null);
+  				mav.addObject("member1", member);
   				mav.addObject("memberFindChk", memberFindChk);
-  				mav.setViewName("member/pwFindOk");
+  				mav.setViewName("findForm");
   				return mav;
   			} else {
   				memberFindChk = -1; // 이름 , 닉네임 틀림

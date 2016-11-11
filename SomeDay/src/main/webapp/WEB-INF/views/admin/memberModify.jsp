@@ -30,37 +30,70 @@
 		var f = document.memberModify;
 
 		if (f.pass.value == "") {
-			alert("비밀번호를 입력하세요");
-			f.pass.focus();
-			return false;
-		}
+	         alert("비밀번호를 입력해주십시요.");
+	         f.pass.focus();
+	         return false;
+	      }
 
-		else if (f.pass.value != f.pass2.value) {
-			alert("비밀번호가 일치하지 않습니다");
-			f.pass.value = "";
-			f.pass2.value = "";
-			f.pass.focus();
-			return false;
-		} 
-		else if (f.name.value == "") {
+	      if (f.pass.value.length<4 || f.pass.value.length>8) {
+	         alert("비밀번호는 4자 이상 8자 이하로 입력하셔야 합니다.");
+	         f.pass.select(); //모두선택된 상태에서 focus
+	         return false;
+	      }
+
+/* 	      if (!idPs.test(f.pass.value)) {
+	         alert("유효한 비밀번호 형식이 아닙니다.");
+	         f.pass.value = ""; //id값을 비워줌
+	         f.pass.focus(); //id focus이동
+	         return false;]
+	      }  */
+
+	      var psNum = f.pass.value.search(/[^(0-9)]/);
+	      var psEng = f.pass.value.search(/[^(a-z)]/);
+	      var spe =   f.pass.value.search(/[`~!@#$%^&*()_+]/);
+
+	      if (psNum < 0 || psEng < 0 || spe < 0) {
+	         alert("비밀번호는 숫자와 영문자 특수문자를 혼용하여야 합니다.");
+	         f.pass.select();
+	         return false;
+	      }
+	   
+	      if (f.pass2.value == "") {
+	         alert("비밀번호 확인을 해주십시요.");
+	         f.pass2.select();
+	         return false;
+	      }
+
+	      if (f.pass.value != f.pass2.value) {
+	         alert("비빌번호를 다르게 입력했습니다.");
+	         f.pass2.select();
+	         return false;
+	      }
+	      if (f.nick.value == "") {
+		   		alert("닉네임을 입력해주십시요.");
+		   		f.nick.focus();
+		        return false;
+		    } 
+	      
+		 if (f.name.value == "") {
 			alert("이름을 입력하세요");
 			f.name.focus();
 			return false;
 		}
 
-		else if (f.phone.value == "") {
+		 if (f.phone.value == "") {
 			alert("휴대폰 번호를 입력하세요");
 			f.phone.focus();
 			return false;
 		}
-		else if (f.email.value == "") {
+		 if (f.email.value == "") {
 			alert("이메일을 입력하세요");
 			f.email.focus();
 			return false;
 		}
 		return true;
 	}
-	
+	 
 	/* function openZipcode(){
 		var url="member/zipcodeCheckForm";
 		open(url, "confirm","toolbar=no, location=no, status=no, menubar=no, scrollbars=yes, resizable=no, width=410, height=400");
@@ -82,7 +115,7 @@
 <div class="titleArea">
     <h2><img src="/pet/resources/images/SkinImg/modify.jpg" alt="회원가입"></h2>
 </div> 
-			<form:form commandName="member" action="adminmemberModifyEnd"
+			<form:form commandName="member" action="/someday/admin/memberModifyEnd"
 				method="post" name="memberModify" onsubmit="return check()">
 				<div class="xans-element- xans-member xans-member-join">
 
@@ -118,6 +151,13 @@
 											path="pass2"  /> <font color="red"><form:errors
 												path="pass2" /></font></td>
 								</tr>
+								
+								<tr>
+									<th scope="row">닉네임</th>
+									<td><form:input type="text" name="nick" class="txt w200"
+											path="nick"  /> <font color="red"><form:errors
+												path="nick" /></font></td>
+								</tr>
 
 
 								<tr>
@@ -125,6 +165,41 @@
 									<td><form:input type="text" name="name" class="txt w200" path="name"
 											 /> <font color="red"><form:errors
 												path="name" /></font></td>
+								</tr>
+								
+								<tr>
+									<th scope="row" id="nameTitle">혈액형</th>
+									<td><form:input type="text" name="bloodgroup" class="txt w200" path="bloodgroup"
+											 /> <font color="red"><form:errors
+												path="bloodgroup" /></font></td>
+								</tr>
+								
+								<tr>
+									<th scope="row">이메일</th>
+									<td><form:input type="text" class="txt w200" path="email"
+											 id="email1" /> <font color="red"><form:errors
+												path="email" /></font></td>
+								</tr>
+								
+								<tr>
+									<th scope="row">휴대전화</th>
+									<td><form:input type="text" class="txt w200" path="phone"
+											maxlength="13"  /> <span class="ibk"><!-- "
+											- " 없이 입력하세요. --></span></td>
+								</tr> 
+								
+								<tr>
+									<th scope="row" id="nameTitle">주민번호</th>
+									<td><form:input type="text" name="num1" class="txt w200" path="num1"
+											 /> - <form:input type="text" name="num2" class="txt w200" path="num2"
+											 /> <font color="red"><form:errors
+												path="num2" /></font></td>
+								</tr>
+								
+								<tr>
+									<th scope="row">소개</th>
+									<td><form:input type="text" class="txt w200" path="intro"
+											maxlength="11"  /> <span class="ibk"></span></td>
 								</tr>
 								
 								<tr class="">
@@ -142,20 +217,9 @@
 												id="addr1" readonly="true" /> <form:input type="text"
 												class="inputTypeText" path="addr2" 
 												id="addr2" /></td>
-								</tr> --%>
+								</tr> --%> 
 
-								<tr>
-									<th scope="row">휴대전화</th>
-									<td><form:input type="text" class="txt w200" path="phone"
-											maxlength="11"  /> <span class="ibk">"
-											- " 없이 입력하세요.</span></td>
-								</tr>
-								<tr>
-									<th scope="row">이메일</th>
-									<td><form:input type="text" class="txt w200" path="email"
-											 id="email1" /> <font color="red"><form:errors
-												path="email" /></font></td>
-								</tr>
+								
 
 							</tbody>
 						</table>
@@ -172,7 +236,7 @@
 					<%-- <a href="memberDelete.dog?mem_id=${member.id}" class="btn btnC_03 btnF_02 mr10">
 					<span>회원탈퇴</span>
 				</a> --%>
-						<a href="/someday/"><img src="<!-- /pet/resources/images/SkinImg/btn_member_cancel.gif -->" alt="수정취소" /></a>
+						<a href="/someday/admin/memberadminList"><img src="<!-- /pet/resources/images/SkinImg/btn_member_cancel.gif -->" alt="수정취소" /></a>
 						
 						<!-- <input TYPE="IMAGE" src="/pet/resources/images/SkinImg/btn_member_join.gif" name="Submit" value="Submit" /> -->
 						<!-- <input type="submit" name="submit"/> -->
@@ -180,7 +244,7 @@
 						<input type="image" src="/pet/resources/images/SkinImg/btn_member_modify.gif"  onclick="submit" />
 					</div>
 				</div>
-			</form:form>
+			</form:form> 
 		</div>
 		</div>
 
