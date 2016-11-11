@@ -69,15 +69,12 @@ body {
 			<td align="center" bgcolor="#FFC8C8" width="100">글 번호</td>
 			<td align="center" width="200" style="padding: 2px 5px;"
 				bgcolor="#FFF2E6">${noticeModel.idx}</td>
+				
 			<td align="center" bgcolor="#FFC8C8" width="100">조회수</td>
 			<td align="center" width="200" style="padding: 2px 5px;"
-				bgcolor="#FFF2E6">${noticeModel.readhit}</td>
+				bgcolor="#FFF2E6">${noticeModel.readhit + 1}</td>
 		</tr>
-		<tr height="30">
-			<td align="center" bgcolor="#FFC8C8">글제목</td>
-			<td colspan="3" style="padding: 2px 5px;" bgcolor="#FFF2E6"
-				bgcolor="#FFF2E6"><b>${noticeModel.subject}</b></td>
-		</tr>
+		
 		<tr height="30">
 			<td align="center" bgcolor="#FFC8C8" width="100">글 타입</td>
 			<td align="center" width="200" style="padding: 2px 5px;"
@@ -86,17 +83,34 @@ body {
 			<td align="center" width="200" style="padding: 2px 5px;"
 				bgcolor="#FFF2E6">${noticeModel.writer}</td>
 		</tr>
+		<tr height="30">
+			<td align="center" bgcolor="#FFC8C8">글제목</td>
+			<td colspan="3" style="padding: 2px 5px;" bgcolor="#FFF2E6"
+				bgcolor="#FFF2E6"><b>${noticeModel.subject}</b></td>
+		</tr>
 		<tr>
 			<td align="center" bgcolor="#FFC8C8">글내용</td>
 			<td align="left" colspan="3" height="100" style="padding: 10px 5px;"
 				bgcolor="#FFF2E6">${noticeModel.content}</td>
 		</tr>
+		<tr>
+			<td align="center" bgcolor="#FFC8C8">첨부파일 </td>
+            <td colspan="3" style="padding: 2px 5px;" bgcolor="#FFF2E6" bgcolor="#FFF2E6">
+            	
+            	<c:if test="${noticeModel.file_savname != NULL}">
+                <img src="/Java/upload/${noticeModel.file_savname}" />
+                <br>${noticeModel.file_orgname}</br>
+                </c:if>
+                
+               <c:if test="${noticeModel.file_savname == NULL}">
+                첨부파일이 없습니다.
+                </c:if>
+            </td>
+		</tr>
 	</table>
-
 
 	<!-- 댓글 -->
 	<div>
-	
 		<tr>
 			<c:if test="${fn:length(noticecommList) eq 0}">
 				<br/><center>등록된 댓글이 없습니다</center><br/>
@@ -124,9 +138,6 @@ body {
 				
 			</tr>
 		</form:form>
-		
-		
-		
 		
 	</div>
 

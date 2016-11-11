@@ -24,9 +24,10 @@
 		<thead>
 			<tr>
 				<th scope="col">글번호</th>
-				<th scope="col">제목</th>
 				<th scope="col">글타입</th>
+				<th scope="col">제목</th>
 				<th scope="col">글쓴이</th>
+				<th scope="col">조회수</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -39,10 +40,22 @@
 					</c:url>
 
 					<td align="center">${list.idx}</td>
-					<td style="text-align: left;"><a href="${viewURL}">${list.subject}[${list.cnt}]</a>
-					</td>
 					<td align="center">${list.type}</td>
+					
+					<td>
+					
+						<c:if test="${list.file_savname != null}">
+							<a href="${viewURL}">${list.subject}[${list.cnt}]&nbsp;
+							<img src="../resources/images/list/file.png" width="10" height="10"></a>							
+						</c:if>
+						
+						<c:if test="${list.file_savname == null}">
+							<a href="${viewURL}"> ${list.subject}[${list.cnt}]</a>
+						</c:if>
+					
+					</td>
 					<td align="center">${list.writer}</td>
+					<td align="center">${list.readhit}</td>
 				</tr>
 			</c:forEach>
 		</tbody>
