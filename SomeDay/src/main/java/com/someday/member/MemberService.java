@@ -97,9 +97,9 @@ public class MemberService implements MemberDao {
    }
    //파일 업로드
    @Override
-   public Object UpdateFile(MemberModel up, HttpServletRequest request) throws Exception{
+   public Object UpdateFile(int idx, HttpServletRequest request) throws Exception{
 	   
-		List<Map<String, Object>> list = fileUtils.parseInsertFileInfo(up, request);
+		List<Map<String, Object>> list = fileUtils.parseInsertFileInfo(idx, request);
 			System.out.println(list);
 			
 			for(int i=0, size=list.size(); i<size; i++){
@@ -158,7 +158,13 @@ public class MemberService implements MemberDao {
  	@Override
  	public MemberModel target(int idx){
  		return sqlSessionTemplate.selectOne("member.target", idx);
- 	}   
+ 	}
+ 	
+   //회원정보 가져오기
+ 	@Override
+	public MemberModel memberList(int idx){
+ 		return sqlSessionTemplate.selectOne("member.selectOne", idx);
+ 	}
    
    //회원정보 수정
    @Override

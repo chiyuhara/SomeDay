@@ -13,6 +13,11 @@
 		<put-attribute name="footer" value="/WEB-INF/views/tiles/footer.jsp" />
 	</definition>
 	
+	<!-- admin -->
+   <definition name="admin" template="/WEB-INF/views/layout/admin/layout.jsp">
+      <put-attribute name="body" value="/WEB-INF/views/layout/admin/container.jsp" />
+   </definition>
+   
 	<!-- NoticeList -->
   	 <definition name="noticeList" extends="main">
 		<put-attribute name="body" value="/WEB-INF/views/notice/NoticeList.jsp" />
@@ -100,6 +105,10 @@
 	
 
 	<definition name="MypageView" extends ="main">
+		<put-attribute name="body" value="/WEB-INF/views/member/mypageView.jsp"/>
+	</definition>
+	
+	<definition name="MypageModify" extends ="main">
 		<put-attribute name="body" value="/WEB-INF/views/member/mypageModify.jsp"/>
 	</definition>
 	
