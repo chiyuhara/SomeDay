@@ -7,62 +7,123 @@
 <title>회원 정보수정</title>
 <script>
 function openZipcode(){
-	var url="zipcodeCheck.action";
+	var url="zipcodeCheckForm";
 	open(url, "confirm","toolbar=no, location=no, status=no, menubar=no, scrollbars=yes, resizable=no, width=410, height=400");
 }
 
-function validation() {
-	
-	var frm = document.join;
-	
-	if (frm.pass.value == "") {
-		alert("비밀번호를 입력해주세요.");
-		return false;
-	}
-		if (frm.password2.value != frm.pass.value) {
-		alert("입력한 비밀번호가 서로 다릅니다.!");
-		return false;
-	}
-		if (frm.nick.value == "") {
-		alert("닉네임 입력해주세요.");
-		return false;
-	}
-		if (frm.name.value == "") {
-		alert("이름을 입력해주세요.");
-		return false;
-	}
-		if(frm.age.value == ""){
-		alert("나이를 입력해주세요.");
-		return false;
-	}	
-		if(frm.area.value == ""){
-		alert("주소를 입력해주세요.");
-		return false;
-	}
-		if(frm.email.value == ""){
-		alert("E-mail를 입력해주세요.");
-		return false;
-	}
-		if(frm.phone.value == ""){
-		alert("전화번호를 입력해주세요.");
-		return false;
-	}
-		if(frm.addr1.value == ""){
-		alert("주소를 입력해주세요.");
-		return false;
-	}
-		if(frm.addr2.value == ""){
-		alert("상세주소를 입력해주세요.");
-		return false;
-	}
-		if(frm.intro.value == ""){
-		alert("자기소개를 입력해주세요.");
-		return false;
-	}		
+function check() {
 
-	alert("수정되었습니다");
-	return true;
-}
+    var f = document.join; //문서.Form name="";
+    var idPs = /^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9])(?=.*[0-9]).{6,16}$/; //아이디 비밀번호 체크표현식
+
+    if (f.pass.value == "") {
+       alert("비밀번호를 입력해주십시요.");
+       f.pass.focus();
+       return false;
+    }
+    if (f.pass2.value == "") {
+	         alert("비밀번호 확인을 해주십시요.");
+	         f.pass2.select();
+	         return false;
+	      }
+
+	      if (f.pass.value != f.pass2.value) {
+	         alert("비빌번호를 다르게 입력했습니다.");
+	         f.pass2.select();
+	         return false;
+	      }
+
+    if (f.pass.value.length<4 || f.pass.value.length>8) {
+       alert("비밀번호는 4자 이상 8자 이하로 입력하셔야 합니다.");
+       f.pass.select(); //모두선택된 상태에서 focus
+       return false;
+    }
+
+    var psNum = f.pass.value.search(/[^(0-9)]/);
+    var psEng = f.pass.value.search(/[^(a-z)]/);
+    var spe =   f.pass.value.search(/[`~!@#$%^&*()_+]/);
+
+    if (psNum < 0 || psEng < 0 || spe < 0) {
+       alert("비밀번호는 숫자와 영문자 특수문자를 혼용하여야 합니다.");
+       f.pass.select();
+       return false;
+    }
+
+    if (f.id.value.search(f.pass.value) > -1) {
+       alert("아이디가 포함된 비밀번호는 사용할수 없습니다.");
+       f.pass.select();
+       return false;
+    }
+
+    if (f.pass2.value == "") {
+       alert("비밀번호 확인을 해주십시요.");
+       f.pass2.select();
+       return false;
+    }
+
+    if (f.pass.value != f.pass2.value) {
+       alert("비빌번호를 다르게 입력했습니다.");
+       f.pass2.select();
+       return false;
+    }
+    if (f.nick.value == "") {
+	   		alert("닉네임을 입력해주십시요.");
+	   		f.nick.focus();
+	        return false;
+	    }
+       if (f.name.value == "") {
+          alert("이름을 입력해주십시요.");
+          f.name.focus();
+          return false;
+       }
+
+	      if (f.email.value == "") {
+	         alert("이메일을 입력해주세요.");
+	         f.email.focus();
+	         return false;
+	      }
+			
+	      if((f.phone.value=="") || (f.phone2.value=="")) {
+		         alert("핸드폰번호를 입력해주세요.");
+		         f.phone.focus();
+		         return false;     
+		      }
+    if ((f.num1.value == "") || (f.num1.value.length < 6)) {
+       alert("생년월일을 6자리로 입력해 주세요");
+       f.num1.focus();
+       return false;
+    }
+
+    if (f.zipcode.value == "") {
+       alert("우편번호를 검색하여 입력해주세요");
+       f.zipcode.focus();
+       return false;
+    }
+    if (f.area.value.length == 0) {
+	         alert("지역을 입력하세요");
+	         f.addr.focus();
+	         return false;
+	      }
+
+    if (f.addr1.value.length == 0) {
+       alert("집주소를 입력하세요");
+       f.addr1.focus();
+       return false;
+    }
+
+    if (f.addr2.value.length == 0) {
+       alert("상세주소를 입력하세요");
+       f.addr2.focus();
+       return false;
+    }
+    if(f.intro.value.length == 0){
+  	  alert("자기소개를 입력하세요");
+  	  f.intro.focus();
+  	  return false;
+    }
+
+ }
+
 </script>
 	<style>
 	
@@ -88,27 +149,28 @@ th, td {
 		<h2>회원 정보수정</h2>
 	</table>
 
-	<form:form commandName="member" name="join" action="update.action" method="post" enctype="multipart/form-data">
+	<form:form commandName="member" name="join" action="${contextpath}/someday/member/memberUpdate" method="post" enctype="multipart/form-data">
 		
 		<table width="600" border="0" cellspacing="0" cellpadding="2">	
+			<form:hidden name="idx" path="idx"/>
 			<tr>
 				<td width="200">아이디</td>
 				<td>${member.id }</td>
 			</tr>
 			<tr>
 				<td width="200">비밀번호</td>
-				<td><form:password class="txt w200" path="pass" showPassword="true" maxlength="10"/>
+				<td><form:password name="pass" class="txt w200" path="pass" showPassword="true" maxlength="10"/>
 				</td>
 			</tr>
 			<tr>
 				<td width="200">비밀번호확인</td>
-				<td><form:password class="txt w200" path="pass2" showPassword="true"/>
+				<td><form:password name="pass2" class="txt w200" path="pass2" showPassword="true"/>
 				</td>
 			</tr>
 			<tr>
 				<td width="200">닉네임</td>
 				<td>
-				<form:input class="txt w200" path="nick" maxlength="5"/>
+				<form:input name="nick" class="txt w200" path="nick" maxlength="5"/>
 				</td>
 			</tr>
 			<tr>
@@ -164,15 +226,15 @@ $("#selectEmail option:selected").each(function () {
 			<tr>
 				<td width="200">전화번호</td>
 				<td>
-					<form:select path="phone3">
+					<form:select name="phone3" path="phone3">
 					<form:option value="010" label="010" />
 					<form:option value="011" label="011" />
 					<form:option value="016" label="016" />
 					<form:option value="017" label="017" />
 					<form:option value="019" label="019" />	
 					</form:select>-
-					<form:input type="phone" class="txt w200" path="phone"/>-
-					<form:input type="phone2" class="txt w200" path="phone2"/> 
+					<form:input name="phone" type="phone" class="txt w200" path="phone"/>-
+					<form:input name="phone2" type="phone2" class="txt w200" path="phone2"/> 
 				</td>
 			</tr>
 			<tr>
@@ -183,16 +245,16 @@ $("#selectEmail option:selected").each(function () {
  			 <tr>
 				<td height="30" align="left">우편번호</td>
 				<td align="left">
-				<form:input class="txt w200" path="zipcode"/>
-				<input type="button" value="우편번호찾기" onclick="return openZipcode()" class="BBUTTON">
+				<form:input name="zipcode" class="txt w200" path="zipcode"/>
+				<input type="button" value="우편번호찾기" onclick="openZipcode()" class="BBUTTON">
 				</td>
 			</tr>
 			<tr>
 				<td height="30" align="left" valign="top">주 소</td>
 				<td height="30" align="left">
-				<form:input class="txt w200" path="area"/><br>
-				<form:input class="txt w200" path="addr1" /><br>
-				<form:input class="txt w200" path="addr2"/>
+				<form:input name="area" class="txt w200" path="area"/><br>
+				<form:input name="addr1" class="txt w200" path="addr1" /><br>
+				<form:input name="addr2" class="txt w200" path="addr2"/>
 			</td>
 			<tr>
 				<td width="200">가입일</td>
@@ -200,7 +262,7 @@ $("#selectEmail option:selected").each(function () {
 			</tr>
 			<tr>
 				<td width="200">소개</td>
-				<td><form:input class="txt w200" path="intro"/>
+				<td><form:input name="intro" class="txt w200" path="intro"/>
 				</td>
 			</tr>
 			<tr>
@@ -214,8 +276,8 @@ $("#selectEmail option:selected").each(function () {
 		<br></br>
 		
 		<div>
-					<input name="submit" type="submit" value="수정" class="button" onclick="return validation();" />
-					<input name="list" type="button" value="목록" class="button" onclick="javascript:location.href='mypageAction.action'" />
+					<input type="submit" value="수정"/>
+					<input name="list" type="button" value="돌아가기" class="button" onclick="javascript:location.href='${contextpath}/someday/member/MypageView'"/>
 				</div>
 	</form:form>
 	

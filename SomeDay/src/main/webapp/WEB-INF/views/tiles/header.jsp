@@ -10,6 +10,7 @@
 
 	<form:form commandName="member" name="headerlogin" action="${contextpath}/someday/member/login" onsubmit="return fhead_submit(this);" method="post" autocomplete="off">
     <fieldset>
+    <input type="hidden" value="session_member_idx">
     <c:if test="${session_member_id == null }">
     	 <div style="float: right;">
         <input type="text" id="ol_id" name="id"  title="회원아이디" placeholder="ID" required class="required" maxlength="20">

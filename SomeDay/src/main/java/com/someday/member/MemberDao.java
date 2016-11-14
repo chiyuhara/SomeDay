@@ -58,6 +58,6 @@ public interface MemberDao {
 	public Object memberModify(MemberModel member);
 	
 	//È¸¿øÅ»Åð
-	public Object memberDelete(String id);
+	public Object memberDelete(int idx);
 
 }
