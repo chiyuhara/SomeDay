@@ -54,7 +54,7 @@ public interface MemberDao {
 	//È¸¿øÁ¤º¸ ¼öÁ¤
 	public Object memberModify(MemberModel member);
 	
-	//È¸¿øÅ»Åğ
+	//È¸¿øÅ»Åğ 
 	public Object memberDelete(String id);
 
 }

@@ -13,6 +13,11 @@
 		<put-attribute name="footer" value="/WEB-INF/views/tiles/footer.jsp" />
 	</definition>
 	
+	<!-- admin -->
+	<definition name="admin" template="/WEB-INF/views/layout/admin/layout.jsp">
+		<put-attribute name="body" value="/WEB-INF/views/layout/admin/container.jsp" />
+	</definition>
+	
 	<!-- NoticeList -->
   	 <definition name="noticeList" extends="main">
 		<put-attribute name="body" value="/WEB-INF/views/notice/NoticeList.jsp" />
@@ -67,7 +72,7 @@
 	<definition name="memberModifyEnd" extends="main">
 		<put-attribute name="body" value="/WEB-INF/views/member/memberModifyEnd.jsp" />
 	</definition>
-	
+	 
 	<!-- 회원탈퇴 폼 -->
 	<definition name="memberOut" extends="main">
 		<put-attribute name="body" value="/WEB-INF/views/member/memberOut.jsp" />
@@ -103,9 +108,7 @@
 		<put-attribute name="body" value="/WEB-INF/views/member/mypageModify.jsp"/>
 	</definition>
 	
-	<definition name="loginForm" extends ="main">
-		<put-attribute name="body" value="/WEB-INF/views/member/loginForm.jsp"/>
-	</definition>
+	
 
 </tiles-definitions>
 

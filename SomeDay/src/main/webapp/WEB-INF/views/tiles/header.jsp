@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
-<body>
+   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<body> 
    <!-- Navigation -->
    <nav class="navbar navbar-default" role="navigation">
       <nav class="navbar navbar-default">
@@ -12,32 +14,38 @@
                <form id="signin" class="navbar-form navbar-right" role="form">
                   <div class="input-group">
                      <span class="input-group-addon"><i
-                        class="glyphicon glyphicon-user"></i></span> <input id="email"
+                        class="glyphicon glyphicon-user"></i></span> <!-- <input id="email"
                         type="email" class="form-control" name="email" value=""
-                        placeholder="Email Address">
+                        placeholder="Email Address"> -->
+                         <input type="text" id="ol_id" name="id"  title="회원아이디" placeholder="ID" 
+                         required class="form-control" maxlength="20">
                   </div>
 
                   <div class="input-group">
                      <span class="input-group-addon"><i
-                        class="glyphicon glyphicon-lock"></i></span> <input id="password"
+                        class="glyphicon glyphicon-lock"></i></span> <!-- <input id="password"
                         type="password" class="form-control" name="password" value=""
-                        placeholder="Password">
+                        placeholder="Password"> -->
+                        <input type="password" name="pass" id="ol_pw" title="비밀번호"  placeholder="PW" 
+                        required class="form-control" maxlength="20">
                   </div>
 
                   <button type="submit" class="btn btn-primary">Login</button>
 
                   <div class="input-group">
                      <a href="${contextpath}/someday/member/memberForm"><b>회원가입</b></a>
-                     <a href="http://www.lovehanda.com/bbs/password_lost.php"
-                        id="ol_password_lost">ID/PW분실</a>
+                     <a href="${contextpath}/someday/member/findForm"> <b>ID/PW찾기</b></a>
                   </div>
                </form>
             </c:if>
             <c:if test="${session_member_id != null }">
                <div style="float: right">
                   <div class="input-group">
-                     <strong>${session_member_name}&nbsp;님</strong> <a
-                        href="http://www.lovehanda.com/bbs/member_confirm.php?url=register_form.php">정보수정</a>
+                     <strong>${session_member_name}&nbsp;님</strong> 
+                     <c:if test="${session_member_name == 'admin' }">
+					<a href="${contextpath}/someday/admin/admin">관리자페이지</a>
+				</c:if>    
+                     <a href="http://www.lovehanda.com/bbs/member_confirm.php?url=register_form.php">정보수정</a>
                      <a href="${contextpath}/someday/member/logout">로그아웃</a>
                   </div>
                </div>

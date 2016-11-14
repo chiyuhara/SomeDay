@@ -343,7 +343,7 @@ public class MemberController {
      		
      		if(memberModel.getPass().equals(pass)) {
      			//패스워드가 맞으면
-     			deleteCheck = 1;
+     			deleteCheck = 1; 
      			//삭제 쿼리 수행
      			memberService.memberDelete(id);
      			session.removeAttribute("session_member_id");

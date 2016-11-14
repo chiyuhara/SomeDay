@@ -139,6 +139,10 @@ input[type="button"], input[type="submit"], input[type="reset"] {
 </style>
 </head>
 <body>
+<div class="container">
+
+        <div class="row">
+            <div class="box">
 <div><br>&nbsp;<br><br></div>
 <div  style="width:600px; height:auto; margin:0 auto;">
 
@@ -168,20 +172,20 @@ input[type="button"], input[type="submit"], input[type="reset"] {
    
       <tr>
          <td align="center">
-         <form name="memberIdFindForm" action="/someday/member/memberIdFind" method="post" onsubmit="return memberIdFindCheck()">
+         <form name="memberIdFind" action="/someday/member/memberIdFind" method="post" onsubmit="return memberIdFindCheck()">
          <table width="100%" border="0" cellpadding="0" cellspacing="0">
          <tr>
             <td width="180">
                <table  border="0" cellpadding="0" cellspacing="0">
                
                <tr height="40">
-               <td width="80" align="right" class="label">이&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;름</td>
+               <td width="80" align="right" class="label"><td>이&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;름</td>
                <td width="130">&nbsp;&nbsp; <input name="name" type="text" size="10"></td>
-               <td><font color="#ccc">ex)홍길동</font></td>
-            </tr>
+               <td>ex)홍길동</td>
+            </tr> 
             
             <tr height="40">
-               <td width="80" align="right" class="label">주민번호</td>
+               <td width="80" align="right" class="label"><td>주민번호</td>
                 <td colspan=2>&nbsp;&nbsp; 
                      <input name="num1" type="text" size="5" maxlength="6"> -
                      <input name="num2" type="text" size="6" maxlength="7"> 
@@ -229,7 +233,7 @@ input[type="button"], input[type="submit"], input[type="reset"] {
       <table width="100%" border="0" cellpadding="0" cellspacing="0">
       <tr>
          <td align="center">
-         <form name="memberPwdFindForm" action="/someday/member/memberPwFind" method="post" onsubmit="return memberFindCheck()">
+         <form name="memberPwdFind" action="/someday/member/memberPwFind" method="post" onsubmit="return memberFindCheck()">
          <table width="100%" border="0" cellpadding="0" cellspacing="0">
          <tr>
             <td width="180">
@@ -237,24 +241,25 @@ input[type="button"], input[type="submit"], input[type="reset"] {
             
       
             <tr height="40">
-               <td width="80" align="right" class="label">이&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;름</td>
+               <td width="80" align="right" class="label"><td>이&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;름</td>
                <td width="130">&nbsp;&nbsp; <input name="name" type="text" size="10"></td>
-               <td><font color="#ccc">ex)홍길동</font></td>
+               <td>ex)홍길동</td>
             </tr>
-            
+               
             <tr height="40">
-               <td width="80" align="right" class="label">아&nbsp;&nbsp;이&nbsp;&nbsp;디</td>
-               <td width="130">&nbsp;&nbsp; <input name="id" type="text" size="10"></td>
-               <td><font color="#ccc">ex)hong231</font></td>
+               <td width="80" align="right" class="label"><td>아&nbsp;&nbsp;이&nbsp;&nbsp;디</td>
+               <td width="100">&nbsp;&nbsp; <input name="id" type="text" size="10"></td>
+               <td>ex)hong231</td>
             </tr>
-                       
+            <div align="center">         
             <tr height="40">
-               <td width="80" align="right" class="label">주민번호</td>
+               <td width="80" align="right" class="label"><td>주민번호</td>
                 <td colspan=2>&nbsp;&nbsp; 
                      <input name="num1" type="text" size="5" maxlength="6"> -
                      <input name="num2" type="text" size="6" maxlength="7"> 
                      </td>
-            </tr> 
+            </tr>
+            </div>   
             </table>
             </td>
             <td width="60" align="center">
@@ -282,6 +287,9 @@ input[type="button"], input[type="submit"], input[type="reset"] {
 </table>
 </c:if>
 
+</div>
+</div>
+</div>
 </div>
 </body>
 </html>

@@ -166,7 +166,7 @@ public class MemberService implements MemberDao {
 		return sqlSessionTemplate.update("member.updateMember", member);
 	} 
    
-   //È¸¿øÅ»Åğ
+   //È¸¿øÅ»Åğ 
    @Override
 	public Object memberDelete(String id) {
 		return sqlSessionTemplate.delete("member.deleteMember", id);
