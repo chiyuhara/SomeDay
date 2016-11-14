@@ -172,7 +172,7 @@ public class MemberService implements MemberDao {
 		return sqlSessionTemplate.update("member.updateMember", member);
 	} 
    
-   //È¸¿øÅ»Åð
+   //È¸¿øÅ»Åð 
    @Override
 	public Object memberDelete(int idx) {
 		return sqlSessionTemplate.delete("member.memberDelete", idx);

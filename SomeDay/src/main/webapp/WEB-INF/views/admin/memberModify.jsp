@@ -190,9 +190,9 @@
 								
 								<tr>
 									<th scope="row" id="nameTitle">주민번호</th>
-									<td><form:input type="text" name="num1" class="txt w200" path="num1"
-											 /> - <form:input type="text" name="num2" class="txt w200" path="num2"
-											 /> <font color="red"><form:errors
+									<td><form:input type="text" name="num1" class="txt w200" path="num1" maxlength="6"
+										readonly="true"	 /> - <form:input type="text" name="num2" class="txt w200" path="num2" maxlength="7"
+										readonly="true"	 /> <font color="red"><form:errors
 												path="num2" /></font></td>
 								</tr>
 								

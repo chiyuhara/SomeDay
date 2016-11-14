@@ -56,8 +56,9 @@ public interface MemberDao {
 
 	//회원정보 수정
 	public Object memberModify(MemberModel member);
-	
+
 	//회원탈퇴
 	public Object memberDelete(int idx);
+
 
 }
