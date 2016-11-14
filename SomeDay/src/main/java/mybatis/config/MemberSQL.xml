@@ -141,17 +141,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    <!-- 회원정보 수정 -->
    <update id="updateMember" parameterType="memberModel"> 
       UPDATE MEMBER SET 
-      name = #{name},       
+      pass = #{pass},
+      nick = #{nick},
+      email = #{email},
       phone = #{phone},
-       email = #{email} 
-      where id = #{id} 
+      zipcode = #{zipcode},
+      area = #{area},
+      addr1 = #{addr1},
+      addr2 = #{addr2},
+      intro = #{intro}
+      <include refid="where-idx" />
     </update> 
+    
+    <!-- 병찬 회원탈퇴 -->
+    <delete id="memberDelete" parameterType="int">
+    DELETE FROM MEMBER
+    WHERE IDX = #{idx}
+    </delete>
     
     <!-- 회원탈퇴 --> 
     <delete id="deleteMember" parameterType="String">
        DELETE FROM MEMBER
-      WHERE
-       ID = #{id}
+       WHERE ID = #{id}
    </delete> 
     
 

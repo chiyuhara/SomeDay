@@ -30,7 +30,7 @@ th, td {
 	function button_event(){
 
 		if (confirm("정말 삭제하시겠습니까??") == true){    //확인
-			open_win_noresizable('checkMemberPassword.action','memDelete')
+			open_win_noresizable('memberDeleteForm','memberDelete')
 		   
 
 		}else{   //취소
@@ -135,13 +135,9 @@ th, td {
 	<br></br>
 	
 	<div>
-		
-					<a href="${contextpath}/someday/member/MypageModify">수정</a>
-				    
+				    <input type="button" value="수정" class="button" onclick="javascript:location.href='${contextpath}/someday/member/MypageModify'"/>
 				    <input type="button" value="회원탈퇴" class="button" onclick="return button_event();"/>
-					<!-- onclick="javascript:open_win_noresizable('checkMemberPassword.action','memDelete')" /> -->
-			
-					<input name="list" type="button" value="메인으로" class="button" onclick="javascript:location.href='index.action'" />
+					<input name="list" type="button" value="메인으로" class="button" onclick="javascript:location.href='${contextpath}/someday/'"/>
 
 	</div>
 	<br></br>

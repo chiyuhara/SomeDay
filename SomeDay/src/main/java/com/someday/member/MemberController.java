@@ -305,7 +305,6 @@ public class MemberController {
           	System.out.println(idx);
           	
           	memberModel = memberService.memberList(idx);
-          	//String phone = ;
 
           	//폰넘버 나누기
           	String[] ph = memberModel.getPhone().split("-");
@@ -337,46 +336,51 @@ public class MemberController {
 
     	}
     	
-    	//회원탈퇴
-    	@RequestMapping("/memberOutForm")
-     	public ModelAndView memberOutForm() {
-     		mav.setViewName("memberOut");
-     		return mav;
-     	}
-     	
-     	@RequestMapping("/memberDelete")
-     	public ModelAndView memberDelete(@ModelAttribute("member") MemberModel member, BindingResult result, HttpSession session, HttpServletRequest request) {
-     		
-     		MemberModel memberModel; // 쿼리 결과 값을 저장할 객체
-     		
-     		String id;
-     		String pass;
-     		pass = request.getParameter("pass");
-     		int deleteCheck;
-     		
-     		//해당 아이디의 정보를 가져온다
-     		id = session.getAttribute("session_member_id").toString();
-     		memberModel = (MemberModel) memberService.getMember(id);
-     		
-     		
-     		
-     		if(memberModel.getPass().equals(pass)) {
-     			//패스워드가 맞으면
-     			deleteCheck = 1;
-     			//삭제 쿼리 수행
-     			memberService.memberDelete(id);
-     			session.removeAttribute("session_member_id");
-     			session.removeAttribute("session_member_name");
-     		/*	session.removeAttribute("session_member_no");*/
-     		}
-     		else {
-     			deleteCheck = -1; //패스워드가 안맞을때
-     		}
-     		
-     		mav.addObject("deleteCheck", deleteCheck);
-     		mav.setViewName("memberDelete");
-     		return mav;
-     	}
-
+    	//회원정보수정완료
+    	@RequestMapping("/memberUpdate")
+    	public ModelAndView memberUpdate(@ModelAttribute("member")MemberModel member){
+    		
+    		member.setPhone(member.getPhone3()+"-"+member.getPhone()+"-"+member.getPhone2()); //폰넘버 합치기
+        	
+        	if(member.getEmail2() != null){	//이메일 주소가 널이 아니면 실행
+        		member.setEmail(member.getEmail()+"@"+member.getEmail2());
+			} else { // 이메일 주소가 널일시 실행
+				member.setEmail(member.getEmail()+"@"+member.getSelectEmail());
+			}
+        	
+			memberService.memberModify(member);
+			
+			
+		  ModelAndView mav = new ModelAndView();
+  		  mav.setViewName("main");
+  		  return mav;
+    	}
+    	
+    	//회원탈퇴 비밀번호확인 폼
+    	@RequestMapping("/memberDeleteForm")
+    	public ModelAndView memberDeleteForm(){
+    		mav.setViewName("check/checkPassword");
+    		return mav;
+    	}
+    	
+    	//회원탈퇴 일반회원
+    	@RequestMapping("/memberDelete")
+    	public ModelAndView memberDelete(@ModelAttribute("member") MemberModel member, HttpServletRequest request,  HttpSession session){
+    		int deleteCheck;
+    		int idx = (int) session.getAttribute("session_member_idx"); //로그인한 아이디의 idx값을 가져온다
+    		String pass = request.getParameter("pass");	//모든 텍스트정보를 가져온것을 pass에 넣어줌
+    		memberModel = memberService.memberList(idx);//idx로 로그인한 사람의정보를 가져옴
+    		
+    		if(memberModel.getPass().equals(pass)) { //가져온 pass와 입력한 pass가 맞으면
+    			deleteCheck = 1;//정보가 있으면
+    			memberService.memberDelete(idx);     // idx정보로 삭제
+    		}else{
+    			deleteCheck = 0;	//비밀번호가 틀렸을때
+    		}
+    		session.invalidate();	//세션초기화
+    		mav.addObject("deleteCheck",deleteCheck);
+    		mav.setViewName("check/checkPassword");
+    		return mav;
+    	}
 }
 

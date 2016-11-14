@@ -86,24 +86,11 @@
 		         return false;
 		      }
 
-		      if (f.pass.value != f.pass2.value) {
-		         alert("비빌번호를 다르게 입력했습니다.");
-		         f.pass2.select();
-		         return false;
-		      }
-
 	      if (f.pass.value.length<4 || f.pass.value.length>8) {
 	         alert("비밀번호는 4자 이상 8자 이하로 입력하셔야 합니다.");
 	         f.pass.select(); //모두선택된 상태에서 focus
 	         return false;
 	      }
-
- /* 	      if (!idPs.test(f.pass.value)) {
-	         alert("유효한 비밀번호 형식이 아닙니다.");
-	         f.pass.value = ""; //id값을 비워줌
-	         f.pass.focus(); //id focus이동
-	         return false;]
-	      }  */
 
 	      var psNum = f.pass.value.search(/[^(0-9)]/);
 	      var psEng = f.pass.value.search(/[^(a-z)]/);
@@ -120,13 +107,6 @@
 	         f.pass.select();
 	         return false;
 	      }
-
-	      if (f.pass2.value == "") {
-	         alert("비밀번호 확인을 해주십시요.");
-	         f.pass2.select();
-	         return false;
-	      }
-
 	      if (f.pass.value != f.pass2.value) {
 	         alert("비빌번호를 다르게 입력했습니다.");
 	         f.pass2.select();

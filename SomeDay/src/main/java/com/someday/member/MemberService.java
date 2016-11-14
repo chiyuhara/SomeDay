@@ -174,8 +174,8 @@ public class MemberService implements MemberDao {
    
    //È¸¿øÅ»Åð
    @Override
-	public Object memberDelete(String id) {
-		return sqlSessionTemplate.delete("member.deleteMember", id);
+	public Object memberDelete(int idx) {
+		return sqlSessionTemplate.delete("member.memberDelete", idx);
    }
 
 }
