@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+   pageEncoding="UTF-8"%>
 <body>
   <div class="container">
 
@@ -15,13 +17,13 @@
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner">
                             <div class="item active">
-                                <img class="img-responsive img-full" src="resources/img/slide-1.jpg" alt="">
+                                <img class="img-responsive img-full" src="resources/img/slide_01.jpg" alt="">
                             </div>
                             <div class="item">
-                                <img class="img-responsive img-full" src="resources/img/slide-2.jpg" alt="">
+                                <img class="img-responsive img-full" src="resources/img/slide_02.jpg" alt="">
                             </div>
                             <div class="item">
-                                <img class="img-responsive img-full" src="resources/img/slide-3.jpg" alt="">
+                                <img class="img-responsive img-full" src="resources/img/slide_03.jpg" alt="">
                             </div>
                         </div>
 
@@ -34,13 +36,13 @@
                         </a>
                     </div>
                     <h2 class="brand-before">
-                        <small>Welcome to</small>
+                        <small>Welcome to Some Day</small>
                     </h2>
-                    <h1 class="brand-name">Business Casual</h1>
+                    <h2>하루에한번 당신의 인연이 기다리고있습니다</h2>
                     <hr class="tagline-divider">
                     <h2>
                         <small>By
-                            <strong>Start Bootstrap</strong>
+                            <strong>Your ties are waiting for you once a day</strong>
                         </small>
                     </h2>
                 </div>
