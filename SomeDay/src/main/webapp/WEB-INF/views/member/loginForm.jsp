@@ -23,10 +23,6 @@ function openPwfind(){
 
 <link rel="stylesheet" type="text/css" href="/pet/resources/css/d.css" />
 <body>
-<div class="container">
-
-        <div class="row">
-            <div class="box">
 <div id="header">
 
 
@@ -50,15 +46,15 @@ function openPwfind(){
 <div class="login">
         <h3><img src="/pet/resources/images/SkinImg/h3_login.png" alt="회원로그인"/></h3>
         <fieldset>
-
-            <label><img src="/pet/resources/images/SkinImg/id.gif" alt="id"/> 
+<legend>회원로그인</legend>
+            <label class="id"><img src="/pet/resources/images/SkinImg/id.gif" alt="id"/> 
             
             
-            <form:input id="member_id" name="id" type="text"  path="id"  />
+            <form:input id="member_id" name="id" class="inputTypetext" type="text"  path="id"  />
           <%--   <form:input class="inputTypetext" path="id" id="member_id" name="id" type="text" /> --%> </label>
             
-            <br/>
-            <label><img src="/pet/resources/images/SkinImg/pw.gif" alt="PW"/> 
+            
+            <label class="password"><img src="/pet/resources/images/SkinImg/pw.gif" alt="PW"/> 
             
             <form:input id="member_pass" name="pass" type="password"  path="pass" />
             
@@ -82,10 +78,10 @@ function openPwfind(){
       </div>
 <div class="join">
         <h3><img src="/pet/resources/images/SkinImg/h3_join.png" alt="회원가입"/></h3>
-        <p>썸데이 회원이 아니십니까?<br/>회원을 위한 다양한 혜택이 준비되어 있습니다. </p>
+        <p>아직 오키독키 회원이 아니십니까?<br/>회원을 위한 다양한 혜택이 준비되어 있습니다. </p>
     </div>
 <div class="join_btn">
-        <a href="/someday/member/memberForm"><img src="/pet/resources/images/SkinImg/btn_join.gif" alt="회원가입"/></a>
+        <a href="/someday/member/member"><img src="/pet/resources/images/SkinImg/btn_join.gif" alt="회원가입"/></a>
     </div>
 
 </div>
@@ -100,8 +96,7 @@ function openPwfind(){
 		</div>
 
 </div>
-</div>
-</div>
-</div>
+
+
 </body>
 </html>

@@ -4,277 +4,300 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="member">
-   <resultMap type="memberModel" id="memberRes">
-      <result property="idx" column="idx" />
-      <result property="id" column="id" />
-      <result property="nick" column="nick" />
-      <result property="pass" column="pass" />
-      <result property="name" column="name" />
-      <result property="age" column="age" />
-      <result property="gender" column="gender" />
-      <result property="area" column="area" />
-      <result property="email" column="email" />
-      <result property="phone" column="phone" />
-      <result property="num1" column="num1" />
-      <result property="num2" column="num2" />
-      <result property="addr1" column="addr1" />
-      <result property="addr2" column="addr2" />
-      <result property="intro" column="intro" />
-      <result property="score_avg" column="score_avg" />
-      <result property="authority" column="authority" />
-      <result property="times" column="times" />
-      <result property="bloodgroup" column="bloodgroup" />
-      <result property="zipcode" column="zipcode" />
-      <result property="file_orgname" column="file_orgname" />
-      <result property="file_savname" column="file_savname" />
-   </resultMap>
-
-   <!-- 우편번호리절트맵정의 -->
-   <resultMap type="zipcodeModel" id="zipcodeRes">
-      <result property="zipcode" column="zipcode" />
-      <result property="area1" column="area1" />
-      <result property="area2" column="area2" />
-      <result property="area3" column="area3" />
-      <result property="area4" column="area4" />
-   </resultMap>
-   
-   <!-- 커플 가능한 수 -->
-	<resultMap type="matchingModel" id="matchingRes">
-		<result property="small" column="small"/>
+	<resultMap type="memberModel" id="memberRes">
+		<result property="idx" column="idx" />
+		<result property="id" column="id" />
+		<result property="nick" column="nick" />
+		<result property="pass" column="pass" />
+		<result property="name" column="name" />
+		<result property="age" column="age" />
+		<result property="gender" column="gender" />
+		<result property="area" column="area" />
+		<result property="email" column="email" />
+		<result property="phone" column="phone" />
+		<result property="num1" column="num1" />
+		<result property="num2" column="num2" />
+		<result property="addr1" column="addr1" />
+		<result property="addr2" column="addr2" />
+		<result property="intro" column="intro" />
+		<result property="score_avg" column="score_avg" />
+		<result property="authority" column="authority" />
+		<result property="times" column="times" />
+		<result property="bloodgroup" column="bloodgroup" />
+		<result property="zipcode" column="zipcode" />
+		<result property="file_orgname" column="file_orgname" />
+		<result property="file_savname" column="file_savname" />
 	</resultMap>
 
-   <!-- 공통으로 사용할 select 절 정의 -->
-   <sql id="select-all-member">
-      SELECT * FROM MEMBER
-   </sql>
+	<!-- 우편번호리절트맵정의 -->
+	<resultMap type="zipcodeModel" id="zipcodeRes">
+		<result property="zipcode" column="zipcode" />
+		<result property="area1" column="area1" />
+		<result property="area2" column="area2" />
+		<result property="area3" column="area3" />
+		<result property="area4" column="area4" />
+	</resultMap>
 
-   <!-- 공통으로 사용할 where-idx 절 정의 -->
-   <sql id="where-idx">
-      WHERE IDX = #{idx}
-   </sql>
-   
-   <!-- 아이디로 idx 찾기 -->
-   <select id="selectIdx" resultMap="memberRes" parameterType="memberModel">
-    SELECT IDX FROM MEMBER
-      WHERE ID = #{id}
-   </select>
-   
-   <select id="selectAll-member" resultMap="memberRes"
-      parameterType="memberModel">
-      <include refid="select-all-member" />
-      ORDER BY IDX DESC
-   </select>
+	<!-- 커플 가능한 수 -->
+	<resultMap type="matchingModel" id="matchingRes">
+		<result property="small" column="small" />
+	</resultMap>
+	
+	<!-- 오늘 상대방 정보 및 점수 -->
+	<resultMap type="todaymemberModel" id="todaymemberRes">
+		<result property="idx" column="idx" />
+		<result property="id" column="id" />
+		<result property="nick" column="nick" />
+		<result property="name" column="name" />
+		<result property="age" column="age" />
+		<result property="bloodgroup" column="bloodgroup" />
+		<result property="gender" column="gender" />
+		<result property="area" column="area" />
+		<result property="email" column="email" />
+		<result property="phone" column="phone" />
+		<result property="intro" column="intro" />
+		<result property="score_avg" column="score_avg" />
+		<result property="authority" column="authority" />
+		<result property="file_orgname" column="file_orgname" />
+		<result property="file_savname" column="file_savname" />
+		<result property="score" column="score" />
+	</resultMap>
 
-   <select id="selectOne" resultMap="memberRes" parameterType="int">
-      <include refid="select-all-member" />
-      <include refid="where-idx" />
-   </select>
+	<!-- 공통으로 사용할 select 절 정의 -->
+	<sql id="select-all-member">
+		SELECT * FROM MEMBER
+	</sql>
 
-   <!-- 회원가입 -->
-   <insert id="insertMember" parameterType="memberModel">
-      INSERT INTO MEMBER(
-      idx,
-      id,
-      nick,
-      pass,
-      name,
-      bloodgroup,
-      area,
-      email,
-      phone,
-      num1,
-      num2,
-      zipcode,
-      addr1,
-      addr2,
-      intro,
-      times
-      )
-      VALUES (
-      MEMBER_IDX_SEQ.NEXTVAL,
-      #{id},
-      #{nick},
-      #{pass},
-      #{name},
-      #{bloodgroup},
-      #{area},
-      #{email},
-      #{phone},
-      #{num1},
-      #{num2},
-      #{zipcode},
-      #{addr1},
-      #{addr2},
-      #{intro},
-      sysdate
-      )
-   </insert>
+	<!-- 공통으로 사용할 where-idx 절 정의 -->
+	<sql id="where-idx">
+		WHERE IDX = #{idx}
+	</sql>
 
-   <!--성별 나이 등록 -->
-   <update id="AgeGender" parameterType="memberModel">
-      UPDATE MEMBER SET
-      AGE = #{age},
-      GENDER = #{gender}
-      WHERE ID = #{id}
-   </update>
-   
-    <!-- 사진업로드 -->
-   <update id="updateFile" parameterType="memberModel">
-         UPDATE MEMBER SET 
-         FILE_ORGNAME = #{File_orgname},
-         FILE_SAVNAME = #{File_savname}
-         <include refid="where-idx" />
-   </update>
-
-   <!-- 아이디 중복 확인 -->
-   <select id="getMemberById" resultMap="memberRes" parameterType="string">
-      <include refid="select-all-member" />
-      WHERE ID = #{id}
-   </select>
-
-   <!-- 우편번호 찾기 -->
-   <select id="zipcodeCheck" parameterType="zipcodeModel"
-      resultMap="zipcodeRes">
-      select * from zipcode where AREA3 like '%'||#{area3}||'%'
-   </select>
-   
-   <!-- 회원정보 수정 -->
-   <update id="updateMember" parameterType="memberModel"> 
-      UPDATE MEMBER SET 
-      pass = #{pass},
-      nick = #{nick},
-      email = #{email},
-      phone = #{phone},
-      zipcode = #{zipcode},
-      area = #{area},
-      addr1 = #{addr1},
-      addr2 = #{addr2},
-      intro = #{intro}
-      <include refid="where-idx" />
-    </update> 
-    
-    <!-- 병찬 회원탈퇴 -->
-    <delete id="memberDelete" parameterType="int">
-    DELETE FROM MEMBER
-    WHERE IDX = #{idx}
-    </delete>
-    
-    <!-- 회원탈퇴 --> 
-    <delete id="deleteMember" parameterType="String">
-       DELETE FROM MEMBER
-       WHERE ID = #{id}
-   </delete> 
-    
-
-   <!-- my_idx가 여자인지 확인 -->
-   <select id="myGenderfemale" resultMap="memberRes" parameterType="Integer">
-      <include refid="select-all-member" />
-      WHERE GENDER = 'female' AND IDX = #{idx}
-   </select>
-
-   <!-- my_idx가 남자인지 확인 -->
-   <select id="myGendermale" resultMap="memberRes" parameterType="Integer">
-      <include refid="select-all-member" />
-      WHERE GENDER = 'male' AND IDX = #{idx}
-   </select>
-
-   <!-- 로그인 체크 -->
-   <select id="login" parameterType="memberModel" resultMap="memberRes">
-      select
-      * from member where id=#{id} and pass=#{pass}
-   </select>
-
-   <!-- 아이디 찾기 쿼리문 정의 -->
-   <select id="getMember" parameterType="String" resultMap="memberRes">
-      <include refid="select-all-member" />
-      WHERE id = #{id}
-   </select>
-
-   <!-- 이름으로  아이디 찾기 -->
-   <select id="idfind" parameterType="memberModel" resultMap="memberRes">
-      select *
-      from member
-      where name = #{name} and num1 = #{num1} and num2 = #{num2}
-   </select>
-
-   <!-- 비밀번호 찾기 -->
-   <select id="pwfind" parameterType="memberModel" resultMap="memberRes">
-      select *
-      from member
-      where name = #{name} and id = #{id} and num1 = #{num1} and num2 = #{num2}
-   </select>
-
-   <!-- 전체검색 -->
-   <select id="memberSearch0" resultMap="memberRes" parameterType="String">
-      SELECT * FROM member
-      WHERE idx like #{search}
-      or id like #{search}
-      or name like #{search}
-      or phone like #{search}
-      or email like #{search}
-      or zipcode like #{search}
-      or addr1 like #{search}
-      ORDER BY idx DESC
-   </select>
-
-   <!-- my, target 회원정보 가져옴 -->
-   <select id="target" resultMap="memberRes" parameterType="Integer">
-      <include refid="select-all-member" />
-      WHERE IDX = #{idx}
-   </select>
-   
-   <!-- 회원목록 -->
-   <select id="memberList" resultMap="memberRes">
-		SELECT * FROM MEMBER ORDER BY idx DESC
+	<!-- 아이디로 idx 찾기 -->
+	<select id="selectIdx" resultMap="memberRes" parameterType="memberModel">
+		SELECT IDX FROM MEMBER
+		WHERE ID = #{id}
 	</select>
-   
-   <!-- 관리자  회원수정-->
-   <update id="adminupdateMember" parameterType="memberModel"> 
-		<!-- UPDATE MEMBER SET 
-			pass = #{pass}, 
-			name = #{name},			
-			zipcode = #{zipcode},  	
-			addr = #{addr}, 	
-			phone = #{phone},
-	 		email = #{email}
-		where id = #{id} -->
-		UPDATE MEMBER SET
-		pass = #{pass},
-		nick = #{nick},  
-		name = #{name},
-		bloodgroup = #{bloodgroup},
-     	email = #{email},
-        phone = #{phone},
-        num1 = #{num1},
-        num2 = #{num2},
-        <!-- zipcode = #{zipcode},
-        addr1 = #{addr1},
-        addr2 = #{addr2}, --> 
-		intro = #{intro}
-		where id = #{id}  
- 	</update>
 
-    
-    <!-- 남자1명 랜덤 -->
+	<select id="selectAll-member" resultMap="memberRes"
+		parameterType="memberModel">
+		<include refid="select-all-member" />
+		ORDER BY IDX DESC
+	</select>
+
+	<select id="selectOne" resultMap="memberRes" parameterType="int">
+		<include refid="select-all-member" />
+		<include refid="where-idx" />
+	</select>
+
+	<!-- 회원가입 -->
+	<insert id="insertMember" parameterType="memberModel">
+		INSERT INTO MEMBER(
+		idx,
+		id,
+		nick,
+		pass,
+		name,
+		bloodgroup,
+		area,
+		email,
+		phone,
+		num1,
+		num2,
+		zipcode,
+		addr1,
+		addr2,
+		intro,
+		times
+		)
+		VALUES (
+		MEMBER_IDX_SEQ.NEXTVAL,
+		#{id},
+		#{nick},
+		#{pass},
+		#{name},
+		#{bloodgroup},
+		#{area},
+		#{email},
+		#{phone},
+		#{num1},
+		#{num2},
+		#{zipcode},
+		#{addr1},
+		#{addr2},
+		#{intro},
+		sysdate
+		)
+	</insert>
+
+	<!--성별 나이 등록 -->
+	<update id="AgeGender" parameterType="memberModel">
+		UPDATE MEMBER SET
+		AGE = #{age},
+		GENDER = #{gender}
+		WHERE ID = #{id}
+	</update>
+
+	<!-- 사진업로드 -->
+	<update id="updateFile" parameterType="memberModel">
+		UPDATE MEMBER SET
+		FILE_ORGNAME = #{File_orgname},
+		FILE_SAVNAME = #{File_savname}
+		<include refid="where-idx" />
+	</update>
+
+	<!-- 아이디 중복 확인 -->
+	<select id="getMemberById" resultMap="memberRes" parameterType="string">
+		<include refid="select-all-member" />
+		WHERE ID = #{id}
+	</select>
+
+	<!-- 우편번호 찾기 -->
+	<select id="zipcodeCheck" parameterType="zipcodeModel"
+		resultMap="zipcodeRes">
+		select * from zipcode where AREA3 like '%'||#{area3}||'%'
+	</select>
+
+	<!-- 회원정보 수정 -->
+	<update id="updateMember" parameterType="memberModel">
+		UPDATE MEMBER SET
+		name = #{name},
+		phone = #{phone},
+		email = #{email}
+		where id = #{id}
+	</update>
+
+	<!-- 회원탈퇴 -->
+	<delete id="deleteMember" parameterType="String">
+		DELETE FROM MEMBER
+		WHERE
+		ID = #{id}
+	</delete>
+
+
+	<!-- my_idx가 여자인지 확인 -->
+	<select id="myGenderfemale" resultMap="memberRes" parameterType="Integer">
+		<include refid="select-all-member" />
+		WHERE GENDER = 'female' AND IDX = #{idx}
+	</select>
+
+	<!-- my_idx가 남자인지 확인 -->
+	<select id="myGendermale" resultMap="memberRes" parameterType="Integer">
+		<include refid="select-all-member" />
+		WHERE GENDER = 'male' AND IDX = #{idx}
+	</select>
+
+	<!-- 로그인 체크 -->
+	<select id="login" parameterType="memberModel" resultMap="memberRes">
+		select
+		* from member where id=#{id} and pass=#{pass}
+	</select>
+
+	<!-- 아이디 찾기 쿼리문 정의 -->
+	<select id="getMember" parameterType="String" resultMap="memberRes">
+		<include refid="select-all-member" />
+		WHERE id = #{id}
+	</select>
+
+	<!-- 이름으로 아이디 찾기 -->
+	<select id="idfind" parameterType="memberModel" resultMap="memberRes">
+		select *
+		from member
+		where name = #{name} and num1 = #{num1} and num2 = #{num2}
+	</select>
+
+	<!-- 비밀번호 찾기 -->
+	<select id="pwfind" parameterType="memberModel" resultMap="memberRes">
+		select *
+		from member
+		where name = #{name} and id = #{id} and num1 = #{num1} and num2 = #{num2}
+	</select>
+
+	<!-- 전체검색 -->
+	<select id="memberSearch0" resultMap="memberRes" parameterType="String">
+		SELECT * FROM member
+		WHERE idx like #{search}
+		or id like #{search}
+		or name like #{search}
+		or phone like #{search}
+		or email like #{search}
+		or zipcode like #{search}
+		or addr1 like #{search}
+		ORDER BY idx DESC
+	</select>
+
+	<!-- my, target 회원정보 가져옴 -->
+	<select id="target" resultMap="memberRes" parameterType="Integer">
+		<include refid="select-all-member" />
+		WHERE IDX = #{idx}
+	</select>
+
+	<!-- target 여자 회원정보와 오늘 미팅점수가져옴 -->
+	<select id="targetfemale" resultMap="todaymemberRes" parameterType="Integer">
+		SELECT MEMBER.IDX AS IDX, MEMBER.ID AS ID,
+		MEMBER.NICK AS NICK, MEMBER.NAME AS NAME,
+		MEMBER.AGE AS AGE, MEMBER.BLOODGROUP AS BLOODGROUP,
+		MEMBER.GENDER AS GENDER, MEMBER.AREA AS AREA,
+		MEMBER.EMAIL AS EMAIL, MEMBER.PHONE AS PHONE, MEMBER.INTRO AS INTRO,
+		MEMBER.SCORE_AVG AS SCORE_AVG, MEMBER.AUTHORITY AS AUTHORITY,
+		MEMBER.FILE_ORGNAME AS FILE_ORGNAME, MEMBER.FILE_SAVNAME AS FILE_SAVNAME,
+		MEETING.FEMALE_SCORE AS SCORE,
+		MEETING.FEMALE_MSG AS FEMALE_MSG,
+		MEETING.MALE_MSG AS MALE_MSG
+		FROM MEMBER
+		LEFT JOIN MEETING ON MEMBER.IDX = MEETING.FEMALE_IDX
+		WHERE MEMBER.IDX = #{idx} AND MEETING.TIMES = TRUNC(SYSDATE)
+	</select>
+
+	<!-- target 남자 회원정보와 오늘 미팅점수가져옴 -->
+	<select id="targetmale" resultMap="todaymemberRes" parameterType="Integer">
+		SELECT MEMBER.IDX AS IDX, MEMBER.ID AS ID,
+		MEMBER.NICK AS NICK, MEMBER.NAME AS NAME,
+		MEMBER.AGE AS AGE, MEMBER.BLOODGROUP AS BLOODGROUP,
+		MEMBER.GENDER AS GENDER, MEMBER.AREA AS AREA,
+		MEMBER.EMAIL AS EMAIL, MEMBER.PHONE AS PHONE, MEMBER.INTRO AS INTRO,
+		MEMBER.SCORE_AVG AS SCORE_AVG, MEMBER.AUTHORITY AS AUTHORITY,
+		MEMBER.FILE_ORGNAME AS FILE_ORGNAME, MEMBER.FILE_SAVNAME AS FILE_SAVNAME,
+		MEETING.MALE_SCORE AS SCORE,
+		MEETING.MALE_MSG AS MALE_MSG,
+		MEETING.FEMALE_MSG AS FEMALE_MSG
+		FROM MEMBER
+		LEFT JOIN MEETING ON MEMBER.IDX = MEETING.MALE_IDX
+		WHERE MEMBER.IDX = #{idx} AND MEETING.TIMES = TRUNC(SYSDATE)
+	</select>
+
+	<!-- 관리자 회원수정 -->
+	<update id="adminupdateMember" parameterType="memberModel">
+		<!-- UPDATE MEMBER SET pass = #{pass}, name = #{name}, zipcode = #{zipcode}, 
+			addr = #{addr}, phone = #{phone}, email = #{email} where id = #{id} -->
+		UPDATE MEMBER SET
+		name = #{name},
+		phone = #{phone},
+		email = #{email}
+		where id = #{id}
+	</update>
+
+	<!-- 남자1명 랜덤 -->
 	<select id="random_male" resultMap="memberRes" parameterType="memberModel">
-		SELECT * FROM (SELECT * FROM MEMBER ORDER BY dbms_random.value) WHERE rownum = 1 AND GENDER = 'male'
+		SELECT * FROM (SELECT * FROM MEMBER ORDER BY dbms_random.value) WHERE
+		rownum = 1 AND GENDER = 'male'
 	</select>
 	<!-- 여자1명 랜덤 -->
 	<select id="random_female" resultMap="memberRes" parameterType="memberModel">
-		SELECT * FROM (SELECT * FROM MEMBER ORDER BY dbms_random.value) WHERE rownum = 1 AND GENDER = 'female'
+		SELECT * FROM (SELECT * FROM MEMBER ORDER BY dbms_random.value) WHERE
+		rownum = 1 AND GENDER = 'female'
 	</select>
-	
+
 	<!-- 현재 회원수로 가능한 매칭 합 -->
-	<select id="all_matching_num" resultMap="matchingRes" parameterType="matchingModel">
+	<select id="all_matching_num" resultMap="matchingRes"
+		parameterType="matchingModel">
 		WITH total AS (
-			SELECT 
-			COUNT(CASE WHEN GENDER = 'female' THEN 1 END) AS female_total , 
-			COUNT(CASE WHEN GENDER = 'male' THEN 1 END) AS male_total  
-			FROM MEMBER
+		SELECT
+		COUNT(CASE WHEN GENDER = 'female' THEN 1 END) AS female_total ,
+		COUNT(CASE WHEN GENDER = 'male' THEN 1 END) AS male_total
+		FROM MEMBER
 		)
-		SELECT (<![CDATA[ CASE WHEN female_total < male_total THEN female_total ELSE male_total END]]>) AS small FROM total
-	</select> 
-
-	 
-
+		SELECT (<![CDATA[ CASE WHEN female_total < male_total THEN female_total ELSE male_total END]]>)
+		AS small FROM total
+	</select>
 </mapper>

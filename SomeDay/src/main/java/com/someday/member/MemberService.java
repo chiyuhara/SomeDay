@@ -11,6 +11,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
 
 import com.someday.member.MemberModel;
+import com.someday.today.TodayMemberModel;
 import com.someday.util.FileUtils;
 
 @Service
@@ -97,9 +98,9 @@ public class MemberService implements MemberDao {
    }
    //파일 업로드
    @Override
-   public Object UpdateFile(int idx, HttpServletRequest request) throws Exception{
+   public Object UpdateFile(MemberModel up, HttpServletRequest request) throws Exception{
 	   
-		List<Map<String, Object>> list = fileUtils.parseInsertFileInfo(idx, request);
+		List<Map<String, Object>> list = fileUtils.parseInsertFileInfo(up, request);
 			System.out.println(list);
 			
 			for(int i=0, size=list.size(); i<size; i++){
@@ -155,16 +156,22 @@ public class MemberService implements MemberDao {
  	}
  	
  	//today: 상대방정보
- 	@Override
- 	public MemberModel target(int idx){
- 		return sqlSessionTemplate.selectOne("member.target", idx);
- 	}
+ 	 @Override
+ 	 public MemberModel target(int idx){
+ 	 	return sqlSessionTemplate.selectOne("member.target", idx);
+ 	 }   
  	
-   //회원정보 가져오기
+ 	//today: 상대방정보(여자일때)
  	@Override
-	public MemberModel memberList(int idx){
- 		return sqlSessionTemplate.selectOne("member.selectOne", idx);
- 	}
+ 	public TodayMemberModel targetfemale(int idx){
+ 		return sqlSessionTemplate.selectOne("member.targetfemale", idx);
+ 	}   
+ 	
+ 	//today: 상대방정보(남자일때)
+ 	@Override
+ 	public TodayMemberModel targetmale(int idx){
+ 		return sqlSessionTemplate.selectOne("member.targetmale", idx);
+ 	}   
    
    //회원정보 수정
    @Override
@@ -172,10 +179,10 @@ public class MemberService implements MemberDao {
 		return sqlSessionTemplate.update("member.updateMember", member);
 	} 
    
-   //회원탈퇴 
+   //회원탈퇴
    @Override
-	public Object memberDelete(int idx) {
-		return sqlSessionTemplate.delete("member.memberDelete", idx);
+	public Object memberDelete(String id) {
+		return sqlSessionTemplate.delete("member.deleteMember", id);
    }
 
 }

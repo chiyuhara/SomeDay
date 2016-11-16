@@ -1,73 +1,23 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>¾ÆÀÌµğ Ã£±â</title>
-
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 
 </head>
+
 <body>
-<center>
 
-<br>
-		
-<table width="100%" height="250" border="0" cellpadding="0" cellspacing="0" >
-<tr>
-	<td valign="top" align="center">
-	<table width="450" border="0" cellpadding="0" cellspacing="0">
-	<tr>
-		<td width="50" valign="top"></td>
-		<td width="400" valign="top">
-	
-		<table width="100%" border="0" cellpadding="0" cellspacing="0">
-		<tr>
-			<td height="40"></td>
-		</tr>
-		<tr>
-			<td align="center"><font size="3"><strong>¾ÆÀÌµğ °Ë»ö °á°ú</strong></td>
-		</tr>
-		<tr><td height="10"></td></tr>
-		</table>
-	
-		<table width="100%" border="0" cellpadding="2" cellspacing="0">
-		<tr>
-			<td align="center">
-			<table width="100%" border="0" cellpadding="0" cellspacing="0">
-			<tr>
-				<td width="270">
-				<table width="100%" border="0" cellpadding="0" cellspacing="0">
-				<tr height="10">
-					<td></td>
-					<td></td>
-				</tr>
-				<tr height="30">
-					<td width="100" align="left">¾ÆÀÌµğ</td>
-					&nbsp;<td>${member.id}</td>
-				</tr>
+<div class="tac">
+	<h3><center>
+					<img src="/pet/resources/images/SkinImg/h3_find_id.GIF"
+						alt="ì•„ì´ë”” ì°¾ê¸°" />
+				</center></h3>
 
-				<tr height="10">
-					<td></td>
-					<td></td>
-				</tr>
-				</table>
-				</td>
-				<td width="60" align="center">
-					<input type="button" value="µÚ·Î°¡±â" onclick="location.href='/someday/member/findForm'">
-				</td>
-			</tr>
-			</table>
-			</td>
-		</tr>
-		</table>
-		</td>
-	</tr>
-	</table>
-	
-	</td>
-</tr>
-</table>
-</center>
-</body>
-</html>
+	<p class="fz15"><center>${member.name}ë‹˜ì˜ ì•„ì´ë””ëŠ” <strong>${member.id}</strong>ì…ë‹ˆë‹¤.</center></p>
+				<%-- 	ë¹„ë°€ë²ˆí˜¸ëŠ” <strong>${member.passwd}</strong></p> --%>
+	<div class="btn_type_04">
+	<center><a href="javascript:this.close();"><img src="/pet/resources/images/SkinImg/close.GIF"></a>
+					</center>
+	</div>
+</div>

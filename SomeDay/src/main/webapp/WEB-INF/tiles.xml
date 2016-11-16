@@ -13,11 +13,6 @@
 		<put-attribute name="footer" value="/WEB-INF/views/tiles/footer.jsp" />
 	</definition>
 	
-	<!-- admin -->
-   <definition name="admin" template="/WEB-INF/views/layout/admin/layout.jsp">
-      <put-attribute name="body" value="/WEB-INF/views/layout/admin/container.jsp" />
-   </definition>
-   
 	<!-- NoticeList -->
   	 <definition name="noticeList" extends="main">
 		<put-attribute name="body" value="/WEB-INF/views/notice/NoticeList.jsp" />
@@ -112,7 +107,6 @@
 	</definition>
 	
 	<!-- qna -->
-	
 	<definition name="qnaList" extends ="main">
 		<put-attribute name="body" value="/WEB-INF/views/qna/QnAList.jsp"/>
 	</definition>

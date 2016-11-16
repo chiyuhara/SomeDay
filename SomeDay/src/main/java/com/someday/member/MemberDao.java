@@ -4,6 +4,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import com.someday.member.MemberModel;
+import com.someday.today.TodayMemberModel;
 
 public interface MemberDao {
 
@@ -20,7 +21,7 @@ public interface MemberDao {
 	public Object Idx(MemberModel mem);
 	
 	//파일업로드
-	public Object UpdateFile(int idx, HttpServletRequest request) throws Exception;
+	public Object UpdateFile(MemberModel up, HttpServletRequest request) throws Exception;
 	//우리가 화면에서 전송한 모든 데이터는 HttpServletRequest에 담겨서 전송되고, 그것을 HandlerMethodArgumentResolver를 이용하여 MemberModel에 담아주었다
 	//텍스트 데이터 뿐만아니라 전송한 파일정보도 함께 담겨있다
 
@@ -47,18 +48,20 @@ public interface MemberDao {
 
 	// today: 나의정보
 	MemberModel my(int idx);
-
+	
 	// today: 상대방정보
 	MemberModel target(int idx);
+
+	// today: 상대방정보(여자일때)
+	TodayMemberModel targetfemale(int idx);
 	
-	//회원정보 가져오기
-	public MemberModel memberList(int idx);
+	// today: 상대방정보(남자일때)
+	TodayMemberModel targetmale(int idx);
 
 	//회원정보 수정
 	public Object memberModify(MemberModel member);
-
+	
 	//회원탈퇴
-	public Object memberDelete(int idx);
-
+	public Object memberDelete(String id);
 
 }
