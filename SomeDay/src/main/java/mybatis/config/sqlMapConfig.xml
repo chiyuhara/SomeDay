@@ -41,12 +41,25 @@ PUBLIC " - //mybatis.org//DTD Config 3.0//EN"
 		
 		<!-- Matching -->
 		<typeAlias type="com.someday.matching.MatchingModel" alias="matchingModel"/>
+		
+		<!-- QnA -->
+		<typeAlias type="com.someday.qna.QnAModel" alias="qnaModel"/>
+		
+		<!--  QnA comment  -->
+		<typeAlias type="com.someday.qna.QnAcommModel" alias="qnacommModel" />
+		
+		
+		
 	</typeAliases>
+	
+	
 	
 	<!-- SQL 정의한 xml문서 Mapping -->
 	<mappers>
 		<!--  Notice board  -->
 		<mapper resource="mybatis/config/NoticeSQL.xml" />
+		<!--  QnA board  -->
+		<mapper resource="mybatis/config/QnASQL.xml" />
 		<!--  Member --> 
 		<mapper resource="mybatis/config/MemberSQL.xml" />
 		<!--  Today  -->
