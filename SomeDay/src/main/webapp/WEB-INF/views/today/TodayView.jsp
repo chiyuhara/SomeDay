@@ -16,7 +16,7 @@
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script
 	src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-
+<script src="http://code.jquery.com/jquery-1.7.1.js"></script>
 
 <!-- 팝업 css부분 -->
 <style type="text/css">
@@ -93,7 +93,156 @@ a.cbtn:hover {
 }
 </style>
 
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+<!-- 메시지 css부분 -->
+<style type="text/css">
+.message {
+	display: none;
+	position: fixed;
+	_position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+}
+
+.message .bg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #000;
+	opacity: .5;
+	filter: alpha(opacity = 50);
+}
+
+.message .pop-message {
+	display: block;
+}
+
+.pop-message {
+	display: none;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 450px;
+	height: auto;
+	background-color: #fff;
+	border: 5px solid #3571B5;
+	z-index: 10;
+}
+
+.pop-message .pop-container {
+	padding: 20px 25px;
+}
+
+.pop-message p.ctxt {
+	color: #666;
+	line-height: 25px;
+}
+
+.pop-message .btn-r {
+	width: 100%;
+	margin: 10px 0 20px;
+	padding-top: 10px;
+	border-top: 1px solid #DDD;
+	text-align: right;
+}
+
+a.cbtn {
+	display: inline-block;
+	height: 25px;
+	padding: 0 14px 0;
+	border: 1px solid #304a8a;
+	background-color: #3f5a9d;
+	font-size: 13px;
+	color: #fff;
+	line-height: 25px;
+}
+
+a.cbtn:hover {
+	border: 1px solid #091940;
+	background-color: #1f326a;
+	color: #fff;
+}
+</style>
+
+<!-- 메시지 뷰css부분 -->
+<style type="text/css">
+.message2 {
+	display: none;
+	position: fixed;
+	_position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+}
+
+.message2 .bg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #000;
+	opacity: .5;
+	filter: alpha(opacity = 50);
+}
+
+.message2 .pop-message2 {
+	display: block;
+}
+
+.pop-message2 {
+	display: none;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 450px;
+	height: auto;
+	background-color: #fff;
+	border: 5px solid #3571B5;
+	z-index: 10;
+}
+
+.pop-message2 .pop-container2 {
+	padding: 20px 25px;
+}
+
+.pop-message2 p.ctxt {
+	color: #666;
+	line-height: 25px;
+}
+
+.pop-message2 .btn-r {
+	width: 100%;
+	margin: 10px 0 20px;
+	padding-top: 10px;
+	border-top: 1px solid #DDD;
+	text-align: right;
+}
+
+a.cbtn {
+	display: inline-block;
+	height: 25px;
+	padding: 0 14px 0;
+	border: 1px solid #304a8a;
+	background-color: #3f5a9d;
+	font-size: 13px;
+	color: #fff;
+	line-height: 25px;
+}
+
+a.cbtn:hover {
+	border: 1px solid #091940;
+	background-color: #1f326a;
+	color: #fff;
+}
+</style>
+
 <style type="text/css">
 #hearts {
 	color: #ee8b2d;
@@ -103,6 +252,113 @@ a.cbtn:hover {
 	color: #ee8b2d;
 }
 </style>
+
+<style type="text/css">
+.star-input>.input,
+.star-input>.input>label:hover,
+.star-input>.input>input:focus+label,
+.star-input>.input>input:checked+label{
+    display: inline-block;
+    vertical-align: top;
+    background: url(data:image/png;base64,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) no-repeat;
+}
+.star-input{
+    white-space: nowrap;
+}
+.star-input>.input{
+    display:inline-block;
+    width: 100px;
+    background-size: 100px;
+    height: 19px;
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative;
+}
+.star-input>.input>input{
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+.star-input>.input.focus{
+    outline: 1px dotted #ddd;
+}
+.star-input>.input>label{
+    width: 10px;
+    height: 0;
+    padding: 19px 0 0 0;
+    overflow: hidden;
+    float: left;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.star-input>.input>label:hover,
+.star-input>.input>input:focus+label,
+.star-input>.input>input:checked+label{
+    background-size: 100px;
+    background-position: 0 bottom;
+}
+.star-input>.input>label:hover~label{
+    background-image: none;
+}
+.star-input>.input>label[for="p1"]{ 
+    width: 10px;
+    z-index: 10;
+}
+.star-input>.input>label[for="p2"]{ 
+    width: 20px;
+    z-index: 9;
+}
+.star-input>.input>label[for="p3"]{ 
+    width: 30px;
+    z-index: 8;
+}
+.star-input>.input>label[for="p4"]{ 
+    width: 40px;
+    z-index: 7;
+}
+.star-input>.input>label[for="p5"]{ 
+    width: 50px;
+    z-index: 6;
+}
+.star-input>.input>label[for="p6"]{ 
+    width: 60px;
+    z-index: 5;
+}
+.star-input>.input>label[for="p7"]{ 
+    width: 70px;
+    z-index: 4;
+}
+.star-input>.input>label[for="p8"]{ 
+    width: 80px;
+    z-index: 3;
+}
+.star-input>.input>label[for="p9"]{ 
+    width: 90px;
+    z-index: 2;
+}
+.star-input>.input>label[for="p10"]{ 
+    width: 100px;
+    z-index: 1;
+}
+.star-input>output{
+    display: inline-block;
+    width: 36px;
+    text-align: right;
+}
+.star-input>output>b{
+    font:bold 18px Helvetica, Arial, sans-serif;
+    vertical-align: middle;
+}
+
+</style>
+
+<script type="text/javascript">
+//star rating
+
+</script>
 <script type="text/javascript">
 	function open_win_noresizable(url, name) {
 		var oWin = window.open(url, name,
@@ -110,10 +366,82 @@ a.cbtn:hover {
 	}
 	function button_event() {
 		if (confirm("상대방에게 호감을 보내시겠습니까??") == true) { //확인
-			document.form.submit();
+			document.form2.submit();
 		} else { //취소
 			return;
 		}
+	}
+	
+	//쪽지 보내기
+	function button_message(msg) {
+		var temp = $('#' + msg);
+		var bg = temp.prev().hasClass('bg'); //dimmed 레이어를 감지하기 위한 boolean 변수
+
+		if (bg) {
+			$('.message').fadeIn(); //'bg' 클래스가 존재하면 레이어가 나타나고 배경은 dimmed 된다. 
+		} else {
+			temp.fadeIn();
+		}
+
+		// 화면의 중앙에 레이어를 띄운다.
+		if (temp.outerHeight() < $(document).height())
+			temp.css('margin-top', '-' + temp.outerHeight() / 2 + 'px');
+		else
+			temp.css('top', '0px');
+		if (temp.outerWidth() < $(document).width())
+			temp.css('margin-left', '-' + temp.outerWidth() / 2 + 'px');
+		else
+			temp.css('left', '0px');
+
+		temp.find('a.cbtn').click(function(e) {
+			if (bg) {
+				$('.message').fadeOut(); //'bg' 클래스가 존재하면 레이어를 사라지게 한다. 
+			} else {
+				temp.fadeOut();
+			}
+			e.preventDefault();
+		});
+
+		$('.message .bg').click(function(e) { //배경을 클릭하면 레이어를 사라지게 하는 이벤트 핸들러
+			$('.message').fadeOut();
+			e.preventDefault();
+		});
+	}
+	
+	//메시지 보기
+	function button_message_view(msg2) {
+		var temp = $('#' + msg2);
+		var bg = temp.prev().hasClass('bg'); //dimmed 레이어를 감지하기 위한 boolean 변수
+
+		if (bg) {
+			$('.message2').fadeIn(); //'bg' 클래스가 존재하면 레이어가 나타나고 배경은 dimmed 된다. 
+		} else {
+			temp.fadeIn();
+		}
+
+		// 화면의 중앙에 레이어를 띄운다.
+		if (temp.outerHeight() < $(document).height())
+			temp.css('margin-top', '-' + temp.outerHeight() / 2 + 'px');
+		else
+			temp.css('top', '0px');
+		if (temp.outerWidth() < $(document).width())
+			temp.css('margin-left', '-' + temp.outerWidth() / 2 + 'px');
+		else
+			temp.css('left', '0px');
+
+		temp.find('a.cbtn').click(function(e) {
+			if (bg) {
+				$('.message2').fadeOut(); //'bg' 클래스가 존재하면 레이어를 사라지게 한다. 
+			} else {
+				temp.fadeOut();
+			}
+			e.preventDefault();
+		});
+
+		$('.message2 .bg').click(function(e) { //배경을 클릭하면 레이어를 사라지게 하는 이벤트 핸들러
+			$('.message2').fadeOut();
+			e.preventDefault();
+		});
 	}
 
 	function layer_open(el) {
@@ -152,259 +480,982 @@ a.cbtn:hover {
 		});
 
 	}
-	// Starrr plugin (https://github.com/dobtco/starrr)
-	var __slice = [].slice;
+	
+	//평점
+	var starRating = function(){
+		  var $star = $(".star-input"),
+		      $result = $star.find("output>b");
+		  $(document)
+		    .on("focusin", ".star-input>.input", function(){
+		    $(this).addClass("focus");
+		  })
+		    .on("focusout", ".star-input>.input", function(){
+		    var $this = $(this);
+		    setTimeout(function(){
+		      if($this.find(":focus").length === 0){
+		        $this.removeClass("focus");
+		      }
+		    }, 100);
+		  })
+		    .on("change", ".star-input :radio", function(){
+			if (confirm("상대방에게 평점을 보내시겠습니까?") == true) { //확인
+		    $("#output").text($(this).next().text());
+		    
+		    var url = "/someday/today/Score";
+		    var datas = { "score" : $(this).next().text()};
+		    
+		    fn_ajax(url , datas, function(o){
+		    });
+		    
+		    
+			} else { //취소
+				return;
+			}
+		    	
+		    	
+		  })
+		    .on("mouseover", ".star-input label", function(){
+		    $result.text($(this).text());
+		  })
+		    .on("mouseleave", ".star-input>.input", function(){
+		    var $checked = $star.find(":checked");
+		    if($checked.length === 0){
+		      $result.text("0");
+		    } else {
+		      $result.text($checked.next().text());
+		    }
+		  });
+		};
+		starRating();
+		
 
-	(function($, window) {
-	  var Starrr;
+		fn_ajax = function(url, params, successCallback, errorCallback)
 
-	  Starrr = (function() {
-	    Starrr.prototype.defaults = {
-	      rating: void 0,
-	      numStars: 5,
-	      change: function(e, value) {}
-	    };
+		{
 
-	    function Starrr($el, options) {
-	      var i, _, _ref,
-	        _this = this;
-
-	      this.options = $.extend({}, this.defaults, options);
-	      this.$el = $el;
-	      _ref = this.defaults;
-	      for (i in _ref) {
-	        _ = _ref[i];
-	        if (this.$el.data(i) != null) {
-	          this.options[i] = this.$el.data(i);
-	        }
-	      }
-	      this.createStars();
-	      this.syncRating();
-	      this.$el.on('mouseover.starrr', 'span', function(e) {
-	        return _this.syncRating(_this.$el.find('span').index(e.currentTarget) + 1);
-	      });
-	      this.$el.on('mouseout.starrr', function() {
-	        return _this.syncRating();
-	      });
-	      this.$el.on('click.starrr', 'span', function(e) {
-	        return _this.setRating(_this.$el.find('span').index(e.currentTarget) + 1);
-	      });
-	      this.$el.on('starrr:change', this.options.change);
-	    }
-
-	    Starrr.prototype.createStars = function() {
-	      var _i, _ref, _results;
- 
-	      _results = [];
-	      for (_i = 1, _ref = this.options.numStars; 1 <= _ref ? _i <= _ref : _i >= _ref; 1 <= _ref ? _i++ : _i--) {
-	        _results.push(this.$el.append("<span class='glyphicon .glyphicon-star-empty'></span>"));
-	      }
-	      return _results;
-	    };
-
-	    Starrr.prototype.setRating = function(rating) {
-	      if (this.options.rating === rating) {
-	        rating = void 0;
-	      }
-	      this.options.rating = rating;
-	      this.syncRating();
-	      return this.$el.trigger('starrr:change', rating);
-	    };
-
-	    Starrr.prototype.syncRating = function(rating) {
-	      var i, _i, _j, _ref;
-
-	      rating || (rating = this.options.rating);
-	      if (rating) {
-	        for (i = _i = 0, _ref = rating - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; i = 0 <= _ref ? ++_i : --_i) {
-	          this.$el.find('span').eq(i).removeClass('glyphicon-star-empty').addClass('glyphicon-star');
-	        }
-	      }
-	      if (rating && rating < 5) {
-	        for (i = _j = rating; rating <= 4 ? _j <= 4 : _j >= 4; i = rating <= 4 ? ++_j : --_j) {
-	          this.$el.find('span').eq(i).removeClass('glyphicon-star').addClass('glyphicon-star-empty');
-	        }
-	      }
-	      if (!rating) {
-	        return this.$el.find('span').removeClass('glyphicon-star').addClass('glyphicon-star-empty');
-	      }
-	    };
-
-	    return Starrr;
-
-	  })();
-	  return $.fn.extend({
-	    starrr: function() {
-	      var args, option;
-
-	      option = arguments[0], args = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
-	      return this.each(function() {
-	        var data;
-
-	        data = $(this).data('star-rating');
-	        if (!data) {
-	          $(this).data('star-rating', (data = new Starrr($(this), option)));
-	        }
-	        if (typeof option === 'string') {
-	          return data[option].apply(data, args);
-	        }
-	      });
-	    }
-	  });
-	})(window.jQuery, window);
-
-	$(function() {
-	  return $(".starrr").starrr();
-	});
-
-	$( document ).ready(function() {
-	      
-	  $('#hearts').on('starrr:change', function(e, value){
-	    $('#count').html(value);
-	  });
-	  
-	  $('#hearts-existing').on('starrr:change', function(e, value){
-	    $('#count-existing').html(value);
-	  });
-	});
+			$.ajax(
+			{
+				   url : url
+				, type : "post"
+				, data : params
+// 				, dataType : "json"
+				, async : false
+// 				, contentType : "application/json;charset=UTF-8"
+				, success : function(data)
+				{
+					successCallback(data);
+				}
+				, error : function(jqXHR, textStatus, errorThrown)
+				{
+					if (errorCallback)
+					{
+						errorCallback(jqXHR, textStatus, errorThrown);
+					}
+					else
+					{
+						// alert(jqXHR + "/" + textStatus + "/" + errorThrown);
+						alert("처리 중 에러가 발생하였습니다. 시스템 관리자에게 문의하여 주십시요.");
+					}
+				}
+			});
+		};
+	
 </script>
+ <style type="text/css">
+            .div-decorator
+    {
+        border-top:3px solid #428BCA;
+        border-right:3px solid #D9534F;
+        border-bottom:3px solid #5CB85C;
+        border-left:3px solid #F0AD4E;
+        margin:30px;
+        border-radius:20px;
+    }
+    .div-heading
+    {
+        border-bottom:1px dashed #5BC0DE;
+        padding-top:15px;
+        padding-bottom:15px;
+        margin:0px;
+        background-color:#F5F5F5;
+        border-radius:20px 20px 0px 0px;
+    }
+    .heading
+    {
+        color:#5FC9E5;
+    }
+    .div-content
+    {
+        padding:30px
+    }
+    .btn-circle
+    {
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        padding: 6px 0;
+        font-size: 12px;
+        line-height: 1.428571429;
+        border-radius: 15px;
+    }
+    .btn-circle.btn-lg
+    {
+        width: 50px;
+        height: 50px;
+        padding: 10px 16px;
+        font-size: 18px;
+        line-height: 1.33;
+        border-radius: 25px;
+    }
+    .btn-circle.btn-xl
+    {
+        width: 70px;
+        height: 70px;
+        padding: 10px 16px;
+        font-size: 24px;
+        line-height: 1.33;
+        border-radius: 35px;
+    }
+    
+/* WRENCHING */
+@keyframes wrench {
+    0%{transform:rotate(-12deg)}
+	8%{transform:rotate(12deg)}
+	10%{transform:rotate(24deg)}
+	18%{transform:rotate(-24deg)}
+	20%{transform:rotate(-24deg)}
+	28%{transform:rotate(24deg)}
+	30%{transform:rotate(24deg)}
+	38%{transform:rotate(-24deg)}
+	40%{transform:rotate(-24deg)}
+	48%{transform:rotate(24deg)}
+	50%{transform:rotate(24deg)}
+	58%{transform:rotate(-24deg)}
+	60%{transform:rotate(-24deg)}
+	68%{transform:rotate(24deg)}
+	75%,100%{transform:rotate(0deg)}
+}
+.faa-wrench.animated,
+.faa-wrench.animated-hover:hover,
+.faa-parent.animated-hover:hover > .faa-wrench {
+	animation: wrench 2.5s ease infinite;
+	transform-origin-x: 90%;
+	transform-origin-y: 35%;
+	transform-origin-z: initial;
+}
+.faa-wrench.animated.faa-fast,
+.faa-wrench.animated-hover.faa-fast:hover,
+.faa-parent.animated-hover:hover > .faa-wrench.faa-fast {
+	animation: wrench 1.2s ease infinite;
+}
+.faa-wrench.animated.faa-slow,
+.faa-wrench.animated-hover.faa-slow:hover,
+.faa-parent.animated-hover:hover > .faa-wrench.faa-slow {
+	animation: wrench 3.7s ease infinite;
+}
 
+/* BELL */
+@keyframes ring {
+	0%{transform:rotate(-15deg)}
+	2%{transform:rotate(15deg)}
+	4%{transform:rotate(-18deg)}
+	6%{transform:rotate(18deg)}
+	8%{transform:rotate(-22deg)}
+	10%{transform:rotate(22deg)}
+	12%{transform:rotate(-18deg)}
+	14%{transform:rotate(18deg)}
+	16%{transform:rotate(-12deg)}
+	18%{transform:rotate(12deg)}
+	20%,100%{transform:rotate(0deg)}
+}
+.faa-ring.animated,
+.faa-ring.animated-hover:hover,
+.faa-parent.animated-hover:hover > .faa-ring {
+	animation: ring 2s ease infinite;
+	transform-origin-x: 50%;
+	transform-origin-y: 0px;
+	transform-origin-z: initial;
+}
+.faa-ring.animated.faa-fast,
+.faa-ring.animated-hover.faa-fast:hover,
+.faa-parent.animated-hover:hover > .faa-ring.faa-fast {
+	animation: ring 1s ease infinite;
+}
+.faa-ring.animated.faa-slow,
+.faa-ring.animated-hover.faa-slow:hover,
+.faa-parent.animated-hover:hover > .faa-ring.faa-slow {
+	animation: ring 3s ease infinite;
+}
+
+/* VERTICAL */
+@keyframes vertical {
+	0%{transform:translate(0,-3px)}
+	4%{transform:translate(0,3px)}
+	8%{transform:translate(0,-3px)}
+	12%{transform:translate(0,3px)}
+	16%{transform:translate(0,-3px)}
+	20%{transform:translate(0,3px)}
+	22%,100%{transform:translate(0,0)}
+}
+.faa-vertical.animated,
+.faa-vertical.animated-hover:hover,
+.faa-parent.animated-hover:hover > .faa-vertical {
+	animation: vertical 2s ease infinite;
+}
+.faa-vertical.animated.faa-fast,
+.faa-vertical.animated-hover.faa-fast:hover,
+.faa-parent.animated-hover:hover > .faa-vertical.faa-fast {
+	animation: vertical 1s ease infinite;
+}
+.faa-vertical.animated.faa-slow,
+.faa-vertical.animated-hover.faa-slow:hover,
+.faa-parent.animated-hover:hover > .faa-vertical.faa-slow {
+	animation: vertical 4s ease infinite;
+}
+
+/* HORIZONTAL */
+@keyframes horizontal {
+	0%{transform:translate(0,0)}
+	6%{transform:translate(5px,0)}
+	12%{transform:translate(0,0)}
+	18%{transform:translate(5px,0)}
+	24%{transform:translate(0,0)}
+	30%{transform:translate(5px,0)}
+	36%,100%{transform:translate(0,0)}
+}
+.faa-horizontal.animated,
+.faa-horizontal.animated-hover:hover,
+.faa-parent.animated-hover:hover > .faa-horizontal {
+	animation: horizontal 2s ease infinite;
+}
+.faa-horizontal.animated.faa-fast,
+.faa-horizontal.animated-hover.faa-fast:hover,
+.faa-parent.animated-hover:hover > .faa-horizontal.faa-fast {
+	animation: horizontal 1s ease infinite;
+}
+.faa-horizontal.animated.faa-slow,
+.faa-horizontal.animated-hover.faa-slow:hover,
+.faa-parent.animated-hover:hover > .faa-horizontal.faa-slow {
+	animation: horizontal 3s ease infinite;
+}
+
+/* FLASHING */
+@keyframes flash {
+	0%,100%,50%{opacity:1}
+	25%,75%{opacity:0}
+}
+.faa-flash.animated,
+.faa-flash.animated-hover:hover,
+.faa-parent.animated-hover:hover > .faa-flash {
+	animation: flash 2s ease infinite;
+}
+.faa-flash.animated.faa-fast,
+.faa-flash.animated-hover.faa-fast:hover,
+.faa-parent.animated-hover:hover > .faa-flash.faa-fast {
+	animation: flash 1s ease infinite;
+}
+.faa-flash.animated.faa-slow,
+.faa-flash.animated-hover.faa-slow:hover,
+.faa-parent.animated-hover:hover > .faa-flash.faa-slow {
+	animation: flash 3s ease infinite;
+}
+
+/* BOUNCE */
+@keyframes bounce {
+	0%,10%,20%,50%,80%,100%{transform:translateY(0)}
+	40%{transform:translateY(-15px)}
+	60%{transform:translateY(-15px)}
+}
+.faa-bounce.animated,
+.faa-bounce.animated-hover:hover,
+.faa-parent.animated-hover:hover > .faa-bounce {
+	animation: bounce 2s ease infinite;
+}
+.faa-bounce.animated.faa-fast,
+.faa-bounce.animated-hover.faa-fast:hover,
+.faa-parent.animated-hover:hover > .faa-bounce.faa-fast {
+	animation: bounce 1s ease infinite;
+}
+.faa-bounce.animated.faa-slow,
+.faa-bounce.animated-hover.faa-slow:hover,
+.faa-parent.animated-hover:hover > .faa-bounce.faa-slow {
+	animation: bounce 3s ease infinite;
+}
+
+/* SPIN */
+@keyframes spin{
+	0%{transform:rotate(0deg)}
+	100%{transform:rotate(359deg)}
+}
+.faa-spin.animated,
+.faa-spin.animated-hover:hover,
+.faa-parent.animated-hover:hover > .faa-spin {
+	animation: spin 1.5s linear infinite;
+}
+.faa-spin.animated.faa-fast,
+.faa-spin.animated-hover.faa-fast:hover,
+.faa-parent.animated-hover:hover > .faa-spin.faa-fast {
+	animation: spin 0.7s linear infinite;
+}
+.faa-spin.animated.faa-slow,
+.faa-spin.animated-hover.faa-slow:hover,
+.faa-parent.animated-hover:hover > .faa-spin.faa-slow {
+	animation: spin 2.2s linear infinite;
+}
+
+/* FLOAT */
+@keyframes float{
+	0%{transform: translateY(0)}
+	50%{transform: translateY(-6px)}
+	100%{transform: translateY(0)}
+}
+.faa-float.animated,
+.faa-float.animated-hover:hover,
+.faa-parent.animated-hover:hover > .faa-float {
+	animation: float 2s linear infinite;
+}
+.faa-float.animated.faa-fast,
+.faa-float.animated-hover.faa-fast:hover,
+.faa-parent.animated-hover:hover > .faa-float.faa-fast {
+	animation: float 1s linear infinite;
+}
+.faa-float.animated.faa-slow,
+.faa-float.animated-hover.faa-slow:hover,
+.faa-parent.animated-hover:hover > .faa-float.faa-slow {
+	animation: float 3s linear infinite;
+}
+
+/* PULSE */
+@keyframes pulse {
+	0% {transform: scale(1.1)}
+ 	50% {transform: scale(0.8)}
+ 	100% {transform: scale(1.1)}
+}
+.faa-pulse.animated,
+.faa-pulse.animated-hover:hover,
+.faa-parent.animated-hover:hover > .faa-pulse {
+	animation: pulse 2s linear infinite;
+}
+.faa-pulse.animated.faa-fast,
+.faa-pulse.animated-hover.faa-fast:hover,
+.faa-parent.animated-hover:hover > .faa-pulse.faa-fast {
+	animation: pulse 1s linear infinite;
+}
+.faa-pulse.animated.faa-slow,
+.faa-pulse.animated-hover.faa-slow:hover,
+.faa-parent.animated-hover:hover > .faa-pulse.faa-slow {
+	animation: pulse 3s linear infinite;
+}
+
+/* SHAKE */
+.faa-shake.animated,
+.faa-shake.animated-hover:hover,
+.faa-parent.animated-hover:hover > .faa-shake {
+	animation: wrench 2.5s ease infinite;
+}
+.faa-shake.animated.faa-fast,
+.faa-shake.animated-hover.faa-fast:hover,
+.faa-parent.animated-hover:hover > .faa-shake.faa-fast {
+	animation: wrench 1.2s ease infinite;
+}
+.faa-shake.animated.faa-slow,
+.faa-shake.animated-hover.faa-slow:hover,
+.faa-parent.animated-hover:hover > .faa-shake.faa-slow {
+	animation: wrench 3.7s ease infinite;
+}
+
+/* TADA */
+@keyframes tada {
+	0% {transform: scale(1)}
+	10%,20% {transform:scale(.9) rotate(-8deg);}
+	30%,50%,70% {transform:scale(1.3) rotate(8deg)}
+	40%,60% {transform:scale(1.3) rotate(-8deg)}
+	80%,100% {transform:scale(1) rotate(0)}
+}
+
+.faa-tada.animated,
+.faa-tada.animated-hover:hover,
+.faa-parent.animated-hover:hover > .faa-tada {
+	animation: tada 2s linear infinite;
+}
+.faa-tada.animated.faa-fast,
+.faa-tada.animated-hover.faa-fast:hover,
+.faa-parent.animated-hover:hover > .faa-tada.faa-fast {
+	animation: tada 1s linear infinite;
+}
+.faa-tada.animated.faa-slow,
+.faa-tada.animated-hover.faa-slow:hover,
+.faa-parent.animated-hover:hover > .faa-tada.faa-slow {
+	animation: tada 3s linear infinite;
+}
+
+/* PASSING */
+@keyframes passing {
+	0% {transform:translateX(-50%); opacity:0}
+	50% {transform:translateX(0%); opacity:1}
+	100% {transform:translateX(50%); opacity:0}
+}
+
+.faa-passing.animated,
+.faa-passing.animated-hover:hover,
+.faa-parent.animated-hover:hover > .faa-passing {
+	animation: passing 2s linear infinite;
+}
+.faa-passing.animated.faa-fast,
+.faa-passing.animated-hover.faa-fast:hover,
+.faa-parent.animated-hover:hover > .faa-passing.faa-fast {
+	animation: passing 1s linear infinite;
+}
+.faa-passing.animated.faa-slow,
+.faa-passing.animated-hover.faa-slow:hover,
+.faa-parent.animated-hover:hover > .faa-passing.faa-slow {
+	animation: passing 3s linear infinite;
+}
+
+/* PASSING REVERSE */
+
+@keyframes passing-reverse {
+	0% {transform:translateX(50%); opacity:0}
+	50% {transform:translateX(0%); opacity:1}
+	100% {transform:translateX(-50%); opacity:0}
+}
+
+.faa-passing-reverse.animated,
+.faa-passing-reverse.animated-hover:hover,
+.faa-parent.animated-hover:hover > .faa-passing-reverse {
+	animation: passing-reverse 2s linear infinite;
+}
+.faa-passing-reverse.animated.faa-fast,
+.faa-passing-reverse.animated-hover.faa-fast:hover,
+.faa-parent.animated-hover:hover > .faa-passing-reverse.faa-fast {
+	animation: passing-reverse 1s linear infinite;
+}
+.faa-passing-reverse.animated.faa-slow,
+.faa-passing-reverse.animated-hover.faa-slow:hover,
+.faa-parent.animated-hover:hover > .faa-passing-reverse.faa-slow {
+	animation: passing-reverse 3s linear infinite;
+}
+
+/* WAVE */
+@keyframes burst {
+	0% {opacity:.6}
+	50% {transform:scale(1.8);opacity:0}
+	100%{opacity:0}
+}
+.faa-burst.animated,
+.faa-burst.animated-hover:hover,
+.faa-parent.animated-hover:hover > .faa-burst {
+	animation: burst 2s infinite linear
+}
+.faa-burst.animated.faa-fast,
+.faa-burst.animated-hover.faa-fast:hover,
+.faa-parent.animated-hover:hover > .faa-burst.faa-fast {
+	animation: burst 1s infinite linear
+}
+.faa-burst.animated.faa-slow,
+.faa-burst.animated-hover.faa-slow:hover,
+.faa-parent.animated-hover:hover > .faa-burst.faa-slow {
+	animation: burst 3s infinite linear
+}
+
+    </style>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 </head>
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <body>
-	<!-- 팝업부분 -->
-	<div class="layer">
-		<div class="bg"></div>
-		<div id="layer" class="pop-layer">
-			<div class="pop-container">
-				<div class="pop-conts">
-					<!--content //-->
-					<p class="ctxt mb20">
-						축하합니다! 커플이 성사되었습니다.<br> 먼저 연락해보세요!<br>
-					</p>
+	<div class="container">
 
-					<div style="float: left">
-						<ahref-""> <img
-							src="/Hi_Admin/image/<s:property value='resultClass.file_savname' />"
-							style="width: auto; height: 150px; margin-left: -10px;" /> <br>
-							<b><s:property value="resultClass.name" /></b><br> <b><s:property
-										value="resultClass.phone" /></b><br>
-					</div>
+		<div class="row">
+			<div class="box">
+				<!-- 팝업부분 -->
+				<div class="layer">
+					<div class="bg"></div>
+					<div id="layer" class="pop-layer">
+						<div class="pop-container">
+							<div class="pop-conts">
+								<!--content //-->
+								<p class="ctxt mb20">
+									축하합니다! 커플이 성사되었습니다.<br> 먼저 연락해보세요!<br>
+								</p>
 
-					<div style="float: left">
-						<img src="image/like_off.png" />
-					</div>
+								<div style="float: left">
+									<ahref-""> <img
+										src="/Hi_Admin/image/<s:property value='resultClass.file_savname' />"
+										style="width: auto; height: 150px; margin-left: -10px;" /> <br>
+										<b><s:property value="resultClass.name" /></b><br> <b><s:property
+													value="resultClass.phone" /></b><br>
+								</div>
 
-					<div style="float: right">
-						<img
-							src="/Hi_Admin/image/<s:property value='target_resultClass.file_savname' />"
-							style="width: auto; height: 150px; margin-left: -10px;" /><br>
-							<b><s:property value="target_resultClass.name" /></b><br> <b><s:property
-										value="target_resultClass.phone" /></b><br>
-					</div>
+								<div style="float: left">
+									<img src="image/like_off.png" />
+								</div>
 
-					<div style="float: right" class="btn-r">
-						<a href="#" class="cbtn">닫기</a>
+								<div style="float: right">
+									<img
+										src="/Hi_Admin/image/<s:property value='target_resultClass.file_savname' />"
+										style="width: auto; height: 150px; margin-left: -10px;" /><br>
+										<b><s:property value="target_resultClass.name" /></b><br>
+											<b><s:property value="target_resultClass.phone" /></b><br>
+								</div>
+
+								<div style="float: right" class="btn-r">
+									<a href="#" class="cbtn">닫기</a>
+								</div>
+								<!--// content-->
+							</div>
+						</div>
 					</div>
-					<!--// content-->
 				</div>
+				<!-- --------------------------------------- -->
+				<!-- 메시지 팝업 -->
+				<div class="message">
+					<div class="bg"></div>
+					<div id="message" class="pop-message">
+						<div class="pop-container">
+							<div class="pop-conts">
+								<!--content //-->
+								
+								<div class="span4 well">
+				        		    <form:form accept-charset="UTF-8" action="Message" method="post">
+					                <textarea style="width:100%;height:100;border:1;overflow:visible;text-overflow:ellipsis;" id="new_message" name="message" placeholder="상대방에게 어필해보세요!(쪽지는 한번밖에 보낼 수 없습니다.)" rows="5"></textarea>
+						           	<div style="float: right" class="btn-r">
+										<button class="btn btn-info" type="submit">쪽지 보내기</button>
+									</div>
+						            </form:form>
+						        </div>
+				
+								
+								<!--// content-->
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- ----------------------------------------------- -->
+				<!-- 메시지 뷰 팝업 -->
+				<div class="message2">
+					<div class="bg"></div>
+					<div id="message2" class="pop-message2">
+						<div class="pop-container2">
+							<div class="pop-conts2">
+								
+						
+									<c:choose>
+										<c:when test="${targetfemale != null}" >
+										<td>${targetmale.male_msg}</td>
+										</c:when>
+									</c:choose>
+									
+									<c:choose>
+										<c:when test="${targetmale != null}" >
+										<td>${targetmale.female_msg}</td>
+										</c:when>
+									</c:choose>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- ----------------------------------------------- -->
+				<table width="600" border="0" cellspacing="0" cellpadding="2">
+					<h2>오늘의 인연 상세보기</h2>
+				</table>
+				<!-- 평점 button_score -->
+
+						<c:choose>
+						<c:when test="${targetfemale.score == 0}" >
+						<form:form id="form1" name="form1" action="Score" commandName="todayModel"
+					method="post">
+					<input type="hidden" id="score" name="score"/>
+					<span class="star-input">
+					  <span class="input">
+					    <input type="radio" name="star-input" id="p1" value="1"><label for="p1">1</label>
+					    <input type="radio" name="star-input" id="p2" value="2"><label for="p2">2</label>
+					    <input type="radio" name="star-input" id="p3" value="3"><label for="p3">3</label>
+					    <input type="radio" name="star-input" id="p4" value="4"><label for="p4">4</label>
+					    <input type="radio" name="star-input" id="p5" value="5"><label for="p5">5</label>
+					    <input type="radio" name="star-input" id="p6" value="6"><label for="p6">6</label>
+					    <input type="radio" name="star-input" id="p7" value="7"><label for="p7">7</label>
+					    <input type="radio" name="star-input" id="p8" value="8"><label for="p8">8</label>
+					    <input type="radio" name="star-input" id="p9" value="9"><label for="p9">9</label>
+					    <input type="radio" name="star-input" id="p10" value="10"><label for="p10">10</label>
+					  </span>
+					  <output for="star-input"><b id="output">0</b>점</output>
+					</span>
+				</form:form>
+						</c:when>
+						<c:when test="${targetfemale.score == 1}" >
+						<span class="star-input">
+						  <span class="input">
+						  	<input type="radio" name="star-input" id="p1" value="1" checked="checked"><label for="p1">1</label>
+						  </span>
+						  <td>${targetfemale.score}점</td>
+						</span>
+						</c:when>
+						<c:when test="${targetfemale.score == 2}" >
+						<span class="star-input">
+						  <span class="input">
+						  	<input type="radio" name="star-input" id="p2" value="2" checked="checked"><label for="p2">2</label>
+						  </span>
+						  <td>${targetfemale.score}점</td>
+						</span>
+						</c:when>
+						<c:when test="${targetfemale.score == 3}" >
+						<span class="star-input">
+						  <span class="input">
+						  	<input type="radio" name="star-input" id="p3" value="3" checked="checked"><label for="p3">3</label>
+						  </span>
+						  <td>${targetfemale.score}점</td>
+						</span>
+						</c:when>
+						<c:when test="${targetfemale.score == 4}" >
+						<span class="star-input">
+						  <span class="input">
+						  	<input type="radio" name="star-input" id="p4" value="4" checked="checked"><label for="p4">4</label>
+						  </span>
+						  <td>${targetfemale.score}점</td>
+						</span>
+						</c:when>
+						<c:when test="${targetfemale.score == 5}" >
+						<span class="star-input">
+						  <span class="input">
+						  	<input type="radio" name="star-input" id="p5" value="5" checked="checked"><label for="p5">5</label>
+						  </span>
+						  <td>${targetfemale.score}점</td>
+						</span>
+						</c:when>
+						<c:when test="${targetfemale.score == 6}" >
+						<span class="star-input">
+						  <span class="input">
+						  	<input type="radio" name="star-input" id="p6" value="6" checked="checked"><label for="p6">6</label>
+						  </span>
+						  <td>${targetfemale.score}점</td>
+						</span>
+						</c:when>
+						<c:when test="${targetfemale.score == 7}" >
+						<span class="star-input">
+						  <span class="input">
+						  	<input type="radio" name="star-input" id="p7" value="7" checked="checked"><label for="p7">7</label>
+						  </span>
+						  <td>${targetfemale.score}점</td>
+						</span>
+						</c:when>
+						<c:when test="${targetfemale.score == 8}" >
+						<span class="star-input">
+						  <span class="input">
+						  	<input type="radio" name="star-input" id="p8" value="8" checked="checked"><label for="p8">8</label>
+						  </span>
+						  <td>${targetfemale.score}점</td>
+						</span>
+						</c:when>
+						<c:when test="${targetfemale.score == 9}" >
+						<span class="star-input">
+						  <span class="input">
+						  	<input type="radio" name="star-input" id="p9" value="9" checked="checked"><label for="p9">9</label>
+						  </span>
+						  <td>${targetfemale.score}점</td>
+						</span>
+						</c:when>
+						<c:when test="${targetfemale.score == 10}" >
+						<span class="star-input">
+						  <span class="input">
+						  	<input type="radio" name="star-input" id="p10" value="10" checked="checked"><label for="p10">10</label>
+						  </span>
+						  <td>${targetfemale.score}점</td>
+						</span>
+						</c:when>
+						</c:choose>
+
+				
+						<c:choose>
+						<c:when test="${targetmale.score == 0}" >
+						<form:form id="form1" name="form1" action="Score" commandName="todayModel"
+					method="post">
+					<input type="hidden" id="score" name="score"/>
+					<span class="star-input">
+					  <span class="input">
+					    <input type="radio" name="star-input" id="p1" value="1"><label for="p1">1</label>
+					    <input type="radio" name="star-input" id="p2" value="2"><label for="p2">2</label>
+					    <input type="radio" name="star-input" id="p3" value="3"><label for="p3">3</label>
+					    <input type="radio" name="star-input" id="p4" value="4"><label for="p4">4</label>
+					    <input type="radio" name="star-input" id="p5" value="5"><label for="p5">5</label>
+					    <input type="radio" name="star-input" id="p6" value="6"><label for="p6">6</label>
+					    <input type="radio" name="star-input" id="p7" value="7"><label for="p7">7</label>
+					    <input type="radio" name="star-input" id="p8" value="8"><label for="p8">8</label>
+					    <input type="radio" name="star-input" id="p9" value="9"><label for="p9">9</label>
+					    <input type="radio" name="star-input" id="p10" value="10"><label for="p10">10</label>
+					  </span>
+					  <output for="star-input"><b id="output">0</b>점</output>
+					</span>
+				</form:form>
+						</c:when>
+						<c:when test="${targetmale.score == 1}" >
+						<span class="star-input">
+						  <span class="input">
+						  	<input type="radio" name="star-input" id="p1" value="1" checked="checked"><label for="p1">1</label>
+						  </span>
+						  <td>${targetmale.score}점</td>
+						</span>
+						</c:when>
+						<c:when test="${targetmale.score == 2}" >
+						<span class="star-input">
+						  <span class="input">
+						  	<input type="radio" name="star-input" id="p2" value="2" checked="checked"><label for="p2">2</label>
+						  </span>
+						  <td>${targetmale.score}점</td>
+						</span>
+						</c:when>
+						<c:when test="${targetmale.score == 3}" >
+						<span class="star-input">
+						  <span class="input">
+						  	<input type="radio" name="star-input" id="p3" value="3" checked="checked"><label for="p3">3</label>
+						  </span>
+						  <td>${targetmale.score}점</td>
+						</span>
+						</c:when>
+						<c:when test="${targetmale.score == 4}" >
+						<span class="star-input">
+						  <span class="input">
+						  	<input type="radio" name="star-input" id="p4" value="4" checked="checked"><label for="p4">4</label>
+						  </span>
+						  <td>${targetmale.score}점</td>
+						</span>
+						</c:when>
+						<c:when test="${targetmale.score == 5}" >
+						<span class="star-input">
+						  <span class="input">
+						  	<input type="radio" name="star-input" id="p5" value="5" checked="checked"><label for="p5">5</label>
+						  </span>
+						  <td>${targetmale.score}점</td>
+						</span>
+						</c:when>
+						<c:when test="${targetmale.score == 6}" >
+						<span class="star-input">
+						  <span class="input">
+						  	<input type="radio" name="star-input" id="p6" value="6" checked="checked"><label for="p6">6</label>
+						  </span>
+						  <td>${targetmale.score}점</td>
+						</span>
+						</c:when>
+						<c:when test="${targetmale.score == 7}" >
+						<span class="star-input">
+						  <span class="input">
+						  	<input type="radio" name="star-input" id="p7" value="7" checked="checked"><label for="p7">7</label>
+						  </span>
+						  <td>${targetmale.score}점</td>
+						</span>
+						</c:when>
+						<c:when test="${targetmale.score == 8}" >
+						<span class="star-input">
+						  <span class="input">
+						  	<input type="radio" name="star-input" id="p8" value="8" checked="checked"><label for="p8">8</label>
+						  </span>
+						  <td>${targetmale.score}점</td>
+						</span>
+						</c:when>
+						<c:when test="${targetmale.score == 9}" >
+						<span class="star-input">
+						  <span class="input">
+						  	<input type="radio" name="star-input" id="p9" value="9" checked="checked"><label for="p9">9</label>
+						  </span>
+						  <td>${targetmale.score}점</td>
+						</span>
+						</c:when>
+						<c:when test="${targetmale.score == 10}" >
+						<span class="star-input">
+						  <span class="input">
+						  	<input type="radio" name="star-input" id="p10" value="10" checked="checked"><label for="p10">10</label>
+						  </span>
+						  <td>${targetmale.score}점</td>
+						</span>
+						</c:when>
+						</c:choose>
+				
+		
+
+
+				<!-- 평점끝 -->
+				
+				<form:form name="form2" commandName="todayModel" action="Like" method="post"
+					enctype="multipart/form-data">
+					<table width="600" border="0" cellspacing="0" cellpadding="2">
+						<div id="relative">
+							<img
+								src="/Hi_Admin/image/<s:property value='target_resultClass.file_savname' />" />
+							<div id="absolute2">
+								<c:choose>
+									<c:when test="${meeting.female_like == 0 && meeting.male_like == 0}">
+											<img src="../resources/img/no_couple.png" />
+									</c:when>
+									<c:when test="${meeting.female_like == 1 && meeting.male_like == 1}">
+									<img src="../resources/img/couple.png" />
+									<script>
+										layer_open('layer');
+									</script>
+									</c:when>
+									<c:when test="${meeting.female_like == 1 && meeting.male_like == 0}">
+										<img src="../resources/img/female_like.png" />
+									</c:when>
+									<c:when test="${meeting.female_like == 0 && meeting.male_like == 1}">
+										<img src="../resources/img/male_like.png" />
+									</c:when>
+								</c:choose>
+								
+						<c:choose>
+							<c:when test="${targetfemale != null}" >
+							<c:choose>
+								<c:when test="${targetmale.male_msg != null}" >
+									<button type="button" onclick="button_message_view('message2');" class="btn btn-success btn-circle btn-xl"><i class="fa fa-fw fa-envelope faa-horizontal animated"></i></button>
+								</c:when>
+								<c:when test="${targetfemale.female_msg != null}" >
+									<button type="button" onclick="button_message_view('message2');" class="btn btn-success btn-circle btn-xl"><i class="fa fa-fw fa-envelope faa-horizontal animated"></i></button>
+								</c:when>
+							</c:choose>
+							</c:when>
+							
+						</c:choose>
+						
+						<c:choose>
+							<c:when test="${targetmale != null}" >
+							<c:choose>
+								<c:when test="${targetfemale.female_msg != null}" >
+									<button type="button" onclick="button_message_view('message2');" class="btn btn-success btn-circle btn-xl"><i class="fa fa-fw fa-envelope faa-horizontal animated"></i></button>
+								</c:when>
+								<c:when test="${targetmale.male_msg != null}" >
+									<button type="button" onclick="button_message_view('message2');" class="btn btn-success btn-circle btn-xl"><i class="fa fa-fw fa-envelope faa-horizontal animated"></i></button>
+								</c:when>
+							</c:choose>
+							</c:when>
+							
+						</c:choose>
+						
+						
+							</div>
+						</div>
+						<c:choose>
+							<c:when test="${targetfemale != null}" >
+								<c:choose>
+									<c:when test="${meeting.female_like == 1 && meeting.male_like == 1}">
+										<tr>
+											<td width="200"><b>이름</b></td>
+											<td><b>${targetfemale.name}</b></td>
+										</tr>
+										<tr>
+											<td width="200"><b>연락처</b></td>
+											<td><b>${targetfemale.phone}</b></td>
+										</tr>
+									</c:when>
+								</c:choose>
+								
+		
+								<tr>
+									<td width="200">닉네임</td>
+									<td>${targetfemale.nick}</td>
+								</tr>
+								<tr>
+									<td width="200">나이</td>
+									<td>${targetfemale.age}</td>
+								</tr>
+								<tr>
+									<td width="200">지역</td>
+									<td>${targetfemale.area}</td>
+								</tr>
+								<tr>
+									<td width="200">혈액형</td>
+									<td>${targetfemale.bloodgroup}</td>
+								</tr>
+								<tr>
+									<td width="200">지역</td>
+									<td>${targetfemale.area}</td>
+								</tr>
+								<tr>
+									<td width="200">소개</td>
+									<td>${targetfemale.intro}</td>
+								</tr>
+							</c:when>
+							
+							<c:when test="${targetmale != null }" >
+								<c:choose>
+									<c:when test="${meeting.female_like == 1 && meeting.male_like == 1}">
+										<tr>
+											<td width="200"><b>이름</b></td>
+											<td><b>${targetmale.name}</b></td>
+										</tr>
+										<tr>
+											<td width="200"><b>연락처</b></td>
+											<td><b>${targetmale.phone}</b></td>
+										</tr>
+									</c:when>
+								</c:choose>
+							
+							<tr>
+								<td width="200">닉네임</td>
+								<td>${targetmale.nick}</td>
+							</tr>
+							<tr>
+								<td width="200">나이</td>
+								<td>${targetmale.age}</td>
+							</tr>
+							<tr>
+								<td width="200">지역</td>
+								<td>${targetmale.area}</td>
+							</tr>
+							<tr>
+								<td width="200">혈액형</td>
+								<td>${targetmale.bloodgroup}</td>
+							</tr>
+							<tr>
+								<td width="200">지역</td>
+								<td>${targetmale.area}</td>
+							</tr>
+							<tr>
+								<td width="200">소개</td>
+								<td>${targetmale.intro}</td>
+							</tr>
+							
+							</c:when>
+						</c:choose>
+		
+					</table>
+					<br></br>
+					<div>
+						<button type="button" onclick="return button_event();" class="btn btn-success btn-circle btn-lg">
+							<i class="fa fa-heart faa-pulse animated"></i>
+						</button>
+						<c:choose>
+							<c:when test="${targetfemale != null}" >
+							<c:choose>
+								<c:when test="${targetfemale.female_msg == null}" >
+									<button type="button" onclick="button_message('message');" class="btn btn-info btn-circle btn-lg">
+										<i class="fa fa-envelope faa-pulse animated"></i>
+									</button>
+								</c:when>
+							</c:choose>
+							</c:when>
+							<c:otherwise>
+							
+							</c:otherwise>
+						</c:choose>
+						
+						<c:choose>
+							<c:when test="${targetmale != null}" >
+							<c:choose>
+								<c:when test="${targetmale.male_msg == null}" >
+									<button type="button" onclick="button_message('message');" class="btn btn-info btn-circle btn-lg">
+										<i class="fa fa-envelope faa-pulse animated"></i>
+									</button>
+								</c:when>
+							</c:choose>
+							</c:when>
+							<c:otherwise>
+							
+							</c:otherwise>
+						</c:choose>
+
+					</div>
+				</form:form>
+				<br></br>
 			</div>
 		</div>
 	</div>
-	<!-- ---------------------------- -->
-	<table width="600" border="0" cellspacing="0" cellpadding="2">
-		<h2>오늘의 인연 상세보기</h2>
-	</table>
-	<form:form commandName="todayModel" action="Like" method="post"
-		enctype="multipart/form-data">
-		<table width="600" border="0" cellspacing="0" cellpadding="2">
-			<div id="relative">
-				<img
-					src="/Hi_Admin/image/<s:property value='target_resultClass.file_savname' />" />
-				<div id="absolute2">
-					<c:choose>
-						<c:when
-							test="${meeting.female_like == 0 && meeting.male_like == 0}">
-					♡
-				</c:when>
-						<c:when
-							test="${meeting.female_like == 1 && meeting.male_like == 1}">
-					♥
-					<script>
-						layer_open('layer');
-					</script>
-						</c:when>
-						<c:when
-							test="${meeting.female_like == 1 && meeting.male_like == 0}">
-					☜
-				</c:when>
-						<c:when
-							test="${meeting.female_like == 0 && meeting.male_like == 1}">
-					☞
-				</c:when>
-					</c:choose>
-				</div>
-			</div>
-
-			<!-- 커플이됬을 경우 이름과 연락처 공개-->
-			<c:choose>
-				<c:when test="${meeting.female_like == 1 && meeting.male_like == 1}">
-					<tr>
-						<td width="200"><b>이름</b></td>
-						<td><b>${target.name}</b></td>
-					</tr>
-					<tr>
-						<td width="200"><b>연락처</b></td>
-						<td><b>${target.phone}</b></td>
-					</tr>
-				</c:when>
-			</c:choose>
-
-			<tr>
-				<td width="200">닉네임</td>
-				<td>${target.nick}</td>
-			</tr>
-			<tr>
-				<td width="200">나이</td>
-				<td>${target.age}</td>
-			</tr>
-			<tr>
-				<td width="200">지역</td>
-				<td>${target.area}</td>
-			</tr>
-			<tr>
-				<td width="200">혈액형</td>
-				<td>${target.bloodgroup}</td>
-			</tr>
-			<tr>
-				<td width="200">지역</td>
-				<td>${target.area}</td>
-			</tr>
-			<tr>
-				<td width="200">소개</td>
-				<td>${target.intro}</td>
-			</tr>
-			<!-- 평점 -->
-			<div class="container">
-				<div class="row lead">
-					<div id="hearts" class="starrr"></div>
-					You gave a rating of <span id="count">0</span> star(s)
-				</div>
-
-				<div class="row lead">
-					<div id="hearts-existing" class="starrr" data-rating='4'></div>
-					You gave a rating of <span id="count-existing">4</span> star(s)
-				</div>
-			</div>
-			<!-- 평점 -->
-		</table>
-		<br></br>
-		<div>
-			<a href='Like' onclick="return button_event();"> <img
-				src="image/like_off.png" onMouseOver="this.src='image/like_on.png'"
-				onMouseOut="this.src='image/like_off.png'" border="0"></a>
-		</div>
-	</form:form>
-	<br></br>
 </body>
 </html>

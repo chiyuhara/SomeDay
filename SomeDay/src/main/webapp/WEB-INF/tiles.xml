@@ -13,11 +13,6 @@
 		<put-attribute name="footer" value="/WEB-INF/views/tiles/footer.jsp" />
 	</definition>
 	
-	<!-- admin -->
-   <definition name="admin" template="/WEB-INF/views/layout/admin/layout.jsp">
-      <put-attribute name="body" value="/WEB-INF/views/layout/admin/container.jsp" />
-   </definition>
-   
 	<!-- NoticeList -->
   	 <definition name="noticeList" extends="main">
 		<put-attribute name="body" value="/WEB-INF/views/notice/NoticeList.jsp" />
@@ -47,70 +42,6 @@
 	<definition name="todayView" extends="main">
 		<put-attribute name="body" value="/WEB-INF/views/today/TodayView.jsp" />
 	</definition>
-
-	<!-- Member -->
-	<definition name="findForm" extends="main">
-		<put-attribute name="body" value="/WEB-INF/views/member/findForm.jsp" />
-	</definition>
-	<!-- 아이디 찾기 -->
-	<definition name="idFindForm" extends="main">
-		<put-attribute name="body" value="/WEB-INF/jsp/member/idFindOK.jsp" />
-	</definition>
-	<!-- 비밀번호 찾기 찾기 -->
-	<definition name="pwdFindForm" extends="main">
-		<put-attribute name="body" value="/WEB-INF/jsp/member/pwdFindOK.jsp" />
-	</definition>
-	
-	<definition name="loginForm" extends="main">
-		<put-attribute name="body" value="/WEB-INF/views/member/loginForm.jsp" />
-	</definition>
-	
-	<definition name="memberModify" extends="main">
-		<put-attribute name="body" value="/WEB-INF/views/member/memberModify.jsp" />
-	</definition>
-	
-	<definition name="memberModifyEnd" extends="main">
-		<put-attribute name="body" value="/WEB-INF/views/member/memberModifyEnd.jsp" />
-	</definition>
-	 
-	<!-- 회원탈퇴 폼 -->
-	<definition name="memberOut" extends="main">
-		<put-attribute name="body" value="/WEB-INF/views/member/memberOut.jsp" />
-	</definition>
-	
-	<!-- 회원탈퇴  -->
-	<definition name="memberDelete" extends="main">
-		<put-attribute name="body" value="/WEB-INF/views/member/memberDelete.jsp" />
-	</definition>
-	
-	<!-- admin -->
-	<definition name="adminForm" extends="admin">
-		<put-attribute name="body" value="/WEB-INF/views/layout/admin/main.jsp" />
-	</definition>
-
-	<!-- Admin -->
-	<definition name="memberadminList" extends="admin">
-		<put-attribute name="body" value="/WEB-INF/views/admin/memberadminList.jsp" />
-	</definition>
-	
-
-	<definition name="memberadminModify" extends="admin">
-		<put-attribute name="body" value="/WEB-INF/views/admin/memberModify.jsp" />
-	</definition>
-	
-	<!-- Member -->
-	<definition name="memberForm" extends ="main">
-		<put-attribute name="body" value="/WEB-INF/views/member/join.jsp"/>
-	</definition>
-	
-	<definition name="MypageView" extends ="main">
-		<put-attribute name="body" value="/WEB-INF/views/member/mypageView.jsp"/>
-	</definition>
-	
-	<definition name="MypageModify" extends ="main">
-		<put-attribute name="body" value="/WEB-INF/views/member/mypageModify.jsp"/>
-	</definition>
-	
 	
 
 </tiles-definitions>

@@ -11,8 +11,8 @@
                         <div class="panel-body">
                             <ul class="timeline">
                                 <li>
-                                    <!-- <div class="timeline-badge"><i class="fa fa-check"></i>
-                                    </div> -->
+                                    <div class="timeline-badge"><i class="fa fa-check"></i>
+                                    </div>
                                     <div class="timeline-panel">
                                         <div class="timeline-heading">
                                             <h4 class="timeline-title">관리자 홈으로 이동</h4>
@@ -24,18 +24,18 @@
                                     </div>
                                 </li>
                                 <li class="timeline-inverted">
-                                    <!-- <div class="timeline-badge warning"><i class="fa fa-credit-card"></i>
-                                    </div> -->
+                                    <div class="timeline-badge warning"><i class="fa fa-credit-card"></i>
+                                    </div>
                                     <div class="timeline-panel">
                                         <div class="timeline-heading">
-                                            <h4 class="timeline-title">메인으로 이동</h4>
+                                            <h4 class="timeline-title">쇼핑몰 홈으로 이동</h4>
                                         </div>
                                         <div class="timeline-body">
-                                            <p>메인으로 가는 바로가기</p>                                           
+                                            <p>쇼핑몰 홈으로 가는 바로가기</p>                                           
                                         </div>
                                     </div>
                                 </li>
-                                <!-- <li>
+                                <li>
                                     <div class="timeline-badge danger"><i class="fa fa-bomb"></i>
                                     </div>
                                     <div class="timeline-panel">
@@ -47,7 +47,7 @@
                                             <p>상품등록 이동 - 바로상품등록 할 수있습니다</p>
                                         </div>
                                     </div>
-                                </li> -->
+                                </li>
                                 <li class="timeline-inverted">
                                     <div class="timeline-panel">
                                         <div class="timeline-heading">
@@ -59,7 +59,7 @@
                                     </div>
                                 </li>
                                 
-                                <!-- <li>
+                                <li>
                                     <div class="timeline-panel">
                                         <div class="timeline-heading">
                                             <h4 class="timeline-title">주문관리</h4>
@@ -68,7 +68,7 @@
                                             <p>주문목록 - 주문목록 확인및 관리</p>
                                         </div>
                                     </div>
-                                </li> -->
+                                </li>
                                 <li>
                                     <div class="timeline-panel">
                                         <div class="timeline-heading">
@@ -76,10 +76,10 @@
                                         </div>
                                         <div class="timeline-body">
                                             <p>공지사항 - 게시판 수정,삭제 등 관리</p>
-                                            <!-- <p>마이펫 - 게시판 수정,삭제 등 관리</p>
+                                            <p>마이펫 - 게시판 수정,삭제 등 관리</p>
                                             <p>분양 - 게시판 수정,삭제 등 관리</p>
                                             <p>Q&A - 게시판 수정,삭제 등 관리</p>
-                                            <p>구매후기 - 게시판 수정,삭제 등 관리</p> -->
+                                            <p>구매후기 - 게시판 수정,삭제 등 관리</p>
                                         </div>
                                     </div>
                                 </li>

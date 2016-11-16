@@ -26,13 +26,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 여자입장에서 참여한 미팅 찾기 -->
 	<select id="female_today" resultMap="todayModelRes" parameterType="Integer">
 		<include refid="select-all-meeting" />
-		MEETING WHERE FEMALE_IDX = #{idx} AND TRUNC(TIMES) = TRUNC(SYSDATE)
+		WHERE FEMALE_IDX = #{idx} AND TRUNC(TIMES) = TRUNC(SYSDATE)
 	</select>
 	
 	<!-- 남자입장에서 참여한 미팅 찾기 -->
 	<select id="male_today" resultMap="todayModelRes" parameterType="Integer">
 		<include refid="select-all-meeting" />
-		MEETING WHERE MALE_IDX = #{idx} AND TRUNC(TIMES) = TRUNC(SYSDATE)
+		WHERE MALE_IDX = #{idx} AND TRUNC(TIMES) = TRUNC(SYSDATE)
 	</select>
 	
 	
@@ -78,6 +78,42 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			UPDATE MEETING
 			SET
 				MALE_LIKE = 1
+			WHERE
+				IDX = #{idx}	
+	</update>
+
+	<!-- 여자가 평점보냄 -->
+	<update id="female_score" parameterType="todayModel">
+			UPDATE MEETING
+			SET
+				MALE_SCORE = #{score}
+			WHERE
+				IDX = #{idx}	
+	</update>
+	
+	<!-- 남자가 평점보냄 -->
+	<update id="male_score" parameterType="todayModel">
+			UPDATE MEETING
+			SET
+				FEMALE_SCORE = #{score}
+			WHERE
+				IDX = #{idx}	
+	</update>
+	
+	<!-- 여자가 메시지를 보냄 -->
+	<update id="female_message" parameterType="todayModel">
+			UPDATE MEETING
+			SET
+				MALE_MSG = #{male_msg}
+			WHERE
+				IDX = #{idx}	
+	</update>
+	
+	<!-- 여자가 메시지를 보냄 -->
+	<update id="male_message" parameterType="todayModel">
+			UPDATE MEETING
+			SET
+				FEMALE_MSG = #{female_msg}
 			WHERE
 				IDX = #{idx}	
 	</update>

@@ -27,7 +27,7 @@ import com.someday.util.Paging;
 
 
 @Controller
-/*@RequestMapping("/admin")*/
+@RequestMapping("/admin")
 public class AdminController {
 	@Resource
 	private AdminService adminService;
@@ -130,7 +130,7 @@ public class AdminController {
 	  	}
 	  	
 	  	//회원수정 등록
-	    @RequestMapping("/admin/memberModifyEnd")
+	    @RequestMapping("/admin/adminmemberModifyEnd")
  		public ModelAndView adminmemberModifyEnd(MemberModel member) {
  		
 		System.out.println("수정시작");

@@ -25,11 +25,6 @@ PUBLIC " - //mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.someday.member.MemberModel" alias="memberModel" />
 	 	<typeAlias type="com.someday.member.ZipcodeModel" alias="zipcodeModel" />
 		
-		<!-- member -->
-		<typeAlias type="com.someday.member.MemberModel" alias="memberModel" />
-		<typeAlias type="com.someday.member.ZipcodeModel" alias="zipcodeModel" />
-		
-		
 		<!--  Notice board  -->
 		<typeAlias type="com.someday.notice.NoticeModel" alias="noticeModel" />
 		
@@ -38,6 +33,7 @@ PUBLIC " - //mybatis.org//DTD Config 3.0//EN"
 		
 		<!--  Today  -->
 		<typeAlias type="com.someday.today.TodayModel" alias="todayModel" />
+		<typeAlias type="com.someday.today.TodayMemberModel" alias="todaymemberModel" />
 		
 		<!-- Matching -->
 		<typeAlias type="com.someday.matching.MatchingModel" alias="matchingModel"/>

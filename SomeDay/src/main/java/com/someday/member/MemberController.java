@@ -65,11 +65,9 @@ public class MemberController {
 				
 				/*아이디로 IDX찾기*/
 				MemberModel idx = (MemberModel)memberService.Idx(member);
-                int index =(idx.getIdx());
-
+				member.setIdx(idx.getIdx());
 				/*사진 업로드*/
-                memberService.UpdateFile(index, request);
-
+				memberService.UpdateFile(member, request);
 				
 				mav.addObject("member", member);
 				mav.setViewName("main");
@@ -107,11 +105,12 @@ public class MemberController {
          session.setAttribute("TOKEN_SAVE_CHECK", "TRUE");
                  
          mav.setViewName("main");
+         mav.setViewName("redirect:/");
          return mav;
       }
       
       //System.out.println("로그인 실패");         
-      mav.setViewName("/member/loginError");
+      mav.setViewName("main");
       return mav;
          
    }
@@ -128,26 +127,16 @@ public class MemberController {
          session.invalidate();
       }
       mav.setViewName("main");
-      
+      mav.setViewName("redirect:/");
       return mav;
    }
-   
-   //아이디,비밀번호 찾기 폼
-   @RequestMapping("/findForm")
-   public ModelAndView findForm() {
-	   
-	   ModelAndView mav = new ModelAndView();
 
-	   mav.setViewName("findForm");
-	   return mav;
-   }
-
-   	/*//아이디 찾기 폼
+   	//아이디 찾기 폼
   	@RequestMapping(value = "/memberIdFind", method = RequestMethod.GET)
   	public ModelAndView memberFindForm() {
   		mav.setViewName("member/idFind");
   		return mav;
-  	}*/
+  	}
   	
   	//아이디 찾기
   	@RequestMapping(value = "/memberIdFind", method = RequestMethod.POST)
@@ -166,11 +155,10 @@ public class MemberController {
   			if (member.getName().equals(member.getName()) && member.getNum1().equals(member.getNum1()) && member.getNum2().equals(member.getNum2())) {
   				memberFindChk = 1; // 회원가입되어 있음, 닉네임 일치
   				mav.addObject("member", member);
-  				mav.addObject("member1", null);
   				mav.addObject("memberFindChk", memberFindChk);
-  				mav.setViewName("findForm");
+  				mav.setViewName("member/idFindOk");
   				return mav;
-  			} else { 
+  			} else {
   				memberFindChk = -1; // 이름 , 닉네임 틀림
   				mav.addObject("memberFindChk", memberFindChk);
   				mav.setViewName("member/idFindError");
@@ -179,12 +167,12 @@ public class MemberController {
   		}
   	}
 
-  	/*// 비밀번호찾기
+  	// 비밀번호찾기
   	@RequestMapping(value = "/memberPwFind", method = RequestMethod.GET)
   	public ModelAndView memberPwFindForm() {
   		mav.setViewName("member/pwFind");
   		return mav;
-  	}*/
+  	}
 
   	@RequestMapping(value = "/memberPwFind", method = RequestMethod.POST)
   	public ModelAndView memberPwFind(@ModelAttribute("member") MemberModel member, HttpServletRequest request) {
@@ -204,10 +192,9 @@ public class MemberController {
   			
   			if (member.getName().equals(member.getName()) && member.getId().equals(member.getId()) && member.getNum1().equals(member.getNum1()) && member.getNum2().equals(member.getNum2())) {
   				memberFindChk = 1; // 회원가입되어 있음, 닉네임 일치
-  				mav.addObject("member", null);
-  				mav.addObject("member1", member);
+  				mav.addObject("member", member);
   				mav.addObject("memberFindChk", memberFindChk);
-  				mav.setViewName("findForm");
+  				mav.setViewName("member/pwFindOk");
   				return mav;
   			} else {
   				memberFindChk = -1; // 이름 , 닉네임 틀림
@@ -275,112 +262,91 @@ public class MemberController {
     	  
     	  
       }
+      
+        //회원정보수정
+    	@RequestMapping("/memberModify")
+    	public ModelAndView memberModify(@ModelAttribute("member") MemberModel member, BindingResult result,
+    			HttpSession session) {
+    		session.getAttribute("session_member_id");
 
-      //회원정보 가져오기
-      	@RequestMapping("/MypageView")
-      	public ModelAndView mypageView(@ModelAttribute("member") MemberModel member, HttpSession session){
-      		
-      	session.getAttribute("session_member_idx");
-      	if (session.getAttribute("session_member_idx") != null) {
-      	int idx = (int) session.getAttribute("session_member_idx");
-      	System.out.println(idx);
-      	
-      	memberModel = memberService.memberList(idx);
-      	ModelAndView mav = new ModelAndView();
-		  mav.addObject("member", memberModel);	  
-		  mav.setViewName("MypageView");
-		  return mav;
-      	}
-      	mav.setViewName("MypageView");
-      	return mav;
-      	}
-        
-    	//회원정보 수정폼
-    	@RequestMapping("/MypageModify")
-    	public ModelAndView memberModifyEnd(@ModelAttribute("member") MemberModel member, HttpSession session) {
-        
-    		session.getAttribute("session_member_idx");
-          	if (session.getAttribute("session_member_idx") != null) {
-          	int idx = (int) session.getAttribute("session_member_idx");
-          	System.out.println(idx);
-          	
-          	memberModel = memberService.memberList(idx);
+    		if (session.getAttribute("session_member_id") != null) {
+    			String id = (String) session.getAttribute("session_member_id");
+    			member = memberService.getMember(id);
 
-          	//폰넘버 나누기
-          	String[] ph = memberModel.getPhone().split("-");
-          	
-          	memberModel.setPhone3(ph[0]);
-          	memberModel.setPhone(ph[1]);
-          	memberModel.setPhone2(ph[2]);
-          	
-          	//이메일 나누기
-          	String[] em = memberModel.getEmail().split("@");
-          	
-          	memberModel.setEmail(em[0]);
-          	if(em[1] != "naver.com" || em[1] != "daum.net" || em[1] != "nate.com" || em[1] != "hotmail.com" || 
-          			em[1] != "yahoo.com" || em[1] != "empas.com" || em[1] != "korea.com" || em[1] != "dreamwiz.com" ||
-          			em[1] != "gmail.com"){
-          		memberModel.setEmail2(em[1]);
-          	} else {
-          		memberModel.setSelectEmail(em[1]);
-          	}
-          	
+    			mav.addObject("member", member);
+    			mav.setViewName("memberModify");
+    			return mav;
+    		} else {
 
-          	ModelAndView mav = new ModelAndView();
-    		  mav.addObject("member", memberModel);	  
-    		  mav.setViewName("MypageModify");
-    		  return mav;
+    			mav.setViewName("loginConfirm");
+    			return mav;
     		}
-          	mav.setViewName("MypageModify");
-          	return mav;
+    	}
+        
+    	//회원정보 수정완료
+    	@RequestMapping("/memberModifyEnd")
+    	public ModelAndView memberModifyEnd(@ModelAttribute("member") MemberModel member, BindingResult result) {
+    		// Validation Binding
+    		/*new MemberValidator().validate(member, result);*/
+    	
+    		try {
+    			// 유효성검사에 통과하면
+    			memberService.memberModify(member);
+    			mav.setViewName("memberModifyEnd");
+    			return mav;
+    		} catch (DuplicateKeyException e) {
+    			// db에서 id의 제약조건을 unique로 바꿨기 때문에 중복된 아이디로 가입하려하면
+    			// DuplicateKeyException이 뜨게되고
+    			// 예외처리로 properties파일에 등록된 "invalid"의 내용이 나오게 만들고 회원가입폼으로 돌아가게했음.
+    			// 아이디 중복검사
+    			result.reject("invalid", null);
+    			System.out.println("캐치에러");
+    			mav.setViewName("memberModify");
+    			return mav;
+    		}
 
     	}
     	
-    	//회원정보수정완료
-    	@RequestMapping("/memberUpdate")
-    	public ModelAndView memberUpdate(@ModelAttribute("member")MemberModel member){
-    		
-    		member.setPhone(member.getPhone3()+"-"+member.getPhone()+"-"+member.getPhone2()); //폰넘버 합치기
-        	
-        	if(member.getEmail2() != null){	//이메일 주소가 널이 아니면 실행
-        		member.setEmail(member.getEmail()+"@"+member.getEmail2());
-			} else { // 이메일 주소가 널일시 실행
-				member.setEmail(member.getEmail()+"@"+member.getSelectEmail());
-			}
-        	
-			memberService.memberModify(member);
-			
-			
-		  ModelAndView mav = new ModelAndView();
-  		  mav.setViewName("main");
-  		  return mav;
-    	}
-    	
-    	//회원탈퇴 비밀번호확인 폼
-    	@RequestMapping("/memberDeleteForm")
-    	public ModelAndView memberDeleteForm(){
-    		mav.setViewName("check/checkPassword");
-    		return mav;
-    	}
-    	
-    	//회원탈퇴 일반회원
-    	@RequestMapping("/memberDelete")
-    	public ModelAndView memberDelete(@ModelAttribute("member") MemberModel member, HttpServletRequest request,  HttpSession session){
-    		int deleteCheck;
-    		int idx = (int) session.getAttribute("session_member_idx"); //로그인한 아이디의 idx값을 가져온다
-    		String pass = request.getParameter("pass");	//모든 텍스트정보를 가져온것을 pass에 넣어줌
-    		memberModel = memberService.memberList(idx);//idx로 로그인한 사람의정보를 가져옴
-    		
-    		if(memberModel.getPass().equals(pass)) { //가져온 pass와 입력한 pass가 맞으면
-    			deleteCheck = 1;//정보가 있으면
-    			memberService.memberDelete(idx);     // idx정보로 삭제
-    		}else{
-    			deleteCheck = 0;	//비밀번호가 틀렸을때
-    		}
-    		session.invalidate();	//세션초기화
-    		mav.addObject("deleteCheck",deleteCheck);
-    		mav.setViewName("check/checkPassword");
-    		return mav;
-    	}
+    	//회원탈퇴
+    	@RequestMapping("/memberOutForm")
+     	public ModelAndView memberOutForm() {
+     		mav.setViewName("memberOut");
+     		return mav;
+     	}
+     	
+     	@RequestMapping("/memberDelete")
+     	public ModelAndView memberDelete(@ModelAttribute("member") MemberModel member, BindingResult result, HttpSession session, HttpServletRequest request) {
+     		
+     		MemberModel memberModel; // 쿼리 결과 값을 저장할 객체
+     		
+     		String id;
+     		String pass;
+     		pass = request.getParameter("pass");
+     		int deleteCheck;
+     		
+     		//해당 아이디의 정보를 가져온다
+     		id = session.getAttribute("session_member_id").toString();
+     		memberModel = (MemberModel) memberService.getMember(id);
+     		
+     		
+     		
+     		if(memberModel.getPass().equals(pass)) {
+     			//패스워드가 맞으면
+     			deleteCheck = 1;
+     			//삭제 쿼리 수행
+     			memberService.memberDelete(id);
+     			session.removeAttribute("session_member_id");
+     			session.removeAttribute("session_member_name");
+     		/*	session.removeAttribute("session_member_no");*/
+     		}
+     		else {
+     			deleteCheck = -1; //패스워드가 안맞을때
+     		}
+     		
+     		mav.addObject("deleteCheck", deleteCheck);
+     		mav.setViewName("memberDelete");
+     		return mav;
+     	}
+
 }
 

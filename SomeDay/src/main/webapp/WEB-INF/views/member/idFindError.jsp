@@ -12,7 +12,7 @@
 		var chk = ${memberFindChk}
 		
 		if(chk == -1){
-			alert('이름이 틀립니다');
+			alert('닉네임이 틀립니다');
 			history.back();
 		}
 		if(chk == 0){
