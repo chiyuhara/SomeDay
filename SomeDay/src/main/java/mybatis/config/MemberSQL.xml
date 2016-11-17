@@ -27,6 +27,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       <result property="zipcode" column="zipcode" />
       <result property="file_orgname" column="file_orgname" />
       <result property="file_savname" column="file_savname" />
+      <result property="authority" column="authority" />
    </resultMap>
 
    <!-- 우편번호리절트맵정의 -->
@@ -275,6 +276,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT (<![CDATA[ CASE WHEN female_total < male_total THEN female_total ELSE male_total END]]>) AS small FROM total
 	</select> 
 
+	<!-- 관리자 권한 주기 -->
+	<update id="authority" parameterType="memberModel">
+	    UPDATE MEMBER SET 
+	    AUTHORITY = #{authority}   
+      	WHERE IDX = #{idx}
+	</update>
 	 
 
 </mapper>

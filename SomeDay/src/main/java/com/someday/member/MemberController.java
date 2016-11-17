@@ -103,6 +103,7 @@ public class MemberController {
          session.setAttribute("session_member_id", result.getId());
          session.setAttribute("session_member_name", result.getName());
          session.setAttribute("session_member_idx", result.getIdx());
+         session.setAttribute("session_member_authority", result.getAuthority());
       
          session.setAttribute("TOKEN_SAVE_CHECK", "TRUE");
                  
@@ -141,13 +142,6 @@ public class MemberController {
 	   mav.setViewName("findForm");
 	   return mav;
    }
-
-   	/*//아이디 찾기 폼
-  	@RequestMapping(value = "/memberIdFind", method = RequestMethod.GET)
-  	public ModelAndView memberFindForm() {
-  		mav.setViewName("member/idFind");
-  		return mav;
-  	}*/
   	
   	//아이디 찾기
   	@RequestMapping(value = "/memberIdFind", method = RequestMethod.POST)
@@ -178,14 +172,7 @@ public class MemberController {
   			} 
   		}
   	}
-
-  	/*// 비밀번호찾기
-  	@RequestMapping(value = "/memberPwFind", method = RequestMethod.GET)
-  	public ModelAndView memberPwFindForm() {
-  		mav.setViewName("member/pwFind");
-  		return mav;
-  	}*/
-
+  	/*비밀번호찾기*/
   	@RequestMapping(value = "/memberPwFind", method = RequestMethod.POST)
   	public ModelAndView memberPwFind(@ModelAttribute("member") MemberModel member, HttpServletRequest request) {
 
@@ -221,7 +208,7 @@ public class MemberController {
   	
    
       
-
+  		/*우편번호 폼*/
 	  @RequestMapping(value="/zipcodeCheckForm")
       public ModelAndView zipcodeCheckForm( HttpServletRequest req) throws Exception{
          ModelAndView mv = new ModelAndView();
@@ -382,5 +369,6 @@ public class MemberController {
     		mav.setViewName("check/checkPassword");
     		return mav;
     	}
+    	
 }
 

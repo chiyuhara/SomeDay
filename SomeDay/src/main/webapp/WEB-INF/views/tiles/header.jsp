@@ -25,7 +25,10 @@
         </c:if>
         <c:if test="${session_member_id != null }">
           <div style="float: right;">
-           <strong>${session_member_name}&nbsp;님</strong>     
+           <strong>${session_member_name}&nbsp;님</strong>
+           <c:if test="${session_member_authority == 'Y'}">
+               <a href="${contextpath}/someday/admin/admin">관리자페이지</a>
+            </c:if>     
            <a href="${contextpath}/someday/member/MypageView" id="ol_after_info">정보수정</a>
            <a href="${contextpath}/someday/member/logout" id="ol_after_logout">로그아웃</a>
         </div>

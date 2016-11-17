@@ -93,33 +93,37 @@ public class NoticeController {
 	public ModelAndView noticeList(HttpServletRequest request) throws UnsupportedEncodingException {
 
 		ModelAndView mav = new ModelAndView();
-
+		
+		//페이지 정보가 넘어온게 없으면 1페이지
 		if (request.getParameter("currentPage") == null || request.getParameter("currentPage").trim().isEmpty()
 				|| request.getParameter("currentPage").equals("0")) {
 			currentPage = 1;
 		} else {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
-		}
+		}//정보가 있으면 그값을 페이지로 설정한다
 
 		List<NoticeModel> noticeList;
-		noticeList = noticeService.noticeList();
+		noticeList = noticeService.noticeList();//가져온 정보를 noticeList에 저장
 
-		String isSearch = request.getParameter("isSearch");
+		String isSearch = request.getParameter("isSearch"); //isSearch 정보를 가져옴
 		if (isSearch != null)
-			isSearch = new String(isSearch.getBytes("8859_1"), "UTF-8");
-
-		if (isSearch != null) {
-			searchNum = Integer.parseInt(request.getParameter("searchNum"));
-
-			if (searchNum == 0) {
+			isSearch = new String(isSearch.getBytes("8859_1"), "UTF-8"); //isSearch정보를가져올때 UTF-8로 받아올수 있게 해준다
+			//Server에 URIEncoding="UTF-8"로 설명 하는 방법도 있다
+		
+		/*검색시작*/
+		if (isSearch != null) {//isSerarch가 null이 아니면
+			searchNum = Integer.parseInt(request.getParameter("searchNum")); 
+			//searchNum을 꺼내서 Integer로 바꾼뒤 SearchNum에 저장
+			
+			if (searchNum == 0){ //꺼내온값이 0이면
 				noticeList = noticeService.noticeSearch0(isSearch);
-			} else if (searchNum == 1) {
+			} else if (searchNum == 1) {//꺼내온 값이 1이면
 				noticeList = noticeService.noticeSearch1(isSearch);
-			} else if (searchNum == 2) {
+			} else if (searchNum == 2) {//꺼내온 값이 2이
 				noticeList = noticeService.noticeSearch2(isSearch);
 			}
 
-			totalCount = noticeList.size();
+			totalCount = noticeList.size();//전체 결과값의 개수를 가져옴
 			page = new Paging(currentPage, totalCount, blockCount, blockPage, "noticeList", searchNum, isSearch);
 			pagingHtml = page.getPagingHtml().toString();
 
@@ -137,8 +141,11 @@ public class NoticeController {
 			mav.addObject("currentPage", currentPage);
 			mav.addObject("noticeList", noticeList);
 			mav.setViewName("noticeList");
-
+			
+			return mav;
+			
 		}
+		
 		
 		noticeList = noticeService.noticeList();
 		
@@ -161,7 +168,7 @@ public class NoticeController {
 		mav.addObject("currentPage", currentPage);
 		mav.addObject("noticeList", noticeList);
 		mav.setViewName("noticeList");
-
+		
 		return mav;
 
 	}

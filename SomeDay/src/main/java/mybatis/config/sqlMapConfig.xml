@@ -41,6 +41,10 @@ PUBLIC " - //mybatis.org//DTD Config 3.0//EN"
 		
 		<!-- Matching -->
 		<typeAlias type="com.someday.matching.MatchingModel" alias="matchingModel"/>
+		
+		<!-- meeting -->
+		<typeAlias type="com.someday.meeting.MeetModel" alias="meetModel"/>
+		
 	</typeAliases>
 	
 	<!-- SQL 정의한 xml문서 Mapping -->

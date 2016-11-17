@@ -37,6 +37,18 @@ public class AdminService implements AdminDao{
 	public int memberDelete(String id) {
 		return sqlSessionTemplate.delete("member.deleteMember",id);
 	}
+	
+	//idx로 회원정보 가져오기
+	@Override
+	public MemberModel member(int idx){
 		
+		return sqlSessionTemplate.selectOne("member.selectOne",idx);
+	}
+	
+    //관리자 권한 주기
+	 @Override
+	public Object authority(MemberModel member){
+	   return sqlSessionTemplate.update("member.authority",member);
+    }
 		
 }

@@ -62,6 +62,7 @@ function delchk(){
 										<!-- <th style="width: 29%; text-align:center;">주소</th> -->
 										<!-- <th style="width: 5%; text-align:center;">Point</th> -->
 										<th style="width: 10%; text-align:center;">가입일자</th>
+										<th style="width: 10%; text-align:center;">관리자</th>
 										<th style="width: 13%; text-align:center;">관리</th>
 									</tr>
 								</thead>
@@ -79,12 +80,17 @@ function delchk(){
 										<%-- <td style="text-align:center;vertical-align:middle;">${memberlist.addr1}</td> --%>
 										<%-- <td style="text-align:center;vertical-align:middle;">${memberlist.point}</td> --%>										
 										<td style="text-align:center;vertical-align:middle;"><fmt:formatDate value="${memberlist.times}" pattern="YY.MM.dd HH:mm" /></td>
+										<td style="text-align:center;vertical-align:middle;">${memberlist.authority}</td>
 										<td style="text-align:center;vertical-align:middle;">
 											<a href="${viewURL}"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png"></a>&nbsp;&nbsp;
 										<c:url var="viewURL2" value="/admin/adminMemberDelete" >
 											<c:param name="id" value="${memberlist.id }" />							
 										</c:url>	
-										 <a href="${viewURL2}"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Trash_font_awesome.svg/32px-Trash_font_awesome.svg.png" onclick="return delchk()"></a></td>									
+										 <a href="${viewURL2}"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Trash_font_awesome.svg/32px-Trash_font_awesome.svg.png" onclick="return delchk()"></a>								
+										<c:url var="viewURL3" value="/admin/authority" >
+											<c:param name="idx" value="${memberlist.idx}" />							
+										</c:url>
+										 <a href="${viewURL3}"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png"></a>&nbsp;&nbsp;</td>
 									</tr>
 								</c:forEach>
 								<!--  등록된 상품이 없을때 -->

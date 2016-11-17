@@ -59,5 +59,6 @@ public interface MemberDao {
 	
 	//È¸¿øÅ»Åð
 	public Object memberDelete(int idx);
+	
 
 }

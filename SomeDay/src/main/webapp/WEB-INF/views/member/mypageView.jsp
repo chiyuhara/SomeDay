@@ -50,8 +50,7 @@ th, td {
 	</table>
 
 	<table width="600" border="0" cellspacing="0" cellpadding="2">
-		<%-- <img src="image/<s:property value="resultClass.file_savname" />" /> --%><!-- 경로 수정 필요 -->
-		<img src="/Hi_Admin/image/${member.file_savname}" /><!-- Hi_Admin/image -->
+	    <img src="/someday/resources/img/${member.file_savname}" width="300" height="300"/>
 		<tr>
 			<td width="200">IDX</td>
 			<td>${member.idx}</td>
@@ -125,12 +124,6 @@ th, td {
 			<td>${member.file_savname}</td>
 		</tr>
 	</table>
-	<!-- 수정 페이지로 이동할 url 생성 -->
-	<s:url id="viewURL" action="mypageModifyAction">
-		<s:param name="idx">
-			<s:property value="idx" />
-		</s:param>
-	</s:url>
 	
 	<br></br>
 	
