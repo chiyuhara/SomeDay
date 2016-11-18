@@ -18,6 +18,13 @@ public interface AdminDao {
 	
 	//회원삭제
 	public int memberDelete(String id);
+	
+	//idx로 회원정보 가져오기
+	public MemberModel member(int idx);
+
+	//idx로 
+	//관리자 권한 주기
+	public Object authority(MemberModel Member);
 		
 }
 

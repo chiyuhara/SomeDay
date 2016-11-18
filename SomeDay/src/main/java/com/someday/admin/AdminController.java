@@ -151,7 +151,30 @@ public class AdminController {
 		}
 		
 		
+		//관리자 권한 주기
+		 @RequestMapping("/admin/authority")
+		 public ModelAndView authority(MemberModel member){
+		  
+		 int idx = member.getIdx();
 		
+		 MemberModel memberlist = adminService.member(idx);
+		 
+		 System.out.println("결과값"+memberlist);
+		 
+		 if(memberlist.getAuthority().equals("N")){
+			 
+			 memberlist.setAuthority("Y");
+		 }else{
+			 
+			 memberlist.setAuthority("N");
+		 }
+			
+		 
+		 adminService.authority(memberlist);
+		 
+		 mav.setViewName("redirect:/admin/memberadminList");
+			 return mav;
+		 }
 		
     	
 	

@@ -111,7 +111,14 @@
 		<put-attribute name="body" value="/WEB-INF/views/member/mypageModify.jsp"/>
 	</definition>
 	
+	<definition name="loginForm" extends ="main">
+		<put-attribute name="body" value="/WEB-INF/views/member/loginForm.jsp"/>
+	</definition>
 	
+	<!-- Meeting -->
+	<definition name="MeetList" extends ="main">
+		<put-attribute name="body" value="/WEB-INF/views/meeting/meetList.jsp"/>
+	</definition>
 
 </tiles-definitions>
 
