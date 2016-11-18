@@ -12,17 +12,23 @@
 function message() {
 	var pswd = prompt("비밀번호입력 ");
 	var pswdcheck = $("#pass").text();
+	
 	/* if (pswd == null){
 		alert("비밀번호를 입력해주세요.  ");
 		return message();
 	} */
+	
 	if (pswd == pswdcheck) {
-		alert("비밀번호가 일치합니다. ");
-		location.href="QnAView";
+		alert("비밀번호가 일치합니다.");
+		location.href='QnAView';
 		
 	} else {
-		alert("비밀번호가 일치하지 않습니다. ");
-		location.href="QnAList";
+		/* alert("비밀번호가 입력되지 않습니다. "); */
+		$("#hijack").attr('href', 'http://localhost:8080/someday/qna/QnAList');
+		/* document.location.href='someday/qna/QnAList'; */
+		/* window.location = "http://localhost:8080/someday/qna/QnAList"; */
+		/* return window.location = "http://localhost:8080/someday/qna/QnAList"; */
+		/* document.write(pswdcheck); */
 		}
 };
 	
@@ -67,16 +73,13 @@ function message() {
 							<center>답변완료</center>
 						</c:if></td>
 						
-						<td>
-						
-						<a href="${viewURL}" onclick="message()" >${list.subject}[${list.cnt}]${list.pass}&nbsp; 
-								<img src="../resources/images/list/lock.png" width="10" height="10"></a>
-								<div id="pass" style=display:none; >${list.pass}</div>
-								
-							
-						</td>
-						
 						<%-- <td>
+							<a href="${viewURL}" onclick="message()" id="hijack">${list.subject}[${list.cnt}]&nbsp; 
+								<img src="../resources/images/list/lock.png" width="10" height="10"></a>
+								<div id="pass" style=display:none; >${list.pass}</div>										
+						</td> --%>
+						
+						<td>
 					
 						<!-- 관리자 -->
 						<c:if test="${session_member_id == 'admin'}">
@@ -89,7 +92,7 @@ function message() {
 						 
 							<!-- 공개글 -->
 							<c:if test="${list.pass == null}">
-								<a href="${viewURL}"> ${list.subject}[${list.cnt}]</a>
+								<a href="${viewURL}">${list.subject}[${list.cnt}]&nbsp; 
 							</c:if>
 							
 						</c:if>
@@ -99,20 +102,20 @@ function message() {
 							
 							<!-- 비밀글 -->
 							<c:if test="${list.pass != null}">
-								<!-- 비밀번호 입력창 필요 -->
-								<input type="button" value="prompt" onclick="messase()" />
-								<a href="${viewURL}">${list.subject}[${list.cnt}]&nbsp; 
+								<a href="${viewURL}" onclick="message()" id="hijack">${list.subject}[${list.cnt}]&nbsp; 
 								<img src="../resources/images/list/lock.png" width="10" height="10"></a>
+								<div id="pass" style=display:none; >${list.pass}</div>
 							</c:if>
 						 
 							<!-- 공개글 -->
 							<c:if test="${list.pass == null}">
-								<a href="${viewURL}"> ${list.subject}[${list.cnt}]</a>
+								<a href="${viewURL}">${list.subject}[${list.cnt}]&nbsp; 
+								
 							</c:if>
 							
 						</c:if>
 						
-					</td> --%>
+					</td>
 						
 					<td align="center">${list.writer}</td>
 					<td align="center">${list.times}</td>

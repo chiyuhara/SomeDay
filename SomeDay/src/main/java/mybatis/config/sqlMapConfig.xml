@@ -51,6 +51,8 @@ PUBLIC " - //mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="mybatis/config/NoticeSQL.xml" />
 		<!-- Member -->
 		<mapper resource="mybatis/config/MemberSQL.xml" />
+		<!-- Member -->
+		<mapper resource="mybatis/config/QnASQL.xml" />
 		<!-- Today -->
 		<mapper resource="mybatis/config/TodaySQL.xml" />
 
