@@ -54,7 +54,7 @@
 	<div id="wrapper">
 		<form:form commandName="noticeModel" action="NoticeWrite" method="post" enctype="multipart/form-data">
 			<div id="page-wrapper">
-				<div class="row">
+				  <div class="box">
 					<div class="col-lg-12">
 						<h3 class="page-header">NOTICE 글쓰기</h3>
 						<table class="table table-striped table-bordered table-hover"
@@ -82,7 +82,7 @@
 							<!-- 글내용 -->
 							<tr>
 								<th>글내용</th>
-								<td colspan=3 height=300 style="padding: 0px !important;">
+								<td colspan=3 height=400yle="padding: 0px !important;">
 									<textarea name="content" style="padding: 3px; margin: 1px; width: 100%; height: 98%;"></textarea>
 									<font color="red"><form:errors path="content" /></font>
 								</td>
@@ -95,17 +95,15 @@
 									value="${noticeModel.file_savname}" /></td>
 							</tr>
 						</table>
-					</div>
+						 <div class="col-lg-12 text-right">
+						    <input name="submit" type="submit" value="작성완료"
+					    class="btn btn-primary">
+				           <button type="button" onclick="noticeList();"
+					    class="btn btn-primary">목록</button>
+					</div>	
 				</div>
 			</div>
-			<!-- 취소 작성완료 버튼 -->
-			<div>
-				<input name="submit" type="submit" value="작성완료"
-					class="btn btn-default btn-xs">
-				<button type="button" onclick="noticeList();"
-					class="btn btn-primary">목록</button>
-				<!-- 취소 작성완료 버튼 -->
-			</div>
+		</div>
 		</form:form>
 
 		<br /> <br /> <br /> <br />
@@ -114,3 +112,4 @@
 
 </body>
 </html>
+

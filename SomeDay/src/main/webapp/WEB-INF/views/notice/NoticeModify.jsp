@@ -70,7 +70,7 @@
 											value="${noticeModel.subject}" /></td>
 								</tr>
 								
-								<!-- 타입  -->
+								<!— 타입  —>
 							<tr>
 							<th width="15%" align="center">글타입</th>
 							<td>
@@ -83,10 +83,10 @@
 							<td>
 							</tr>
 							
-								<!-- 글 내용 -->
+								<!— 글 내용 —>
 								<tr>
 									<td colspan=6 height=300 style="padding: 0px !important;">
-										<form:textarea path="content" theme="simple"
+										<form:texture path="content" theme="simple"
 											value="${noticeModel.content}"
 											style="padding:3px; margin:0px; width: 100%; height: 100%;" />
 									</td>
@@ -94,7 +94,7 @@
 
 								<tr>
 
-									<!-- 첨부파일  -->
+									<!— 첨부파일  —>
 									<td align="center">첨부된 파일</td>
 									<td colspan="3" style="padding: 2px 5px;">
 									
@@ -120,12 +120,12 @@
 					</div>
 				</div>
 			</div>
-			<!-- 취소 작성완료 버튼 -->
+			<!— 취소 작성완료 버튼 —>
 			<div>
-				<input type="submit" value="작성완료" class="btn btn-primary" />
+				<input type="submit" value="작성완료" class="bin ban-primary" />
 				<button type="button" onclick="noticeList();"
-					class="btn btn-primary">목록</button>
-				<!-- 취소 작성완료 버튼 -->
+					class="bin ban-primary">목록</button>
+				<!— 취소 작성완료 버튼 —>
 			</div>
 		</form:form>
 
