@@ -84,7 +84,7 @@ public class MemberController {
 		System.out.println("로그인 폼 실행");
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("memberModel", new MemberModel());
-		mav.setViewName("loginForm");
+		mav.setViewName("main");
 		return mav;
 	}
 

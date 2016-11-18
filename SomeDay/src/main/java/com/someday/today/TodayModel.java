@@ -13,10 +13,17 @@ public class TodayModel {
 	private int male_like;
 	private int female_score;
 	private int male_score;
-	private int female_msg;
-	private int male_msg;
+	private String female_msg;
+	private String male_msg;
 	private TIMESTAMP times;
+	private int Score;
 	
+	public int getScore() {
+		return Score;
+	}
+	public void setScore(int score) {
+		Score = score;
+	}
 	public int getIdx() {
 		return idx;
 	}
@@ -59,22 +66,22 @@ public class TodayModel {
 	public void setMale_score(int male_score) {
 		this.male_score = male_score;
 	}
-	public int getFemale_msg() {
-		return female_msg;
-	}
-	public void setFemale_msg(int female_msg) {
-		this.female_msg = female_msg;
-	}
-	public int getMale_msg() {
-		return male_msg;
-	}
-	public void setMale_msg(int male_msg) {
-		this.male_msg = male_msg;
-	}
 	public TIMESTAMP getTimes() {
 		return times;
 	}
 	public void setTimes(TIMESTAMP times) {
 		this.times = times;
+	}
+	public String getFemale_msg() {
+		return female_msg;
+	}
+	public void setFemale_msg(String female_msg) {
+		this.female_msg = female_msg;
+	}
+	public String getMale_msg() {
+		return male_msg;
+	}
+	public void setMale_msg(String male_msg) {
+		this.male_msg = male_msg;
 	}
 }

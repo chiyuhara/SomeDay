@@ -17,7 +17,7 @@
          
          <div style="float: right;">
             <a href="${contextpath}/someday/member/memberForm"><b>회원가입</b></a>
-            <a href="http://www.lovehanda.com/bbs/password_lost.php" id="ol_password_lost">ID/PW분실</a>
+            <a href="${contextpath}/someday/member/findForm"><b>ID/PW분실</b></a>
          </div>
          </div>
          </c:if>

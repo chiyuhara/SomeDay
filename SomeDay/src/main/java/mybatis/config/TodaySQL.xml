@@ -18,21 +18,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<!-- <result property="times" column="times" /> -->
 	</resultMap>
 	
-	<!-- 미팅 현황 -->
-	<resultMap type="meetModel" id="meetingRes">
-		<result property="idx" column="idx" />
-		<result property="female_idx" column="female_idx" />
-		<result property="male_idx" column="male_idx" />
-		<result property="female_like" column="female_like" />
-		<result property="male_like" column="male_like" />
-		<result property="times" column="times" />  <!-- 등록날짜 -->
-		<!-- 멤버 조인 -->
-		<result property="f_name" column="f_name" />
-		<result property="f_pic" column="f_pic" />
-		<result property="m_name" column="m_name" />
-		<result property="m_pic" column="m_pic" />
-	</resultMap>
-	
 	<!-- 공통으로 사용할 select 절 정의 -->
 	<sql id="select-all-meeting">
 		SELECT * FROM MEETING
@@ -41,13 +26,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 여자입장에서 참여한 미팅 찾기 -->
 	<select id="female_today" resultMap="todayModelRes" parameterType="Integer">
 		<include refid="select-all-meeting" />
-		MEETING WHERE FEMALE_IDX = #{idx} AND TRUNC(TIMES) = TRUNC(SYSDATE)
+		WHERE FEMALE_IDX = #{idx} AND TRUNC(TIMES) = TRUNC(SYSDATE)
 	</select>
 	
 	<!-- 남자입장에서 참여한 미팅 찾기 -->
 	<select id="male_today" resultMap="todayModelRes" parameterType="Integer">
 		<include refid="select-all-meeting" />
-		MEETING WHERE MALE_IDX = #{idx} AND TRUNC(TIMES) = TRUNC(SYSDATE)
+		WHERE MALE_IDX = #{idx} AND TRUNC(TIMES) = TRUNC(SYSDATE)
 	</select>
 	
 	
@@ -96,15 +81,41 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			WHERE
 				IDX = #{idx}	
 	</update>
+
+	<!-- 여자가 평점보냄 -->
+	<update id="female_score" parameterType="todayModel">
+			UPDATE MEETING
+			SET
+				MALE_SCORE = #{score}
+			WHERE
+				IDX = #{idx}	
+	</update>
 	
-	<!-- 남자 여자 조인문 -->
-	<select id="select-memberjoin" resultMap="meetingRes">
-		SELECT MEETING.*,
-		F_MEMBER.IDX AS F_IDX, F_MEMBER.NAME AS F_NAME, F_MEMBER.FILE_SAVNAME AS F_PIC,
-		M_MEMBER.IDX AS M_IDX, M_MEMBER.NAME AS M_NAME, M_MEMBER.FILE_SAVNAME AS M_PIC
-		FROM MEETING
-		LEFT JOIN MEMBER F_MEMBER ON MEETING.FEMALE_IDX = F_MEMBER.IDX
-		LEFT JOIN MEMBER M_MEMBER ON MEETING.MALE_IDX = M_MEMBER.IDX
-		WHERE MEETING.TIMES = TRUNC(SYSDATE)
-	</select>
+	<!-- 남자가 평점보냄 -->
+	<update id="male_score" parameterType="todayModel">
+			UPDATE MEETING
+			SET
+				FEMALE_SCORE = #{score}
+			WHERE
+				IDX = #{idx}	
+	</update>
+	
+	<!-- 여자가 메시지를 보냄 -->
+	<update id="female_message" parameterType="todayModel">
+			UPDATE MEETING
+			SET
+				MALE_MSG = #{male_msg}
+			WHERE
+				IDX = #{idx}	
+	</update>
+	
+	<!-- 여자가 메시지를 보냄 -->
+	<update id="male_message" parameterType="todayModel">
+			UPDATE MEETING
+			SET
+				FEMALE_MSG = #{female_msg}
+			WHERE
+				IDX = #{idx}	
+	</update>
+
 </mapper>

@@ -7,53 +7,46 @@ PUBLIC " - //mybatis.org//DTD Config 3.0//EN"
 
 	<!-- mybatis 기본 세팅 -->
 	<settings>
-		<setting name="cacheEnabled"              value="true"/>  
-        <setting name="lazyLoadingEnabled"        value="false"/>  
-        <setting name="multipleResultSetsEnabled" value="true"/>  
-        <setting name="useColumnLabel"            value="true"/>  
-        <setting name="useGeneratedKeys"          value="false"/>  
-        <setting name="defaultExecutorType"       value="SIMPLE"/>  
-        <setting name="defaultStatementTimeout"   value="25000"/> 
-        <setting name="jdbcTypeForNull" value="NULL"/> 
+		<setting name="cacheEnabled" value="true" />
+		<setting name="lazyLoadingEnabled" value="false" />
+		<setting name="multipleResultSetsEnabled" value="true" />
+		<setting name="useColumnLabel" value="true" />
+		<setting name="useGeneratedKeys" value="false" />
+		<setting name="defaultExecutorType" value="SIMPLE" />
+		<setting name="defaultStatementTimeout" value="25000" />
+		<setting name="jdbcTypeForNull" value="NULL" />
 	</settings>
 
-	
-	
+
+
 	<!-- ModelMapping -->
 	<typeAliases>
 		<!-- member -->
 		<typeAlias type="com.someday.member.MemberModel" alias="memberModel" />
-	 	<typeAlias type="com.someday.member.ZipcodeModel" alias="zipcodeModel" />
-		
-		<!-- member -->
-		<typeAlias type="com.someday.member.MemberModel" alias="memberModel" />
 		<typeAlias type="com.someday.member.ZipcodeModel" alias="zipcodeModel" />
-		
-		
-		<!--  Notice board  -->
+
+		<!-- Notice board -->
 		<typeAlias type="com.someday.notice.NoticeModel" alias="noticeModel" />
-		
-		<!--  Notice comment  -->
+
+		<!-- Notice comment -->
 		<typeAlias type="com.someday.notice.NoticecommModel" alias="noticecommModel" />
-		
-		<!--  Today  -->
+
+		<!-- Today -->
 		<typeAlias type="com.someday.today.TodayModel" alias="todayModel" />
-		
+		<typeAlias type="com.someday.today.TodayMemberModel" alias="todaymemberModel" />
+
 		<!-- Matching -->
-		<typeAlias type="com.someday.matching.MatchingModel" alias="matchingModel"/>
-		
-		<!-- meeting -->
-		<typeAlias type="com.someday.meeting.MeetModel" alias="meetModel"/>
-		
+		<typeAlias type="com.someday.matching.MatchingModel" alias="matchingModel" />
+
 	</typeAliases>
-	
+
 	<!-- SQL 정의한 xml문서 Mapping -->
 	<mappers>
-		<!--  Notice board  -->
+		<!-- Notice board -->
 		<mapper resource="mybatis/config/NoticeSQL.xml" />
-		<!--  Member --> 
+		<!-- Member -->
 		<mapper resource="mybatis/config/MemberSQL.xml" />
-		<!--  Today  -->
+		<!-- Today -->
 		<mapper resource="mybatis/config/TodaySQL.xml" />
 
 	</mappers>
