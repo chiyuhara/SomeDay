@@ -13,8 +13,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.someday.member.MemberModel;
-import com.someday.notice.NoticeModel;
+//import com.someday.member.MemberModel;
+//import com.someday.notice.NoticeModel;
+//import com.someday.qna.QnAModel;
 
 @Component("fileUtils")   //Component 어노테이션을 이용하여 이 객체의 관리를 스프링이 담당하도록한다
 public class FileUtils {
@@ -39,7 +40,7 @@ public class FileUtils {
         if(file.exists() == false){
            file.mkdirs();
         }
-        
+         
         while(iterator.hasNext()){
            multipartFile = multipartHttpServletRequest.getFile(iterator.next());
            if(multipartFile.isEmpty() == false){
@@ -62,4 +63,5 @@ public class FileUtils {
         }
       return list;
    }
+
 }
