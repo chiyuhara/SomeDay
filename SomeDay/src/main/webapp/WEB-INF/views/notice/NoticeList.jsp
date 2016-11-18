@@ -20,6 +20,7 @@
 			<col width="*" />
 			<col width="15%" />
 			<col width="20%" />
+			<col width="20%" />
 		</colgroup>
 		<thead>
 			<tr>
@@ -27,6 +28,7 @@
 				<th scope="col">글타입</th>
 				<th scope="col">제목</th>
 				<th scope="col">글쓴이</th>
+				<th scope="col">작성일 </th>
 				<th scope="col">조회수</th>
 			</tr>
 		</thead>
@@ -55,6 +57,7 @@
 					
 					</td>
 					<td align="center">${list.writer}</td>
+					<td align="center">${list.times }</td>
 					<td align="center">${list.readhit}</td>
 				</tr>
 			</c:forEach>

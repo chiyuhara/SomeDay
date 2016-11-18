@@ -27,7 +27,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 글목록 -->
 	<select id="qnaList" resultMap="qnaModelRes">
 		SELECT QNA.IDX,
-		QNA.WRITER, QNA.SUBJECT, QNA.CONTENT, QNA.TIMES,
+		QNA.WRITER, QNA.SUBJECT, QNA.CONTENT, QNA.TIMES, QNA.PASS,
 		(SELECT COUNT(*)FROM QNA_COMMENT WHERE QNA_COMMENT.ORIGINIDX =
 		QNA.IDX) AS CNT
 		FROM QNA QNA
@@ -92,9 +92,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 글쓰기 -->
 	<insert id="qnaWrite" parameterType="qnaModel" >
 		INSERT INTO
-		QNA(IDX, SUBJECT, CONTENT, TIMES)
+		QNA(IDX, PASS, SUBJECT, CONTENT, TIMES)
 		VALUES
-		(QNA_IDX_SEQ.NEXTVAL, #{subject}, #{content}, #{times})
+		(QNA_IDX_SEQ.NEXTVAL, #{pass}, #{subject}, #{content}, #{times})
 	</insert>
 	
 	<!-- 글수정 -->
@@ -102,7 +102,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		UPDATE QNA
 		SET
 		SUBJECT = #{subject},
-		CONTENT = #{content}
+		CONTENT = #{content},
+		PASS = #{pass}
 		WHERE
 		IDX = #{idx}
 	</update>
@@ -112,6 +113,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		DELETE FROM QNA
 		WHERE IDX=#{idx}
 	</delete>
+	
+	<!-- 아이디로 idx 찾기 -->
+   <select id="qnaselectIdx" parameterType="qnaModel" resultMap="qnaModelRes">
+    SELECT QNA_IDX_SEQ.CURRVAL as idx FROM dual
+   </select>
+	
+	<!-- 사진업로드 -->
+   <update id="updateFile" parameterType="qnaModel">
+         UPDATE QNA SET 
+         FILE_ORGNAME = #{File_orgname},
+         FILE_SAVNAME = #{File_savname}
+         WHERE IDX = #{idx}
+   </update>
 	
 
 </mapper>

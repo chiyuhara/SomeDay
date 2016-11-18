@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -8,13 +9,26 @@
 <html>
 <head>
 <script type="text/javascript">
-	function noticeList() {
+	function qnaList() {
 		if (confirm("목록으로 가시겠습니까?") == true) {
 			location.href = 'QnAList';
-		}  {
+		}
+		{
 			return;
 		}
 	}
+	
+	function checkboxTest(chb){ 
+		if(chb.checked == true){ 
+		document.getElementById("txt").style.display = "block"; 
+		} 
+		else{ 
+		document.getElementById("txt").style.display = "none"; 
+		} 
+		} 
+	
+	</script>
+	
 </script>
 
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
@@ -52,7 +66,8 @@
 <body>
 
 	<div id="wrapper">
-		<form:form commandName="qnaModel" action="QnAWrite" method="post" enctype="multipart/form-data">
+		<form:form commandName="qnaModel" action="QnAWrite" method="post"
+			enctype="multipart/form-data">
 			<div id="page-wrapper">
 				<div class="row">
 					<div class="col-lg-12">
@@ -62,26 +77,34 @@
 
 							<tr class="danger">
 								<th width="100">글제목</th>
-								<td colspan=3><input type="textarea" name="subject" value="${qnaModel.subject}" /> 
-								<form:errors path="subject" /></td>
+								<td colspan=3><input type="textarea" name="subject"
+									value="${qnaModel.subject}" /> <form:errors path="subject" /></td>
 							</tr>
-							
+
+							<tr class="danger">
+								<td>
+									<form name=myForm><input type="checkbox" onclick="checkboxTest(this)"> &nbsp; 비밀글</form>
+								</td>
+								<td colspan=3><input type="text" id="txt" style="display:none" name="pass">${qnaModel.pass}</td>
+							</tr>
+
 
 							<!-- 글내용 -->
 							<tr>
 								<th>글내용</th>
 								<td colspan=3 height=300 style="padding: 0px !important;">
-									<textarea name="content" style="padding: 3px; margin: 1px; width: 100%; height: 98%;"></textarea>
+									<textarea name="content"
+										style="padding: 3px; margin: 1px; width: 100%; height: 98%;"></textarea>
 									<font color="red"><form:errors path="content" /></font>
 								</td>
 							</tr>
 
 							<!-- 파일 -->
-							<%-- <tr>
+							<tr>
 								<th>첨부파일</th>
 								<td colspan=3><input type="file" name="file"
 									value="${qnaModel.file_savname}" /></td>
-							</tr> --%>
+							</tr>
 						</table>
 					</div>
 				</div>
@@ -90,8 +113,7 @@
 			<div>
 				<input name="submit" type="submit" value="작성완료"
 					class="btn btn-default btn-xs">
-				<button type="button" onclick="qnaList();"
-					class="btn btn-primary">목록</button>
+				<button type="button" onclick="qnaList();" class="btn btn-primary">목록</button>
 				<!-- 취소 작성완료 버튼 -->
 			</div>
 		</form:form>

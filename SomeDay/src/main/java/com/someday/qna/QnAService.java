@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
 
+import com.someday.util.FileUtils;
 import com.someday.qna.QnAModel;
 
 @Service
@@ -16,6 +17,9 @@ public class QnAService implements QnADao {
 
 	@Resource(name = "sqlSessionTemplate")
 	private SqlSessionTemplate sqlSessionTemplate;
+	
+	@Resource(name = "fileUtils")
+	private FileUtils fileUtils;
 
 	// qna ±Û ¸ñ·Ï
 	@Override
@@ -81,6 +85,23 @@ public class QnAService implements QnADao {
 	@Override
 	public int qnaDelete(int idx) {
 		return sqlSessionTemplate.delete("qna.qnaDelete", idx);
+	}
+
+	@Override
+	public Object Idx(QnAModel qnaModel) {
+		return sqlSessionTemplate.selectOne("qna.qnaselectIdx", qnaModel);
+	}
+
+	@Override
+	public Object UpdateFile(int index, HttpServletRequest request) throws Exception {
+
+		List<Map<String, Object>> list = fileUtils.parseInsertFileInfo(index, request);
+		System.out.println(list);
+
+		for (int i = 0, size = list.size(); i < size; i++) {
+			return sqlSessionTemplate.update("qna.updateFile", list.get(i));
+		}
+		return list;
 	}
 
 }

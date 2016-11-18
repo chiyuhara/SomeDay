@@ -103,7 +103,7 @@ body {
 			<td align="left" colspan="3" height="100" style="padding: 10px 5px;"
 				bgcolor="#FFF2E6">${qnaModel.content}</td>
 		</tr>
-		<%-- <tr>
+		<tr>
 			<td align="center" bgcolor="#FFC8C8">첨부파일 </td>
             <td colspan="3" style="padding: 2px 5px;" bgcolor="#FFF2E6" bgcolor="#FFF2E6">
             	
@@ -116,7 +116,7 @@ body {
                 첨부파일이 없습니다.
                 </c:if>
             </td>
-		</tr> --%>
+		</tr>
 	</table>
 
 	<!-- 댓글 -->

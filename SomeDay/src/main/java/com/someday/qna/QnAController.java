@@ -20,11 +20,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.someday.notice.NoticeModel;
-import com.someday.notice.NoticecommModel;
 import com.someday.qna.QnAModel;
 import com.someday.util.Paging;
 import com.someday.validator.QnAValidator;
+
 @Controller
 public class QnAController {
 	
@@ -193,14 +192,19 @@ public class QnAController {
 		
 		// qna 글 쓰기
 		@RequestMapping(value = "/qna/QnAWrite", method = RequestMethod.POST)
-		public String qnaWrite(QnAModel qnaModel,  BindingResult result) throws Exception, Exception{
+		public String qnaWrite(QnAModel qnaModel,  BindingResult result,
+				MultipartHttpServletRequest multipartHttpServletRequest) throws Exception, Exception{
 			System.out.println("글쓰기ex 실행");
 			System.out.println(qnaModel.getSubject());
 			System.out.println(qnaModel.getContent());
+			System.out.println(qnaModel.getPass());
 			
 			ModelAndView mav = new ModelAndView();
 
 			new QnAValidator().validate(qnaModel, result);
+			
+			String content = qnaModel.getContent().replaceAll("\r\n", "<br />");
+			qnaModel.setContent(content);
 
 			//날짜 및 시간 
 			Date currentTime = new Date ( );
@@ -209,6 +213,16 @@ public class QnAController {
 			qnaModel.setTimes(currentTime);
 			
 			qnAService.qnaWrite(qnaModel);
+			
+			//idx 가져오기 
+			QnAModel idx = (QnAModel)qnAService.Idx(qnaModel);
+			System.out.println("인덱" + idx.getIdx());
+			
+			int index =(idx.getIdx());
+			System.out.println("index 결과" + index);
+			
+			//사진 업로드
+			qnAService.UpdateFile(index, multipartHttpServletRequest);
 	    	
 			mav.setViewName("redirect:QnAList");
 			

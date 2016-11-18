@@ -42,7 +42,7 @@ PUBLIC " - //mybatis.org//DTD Config 3.0//EN"
 		<!-- Matching -->
 		<typeAlias type="com.someday.matching.MatchingModel" alias="matchingModel"/>
 		
-		<!-- QnA -->
+		<!-- QnA board -->
 		<typeAlias type="com.someday.qna.QnAModel" alias="qnaModel"/>
 		
 		<!--  QnA comment  -->

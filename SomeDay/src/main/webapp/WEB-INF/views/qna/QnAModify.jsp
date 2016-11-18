@@ -69,6 +69,13 @@
 									<td colspan=5><form:input path="subject" theme="simple"
 											value="${qnaModel.subject}" /></td>
 								</tr>
+								
+								<tr>
+									<td>
+										<form name=myForm><input type="checkbox" onclick="checkboxTest(this)"> &nbsp; 비밀글</form>
+									</td>
+									<td colspan=3><input type="text" id="txt" style="display:none">${qnaModel.pass}</td>
+								</tr>
 							
 								<!-- 글 내용 -->
 								<tr>
