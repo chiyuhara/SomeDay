@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+encoding//src/main/java/com/someday/qna/QnAModel.java=UTF-8
 encoding//src/main/webapp/WEB-INF/views/notice/NoticeList.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/tiles/body.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/tiles/header.jsp=UTF-8

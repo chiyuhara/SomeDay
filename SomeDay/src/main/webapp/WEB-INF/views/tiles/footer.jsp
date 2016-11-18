@@ -4,6 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <body>
  <footer>
+ <nobr>
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -68,7 +69,19 @@
 		            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(주말·공휴일: 문자·카톡 문의가능)&nbsp;&nbsp;&nbsp;&nbsp;
 		            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                   
+		            </ul>
+		            </ul>
+		            </ul>
+		            </ul>
+		            </ul>
+		            </table>
+		            </div>
+		            </div>
+		            </div>
+		            </nobr>
+		            </footer>
+		            </body>
+		                        
                     
                     
                     
