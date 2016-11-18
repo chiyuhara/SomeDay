@@ -111,23 +111,7 @@
 		<put-attribute name="body" value="/WEB-INF/views/member/mypageModify.jsp"/>
 	</definition>
 	
-	<!-- qna -->
 	
-	<definition name="qnaList" extends ="main">
-		<put-attribute name="body" value="/WEB-INF/views/qna/QnAList.jsp"/>
-	</definition>
-	
-	<definition name="qnaView" extends ="main">
-		<put-attribute name="body" value="/WEB-INF/views/qna/QnAView.jsp"/>
-	</definition>
-	
-	<definition name="qnaForm" extends="main">
-		<put-attribute name="body" value="/WEB-INF/views/qna/QnAForm.jsp" />
-	</definition>
-	
-	<definition name="qnaModify" extends="main">
-		<put-attribute name="body" value="/WEB-INF/views/qna/QnAModify.jsp" />
-	</definition>
 
 </tiles-definitions>
 
