@@ -72,7 +72,7 @@ public class MemberController {
 
 				
 				mav.addObject("member", member);
-				mav.setViewName("main");
+				mav.setViewName("redirect:/");
 				return mav;
 	      
 	        }
@@ -84,7 +84,7 @@ public class MemberController {
 		System.out.println("로그인 폼 실행");
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("memberModel", new MemberModel());
-		mav.setViewName("main");
+		mav.setViewName("redirect:/");
 		return mav;
 	}
 
@@ -107,7 +107,7 @@ public class MemberController {
       
          session.setAttribute("TOKEN_SAVE_CHECK", "TRUE");
                  
-         mav.setViewName("main");
+         mav.setViewName("redirect:/");
          return mav;
       }
       
@@ -128,7 +128,7 @@ public class MemberController {
       if(session!=null){
          session.invalidate();
       }
-      mav.setViewName("main");
+      mav.setViewName("redirect:/");
       
       return mav;
    }
