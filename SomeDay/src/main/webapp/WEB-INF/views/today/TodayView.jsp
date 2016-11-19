@@ -632,7 +632,11 @@ transform
 
 
 
+
+
 :rotate(12deg)
+
+
 
 
 
@@ -644,7 +648,11 @@ transform
 
 
 
+
+
 :rotate(24deg)
+
+
 
 
 
@@ -656,7 +664,11 @@ transform
 
 
 
+
+
 :rotate(-24deg)
+
+
 
 
 
@@ -668,7 +680,11 @@ transform
 
 
 
+
+
 :rotate(-24deg)
+
+
 
 
 
@@ -680,7 +696,11 @@ transform
 
 
 
+
+
 :rotate(24deg)
+
+
 
 
 
@@ -692,7 +712,11 @@ transform
 
 
 
+
+
 :rotate(24deg)
+
+
 
 
 
@@ -704,7 +728,11 @@ transform
 
 
 
+
+
 :rotate(-24deg)
+
+
 
 
 
@@ -716,7 +744,11 @@ transform
 
 
 
+
+
 :rotate(-24deg)
+
+
 
 
 
@@ -728,7 +760,11 @@ transform
 
 
 
+
+
 :rotate(24deg)
+
+
 
 
 
@@ -740,7 +776,11 @@ transform
 
 
 
+
+
 :rotate(24deg)
+
+
 
 
 
@@ -752,7 +792,11 @@ transform
 
 
 
+
+
 :rotate(-24deg)
+
+
 
 
 
@@ -764,7 +808,11 @@ transform
 
 
 
+
+
 :rotate(-24deg)
+
+
 
 
 
@@ -776,7 +824,11 @@ transform
 
 
 
+
+
 :rotate(24deg)
+
+
 
 
 
@@ -788,7 +840,11 @@ transform
 
 
 
+
+
 :rotate(0deg)
+
+
 
 
 
@@ -825,7 +881,11 @@ transform
 
 
 
+
+
 :rotate(15deg)
+
+
 
 
 
@@ -837,7 +897,11 @@ transform
 
 
 
+
+
 :rotate(-18deg)
+
+
 
 
 
@@ -849,7 +913,11 @@ transform
 
 
 
+
+
 :rotate(18deg)
+
+
 
 
 
@@ -861,7 +929,11 @@ transform
 
 
 
+
+
 :rotate(-22deg)
+
+
 
 
 
@@ -873,7 +945,11 @@ transform
 
 
 
+
+
 :rotate(22deg)
+
+
 
 
 
@@ -885,7 +961,11 @@ transform
 
 
 
+
+
 :rotate(-18deg)
+
+
 
 
 
@@ -897,7 +977,11 @@ transform
 
 
 
+
+
 :rotate(18deg)
+
+
 
 
 
@@ -909,7 +993,11 @@ transform
 
 
 
+
+
 :rotate(-12deg)
+
+
 
 
 
@@ -921,7 +1009,11 @@ transform
 
 
 
+
+
 :rotate(12deg)
+
+
 
 
 
@@ -933,7 +1025,11 @@ transform
 
 
 
+
+
 :rotate(0deg)
+
+
 
 
 
@@ -970,7 +1066,11 @@ transform
 
 
 
+
+
 :translate
+
+
 
 
 
@@ -979,6 +1079,8 @@ transform
 ,
 3
 px
+
+
 
 
 
@@ -991,7 +1093,11 @@ transform
 
 
 
+
+
 :translate
+
+
 
 
 
@@ -1000,6 +1106,8 @@ transform
 ,
 -3
 px
+
+
 
 
 
@@ -1012,7 +1120,11 @@ transform
 
 
 
+
+
 :translate
+
+
 
 
 
@@ -1021,6 +1133,8 @@ transform
 ,
 3
 px
+
+
 
 
 
@@ -1033,7 +1147,11 @@ transform
 
 
 
+
+
 :translate
+
+
 
 
 
@@ -1046,6 +1164,8 @@ px
 
 
 
+
+
 )
 }
 20%{
@@ -1054,7 +1174,11 @@ transform
 
 
 
+
+
 :translate
+
+
 
 
 
@@ -1067,6 +1191,8 @@ px
 
 
 
+
+
 )
 }
 22%,100%{
@@ -1075,7 +1201,11 @@ transform
 
 
 
+
+
 :translate
+
+
 
 
 
@@ -1112,7 +1242,11 @@ transform
 
 
 
+
+
 :translate
+
+
 
 
 
@@ -1128,7 +1262,11 @@ transform
 
 
 
+
+
 :translate
+
+
 
 
 
@@ -1143,7 +1281,11 @@ transform
 
 
 
+
+
 :translate
+
+
 
 
 
@@ -1159,7 +1301,11 @@ transform
 
 
 
+
+
 :translate
+
+
 
 
 
@@ -1174,7 +1320,11 @@ transform
 
 
 
+
+
 :translate
+
+
 
 
 
@@ -1190,7 +1340,11 @@ transform
 
 
 
+
+
 :translate
+
+
 
 
 
@@ -1227,7 +1381,11 @@ opacity
 
 
 
+
+
 :
+
+
 
 
 
@@ -1262,7 +1420,11 @@ transform
 
 
 
+
+
 :translateY(-15px)
+
+
 
 
 
@@ -1274,7 +1436,11 @@ transform
 
 
 
+
+
 :translateY(-15px)
+
+
 
 
 
@@ -1308,7 +1474,11 @@ transform
 
 
 
+
+
 :rotate(359deg)
+
+
 
 
 
@@ -1342,10 +1512,14 @@ transform
 
 
 
+
+
 :
 
 
+
  
+
 
 
 translateY
@@ -1353,8 +1527,12 @@ translateY
 
 
 
+
+
 (-6
 px
+
+
 
 
 )
@@ -1365,13 +1543,19 @@ transform
 
 
 
+
+
 :
+
 
 
  
 
 
+
 translateY
+
+
 
 
 
@@ -1407,10 +1591,14 @@ transform
 
 
 
+
+
 :
 
 
+
  
+
 
 
 scale
@@ -1418,8 +1606,12 @@ scale
 
 
 
+
+
 (0
 .8
+
+
 
 
 
@@ -1433,10 +1625,14 @@ transform
 
 
 
+
+
 :
 
 
+
  
+
 
 
 scale
@@ -1444,8 +1640,12 @@ scale
 
 
 
+
+
 (1
 .1
+
+
 
 
 
@@ -1497,7 +1697,11 @@ transform
 
 
 
+
+
 :scale
+
+
 
 
 
@@ -1508,14 +1712,20 @@ transform
 
 
 
+
+
 )
 rotate
 
 
 
 
+
+
 (-8
 deg
+
+
 
 
 );
@@ -1527,7 +1737,11 @@ transform
 
 
 
+
+
 :scale
+
+
 
 
 
@@ -1538,14 +1752,20 @@ transform
 
 
 
+
+
 )
 rotate
 
 
 
 
+
+
 (8
 deg
+
+
 
 
 )
@@ -1557,7 +1777,11 @@ transform
 
 
 
+
+
 :scale
+
+
 
 
 
@@ -1568,14 +1792,20 @@ transform
 
 
 
+
+
 )
 rotate
 
 
 
 
+
+
 (-8
 deg
+
+
 
 
 )
@@ -1587,13 +1817,19 @@ transform
 
 
 
+
+
 :scale(1)
+
 
 
  
 
 
+
 rotate
+
+
 
 
 
@@ -1630,7 +1866,11 @@ transform
 
 
 
+
+
 :translateX
+
+
 
 
 
@@ -1641,7 +1881,11 @@ opacity
 
 
 
+
+
 :
+
+
 
 
 
@@ -1655,7 +1899,11 @@ transform
 
 
 
+
+
 :translateX
+
+
 
 
 
@@ -1666,7 +1914,11 @@ opacity
 
 
 
+
+
 :
+
+
 
 
 
@@ -1703,7 +1955,11 @@ transform
 
 
 
+
+
 :translateX
+
+
 
 
 
@@ -1714,7 +1970,11 @@ opacity
 
 
 
+
+
 :
+
+
 
 
 
@@ -1728,7 +1988,11 @@ transform
 
 
 
+
+
 :translateX
+
+
 
 
 
@@ -1739,7 +2003,11 @@ opacity
 
 
 
+
+
 :
+
+
 
 
 
@@ -1775,7 +2043,11 @@ transform
 
 
 
+
+
 :scale
+
+
 
 
 
@@ -1786,13 +2058,19 @@ transform
 
 
 
+
+
 );
 opacity
 
 
 
 
+
+
 :
+
+
 
 
 
@@ -1805,7 +2083,11 @@ opacity
 
 
 
+
+
 :
+
+
 
 
 
@@ -2164,6 +2446,12 @@ opacity
 											<script>
 												layer_open('layer');
 											</script>
+
+											<div class="container">
+												<div class="row">
+													<a href="#" class="btn btn-primary btn-default">Chat</a>
+												</div>
+											</div>
 										</c:when>
 										<c:when
 											test="${meeting.female_like == 1 && meeting.male_like == 0}">
@@ -2176,21 +2464,29 @@ opacity
 									</c:choose>
 
 
+
+
 									<c:choose>
 										<c:when test="${targetfemale != null}">
 											<c:choose>
-												<c:when test="${targetfemale.female_msg != null && targetmale.male_msg != null}">
-													<button type="button" onclick="button_message_view('message2');"class="btn btn-success btn-circle btn-xl">
+												<c:when
+													test="${targetfemale.female_msg != null && targetmale.male_msg != null}">
+													<button type="button"
+														onclick="button_message_view('message2');"
+														class="btn btn-success btn-circle btn-xl">
 														<i class="fa fa-fw fa-envelope faa-horizontal animated"></i>
 													</button>
 												</c:when>
-												
-												<c:when test="${targetfemale.female_msg != null && targetmale.male_msg == null}">
-													<button type="button" onclick="button_message_view('message2');"class="btn btn-success btn-circle btn-xl">
+
+												<c:when
+													test="${targetfemale.male_msg != null && targetfemale.female_msg != null}">
+													<button type="button"
+														onclick="button_message_view('message2');"
+														class="btn btn-success btn-circle btn-xl">
 														<i class="fa fa-fw fa-envelope faa-horizontal animated"></i>
 													</button>
 												</c:when>
-												
+
 											</c:choose>
 										</c:when>
 										<c:otherwise>
@@ -2201,18 +2497,24 @@ opacity
 									<c:choose>
 										<c:when test="${targetmale != null}">
 											<c:choose>
-												<c:when test="${targetmale.male_msg != null && targetmale.female_msg != null}">
-													<button type="button" onclick="button_message_view('message2');"class="btn btn-success btn-circle btn-xl">
+												<c:when
+													test="${targetmale.male_msg != null && targetmale.female_msg != null}">
+													<button type="button"
+														onclick="button_message_view('message2');"
+														class="btn btn-success btn-circle btn-xl">
 														<i class="fa fa-fw fa-envelope faa-horizontal animated"></i>
 													</button>
 												</c:when>
-												
-												<c:when test="${targetmale.male_msg == null && targetmale.female_msg != null}">
-													<button type="button" onclick="button_message_view('message2');"class="btn btn-success btn-circle btn-xl">
+
+												<c:when
+													test="${targetmale.male_msg != null && targetmale.female_msg != null}">
+													<button type="button"
+														onclick="button_message_view('message2');"
+														class="btn btn-success btn-circle btn-xl">
 														<i class="fa fa-fw fa-envelope faa-horizontal animated"></i>
 													</button>
 												</c:when>
-												
+
 											</c:choose>
 										</c:when>
 										<c:otherwise>
