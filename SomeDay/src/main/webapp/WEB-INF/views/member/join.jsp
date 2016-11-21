@@ -68,6 +68,7 @@
 
 	      var f = document.join; //문서.Form name="";
 	      var idPs = /^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9])(?=.*[0-9]).{6,16}$/; //아이디 비밀번호 체크표현식
+	      var checkid = document.join.checkid.value;
 
 	      if (f.id.value == "") {
 	         alert("아이디를 입력해주세요.");
@@ -200,10 +201,10 @@
 	    	  f.intro.focus();
 	    	  return false;
 	      }
-	      if(f.fileup.value.length == 3){
-	    	  alert("더이상 생성되지 않습니다");
-	    	  return false;
-	      }
+			if (checkid == 0) {
+				alert("ID 중복체크를 하세요!");
+				return false;
+			}
 
 	   }
 </script>
@@ -316,7 +317,7 @@ $("#selectEmail option:selected").each(function () {
                 <td>
                     <input id="zipcode" name="zipcode" fw-filter="isLengthRange[1][14]" fw-label="우편번호" fw-msg="" class="inputTypeText" readonly="readonly" maxlength="14" value="" type="text"  /> <a href="#none" title="우편번호(새창으로 열기)" onclick="openZipcode()" id="postBtn"><img src="http://img.echosting.cafe24.com/design/skin/default/member/btn_zip.gif" alt="우편번호"/></a><br/>
                     <input id="area" name="area" fw-filter="isFill" fw-label="지역" fw-msg="" class="inputTypeText" readonly="readonly" value="" type="text"  /><br/>
-                    <input id="addr1" name="addr1" fw-filter="isFill" fw-label="주소" fw-msg="" class="inputTypeText" readonly="readonly" value="" type="text"  /><br/>
+                    <input id="addr1" name="addr1" fw-filter="isFill" fw-label="주소" fw-msg="" class="inputTypeText" readonly="readonly" value="" type="text"  /><br/>	
                     <input id="addr2" name="addr2" fw-filter="" fw-label="상세주소" fw-msg="" class="inputTypeText" value="" type="text"  />                </td>
             </tr>
 			<tr>

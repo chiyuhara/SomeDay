@@ -43,6 +43,11 @@ PUBLIC " - //mybatis.org//DTD Config 3.0//EN"
 		<!--  QnA comment  -->
 		<typeAlias type="com.someday.qna.QnAcommModel" alias="qnacommModel" />
 		
+        <!-- meeting -->
+        <typeAlias type="com.someday.meeting.MeetModel" alias="meetModel"/>
+        
+
+		
 	</typeAliases>
 
 	<!-- SQL 정의한 xml문서 Mapping -->

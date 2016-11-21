@@ -277,6 +277,15 @@ public class QnAController {
 
 			return mav;
 		}
+		
+		//찾아오시는길
+		@RequestMapping("/load")
+		public ModelAndView load(){
+			
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("qna/load");
+			return mav;
+		}
 
 
 }

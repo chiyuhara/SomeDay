@@ -144,8 +144,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="updateFile" parameterType="memberModel">
 		UPDATE MEMBER SET
 		FILE_ORGNAME = #{File_orgname},
-		FILE_SAVNAME =
-		#{File_savname}
+		FILE_SAVNAME = #{File_savname}
 		<include refid="where-idx" />
 	</update>
 
