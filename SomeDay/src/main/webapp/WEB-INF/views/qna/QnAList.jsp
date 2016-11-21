@@ -7,31 +7,37 @@
 <script type="text/javascript">
 	var onWrite = function() {
 		location.href = 'QnAWrite';
-};
+	};
 
-function message() {
-	var pswd = prompt("비밀번호입력 ");
-	var pswdcheck = $("#pass").text();
-	
-	/* if (pswd == null){
-		alert("비밀번호를 입력해주세요.  ");
-		return message();
-	} */
-	
-	if (pswd == pswdcheck) {
-		alert("비밀번호가 일치합니다.");
-		location.href='QnAView';
-		
-	} else {
-		/* alert("비밀번호가 입력되지 않습니다. "); */
-		$("#hijack").attr('href', 'http://localhost:8080/someday/qna/QnAList');
-		/* document.location.href='someday/qna/QnAList'; */
-		/* window.location = "http://localhost:8080/someday/qna/QnAList"; */
-		/* return window.location = "http://localhost:8080/someday/qna/QnAList"; */
-		/* document.write(pswdcheck); */
+	function message() {
+		var pswd = prompt("비밀번호입력 ");
+		var pswdcheck = $("#pass").text();
+
+		if (pswd == null){
+			/* alert("비밀번호를 입력해주세요.  "); */
+			$("#hijack").attr('href',
+			'http://localhost:8080/someday/qna/QnAList');
 		}
-};
-	
+		else if (pswd == "") {
+			alert("비밀번호를 입력해주세요.");
+			$("#hijack").attr('href',
+			'http://localhost:8080/someday/qna/QnAList');
+		}
+
+		else if (pswd == pswdcheck) {
+			alert("비밀번호가 일치합니다.");
+			location.href = 'QnAView';
+
+		} else {
+			alert("비밀번호가 일치하지 않습니다. ");
+			$("#hijack").attr('href',
+					'http://localhost:8080/someday/qna/QnAList');
+			/* document.location.href='someday/qna/QnAList'; */
+			/* window.location = "http://localhost:8080/someday/qna/QnAList"; */
+			/* return window.location = "http://localhost:8080/someday/qna/QnAList"; */
+			/* document.write(pswdcheck); */
+		}
+	};
 </script>
 
 <title>지브롱</title>
@@ -72,51 +78,81 @@ function message() {
 						</c:if> <c:if test="${list.cnt ne 0}">
 							<center>답변완료</center>
 						</c:if></td>
-						
-						<%-- <td>
+
+					<%-- <td>
 							<a href="${viewURL}" onclick="message()" id="hijack">${list.subject}[${list.cnt}]&nbsp; 
 								<img src="../resources/images/list/lock.png" width="10" height="10"></a>
 								<div id="pass" style=display:none; >${list.pass}</div>										
 						</td> --%>
-						
-						<td>
+
+					<td>
 					
-						<!-- 관리자 -->
-						<c:if test="${session_member_id == 'admin'}">
-						
+					<c:choose>
+						<c:when test="${session_member_id == 'admin'}">
 							<!-- 비밀글 -->
 							<c:if test="${list.pass != null}">
 								<a href="${viewURL}">${list.subject}[${list.cnt}]&nbsp; 
 								<img src="../resources/images/list/lock.png" width="10" height="10"></a>
 							</c:if>
-						 
+
 							<!-- 공개글 -->
 							<c:if test="${list.pass == null}">
-								<a href="${viewURL}">${list.subject}[${list.cnt}]&nbsp; 
+								<a href="${viewURL}">${list.subject}[${list.cnt}] </a>&nbsp;
 							</c:if>
+						</c:when>
 							
-						</c:if>
-					
-						<!-- 사용자 -->
-						<c:if test="${session_member_id != 'admin'}">
-							
-							<!-- 비밀글 -->
+						<c:when test="${session_member_id != 'admin'}">
+                                   <!-- 비밀글 -->
 							<c:if test="${list.pass != null}">
-								<a href="${viewURL}" onclick="message()" id="hijack">${list.subject}[${list.cnt}]&nbsp; 
-								<img src="../resources/images/list/lock.png" width="10" height="10"></a>
-								<div id="pass" style=display:none; >${list.pass}</div>
+								<a href="${viewURL}" onclick="message()" id="hijack">${list.subject}[${list.cnt}]&nbsp;
+									<img src="../resources/images/list/lock.png" width="10" height="10"></a>
+								<div id="pass" style="display: none;">${list.pass}</div>
 							</c:if>
-						 
+
 							<!-- 공개글 -->
 							<c:if test="${list.pass == null}">
-								<a href="${viewURL}">${list.subject}[${list.cnt}]&nbsp; 
+								<a href="${viewURL}">${list.subject}[${list.cnt}]</a>&nbsp; 
 								
 							</c:if>
-							
-						</c:if>
+                       </c:when>
+                                
+                                
+					</c:choose> 
 						
-					</td>
+						<%-- <!-- 관리자 --> <c:if test="${session_member_id == 'admin'}">
+
+							<!-- 비밀글 -->
+							<c:if test="${list.pass != null}">
+								<a href="${viewURL}">${list.subject}[${list.cnt}]&nbsp; <img
+									src="../resources/images/list/lock.png" width="10" height="10"></a>
+							</c:if>
+
+							<!-- 공개글 -->
+							<c:if test="${list.pass == null}">
+								<a href="${viewURL}">${list.subject}[${list.cnt}] </a>&nbsp;
+							</c:if>
+
+						</c:if> <!-- 사용자 --> <c:if test="${session_member_id != 'admin'}">
+
+							<!-- 비밀글 -->
+							<c:if test="${list.pass != null}">
+								<a href="${viewURL}" onclick="message()" id="hijack">${list.subject}[${list.cnt}]&nbsp;
+									<img src="../resources/images/list/lock.png" width="10"
+									height="10">
+								</a>
+								<div id="pass" style="display: none;">${list.pass}</div>
+							</c:if>
+
+							<!-- 공개글 -->
+							<c:if test="${list.pass == null}">
+								<a href="${viewURL}">${list.subject}[${list.cnt}]</a>&nbsp; 
+								
+							</c:if>
+
+						</c:if> --%>
 						
+						</td>
+
 					<td align="center">${list.writer}</td>
 					<td align="center">${list.times}</td>
 				</tr>

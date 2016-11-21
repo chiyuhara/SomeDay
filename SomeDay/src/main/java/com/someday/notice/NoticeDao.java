@@ -20,7 +20,6 @@ public interface NoticeDao {
 	// 글쓰기
 	int noticeWrite(NoticeModel noticeModel);
 
-
 	// 아이디로 IDX 찾기
 	public Object Idx(NoticeModel noticeModel);
 

@@ -138,6 +138,12 @@
 		<put-attribute name="body" value="/WEB-INF/views/qna/QnAModify.jsp" />
 	</definition>
 	
+	<!-- faq -->
+	
+	<definition name="faq" extends ="main">
+		<put-attribute name="body" value="/WEB-INF/views/faq/FAQ.jsp"/>
+	</definition>
+	
 
 </tiles-definitions>
 
