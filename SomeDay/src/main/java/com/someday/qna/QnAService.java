@@ -87,11 +87,13 @@ public class QnAService implements QnADao {
 		return sqlSessionTemplate.delete("qna.qnaDelete", idx);
 	}
 
+	// idx 가져오기  
 	@Override
 	public Object Idx(QnAModel qnaModel) {
 		return sqlSessionTemplate.selectOne("qna.qnaselectIdx", qnaModel);
 	}
 
+	// qna 파일업로드 
 	@Override
 	public Object UpdateFile(int index, HttpServletRequest request) throws Exception {
 
