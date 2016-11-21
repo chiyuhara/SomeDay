@@ -50,5 +50,15 @@ public class AdminService implements AdminDao{
 	public Object authority(MemberModel member){
 	   return sqlSessionTemplate.update("member.authority",member);
     }
+	 
+	//여자 회원수
+	public List<MemberModel> selectfemale(){
+		return sqlSessionTemplate.selectList("member.selectfemale");
+	}
+	
+	//남자 회원수
+	public List<MemberModel> selectmale(){
+		return sqlSessionTemplate.selectList("member.selectmale");
+	}
 		
 }
