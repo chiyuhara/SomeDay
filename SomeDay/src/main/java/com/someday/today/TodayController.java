@@ -265,5 +265,4 @@ public class TodayController {
 
 		return mav;
 	}
-
 }

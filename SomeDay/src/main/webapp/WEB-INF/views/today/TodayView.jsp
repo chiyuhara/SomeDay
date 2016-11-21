@@ -2432,57 +2432,81 @@ opacity
 						method="post" enctype="multipart/form-data">
 						<table width="600" border="0" cellspacing="0" cellpadding="2">
 							<div id="relative">
-								<img
-									src="/Hi_Admin/image/<s:property value='target_resultClass.file_savname' />" />
 								<div id="absolute2">
-									<c:choose>
-										<c:when
-											test="${meeting.female_like == 0 && meeting.male_like == 0}">
-											<img src="../resources/img/no_couple.png" />
-										</c:when>
-										<c:when
-											test="${meeting.female_like == 1 && meeting.male_like == 1}">
-											<img src="../resources/img/couple.png" />
-											<script>
-												layer_open('layer');
-											</script>
-
-											<div class="container">
-												<div class="row">
-													<a href="#" class="btn btn-primary btn-default">Chat</a>
-												</div>
-											</div>
-										</c:when>
-										<c:when
-											test="${meeting.female_like == 1 && meeting.male_like == 0}">
-											<img src="../resources/img/female_like.png" />
-										</c:when>
-										<c:when
-											test="${meeting.female_like == 0 && meeting.male_like == 1}">
-											<img src="../resources/img/male_like.png" />
+								<c:choose>
+										<c:when test="${targetfemale != null}">
+											<c:choose>
+												<c:when test="${meeting.female_like == 0 && meeting.male_like == 0}">
+													<img src="../resources/img/female_no.png" />
+													<img src="/someday/resources/img/${targetfemale.file_savname}" width="300" height="300"/>
+													<img src="../resources/img/male_no.png" />
+												</c:when>
+												<c:when test="${meeting.female_like == 1 && meeting.male_like == 1}">
+													<img src="../resources/img/female_like.png" />
+													<img src="/someday/resources/img/${targetfemale.file_savname}" width="300" height="300"/>
+													<img src="../resources/img/male_like.png" />
+													<script>
+														layer_open('layer');
+													</script>
+													<a href="#" onClick="window.open('Chat','채팅','width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes');return false;" class="btn btn-primary btn-default">Chat</a>
+												</c:when>
+												<c:when test="${meeting.female_like == 1 && meeting.male_like == 0}">
+													<img src="../resources/img/female_like.png" />
+													<img src="/someday/resources/img/${targetfemale.file_savname}" width="300" height="300"/>
+													<img src="../resources/img/male_no.png" />
+												</c:when>
+												<c:when test="${meeting.female_like == 0 && meeting.male_like == 1}">
+													<img src="../resources/img/female_no.png" />
+													<img src="/someday/resources/img/${targetfemale.file_savname}" width="300" height="300"/>
+													<img src="../resources/img/male_like.png" />
+												</c:when>
+											</c:choose>
 										</c:when>
 									</c:choose>
-
-
-
+									
+									<c:choose>
+										<c:when test="${targetmale != null}">
+											<c:choose>
+												<c:when test="${meeting.female_like == 0 && meeting.male_like == 0}">
+													<img src="../resources/img/female_no.png" />
+													<img src="/someday/resources/img/${targetmale.file_savname}" width="300" height="300"/>
+													<img src="../resources/img/male_no.png" />
+												</c:when>
+												<c:when test="${meeting.female_like == 1 && meeting.male_like == 1}">
+													<img src="../resources/img/female_like.png" />
+													<img src="/someday/resources/img/${targetmale.file_savname}" width="300" height="300"/>
+													<img src="../resources/img/male_like.png" />
+													<script>
+														layer_open('layer');
+													</script>
+													<a href="#" onClick="window.open('Chat','채팅','width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes');return false;" class="btn btn-primary btn-default">Chat</a>
+												</c:when>
+												<c:when test="${meeting.female_like == 1 && meeting.male_like == 0}">
+													<img src="../resources/img/female_like.png" />
+													<img src="/someday/resources/img/${targetmale.file_savname}" width="300" height="300"/>
+													<img src="../resources/img/male_no.png" />
+												</c:when>
+												<c:when test="${meeting.female_like == 0 && meeting.male_like == 1}">
+													<img src="../resources/img/female_no.png" />
+													<img src="/someday/resources/img/${targetmale.file_savname}" width="300" height="300"/>
+													<img src="../resources/img/male_like.png" />
+												</c:when>
+											</c:choose>
+										</c:when>
+									</c:choose>
+										
 
 									<c:choose>
 										<c:when test="${targetfemale != null}">
-											<c:choose>
-												<c:when
-													test="${targetfemale.female_msg != null && targetmale.male_msg != null}">
-													<button type="button"
-														onclick="button_message_view('message2');"
-														class="btn btn-success btn-circle btn-xl">
+										<c:choose>
+												<c:when test="${targetfemale.female_msg == null && targetfemale.male_msg != null}">
+													<button type="button" onclick="button_message_view('message2');" class="btn btn-success btn-circle btn-xl">
 														<i class="fa fa-fw fa-envelope faa-horizontal animated"></i>
 													</button>
 												</c:when>
 
-												<c:when
-													test="${targetfemale.male_msg != null && targetfemale.female_msg != null}">
-													<button type="button"
-														onclick="button_message_view('message2');"
-														class="btn btn-success btn-circle btn-xl">
+												<c:when test="${targetfemale.male_msg != null && targetfemale.female_msg != null}">
+													<button type="button" onclick="button_message_view('message2');"class="btn btn-success btn-circle btn-xl">
 														<i class="fa fa-fw fa-envelope faa-horizontal animated"></i>
 													</button>
 												</c:when>
@@ -2498,19 +2522,15 @@ opacity
 										<c:when test="${targetmale != null}">
 											<c:choose>
 												<c:when
-													test="${targetmale.male_msg != null && targetmale.female_msg != null}">
-													<button type="button"
-														onclick="button_message_view('message2');"
-														class="btn btn-success btn-circle btn-xl">
+													test="${targetmale.male_msg == null && targetmale.female_msg != null}">
+													<button type="button" onclick="button_message_view('message2');" class="btn btn-success btn-circle btn-xl">
 														<i class="fa fa-fw fa-envelope faa-horizontal animated"></i>
 													</button>
 												</c:when>
 
 												<c:when
 													test="${targetmale.male_msg != null && targetmale.female_msg != null}">
-													<button type="button"
-														onclick="button_message_view('message2');"
-														class="btn btn-success btn-circle btn-xl">
+													<button type="button" onclick="button_message_view('message2');" class="btn btn-success btn-circle btn-xl">
 														<i class="fa fa-fw fa-envelope faa-horizontal animated"></i>
 													</button>
 												</c:when>

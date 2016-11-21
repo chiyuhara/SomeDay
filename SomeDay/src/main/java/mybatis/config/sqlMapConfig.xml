@@ -43,6 +43,9 @@ PUBLIC " - //mybatis.org//DTD Config 3.0//EN"
 		<!--  QnA comment  -->
 		<typeAlias type="com.someday.qna.QnAcommModel" alias="qnacommModel" />
 		
+		<!--  Chat  -->
+		<typeAlias type="com.someday.chat.ChatModel" alias="chatModel" />
+		
 	</typeAliases>
 
 	<!-- SQL 정의한 xml문서 Mapping -->
@@ -55,6 +58,8 @@ PUBLIC " - //mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="mybatis/config/QnASQL.xml" />
 		<!-- Today -->
 		<mapper resource="mybatis/config/TodaySQL.xml" />
+		<!-- Chat -->
+		<mapper resource="mybatis/config/ChatSQL.xml" />
 
 	</mappers>
 
