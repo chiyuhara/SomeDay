@@ -39,12 +39,12 @@
             <c:if test="${session_member_id != null }">
                <div style="float: right">
                   <div class="input-group">
-                     <strong>${session_member_name}&nbsp;님</strong>
+                     <strong>${session_member_name}&nbsp;님 반갑습니다.&nbsp;&nbsp;&nbsp;</strong>
                      <c:if test="${session_member_authority == 'Y'}">
                 		<a href="${contextpath}/someday/admin/admin">관리자페이지</a>
           	   		</c:if>
-                      <a href="http://www.lovehanda.com/bbs/member_confirm.php?url=register_form.php">정보수정</a>
-                     <a href="${contextpath}/someday/member/logout">로그아웃</a>
+                    
+                     <input type="button" value="로그아웃" class="btn btn-primary" onclick="javascript:location.href='${contextpath}/someday/member/logout'"/>
                   </div>
                </div>
             </c:if>
@@ -71,13 +71,14 @@
                   data-toggle="dropdown" role="button" aria-expanded="false">SOME
                      DAY 가이드
                </a>
-                   <ul class="dropdown-menu" role="menu">
-                     <li><a href="${contextpath}/someday/views/usertest">이 용 방 법</a></li>
+                   <ul class="dropdown-menu" role="menu">                  
+                     <li><a href="#">이 용 방 법</a></li>
                      <li><a href="#">F A Q</a></li>
                      <li><a href="#">Q & A</a></li> 
+                     <li><a href="#">찾아오시는길</a></li>
                   </ul></li>
-               <li><a href="${contextpath}/someday/today">오늘의인연</a></li>
-               <li><a href="${contextpath}/someday/my">마이페이지</a></li>
+               <li><a href="${contextpath}/someday/today/TodayView">오늘의인연</a></li>
+               <li><a href="${contextpath}/someday/member/MypageView">마이페이지</a></li>
                <li><a href="${contextpath}/someday/notice/NoticeList">공지&이벤트</a></li>
             </ul>
          </div>

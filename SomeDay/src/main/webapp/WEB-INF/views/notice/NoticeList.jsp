@@ -107,12 +107,13 @@ td, th {
 						<input type="submit" value="검색" style="font-size: 15px; padding-bottom: 20; 
 						       vertical-align: middle;" />
 						</span>
+						   <div class="paging">${pagingHtml}</div>
 					</form>
 					</div>
 				</div>
 			</div> 
 		</div>
 	</div>
-	<div class="paging">${pagingHtml}</div>
+	
 </body>
 </html>
