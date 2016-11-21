@@ -168,6 +168,13 @@
 								</tr>
 								
 								<tr>
+									<th scope="row">성별</th>
+									<td>${member.gender }<form:input type="hidden"
+											class="txt w200" path="gender" />
+									</td>
+								</tr>
+										
+								<tr>
 									<th scope="row" id="nameTitle">혈액형</th>
 									<td><form:input type="text" name="bloodgroup" class="txt w200" path="bloodgroup"
 											 /> <font color="red"><form:errors
