@@ -22,6 +22,7 @@
          <tr class="line1">
             <td style="width: 120px; height: 200px; overflow: hidden" rowspan="4"  width="100">
             <%-- <img src="/Hi_Admin/image/<c:property value='resultClass.file_savname' />" style="width: auto; height: 150px; margin-left: -10px;" /> --%>
+            <img src="/someday/resources/img/${member.file_savname}" width="300" height="300"/>
             </td>
          </tr>
          <tr class="line1">

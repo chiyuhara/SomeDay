@@ -45,6 +45,10 @@ PUBLIC " - //mybatis.org//DTD Config 3.0//EN"
 		
 		<!--  Chat  -->
 		<typeAlias type="com.someday.chat.ChatModel" alias="chatModel" />
+
+        <!-- meeting -->
+        <typeAlias type="com.someday.meeting.MeetModel" alias="meetModel"/>
+
 		
 	</typeAliases>
 

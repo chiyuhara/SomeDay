@@ -55,17 +55,6 @@ function check() {
        return false;
     }
 
-    if (f.pass2.value == "") {
-       alert("비밀번호 확인을 해주십시요.");
-       f.pass2.select();
-       return false;
-    }
-
-    if (f.pass.value != f.pass2.value) {
-       alert("비빌번호를 다르게 입력했습니다.");
-       f.pass2.select();
-       return false;
-    }
     if (f.nick.value == "") {
 	   		alert("닉네임을 입력해주십시요.");
 	   		f.nick.focus();
@@ -149,7 +138,7 @@ th, td {
 		<h2>회원 정보수정</h2>
 	</table>
 
-	<form:form commandName="member" name="join" action="${contextpath}/someday/member/memberUpdate" method="post" enctype="multipart/form-data">
+	<form:form commandName="member" name="join" action="${contextpath}/someday/member/memberUpdate" onsubmit="return check()" method="post" enctype="multipart/form-data">
 		
 		<table width="600" border="0" cellspacing="0" cellpadding="2">	
 			<form:hidden name="idx" path="idx"/>
@@ -258,7 +247,7 @@ $("#selectEmail option:selected").each(function () {
 			</td>
 			<tr>
 				<td width="200">가입일</td>
-				<td>${member.times}</td>
+				<td><fmt:formatDate value="${member.times}" pattern="YY.MM.dd HH:mm" /></td>
 			</tr>
 			<tr>
 				<td width="200">소개</td>

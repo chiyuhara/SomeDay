@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -113,7 +114,7 @@ th, td {
 		</tr>
 		<tr>
 			<td width="200">가입일</td>
-			<td>${member.times}</td>
+			<td><fmt:formatDate value="${member.times}" pattern="YY.MM.dd HH:mm" /></td>
 		</tr>
 		<tr>
 			<td width="200">소개</td>
@@ -124,7 +125,6 @@ th, td {
 			<td>${member.file_savname}</td>
 		</tr>
 	</table>
-	
 	<br></br>
 	
 	<div>

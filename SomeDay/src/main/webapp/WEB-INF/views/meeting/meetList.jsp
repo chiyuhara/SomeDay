@@ -3,14 +3,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!--<script type="text/javascript">
-	var onWrite = function() {
-		location.href = 'NoticeWrite';
-	};
-</script> -->
 <title>지브롱</title>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 </head>
 <body>
 	<h2>미팅 현황</h2>
@@ -42,16 +38,24 @@
 
 					<td align="center">${list.idx}</td>
 					<td align="center">${list.f_name}</td>
-					<td align="center">${list.female_like}</td>
-					<td align="center">${list.male_like}</td>
+					<c:if test="${list.female_like == 1}">
+					<td align="center"><img src="/someday/resources/img/female_like.png" />
+					</c:if>
+					<c:if test="${list.female_like == 0}">
+					<td align="center"><img src="/someday/resources/img/female_no.png" />
+					</c:if>
+					<c:if test="${list.male_like == 1}">
+					<td align="center"><img src="/someday/resources/img/male_like.png" />
+					</c:if>
+					<c:if test="${list.male_like == 0}">
+					<td align="center"><img src="/someday/resources/img/male_no.png" />
+					</c:if>
 					<td align="center">${list.m_name}</td>
-					<td align="center">${list.times}</td>
+					<td align="center"><fmt:formatDate value="${list.times}" pattern="YY.MM.dd HH:mm" /></td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
-
-	<button type="button" onclick="onWrite()" class="btn btn-primary">글쓰기</button>
 	<div class="paging">${pagingHtml}</div>
 </body>
 </html>
