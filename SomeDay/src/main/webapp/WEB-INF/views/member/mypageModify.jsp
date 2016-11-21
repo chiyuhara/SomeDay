@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>회원 정보수정</title>
+<title>MyPage 정보수정</title>
 <script>
 function openZipcode(){
 	var url="zipcodeCheckForm";
@@ -145,13 +145,16 @@ th, td {
 </head>
 
 <body>
+   <div class="container">
+        <div class="row">
+            <div class="box"> 
 	<table width="600" border="0" cellspacing="0" cellpadding="2">
-		<h2>회원 정보수정</h2>
-	</table>
+		<h2>MyPage 정보수정</h2>
+	
 
 	<form:form commandName="member" name="join" action="${contextpath}/someday/member/memberUpdate" method="post" enctype="multipart/form-data">
 		
-		<table width="600" border="0" cellspacing="0" cellpadding="2">	
+		
 			<form:hidden name="idx" path="idx"/>
 			<tr>
 				<td width="200">아이디</td>
@@ -270,15 +273,19 @@ $("#selectEmail option:selected").each(function () {
 				<td width="500">
 					<s:file name="upload" theme="simple"/>
 				</td>
-			</tr>
-		</table>
-		
-		<br></br>
-		
-		<div>
-					<input type="submit" value="수정"/>
-					<input name="list" type="button" value="돌아가기" class="button" onclick="javascript:location.href='${contextpath}/someday/member/MypageView'"/>
+			</tr>		
+		    <br></br>  
+	  </table>
+				<div>
+		          <div class="col-lg-12 text-right">
+					<input type="submit"  class="btn btn-primary" value="수정"/>
+					<input name="list" type="button" value="돌아가기" class="btn btn-primary" onclick="javascript:location.href='${contextpath}/someday/member/MypageView'"/>
 				</div>
+			</div>
+		</div>
+	</div>
+</div>
+				
 	</form:form>
 	
 	<br></br>

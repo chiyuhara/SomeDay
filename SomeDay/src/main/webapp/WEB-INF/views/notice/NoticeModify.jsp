@@ -57,6 +57,7 @@
 			method="post">
 			<div id="page-wrapper">
 				<div class="row">
+				  <div class="box"> 
 					<div class="col-lg-12">
 						<h3 class="page-header">NOTICE 글 수정</h3>
 						<table class="table table-striped table-bordered table-hover"
@@ -72,7 +73,7 @@
 								
 								<!-- 타입  -->
 							<tr>
-							<th width="15%" align="center">글타입</th>
+							<th align="center">글타입</th>
 							<td>
 							
 							<form:select path="type">
@@ -113,20 +114,24 @@
 									<td align="center">파일업로드</td>
 									<td colspan=3><input type="file" name="file" value="${noticeModel.file_savname}" /></td>
 								</tr>
+								
 
 							</tbody>
 
 						</table>
-					</div>
+						<!-- 취소 작성완료 버튼 -->
+			        <div>
+			           <div style="float: right">
+				       <input type="submit" value="작성완료" class="btn btn-primary" />
+				       <button type="button" onclick="noticeList();"
+					     class="btn btn-primary">목록</button>
+				        <!-- 취소 작성완료 버튼 -->
+			       </div>
 				</div>
 			</div>
-			<!-- 취소 작성완료 버튼 -->
-			<div>
-				<input type="submit" value="작성완료" class="btn btn-primary" />
-				<button type="button" onclick="noticeList();"
-					class="btn btn-primary">목록</button>
-				<!-- 취소 작성완료 버튼 -->
-			</div>
+		</div>
+	</div>
+			
 		</form:form>
 
 		<br /> <br /> <br /> <br />
