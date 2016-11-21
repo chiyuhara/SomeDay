@@ -25,6 +25,12 @@ public interface AdminDao {
 	//idx로 
 	//관리자 권한 주기
 	public Object authority(MemberModel Member);
+	
+	//여자 회원수
+	List<MemberModel> selectfemale();
+	
+	//남자 회원수
+	List<MemberModel> selectmale();
 		
 }
 

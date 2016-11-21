@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -22,7 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.someday.member.MemberModel;
 import com.someday.member.MemberService;
-
+import com.someday.member.ZipcodeModel;
 import com.someday.util.Paging;
 
 
@@ -34,6 +35,8 @@ public class AdminController {
 	@Resource(name = "memberService")
 	private MemberService memberService;
 	
+	private List<ZipcodeModel> zipcodeList = new ArrayList<ZipcodeModel>();
+	
 	//페이징 
 	private int searchNum;
 	private String isSearch;
@@ -44,6 +47,8 @@ public class AdminController {
 	private int blockPage = 5; 	 
 	private String pagingHtml;  
 	private Paging page;
+	private int malecount;
+	private int femalecount;
 	
 	ModelAndView mav = new ModelAndView();
 	
@@ -74,6 +79,8 @@ public class AdminController {
 					memberlist = adminService.memberSearch0(isSearch);
 							
 				totalCount = memberlist.size();
+				malecount = adminService.selectmale().size();
+				femalecount = adminService.selectfemale().size();
 				page = new Paging(currentPage, totalCount, blockCount, blockPage, "memberadminList", searchNum, isSearch);
 				pagingHtml = page.getPagingHtml().toString();
 			
@@ -87,6 +94,8 @@ public class AdminController {
 				mav.addObject("isSearch", isSearch);
 				mav.addObject("searchNum", searchNum);
 				mav.addObject("totalCount", totalCount);
+				mav.addObject("malecount",malecount);
+				mav.addObject("femalecount",femalecount);
 				mav.addObject("pagingHtml", pagingHtml);
 				mav.addObject("currentPage", currentPage);
 				mav.addObject("memberlist", memberlist);
@@ -95,6 +104,8 @@ public class AdminController {
 			}
 			
 			totalCount = memberlist.size();
+			malecount = adminService.selectmale().size();
+			femalecount = adminService.selectfemale().size();
 			
 			page = new Paging(currentPage, totalCount, blockCount, blockPage, "memberadminList");
 			pagingHtml=page.getPagingHtml().toString(); 
@@ -108,6 +119,8 @@ public class AdminController {
 			memberlist = memberlist.subList(page.getStartCount(), lastCount);
 			
 			mav.addObject("totalCount", totalCount);
+			mav.addObject("malecount",malecount);
+			mav.addObject("femalecount",femalecount);
 			mav.addObject("pagingHtml", pagingHtml);
 			mav.addObject("currentPage", currentPage);
 			
@@ -123,6 +136,24 @@ public class AdminController {
 	  	public ModelAndView memberModify(MemberModel member, HttpServletRequest request) {		  		 		
 	  		
  			member =  memberService.getMember(member.getId());
+ 			
+ 			//폰넘버 나누기
+          	String[] ph = member.getPhone().split("-");
+          	
+          	member.setPhone3(ph[0]);
+          	member.setPhone(ph[1]);
+          	member.setPhone2(ph[2]);
+          	
+          	String[] em = member.getEmail().split("@");
+          	
+          	member.setEmail(em[0]);
+          	if(em[1] != "naver.com" || em[1] != "daum.net" || em[1] != "nate.com" || em[1] != "hotmail.com" || 
+          			em[1] != "yahoo.com" || em[1] != "empas.com" || em[1] != "korea.com" || em[1] != "dreamwiz.com" ||
+          			em[1] != "gmail.com"){
+          		member.setEmail2(em[1]);
+          	} else {
+          		member.setSelectEmail(em[1]);
+          	}
  	
  			mav.addObject("member", member);
  			mav.setViewName("memberadminModify");
@@ -135,11 +166,19 @@ public class AdminController {
  		
 		System.out.println("수정시작");
 		
+		member.setPhone(member.getPhone3()+"-"+member.getPhone()+"-"+member.getPhone2()); //폰넘버 합치기
+    	
+    	if(member.getEmail2() != null){	//이메일 주소가 널이 아니면 실행
+    		member.setEmail(member.getEmail()+"@"+member.getEmail2());
+		} else { // 이메일 주소가 널일시 실행
+			member.setEmail(member.getEmail()+"@"+member.getSelectEmail());
+		}
+		
  			adminService.adminmemberModify(member);
  			mav.setViewName("redirect:/admin/memberadminList");
  			return mav;
 	    }
-	    
+	     
 	  //회원삭제하기
 		 @RequestMapping("/admin/adminMemberDelete")
 			public ModelAndView memberDelete(HttpServletRequest request){		
@@ -175,6 +214,37 @@ public class AdminController {
 		 mav.setViewName("redirect:/admin/memberadminList");
 			 return mav;
 		 }
+		 
+		 //관리자 우편번호 검색 폼
+		 @RequestMapping(value="/admin/zipcodeCheckForm")
+	     public ModelAndView zipcodeCheckForm( HttpServletRequest req) throws Exception{
+	         ModelAndView mv = new ModelAndView();
+
+	             mv.setViewName("check/zipcodeCheck");
+	          return mv;
+	   }
+
+	      //관리자 우편번호 검색 로직 
+	      @RequestMapping(value="/admin/zipcodeCheck")
+	      public ModelAndView zipcodeCheck( @ModelAttribute ZipcodeModel zipcodeModel ,HttpServletRequest req) throws Exception{
+	         
+	    	 ModelAndView mv = new ModelAndView();
+	         
+	         int chk=100;
+
+	         zipcodeList = memberService.zipcodeCheck(zipcodeModel);
+	             
+	         mv.addObject("zipcode", zipcodeList);
+	                
+	         if(zipcodeList.size() == 0){
+	        	 chk =0;
+	         }else{
+	        	 chk=1;
+	         }
+	             mv.addObject("chk",chk);
+	             mv.setViewName("check/zipcodeCheck");
+	             return mv;
+	          } 
 		
     	
 	

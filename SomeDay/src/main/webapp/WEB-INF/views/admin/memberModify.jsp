@@ -27,9 +27,9 @@
 
 	function check() {
 
-		var f = document.memberModify;
+		var f = document.join;
 
-		if (f.pass.value == "") {
+		 if (f.pass.value == "") {
 	         alert("비밀번호를 입력해주십시요.");
 	         f.pass.focus();
 	         return false;
@@ -39,7 +39,7 @@
 	         alert("비밀번호는 4자 이상 8자 이하로 입력하셔야 합니다.");
 	         f.pass.select(); //모두선택된 상태에서 focus
 	         return false;
-	      }
+	      } 
 
 /* 	      if (!idPs.test(f.pass.value)) {
 	         alert("유효한 비밀번호 형식이 아닙니다.");
@@ -68,7 +68,7 @@
 	         alert("비빌번호를 다르게 입력했습니다.");
 	         f.pass2.select();
 	         return false;
-	      }
+	      } 
 	      if (f.nick.value == "") {
 		   		alert("닉네임을 입력해주십시요.");
 		   		f.nick.focus();
@@ -81,23 +81,34 @@
 			return false;
 		}
 
-		 if (f.phone.value == "") {
-			alert("휴대폰 번호를 입력하세요");
-			f.phone.focus();
-			return false;
-		}
+		 if(f.phone.value=="") {
+	         alert("핸드폰번호 앞자리를 입력해주세요.");
+	         f.phone.focus();
+	         return false;     
+	      }
+		 
+		 if(f.phone2.value=="") {
+	         alert("핸드폰번호 뒷자리를 입력해주세요.");
+	         f.phone2.focus();
+	         return false;     
+	      }
 		 if (f.email.value == "") {
 			alert("이메일을 입력하세요");
 			f.email.focus();
 			return false;
 		}
+	      if (f.selectEmail.value == "") {
+				alert("이메일을 선택하세요");
+				f.selectEmail.focus();
+				return false;
+			}
 		return true;
 	}
 	 
-	/* function openZipcode(){
-		var url="member/zipcodeCheckForm";
+	function openZipcode(){
+		var url="zipcodeCheckForm";
 		open(url, "confirm","toolbar=no, location=no, status=no, menubar=no, scrollbars=yes, resizable=no, width=410, height=400");
-	} */
+	}
 
 	
 	
@@ -116,7 +127,7 @@
     <h2><img src="/pet/resources/images/SkinImg/modify.jpg" alt="회원가입"></h2>
 </div> 
 			<form:form commandName="member" action="/someday/admin/memberModifyEnd"
-				method="post" name="memberModify" onsubmit="return check()">
+				method="post" name="join" onsubmit="return check()">
 				<div class="xans-element- xans-member xans-member-join">
 
 
@@ -161,10 +172,17 @@
 
 
 								<tr>
-									<th scope="row" id="nameTitle">이름</th>
-									<td><form:input type="text" name="name" class="txt w200" path="name"
-											 /> <font color="red"><form:errors
-												path="name" /></font></td>
+									<th scope="row">이름</th>
+									<td>${member.name }<form:input type="hidden"
+											class="txt w200" path="name" />
+									</td>
+								</tr>
+								
+								<tr>
+									<th scope="row">나이</th>
+									<td>${member.age }<form:input type="hidden"
+											class="txt w200" path="age" />
+									</td>
 								</tr>
 								
 								<tr>
@@ -173,58 +191,103 @@
 											class="txt w200" path="gender" />
 									</td>
 								</tr>
-										
-								<tr>
-									<th scope="row" id="nameTitle">혈액형</th>
-									<td><form:input type="text" name="bloodgroup" class="txt w200" path="bloodgroup"
-											 /> <font color="red"><form:errors
-												path="bloodgroup" /></font></td>
-								</tr>
 								
 								<tr>
-									<th scope="row">이메일</th>
-									<td><form:input type="text" class="txt w200" path="email"
-											 id="email1" /> <font color="red"><form:errors
-												path="email" /></font></td>
-								</tr>
-								
+									<th scope="row">혈액형</th>
+									<td>${member.bloodgroup }<form:input type="hidden"
+											class="txt w200" path="bloodgroup" />
+									</td>
+								</tr>	
+															
 								<tr>
-									<th scope="row">휴대전화</th>
-									<td><form:input type="text" class="txt w200" path="phone"
-											maxlength="13"  /> <span class="ibk"><!-- "
-											- " 없이 입력하세요. --></span></td>
-								</tr> 
-								
+								<th scope="row" id="nameTitle">E-Mail</th>
+				<td><form:input id="email" name="email" type="text" path="email"/>@     
+               		<form:input id="email2" name="email2" type="text" path="email2" disabled="true"/>
+					<form:select id="selectEmail" name="selectEmail" path="selectEmail">
+					<form:option value="" label="- 이메일 선택  -" />
+					<form:option value="naver.com" label="naver.com" />
+					<form:option value="daum.net" label="daum.net" />
+					<form:option value="nate.com" label="nate.com" />
+					<form:option value="hotmail.com" label="hotmail.com" />
+					<form:option value="yahoo.com" label="yahoo.com" />
+					<form:option value="empas.com" label="empas.com" />	
+					<form:option value="korea.com" label="korea.com" />	
+					<form:option value="dreamwiz.com" label="dreamwiz.com" />	
+					<form:option value="gmail.com" label="gmail.com" />	
+					<form:option value="1" label="직접입력" />	
+					</form:select>
+				</td>
+			</tr>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+//이메일 입력방식 선택
+$('#selectEmail').change(function(){
+$("#selectEmail option:selected").each(function () {       
+       if($(this).val()== '1'){ //직접입력일 경우
+          $("#email2").val('');                        //값 초기화
+          $("#email2").attr("disabled",false); //활성화
+       }else{ //직접입력이 아닐경우
+          $("#email2").val($(this).text());      //선택값 입력
+          $("#email2").attr("disabled",true); //비활성화
+       }
+   });
+});
+</script>			
+			<tr>
+				<th scope="row" id="nameTitle">전화번호</th>
+				<td>
+					<form:select name="phone3" path="phone3">
+					<form:option value="010" label="010" />
+					<form:option value="011" label="011" />
+					<form:option value="016" label="016" />
+					<form:option value="017" label="017" />
+					<form:option value="019" label="019" />	
+					</form:select>-
+					<form:input name="phone" type="phone" class="txt w200" path="phone" maxlength="4"/>-
+					<form:input name="phone2" type="phone2" class="txt w200" path="phone2" maxlength="4"/> 
+				</td>
+			</tr>
+													
 								<tr>
-									<th scope="row" id="nameTitle">주민번호</th>
-									<td><form:input type="text" name="num1" class="txt w200" path="num1" maxlength="6"
-										readonly="true"	 /> - <form:input type="text" name="num2" class="txt w200" path="num2" maxlength="7"
-										readonly="true"	 /> <font color="red"><form:errors
-												path="num2" /></font></td>
-								</tr>
+									<th scope="row">혈액형</th>
+									<td>${member.num1} - ${member.num2}<form:input type="hidden"
+											class="txt w200" path="num1" />
+									</td>
+								</tr>	
 								
-								<tr>
-									<th scope="row">소개</th>
-									<td><form:input type="text" class="txt w200" path="intro"
-											maxlength="11"  /> <span class="ibk"></span></td>
-								</tr>
-								
+																
 								<tr class="">
 
 								</tr>
-								<%-- <tr>
-									<th scope="row">주소</th>
-									<td><form:input type="text" class="txt w200"
-											path="zipcode"  id="zipcode"
-											readonly="true" /> <a href="#none" title="우편번호(새창으로 열기)"
-										onclick="return openZipcode()" id="postBtn"><img
-											src="http://img.echosting.cafe24.com/design/skin/default/member/btn_zip.gif"
-											alt="우편번호"></a><br> <form:input type="text"
-												class="inputTypeText" path="addr1" 
-												id="addr1" readonly="true" /> <form:input type="text"
-												class="inputTypeText" path="addr2" 
-												id="addr2" /></td>
-								</tr> --%> 
+								
+								<tr>
+								<th scope="row" id="nameTitle">우편번호</th>
+				<td align="left">
+				<form:input name="zipcode" class="txt w200" path="zipcode"/>
+				<input type="button" value="우편번호찾기" onclick="openZipcode()" class="BBUTTON">
+				</td>
+			</tr>
+			<tr>
+				<th scope="row" id="nameTitle">주소</th>
+				<td height="30" align="left">
+				<form:input name="area" class="txt w200" path="area"/><br>
+				<form:input name="addr1" class="txt w200" path="addr1" /><br>
+				<form:input name="addr2" class="txt w200" path="addr2"/>
+			</td>
+			</tr>
+								<tr>
+									<th scope="row">혈액형</th>
+									<td>${member.times}<form:input type="hidden"
+											class="txt w200" path="times" />
+									</td>
+								</tr>	
+							
+							
+							<tr>
+								<th scope="row" id="nameTitle">소개</th>
+									<td><form:input type="text" class="txt w200" path="intro"
+											maxlength="11"  /> <span class="ibk"></span></td>
+							</tr> 
 
 								
 
@@ -232,24 +295,18 @@
 						</table>
 					</div>
 
-
-					<div class="btnArea">
-					
-						 <!-- <a href="memberOutForm" class="btn btnC_03 btnF_02">
-						 <img
-							src="/pet/resources/images/SkinImg/outbtn.jpg"
-							alt="회원탈퇴" /> -->
-					
-					<%-- <a href="memberDelete.dog?mem_id=${member.id}" class="btn btnC_03 btnF_02 mr10">
-					<span>회원탈퇴</span>
-				</a> --%>
-						<a href="/someday/admin/memberadminList"><img src="<!-- /pet/resources/images/SkinImg/btn_member_cancel.gif -->" alt="수정취소" /></a>
-						
-						<!-- <input TYPE="IMAGE" src="/pet/resources/images/SkinImg/btn_member_join.gif" name="Submit" value="Submit" /> -->
-						<!-- <input type="submit" name="submit"/> -->
-						
-						<input type="image" src="/pet/resources/images/SkinImg/btn_member_modify.gif"  onclick="submit" />
-					</div>
+<div class="btn_type_07">
+					<span class="btn btnC_04 btnP_04 mr5"> <input type="submit" 
+						value="수정완료" />
+					</span> <span class="btn btnC_04 btnP_04 ml5"> <input type="button"
+						value="취소" onclick="javascript:location.href='/someday/admin/memberadminList'" />
+					</span>
+				</div>
+					<!-- <div style="margin: 20px auto; text-align: center;">
+				<input type="submit" class="input" value="수정">
+			&nbsp;&nbsp;&nbsp;&nbsp; <input type="button"
+						value="취소" onclick="javascript:location.href='/someday/admin/memberadminList'" />
+		</div> -->
 				</div>
 			</form:form> 
 		</div>

@@ -261,19 +261,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 관리자 회원수정 -->
 	<update id="adminupdateMember" parameterType="memberModel">
-		<!-- UPDATE MEMBER SET pass = #{pass}, name = #{name}, zipcode = #{zipcode}, 
-			addr = #{addr}, phone = #{phone}, email = #{email} where id = #{id} -->
 		UPDATE MEMBER SET
 		pass = #{pass},
-		nick = #{nick},
+		nick = #{nick},  
 		name = #{name},
-		bloodgroup = #{bloodgroup},
-		email = #{email},
-		phone = #{phone},
-		num1 =
-		#{num1},
-		num2 = #{num2},
-		<!-- zipcode = #{zipcode}, addr1 = #{addr1}, addr2 = #{addr2}, -->
+		<!-- bloodgroup = #{bloodgroup}, -->
+     	email = #{email},
+        phone = #{phone},
+        <!-- num1 = #{num1},
+        num2 = #{num2}, -->
+        zipcode = #{zipcode},
+        area = #{area},
+        addr1 = #{addr1},
+        addr2 = #{addr2}, 
 		intro = #{intro}
 		where id = #{id}
 	</update>
@@ -338,6 +338,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		MALE_MSG, MEETING.FEMALE_MSG AS FEMALE_MSG FROM MEMBER LEFT JOIN
 		MEETING ON MEMBER.IDX = MEETING.MALE_IDX WHERE MEMBER.IDX = #{idx} AND
 		MEETING.TIMES = TRUNC(SYSDATE) 
+	</select>
+	
+	<!-- 여자 회원수 -->
+	<select id="selectfemale" resultMap="memberRes">
+		SELECT * FROM MEMBER where gender = 'female'
+	</select>
+	
+	<!-- 남자 회원수 -->
+	<select id="selectmale" resultMap="memberRes">
+		SELECT * FROM MEMBER where gender = 'male'
 	</select>
 
 

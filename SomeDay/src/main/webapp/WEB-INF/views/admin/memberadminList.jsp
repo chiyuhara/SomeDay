@@ -42,7 +42,10 @@ function delchk(){
 							<a href="/someday/admin/memberadminList?searchNum=0&isSearch="><button type="button" class="btn btn-outline btn-default">전체</button></a>													
 						</div>
 						<div class="col-sm-6" style="text-align:right;">
-							<div class="dataTables_info" id="dataTables-example_info" role="status" aria-live="polite">총 회원수 : ${totalCount}</div>
+							<div class="dataTables_info" id="dataTables-example_info" role="status" aria-live="polite">총 회원수 : ${totalCount}
+							총 남자회원수 : ${malecount}
+							총 여자회원수 : ${femalecount}
+							</div>
 						</div>
 						
 					</div>
