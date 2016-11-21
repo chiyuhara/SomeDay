@@ -20,10 +20,14 @@
 
          <h3>나의 프로필</h3>
          <tr class="line1">
+<<<<<<< HEAD
             <td style="width: 120px; height: 200px; overflow: hidden" rowspan="4"  width="100">
             <%-- <img src="/Hi_Admin/image/<c:property value='resultClass.file_savname' />" style="width: auto; height: 150px; margin-left: -10px;" /> --%>
             <img src="/someday/resources/img/${member.file_savname}" width="300" height="300"/>
             </td>
+=======
+            <img src="/someday/resources/img/${my.file_savname}" width="300" height="300"/>
+>>>>>>> jo
          </tr>
          <tr class="line1">
             <td width="200"><b>닉네임</b></td>
@@ -59,10 +63,7 @@
                <h3>오늘의 인연</h3>
             </tr>
             <tr class="line1">
-               <%-- <td style="width: 120px; height: 200px; overflow: hidden"
-                  rowspan="7" width="100"><img
-                  src="/Hi_Admin/image/<c:property value='target.file_savname' />"
-                  style="width: auto; height: 150px; margin-left: -10px;" /></td> --%>
+              <img src="/someday/resources/img/${target.file_savname}" width="300" height="300"/>
             <tr class="line1">
                <td width="200"><b>닉네임</b></td>
                <td><b>${target.nick}</b></td>
