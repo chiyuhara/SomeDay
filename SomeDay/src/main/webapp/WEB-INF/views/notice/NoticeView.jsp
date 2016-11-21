@@ -127,7 +127,7 @@ body {
 				<br/><center>등록된 댓글이 없습니다</center><br/>
 			</c:if>
 		
-		      <c:forEach var="noticecommList" items="${noticecommList}">
+		    <c:forEach var="noticecommList" items="${noticecommList}">
 				<br></br>
 			<td>${noticecommList.writer }님|${noticecommList.content}
 				
@@ -152,12 +152,7 @@ body {
 	            <button type="button" onclick="onModify()" class="bin ban-primary">수정</button>
 	            <button type="button" onclick="Delete()" class="bin ban-primary">삭제</button>
 				</div>
-				</tr>
-				
-												
-				
-							
-			
+			</tr>
 		</form:form>
 		</div>
 		</div>

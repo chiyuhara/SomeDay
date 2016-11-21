@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="chat">
+
+	<resultMap type="chatModel" id="chatModelRes">
+		<result property="to_idx" column="to_idx" />
+		<result property="from_idx" column="from_idx" />
+		<result property="content" column="content" />
+		<result property="couple_idx" column="couple_idx" />
+		<result property="nick" column="nick" />
+		<result property="times" column="times" />
+	</resultMap>
+
+	<!-- 채팅 목록 -->
+	<select id="chatList" resultMap="chatModelRes" parameterType="Integer">
+		SELECT CHAT.TO_IDX, CHAT.FROM_IDX, CHAT.CONTENT, CHAT.COUPLE_IDX, CHAT.TIMES, MEMBER.NICK
+		FROM CHAT
+		LEFT JOIN MEMBER ON MEMBER.IDX = CHAT.TO_IDX
+		WHERE COUPLE_IDX = #{couple_idx}
+		ORDER BY TIMES ASC
+	</select>
+	
+	<!-- 댓글 쓰기 -->
+	<insert id="chatSend" parameterType="chatModel">
+		INSERT INTO CHAT(TO_IDX, FROM_IDX, CONTENT, COUPLE_IDX, TIMES)
+		VALUES(#{to_idx},#{from_idx}, #{content}, #{couple_idx}, SYSDATE)
+	</insert>
+
+</mapper>

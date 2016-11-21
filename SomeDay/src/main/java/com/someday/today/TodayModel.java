@@ -15,7 +15,7 @@ public class TodayModel {
 	private int male_score;
 	private String female_msg;
 	private String male_msg;
-	private TIMESTAMP times;
+	private Date times;
 	private int Score;
 	
 	public int getScore() {
@@ -66,12 +66,6 @@ public class TodayModel {
 	public void setMale_score(int male_score) {
 		this.male_score = male_score;
 	}
-	public TIMESTAMP getTimes() {
-		return times;
-	}
-	public void setTimes(TIMESTAMP times) {
-		this.times = times;
-	}
 	public String getFemale_msg() {
 		return female_msg;
 	}
@@ -83,5 +77,11 @@ public class TodayModel {
 	}
 	public void setMale_msg(String male_msg) {
 		this.male_msg = male_msg;
+	}
+	public Date getTimes() {
+		return times;
+	}
+	public void setTimes(Date times) {
+		this.times = times;
 	}
 }
