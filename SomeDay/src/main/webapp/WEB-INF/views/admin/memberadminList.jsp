@@ -3,6 +3,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>   
 <head>
+
 <script type="text/javascript">
 function delchk(){
     return confirm("삭제하시겠습니까?");
@@ -22,12 +23,22 @@ function delchk(){
 .paging a:first-child{margin-left:0;}
 .paging strong{color:#fff;background:#337AB7;border:1px solid #337AB7;}
 .paging .page_arw{font-size:11px;line-height:30px;}
+
+p.outset {border-style: outset;}
 </style>
 </head>
-
-<div class="row" style="padding-left:15px;width:900px;">    
-	<h1 class="page-header">회원목록</h1>
-</div>
+         <div class="container">
+            <div class="row">
+            <div class="box"> 
+                <div class="col-lg-12 text-center">
+                
+              <h2><p class="outset">회  원  목  록</p></h2>
+  
+ </div>
+ </div>
+ </div>
+ </div>
+ 
 <div class="row">
 	<div class="panel panel-default">
 		<div class="panel-heading">
