@@ -17,6 +17,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+
 
 
 import com.someday.member.MemberService;
@@ -33,7 +39,10 @@ public class MemberController {
 	
 	   @Resource(name="memberService")
 	   private MemberService memberService;
-	 
+	   
+	   @Autowired
+	   private JavaMailSender mailSender;
+	  
 	   private List<ZipcodeModel> zipcodeList = new ArrayList<ZipcodeModel>();
 	   private MemberModel memberModel = new MemberModel();
 	   ModelAndView mav = new ModelAndView();
@@ -287,7 +296,7 @@ public class MemberController {
     	public ModelAndView memberModifyEnd(@ModelAttribute("member") MemberModel member, HttpSession session) {
         
     		session.getAttribute("session_member_idx");
-          	if (session.getAttribute("session_member_idx") != null) {
+          	if (session.getAttribute("mysession_member_idx") != null) {
           	int idx = (int) session.getAttribute("session_member_idx");
           	System.out.println(idx);
           	
@@ -369,6 +378,58 @@ public class MemberController {
     		mav.setViewName("check/checkPassword");
     		return mav;
     	}
+    	
+    	//이메일인증 폼
+    	@RequestMapping("/emailForm")
+    	public ModelAndView emailForm(){
+    		mav.setViewName("/check/Email");
+    		return mav;
+    	}
+    	
+    	//이메일 인증
+    	@RequestMapping("/emailAuth")
+    	public ModelAndView emailAuth(HttpServletResponse response, HttpServletRequest request){		
+    		
+    	   String email1 = request.getParameter("email");
+    	   String email2 = request.getParameter("email2");
+    		
+           String email = email1+"@"+email2;
+           String authNum = RandomNum(); //난수 발생
+               
+	       String setfrom = "qudcks317@gmail.com";         
+	   	   String tomail  = email;     // 받는 사람 이메일
+	   	   String title   = "SomeDay 인증번호";      // 보내는 사람 이메일
+	   	   String content = "인증번호 ["+ authNum + "]";   // 보내는 사람 이메일
+          
+           try {
+             MimeMessage message = mailSender.createMimeMessage();
+             MimeMessageHelper messageHelper 
+                               = new MimeMessageHelper(message, true, "UTF-8");
+        
+             messageHelper.setFrom(setfrom);  // 보내는사람 생략하거나 하면 정상작동을 안함
+             messageHelper.setTo(tomail);     // 받는사람 이메일
+             messageHelper.setSubject(title); // 메일제목은 생략이 가능하다
+             messageHelper.setText(content);  // 메일 내용
+            
+             mailSender.send(message);
+           } catch(Exception e){
+             System.out.println(e);
+           }
+           System.out.println(authNum);
+           mav.addObject("authNum", authNum);
+    	   mav.setViewName("/check/Email");
+    		
+    		return mav;
+    	}
+    	
+		public String RandomNum(){
+			StringBuffer buffer = new StringBuffer();
+			for(int i = 0; i <= 6; i++){
+				int n = (int)(Math.random() * 10);
+				buffer.append(n);
+			}
+			return buffer.toString();
+		}
     	
 }
 
