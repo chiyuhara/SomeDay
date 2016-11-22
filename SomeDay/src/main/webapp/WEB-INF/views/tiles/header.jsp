@@ -28,9 +28,9 @@
                   <button type="submit" class="btn btn-primary"><b>로그인</b>
                    <div class="col-lg-12 text-right">
                   </button>                     
-                   <button type="submit"class="btn btn-primary" a href="${contextpath}/someday/member/memberForm"><b>회원가입</b>
+                   <button type="button"class="btn btn-primary" onclick="javascript:location.href='${contextpath}/someday/member/memberForm'"/><b>회원가입</b>
                   </button>  
-                   <button type="submit"class="btn btn-primary" a href="${contextpath}/someday/member/findForm"><b>ID/PW찾기</b>
+                   <button type="button"class="btn btn-primary" onclick="javascript:location.href='${contextpath}/someday/member/findForm'"/><b>ID/PW찾기</b>
                   </button>
                  </div> 
                   
@@ -41,7 +41,7 @@
                   <div class="input-group">
                      <strong>${session_member_name}&nbsp;님 반갑습니다.&nbsp;&nbsp;&nbsp;</strong>
                      <c:if test="${session_member_authority == 'Y'}">
-                		<a href="${contextpath}/someday/admin/admin">관리자페이지</a>
+                		<a input type="button" class="btn btn-primary" href="${contextpath}/someday/admin/admin">관리자페이지</a>&nbsp;&nbsp;
           	   		</c:if>
                     
                      <input type="button" value="로그아웃" class="btn btn-primary" onclick="javascript:location.href='${contextpath}/someday/member/logout'"/>
@@ -75,7 +75,7 @@
                      <li><a href="#">이 용 방 법</a></li>
                      <li><a href="#">F A Q</a></li>
                      <li><a href="#">Q & A</a></li> 
-                     <li><a href="#">찾아오시는길</a></li>
+                     <li><a href="${contextpath}/someday/load">찾아오시는길</a></li>
                   </ul></li>
                <li><a href="${contextpath}/someday/today/TodayView">오늘의인연</a></li>
                <li><a href="${contextpath}/someday/member/MypageView">마이페이지</a></li>

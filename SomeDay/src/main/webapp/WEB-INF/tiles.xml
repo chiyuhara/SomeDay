@@ -15,7 +15,7 @@
 	
 	<!-- admin -->
    <definition name="admin" template="/WEB-INF/views/layout/admin/layout.jsp">
-      <put-attribute name="body" value="/WEB-INF/views/layout/admin/container.jsp" />
+      <put-attribute name="main" value="/WEB-INF/views/layout/admin/main.jsp" />        
    </definition>
    
 	<!-- NoticeList -->
@@ -84,7 +84,7 @@
 	</definition>
 	
 	<!-- admin -->
-	<definition name="adminForm" extends="admin">
+	 <definition name="adminForm" extends="admin">
 		<put-attribute name="body" value="/WEB-INF/views/layout/admin/main.jsp" />
 	</definition>
 
@@ -136,6 +136,10 @@
 	
 	<definition name="qnaModify" extends="main">
 		<put-attribute name="body" value="/WEB-INF/views/qna/QnAModify.jsp" />
+	</definition>
+	
+	<definition name="load" extends="main">
+		<put-attribute name="body" value="/WEB-INF/views/qna/load.jsp" />
 	</definition>
 	
 

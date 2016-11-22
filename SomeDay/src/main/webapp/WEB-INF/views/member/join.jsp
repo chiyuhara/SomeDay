@@ -210,13 +210,17 @@
 </script>
 <link rel="stylesheet" type="text/css" href="/ind-script/optimizer.php?filename=06118f634a443f6e176680a1d0672b7553eb8064_1469556636&type=css&" />
 <form:form commandName="member" action="memberjoin" method="post" name="join" onsubmit="return check()" enctype="multipart/form-data">
-<h3>기본정보</h3>
+<div class="container">
+        <div class="row">
+             <div class="box"> 
+                <div class="col-lg-12 text-center">
+<h3>회원 가입</h3>
 <p class="required">회원가입을 위한 필수입력 항목을 입력해 주십시오.</p>
 <div class="board_view ">
         <table border="1" summary="">
-<caption>회원 기본정보</caption>
+<caption>회원 정보입력</caption>
 
-        <tbody>
+<tbody>
 <tr>
 <th scope="row">아이디</th>
                 <td><input id="id" name="id" theme="simple" fw-filter="isFill&isFill&isMin[4]&isMax[16]&isIdentity" fw-label="아이디" fw-msg="" class="inputTypeText" value="" type="text" onfocus="on(this)" onblur="off(this)"  />
@@ -329,11 +333,15 @@ $("#selectEmail option:selected").each(function () {
 			<tr>
 <th scope="row">파일첨부</td>
 			<td><div id="fileDiv">
-				<input type="file" id="file" name="file">
-					<a href="#this" class="btn" id="delete" name="delete">삭제</a>
-					<a href="#this" class="btn" id="addFile">파일 추가</a>
+				 <input type="file" class="btn btn-primary" id="file" name="file"><br>
+					<a href="#this" class="btn btn-primary" id="delete" name="delete">삭제</a>
+					<a href="#this" class="btn btn-primary" id="addFile">파일 추가</a>
 
 				</td>
+				</div>
+				</div>
+				</div>
+				</div>
 			</div>
 			</tr>
 <script type="text/javascript">
@@ -381,17 +389,24 @@ $("#selectEmail option:selected").each(function () {
 </tbody>
 </table>
 </div>
+<div class="col-lg-12 text-right">
+<div class="btnArea">
+    <input type="image" class="btn btn-primary" name="Submit" value="가입완료"/>
+    <a href="${contextpath}/someday/" input type="image" class="btn btn-primary" name="Submit">가입취소</a>
+</div>
+</div>   
+    </div>
+</div>
+
 
 			
 
 </tbody>
 </table>
 </div>
-<div class="btnArea">
- 	<input type="image" src="/pet/resources/images/SkinImg/btn_member_join.gif" name="Submit" value="" style="border:0px;" />
-        <a href="/index.html"><img src="/web/upload/goodymallSkin/mypage/btn_member_cancel.gif" alt="회원가입취소"/></a>
-      
-    </div>
+<!-- 가입완료버튼 -->
+
+
 </div>
 </form:form>
 </form>
