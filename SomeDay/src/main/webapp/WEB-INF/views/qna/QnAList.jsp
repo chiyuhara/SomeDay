@@ -45,6 +45,9 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 </head>
 <body>
+<div class="container">
+	<div class="row">
+		<div class="box">
 	<h2>공지 목록</h2>
 	<table style="border: 1px solid #ccc" bgcolor="gray">
 		<colgroup>
@@ -186,6 +189,8 @@
 			</div>
 		</div>
 	</div>
-
+</div>
+</div>
+</div>
 </body>
 </html>

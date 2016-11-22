@@ -73,11 +73,11 @@
                </a>
                    <ul class="dropdown-menu" role="menu">                  
                      <li><a href="#">이 용 방 법</a></li>
-                     <li><a href="#">F A Q</a></li>
-                     <li><a href="#">Q & A</a></li> 
+                     <li><a href="${contextpath}/someday/faq/FAQ">F A Q</a></li>
+                     <li><a href="${contextpath}/someday/qna/QnAList">Q & A</a></li> 
                      <li><a href="#">찾아오시는길</a></li>
                   </ul></li>
-               <li><a href="${contextpath}/someday/today/TodayView">오늘의인연</a></li>
+               <li><a href="${contextpath}/someday/today/">오늘의인연</a></li>
                <li><a href="${contextpath}/someday/member/MypageView">마이페이지</a></li>
                <li><a href="${contextpath}/someday/notice/NoticeList">공지&이벤트</a></li>
             </ul>

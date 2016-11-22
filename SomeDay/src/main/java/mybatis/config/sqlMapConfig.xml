@@ -45,14 +45,10 @@ PUBLIC " - //mybatis.org//DTD Config 3.0//EN"
 		
 		<!--  Chat  -->
 		<typeAlias type="com.someday.chat.ChatModel" alias="chatModel" />
-<<<<<<< HEAD
 
         <!-- meeting -->
         <typeAlias type="com.someday.meeting.MeetModel" alias="meetModel"/>
 
-=======
->>>>>>> jo
-		
 	</typeAliases>
 
 	<!-- SQL 정의한 xml문서 Mapping -->

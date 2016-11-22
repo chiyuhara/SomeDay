@@ -57,7 +57,10 @@ p {
 <title>Insert title here</title>
 </head>
 <body>
+<div class="container">
 
+        <div class="row">
+            <div class="box">
 	<div id="faq" >
 		<h3 >1. 같은 사람이 여러 개의 계정을 만들 수 있나요?</h3>
 		<p>&nbsp;&nbsp;한 사람이 다수의 계정을 보유하는 것은 불가능합니다. <br>
@@ -108,5 +111,8 @@ p {
 		&nbsp;&nbsp;모바일 어플리케이션은 현재 개발 진행 중이며, 빠른 시일 내로 출시할 예정입니다.</p>
 		
 	</div>
+</div>
+</div>
+</div>
 </html>
 </body>

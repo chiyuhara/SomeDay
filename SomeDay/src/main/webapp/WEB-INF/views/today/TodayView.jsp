@@ -2433,24 +2433,6 @@ opacity
 						<table width="600" border="0" cellspacing="0" cellpadding="2">
 							<div id="relative">
 								<div id="absolute2">
-<<<<<<< HEAD
-									<c:choose>
-										<c:when
-											test="${meeting.female_like == 0 && meeting.male_like == 0}">
-											<img src="../resources/img/no_couple.png" />
-										</c:when>
-										<c:when
-											test="${meeting.female_like == 1 && meeting.male_like == 1}">
-											<img src="../resources/img/couple.png" />
-											<script>
-												layer_open('layer');
-											</script>
-											<a href="#" onClick="window.open('Chat','채팅','width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes');return false;" class="btn btn-primary btn-default">Chat</a>
-										</c:when>
-										<c:when
-											test="${meeting.female_like == 1 && meeting.male_like == 0}">
-											<img src="../resources/img/female_like.png" />
-=======
 								<c:choose>
 										<c:when test="${targetfemale != null}">
 											<c:choose>
@@ -2479,7 +2461,6 @@ opacity
 													<img src="../resources/img/male_like.png" />
 												</c:when>
 											</c:choose>
->>>>>>> jo
 										</c:when>
 									</c:choose>
 									
@@ -2517,32 +2498,15 @@ opacity
 
 									<c:choose>
 										<c:when test="${targetfemale != null}">
-<<<<<<< HEAD
-											<c:choose>
-												<c:when
-													test="${targetfemale.female_msg != null && targetmale.male_msg != null}">
-													<button type="button"
-														onclick="button_message_view('message2');"
-														class="btn btn-success btn-circle btn-xl">
-=======
 										<c:choose>
 												<c:when test="${targetfemale.female_msg == null && targetfemale.male_msg != null}">
 													<button type="button" onclick="button_message_view('message2');" class="btn btn-success btn-circle btn-xl">
->>>>>>> jo
 														<i class="fa fa-fw fa-envelope faa-horizontal animated"></i>
 													</button>
 												</c:when>
 
-<<<<<<< HEAD
-												<c:when
-													test="${targetfemale.female_msg != null && targetmale.male_msg == null}">
-													<button type="button"
-														onclick="button_message_view('message2');"
-														class="btn btn-success btn-circle btn-xl">
-=======
 												<c:when test="${targetfemale.male_msg != null && targetfemale.female_msg != null}">
 													<button type="button" onclick="button_message_view('message2');"class="btn btn-success btn-circle btn-xl">
->>>>>>> jo
 														<i class="fa fa-fw fa-envelope faa-horizontal animated"></i>
 													</button>
 												</c:when>
@@ -2558,29 +2522,15 @@ opacity
 										<c:when test="${targetmale != null}">
 											<c:choose>
 												<c:when
-<<<<<<< HEAD
-													test="${targetmale.male_msg != null && targetmale.female_msg != null}">
-													<button type="button"
-														onclick="button_message_view('message2');"
-														class="btn btn-success btn-circle btn-xl">
-=======
 													test="${targetmale.male_msg == null && targetmale.female_msg != null}">
 													<button type="button" onclick="button_message_view('message2');" class="btn btn-success btn-circle btn-xl">
->>>>>>> jo
 														<i class="fa fa-fw fa-envelope faa-horizontal animated"></i>
 													</button>
 												</c:when>
 
 												<c:when
-<<<<<<< HEAD
-													test="${targetmale.male_msg == null && targetmale.female_msg != null}">
-													<button type="button"
-														onclick="button_message_view('message2');"
-														class="btn btn-success btn-circle btn-xl">
-=======
 													test="${targetmale.male_msg != null && targetmale.female_msg != null}">
 													<button type="button" onclick="button_message_view('message2');" class="btn btn-success btn-circle btn-xl">
->>>>>>> jo
 														<i class="fa fa-fw fa-envelope faa-horizontal animated"></i>
 													</button>
 												</c:when>

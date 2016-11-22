@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.someday.member.MemberModel;
-import com.someday.member.MemberService;
 import com.someday.today.TodayModel;
 import com.someday.today.TodayService;
 

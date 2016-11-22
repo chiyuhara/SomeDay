@@ -103,14 +103,16 @@ th, td {
 		</tr>
 		<tr>
 			<td width="200">가입일</td>
-			<td><fmt:formatDate value="${member.times}" pattern="YY.MM.dd HH:mm" /></td>
+			<td><fmt:formatDate value="${member.times}" pattern="YY.MM.dd" /></td>
+			<td width="100"><h4>평균 평점</h4></td>
+			<td>${member.score_avg}</td>
 		</tr>
 		
 		<tr>
 			<td width="100"><h4>소개</h4></td>
 			<td>${member.intro}</td>
 			<td width="100"><h4>사진</h4></td>
-			<td>${member.file_savname}</td>
+			<td>${member.file_orgname}</td>
 		</tr>	   
 	      </table>
 	       <div class="col-lg-12 text-right">

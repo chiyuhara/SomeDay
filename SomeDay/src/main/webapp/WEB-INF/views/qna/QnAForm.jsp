@@ -64,7 +64,9 @@
 <title>QNA</title>
 </head>
 <body>
-
+<div class="container">
+	<div class="row">
+		<div class="box">
 	<div id="wrapper">
 		<form:form commandName="qnaModel" action="QnAWrite" method="post"
 			enctype="multipart/form-data">
@@ -119,6 +121,8 @@
 		</form:form>
 
 	</div>
-
+</div>
+</div>
+</div>
 </body>
 </html>

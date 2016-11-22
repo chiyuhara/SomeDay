@@ -61,6 +61,9 @@ body {
 </head>
 
 <tbody>
+<div class="container">
+	<div class="row">
+		<div class="box">
 	<table width="600" border="0" cellspacing="0" cellpadding="0">
 		<h2>공지 및 이벤트 상세보기</h2>
 	</table>
@@ -154,6 +157,8 @@ body {
 	<button type="button" onclick="onList()" class="btn btn-primary">목록</button>
 	<button type="button" onclick="onModify()" class="btn btn-primary">수정</button>
 	<button type="button" onclick="Delete()" class="btn btn-primary">삭제</button>
-
+</div>
+</div>
+</div>
 </tbody>
 </html>
