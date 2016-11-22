@@ -145,7 +145,7 @@
 
 		<!-- Tiles -->
 		<dependency>
-			<groupId>org.apache.tiles</groupId>
+			<groupId>org.apache.tiles</groupId> 
 			<artifactId>tiles-core</artifactId>
 			<version>2.2.2</version>
 		</dependency>
@@ -204,6 +204,19 @@
 			<artifactId>ojdbc14</artifactId>
 			<version>10.2.0.4.0</version>
 		</dependency>
+		
+		 <!-- Java Mail API -->
+      <dependency>
+          <groupId>javax.mail</groupId>
+          <artifactId>mail</artifactId>
+          <version>1.4.3</version>
+      </dependency> 
+      
+      <dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-context-support</artifactId>
+    <version>4.0.4.RELEASE</version>
+</dependency>
 
 
 	</dependencies>

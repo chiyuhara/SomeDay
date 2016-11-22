@@ -69,6 +69,7 @@
 	      var f = document.join; //문서.Form name="";
 	      var idPs = /^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9])(?=.*[0-9]).{6,16}$/; //아이디 비밀번호 체크표현식
 	      var checkid = document.join.checkid.value;
+	      var mailCheck = document.join.mailCheck.value;
 
 	      if (f.id.value == "") {
 	         alert("아이디를 입력해주세요.");
@@ -205,8 +206,24 @@
 				alert("ID 중복체크를 하세요!");
 				return false;
 			}
+			if (mailCheck == 0) {
+				alert("이메일 인증을 해주세요");
+				return false;
+			}
+			
+			alert("환영합니다");
+			return true;
 
 	   }
+</script>
+<script type="text/javascript">
+	function email_event(){
+	
+		var url = "${contextpath}/someday/member/emailAuth?email=" + document.join.email.value +"&email2="+document.join.email2.value;
+		open(url,"email",
+				"toolbar=no, location=no, status=co, menubar=no, scrollbars=no, resizable=no, width=320, height=160");
+	}
+		
 </script>
 <link rel="stylesheet" type="text/css" href="/ind-script/optimizer.php?filename=06118f634a443f6e176680a1d0672b7553eb8064_1469556636&type=css&" />
 <form:form commandName="member" action="memberjoin" method="post" name="join" onsubmit="return check()" enctype="multipart/form-data">
@@ -275,7 +292,8 @@
 					<option value="gmail.com">gmail.com</option>
 					<option value="1">직접입력</option>
 </select>
-
+<input type="button" value="이메일인증" class="button" onclick="return email_event();"/>
+<input type="hidden" name="mailCheck" value="0" />
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 //이메일 입력방식 선택

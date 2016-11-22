@@ -71,7 +71,7 @@ public class MeetController {
 					   
 		   }
 		   
-		   mav.setViewName("main");
+		   mav.setViewName("MeetList");
 		   return mav;
 	   }
 	   
