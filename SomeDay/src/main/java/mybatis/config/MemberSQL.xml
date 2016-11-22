@@ -88,14 +88,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="selectOne" resultMap="memberRes" parameterType="int">
 		SELECT MEMBER.IDX, MEMBER.ID,
-		MEMBER.NICK, MEMBER.PASS, MEMBER.NAME, MEMBER.AGE, MEMBER.BLOODGROUP,
+		MEMBER.NICK, MEMBER.PASS, MEMBER.NAME,
+		MEMBER.AGE, MEMBER.BLOODGROUP,
 		MEMBER.GENDER,
-		MEMBER.AREA, MEMBER.EMAIL, MEMBER.PHONE, MEMBER.NUM1, MEMBER.NUM2, MEMBER.ZIPCODE,
-		MEMBER.ADDR1, MEMBER.ADDR2,
+		MEMBER.AREA, MEMBER.EMAIL,
+		MEMBER.PHONE, MEMBER.NUM1, MEMBER.NUM2, MEMBER.ZIPCODE,
+		MEMBER.ADDR1,
+		MEMBER.ADDR2,
 		MEMBER.INTRO,
-		(SELECT AVG(MEET.FEMALE_SCORE) FROM MEETING MEET WHERE (CASE WHEN
-		MEMBER.GENDER = 'female' THEN FEMALE_IDX WHEN MEMBER.GENDER = 'male'
-		THEN MALE_IDX END) = #{idx} AND FEMALE_SCORE > 0) AS SCORE_AVG,
+		(SELECT AVG(MEET.FEMALE_SCORE) FROM MEETING
+		MEET WHERE (CASE WHEN
+		MEMBER.GENDER = 'female' THEN FEMALE_IDX WHEN
+		MEMBER.GENDER = 'male'
+		THEN MALE_IDX END) = #{idx} AND FEMALE_SCORE >
+		0) AS SCORE_AVG,
 		MEMBER.AUTHORITY, MEMBER.TIMES, MEMBER.FILE_ORGNAME,
 		MEMBER.FILE_SAVNAME
 		FROM MEMBER
@@ -155,7 +161,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="updateFile" parameterType="memberModel">
 		UPDATE MEMBER SET
 		FILE_ORGNAME = #{File_orgname},
-		FILE_SAVNAME = #{File_savname}
+		FILE_SAVNAME =
+		#{File_savname}
 		<include refid="where-idx" />
 	</update>
 
@@ -292,12 +299,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 남자1명 랜덤 -->
 	<select id="random_male" resultMap="memberRes" parameterType="memberModel">
-		SELECT * FROM (SELECT * FROM MEMBER  WHERE AUTHORITY = 'N' ORDER BY dbms_random.value) WHERE
+		SELECT * FROM (SELECT * FROM MEMBER WHERE AUTHORITY = 'N' ORDER BY
+		dbms_random.value) WHERE
 		rownum = 1 AND GENDER = 'male'
 	</select>
 	<!-- 여자1명 랜덤 -->
 	<select id="random_female" resultMap="memberRes" parameterType="memberModel">
-		SELECT * FROM (SELECT * FROM MEMBER  WHERE AUTHORITY = 'N' ORDER BY dbms_random.value) WHERE
+		SELECT * FROM (SELECT * FROM MEMBER WHERE AUTHORITY = 'N' ORDER BY
+		dbms_random.value) WHERE
 		rownum = 1 AND GENDER = 'female'
 	</select>
 
@@ -335,7 +344,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FILE_SAVNAME, MEETING.FEMALE_SCORE AS SCORE, MEETING.FEMALE_MSG AS
 		FEMALE_MSG, MEETING.MALE_MSG AS MALE_MSG FROM MEMBER LEFT JOIN MEETING
 		ON MEMBER.IDX = MEETING.FEMALE_IDX WHERE MEMBER.IDX = #{idx} AND
-		MEETING.TIMES = TRUNC(SYSDATE) 
+		MEETING.TIMES = TRUNC(SYSDATE)
 	</select>
 	<!-- target 남자 회원정보와 오늘 미팅점수가져옴 -->
 	<select id="targetmale" parameterType="Integer" resultMap="todaymemberRes">
@@ -348,9 +357,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FILE_SAVNAME, MEETING.MALE_SCORE AS SCORE, MEETING.MALE_MSG AS
 		MALE_MSG, MEETING.FEMALE_MSG AS FEMALE_MSG FROM MEMBER LEFT JOIN
 		MEETING ON MEMBER.IDX = MEETING.MALE_IDX WHERE MEMBER.IDX = #{idx} AND
-		MEETING.TIMES = TRUNC(SYSDATE) 
+		MEETING.TIMES = TRUNC(SYSDATE)
 	</select>
 
+	<!-- 여자 회원수 -->
+	<select id="selectfemale" resultMap="memberRes">
+		SELECT * FROM MEMBER where gender = 'female'
+	</select>
 
+	<!-- 남자 회원수 -->
+	<select id="selectmale" resultMap="memberRes">
+		SELECT * FROM MEMBER where gender = 'male'
+	</select>
+	
+	
 
 </mapper>
