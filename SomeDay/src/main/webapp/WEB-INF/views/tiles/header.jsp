@@ -73,7 +73,6 @@
                </a>
                    <ul class="dropdown-menu" role="menu">                  
                      <li><a href="#">이 용 방 법</a></li>
-
                      <li><a href="#">F A Q</a></li>
                      <li><a href="#">Q & A</a></li> 
                      <li><a href="${contextpath}/someday/load">찾아오시는길</a></li>

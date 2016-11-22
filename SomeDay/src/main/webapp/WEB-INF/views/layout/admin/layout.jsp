@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
@@ -16,6 +17,7 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="resources/css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="resources/css/business-casual2.css" rel="stylesheet">
@@ -26,6 +28,7 @@
 
 	 <!-- jQuery -->
     <script src="resources/js/jquery.js"></script>
+    <script src="resources/js/bootstrap.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="resources/js/bootstrap.min.js"></script>
@@ -46,10 +49,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Business Casual - Start Bootstrap Theme</title>
+   <title>관리자페이지</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../resources/css/bootstrap.css" rel="stylesheet"> 
 
     <!-- Custom CSS -->
     <link href="../resources/css/business-casual2.css" rel="stylesheet">
@@ -60,10 +64,12 @@
 
 	 <!-- jQuery -->
     <script src="../resources/js/jquery.js"></script>
+    
 
     <!-- Bootstrap Core JavaScript -->
     <script src="../resources/js/bootstrap.min.js"></script>
-
+    
+     
     <!-- Script to Activate the Carousel -->
     <script>
     $('.carousel').carousel({
@@ -71,52 +77,30 @@
     })
     </script>
 </head>
-
 <body>
-<a class="navbar-brand" href=""><H2>SOME DAY-ADMIN<br>관리자 전용</H2></a>
+
+<a class="navbar-brand" href="">SOME DAY-ADMIN<br>관리자 전용</a>
+        
          <div class="collapse navbar-collapse"
             id="bs-example-navbar-collapse-1">
-         <div class="row">
-             <div class="box"> 
-                <div class="col-lg-12 text-center">
-            <ul class="nav navbar-nav">
-               <li class="dropdown"><a class="dropdown-toggle"
-                  data-toggle="dropdown" role="button" aria-expanded="false">ADMIN MAIN
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   
-               </a>
-                   <ul class="dropdown-menu" role="menu">                  
+              <div class="row">
+                <div class="box">
+                 <div class="col-lg-12 text-l">        
+                    <ul class="nav navbar-nav"> 
+                                 
                      <li><a href="${contextpath}/someday/admin/admin">관리자홈</a></li>
-                     <li><a href="${contextpath}/someday/">MAIN으로 이동</a></li>
-                  </ul></li>
-                  
-                   <li class="dropdown"><a class="dropdown-toggle"
-                  data-toggle="dropdown" role="button" aria-expanded="false">회원 관리
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                      
-               </a>
-                   <ul class="dropdown-menu" role="menu">                  
+                     <li><a href="${contextpath}/someday/">MAIN으로 이동</a></li>
+                                  
                      <li><a href="/someday/admin/memberadminList">회원목록</a></li>
-                     <li><a href="#"></a></li>
-                  </ul></li>
-                  
-                   <li class="dropdown"><a class="dropdown-toggle"
-                  data-toggle="dropdown" role="button" aria-expanded="false">게시판 관리
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-               </a>
-                   <ul class="dropdown-menu" role="menu">                  
-                     <li><a href="/someday/notice/NoticeList">공지사항</a></li>
-                     <li><a href="#"></a></li>
-                  </ul></li>
-            </ul>
-         </div>
-         </div>
-         </div>
-         </div>
+                                  
+                     <li><a href="/someday/notice/NoticeList">공지사항</a></li>         
          
+         </div>
+         </div>
+         </div>
+         </div>
 
-
-
-	<tiles:insertAttribute name="body" />
-	
-</body>
+	 <tiles:insertAttribute name="body" />	
+  </body> 
 </html>
