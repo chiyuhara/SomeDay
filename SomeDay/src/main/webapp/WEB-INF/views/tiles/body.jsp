@@ -3,7 +3,7 @@
 <body>
   <div class="container">
         <div class="row">
-             <div class="box"> 
+             <div class="box">
                 <div class="col-lg-12 text-center">
                     <div id="carousel-example-generic" class="carousel slide">
                         <!-- Indicators -->
@@ -24,7 +24,7 @@
                             <div class="item">
                                 <img class="img-responsive img-full" src="resources/img/slide_03.jpg" alt="">
                             </div>
-                        </div>
+                        </div> 
 
                         <!-- Controls -->
                         <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">

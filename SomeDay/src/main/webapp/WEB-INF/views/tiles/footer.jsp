@@ -19,6 +19,7 @@ th, td {
  <nobr>
         <div class="container">
             <div class="row">
+              
                 <div class="col-lg-12 text-center">
                 
   <h2><td>SOME DAY 고객센터</td></h2>
@@ -46,6 +47,7 @@ th, td {
     <td>(주말·공휴일: 문자·카톡 문의가능)</td>
   </tr> 
 </table>                   
+</div>
 </div>
 </div>
 </div>
