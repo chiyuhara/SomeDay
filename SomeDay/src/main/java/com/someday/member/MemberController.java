@@ -275,7 +275,8 @@ public class MemberController {
       //회원정보 가져오기
       	@RequestMapping("/MypageView")
       	public ModelAndView mypageView(@ModelAttribute("member") MemberModel member, HttpSession session){
-      		
+      	
+      	int checkId;
       	session.getAttribute("session_member_idx");
       	if (session.getAttribute("session_member_idx") != null) {
       	int idx = (int) session.getAttribute("session_member_idx");
@@ -287,16 +288,18 @@ public class MemberController {
 		  mav.setViewName("MypageView");
 		  return mav;
       	}
-      	mav.setViewName("MypageView");
+      	checkId = 1;
+      	mav.addObject("checkId",checkId);
+      	mav.setViewName("member/loginSuccess");
       	return mav;
       	}
         
     	//회원정보 수정폼
     	@RequestMapping("/MypageModify")
-    	public ModelAndView memberModifyEnd(@ModelAttribute("member") MemberModel member, HttpSession session) {
+    	public ModelAndView memberModify(@ModelAttribute("member") MemberModel member, HttpSession session) {
         
     		session.getAttribute("session_member_idx");
-          	if (session.getAttribute("mysession_member_idx") != null) {
+          	if (session.getAttribute("session_member_idx") != null) {
           	int idx = (int) session.getAttribute("session_member_idx");
           	System.out.println(idx);
           	
@@ -348,7 +351,7 @@ public class MemberController {
 			
 			
 		  ModelAndView mav = new ModelAndView();
-  		  mav.setViewName("main");
+  		  mav.setViewName("redirect:/");
   		  return mav;
     	}
     	

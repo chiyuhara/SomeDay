@@ -9,6 +9,7 @@ import java.util.Locale;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
@@ -21,6 +22,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.someday.member.MemberModel;
+import com.someday.member.MemberService;
 //페이징
 import com.someday.util.Paging;
 import com.someday.validator.NoticeValidator;
@@ -30,7 +32,12 @@ public class NoticeController {
 
 	@Resource(name = "noticeService")
 	private NoticeService noticeService;
+	
+	@Resource(name = "memberService")
+	private MemberService memberService;
 
+	private MemberModel memberModel = new MemberModel();
+	
 	// 검색을 위한 변수 설정
 	private int searchNum;
 	private String isSearch;
@@ -150,7 +157,7 @@ public class NoticeController {
 		noticeList = noticeService.noticeList();
 		
 		totalCount = noticeList.size();
-		page = new Paging(currentPage, totalCount, blockCount, blockPage, "noticeList", searchNum, isSearch);
+		page = new Paging(currentPage, totalCount, blockCount, blockPage, "noticeList");
 		pagingHtml = page.getPagingHtml().toString();
 
 		int lastCount = totalCount;
@@ -211,7 +218,7 @@ public class NoticeController {
 	// 공지사항 글쓰기
 	@RequestMapping(value = "/notice/NoticeWrite", method = RequestMethod.POST)
 	public String reviewWrite(NoticeModel noticeModel,  BindingResult result, String type,
-								MultipartHttpServletRequest multipartHttpServletRequest) throws Exception, Exception{
+								MultipartHttpServletRequest multipartHttpServletRequest, HttpSession session) throws Exception, Exception{
 		System.out.println("글쓰기ex 실행");
 		System.out.println(noticeModel.getSubject());
 		System.out.println(noticeModel.getContent());
@@ -235,6 +242,12 @@ public class NoticeController {
 		System.out.println ( currentTime );
 		
 		noticeModel.setTimes(currentTime);
+		session.getAttribute("session_member_idx");
+		int memberidx = (int) session.getAttribute("session_member_idx");
+		memberModel = memberService.memberList(memberidx);
+		String writer = memberModel.getNick();		
+		
+		noticeModel.setWriter(writer);
 		
 
 		noticeService.noticeWrite(noticeModel);

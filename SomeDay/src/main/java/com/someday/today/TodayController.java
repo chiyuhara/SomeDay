@@ -30,11 +30,13 @@ public class TodayController {
 	@RequestMapping(value = "/today")
 	public ModelAndView tody(HttpServletRequest request, HttpSession session) {
 		System.out.println("오늘의 인연");
+		int checkId;
 		ModelAndView mav = new ModelAndView();
 
 		MemberModel my = new MemberModel();
 		MemberModel target = new MemberModel();
 
+		if (session.getAttribute("session_member_idx") != null) {
 		int idx = (int) session.getAttribute("session_member_idx");
 		System.out.println("로그인된 IDX : " + idx);
 
@@ -86,6 +88,11 @@ public class TodayController {
 				mav.setViewName("today");
 			}
 		}
+		return mav;
+	}
+      	checkId = 1;
+      	mav.addObject("checkId",checkId);
+      	mav.setViewName("member/loginSuccess");
 		return mav;
 	}
 

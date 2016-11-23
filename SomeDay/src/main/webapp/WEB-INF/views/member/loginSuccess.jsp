@@ -7,5 +7,12 @@ location.replace(document.referrer);
 
 
 <script type="text/javascript">
-   location.href="${contextPath}/someday/";
+	window.onload = function(){
+		var chk = ${checkId}
+		
+		if(chk == 1){
+			alert('로그인을 해주세요');
+			location.href="${contextPath}/someday/";
+		}
+	}
 </script><br />

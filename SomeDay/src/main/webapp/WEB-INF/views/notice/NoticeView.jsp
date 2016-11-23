@@ -107,7 +107,7 @@ body {
             <td colspan="3" style="padding: 2px 5px;" bgcolor="">
         	
             	<c:if test="${noticeModel.file_savname != NULL}">
-                <img src="/Java/upload/${noticeModel.file_savname}" />
+                <img src="/someday/resources/img/${noticeModel.file_savname}" width="400" height="300"/>
                 <br>${noticeModel.file_orgname}</br>
                 </c:if>
                 
@@ -149,8 +149,10 @@ body {
 				<input name="submit" type="submit" value="댓글쓰기" class="bin ban-primary" />&nbsp;&nbsp;&nbsp;&nbsp;
 				
 				<button type="button" onclick="onList()" class="bin ban-primary">목록</button>
-	            <button type="button" onclick="onModify()" class="bin ban-primary">수정</button>
-	            <button type="button" onclick="Delete()" class="bin ban-primary">삭제</button>
+					<c:if test="${session_member_authority == 'Y'}">
+			        <button type="button" onclick="onModify()" class="bin ban-primary">수정</button>
+				    <button type="button" onclick="Delete()" class="bin ban-primary">삭제</button>
+			    	</c:if>
 				</div>
 			</tr>
 		</form:form>

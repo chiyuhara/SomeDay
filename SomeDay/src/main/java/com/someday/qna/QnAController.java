@@ -9,6 +9,7 @@ import java.util.Locale;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
@@ -20,6 +21,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.someday.member.MemberModel;
+import com.someday.member.MemberService;
 import com.someday.qna.QnAModel;
 import com.someday.util.Paging;
 import com.someday.validator.QnAValidator;
@@ -30,6 +33,11 @@ public class QnAController {
 	@Resource(name = "qnAService")
 	//파일명의 앞글자만 소문자로 바꿔주면 됨 (QnAServic->qnAServic)
 	private QnAService qnAService;
+	
+	@Resource(name = "memberService")
+	private MemberService memberService;
+	
+	private MemberModel memberModel = new MemberModel();
 	
 	// 페이징을 위한 변수 설정
 		private int currentPage = 1;
@@ -48,11 +56,10 @@ public class QnAController {
 
 	// 공지 목록
 	@RequestMapping(value = "/qna/QnAList")
-	public ModelAndView QnAList(HttpServletRequest request) throws UnsupportedEncodingException {
-		
-		System.out.println("공지목록 실행"); 
+	public ModelAndView QnAList(HttpServletRequest request,HttpSession session) throws UnsupportedEncodingException {
 		
 		ModelAndView mav = new ModelAndView();
+		System.out.println("공지목록 실행"); 
 		
 		if (request.getParameter("currentPage") == null || request.getParameter("currentPage").trim().isEmpty()
 				|| request.getParameter("currentPage").equals("0")) {
@@ -91,7 +98,15 @@ public class QnAController {
 					lastCount = page.getEndCount() + 1;
 
 				qnaList = qnaList.subList(page.getStartCount(), lastCount);
-			 
+				
+				int id;
+				if(session.getAttribute("session_member_idx") != null){
+					 id = 1;
+				}else{
+					 id = 2;
+				}
+				
+		mav.addObject("id",id);		
 		mav.addObject("isSearch", isSearch); 
 		mav.addObject("searchNum", searchNum);
 		mav.addObject("totalCount", totalCount);
@@ -116,6 +131,14 @@ public class QnAController {
 		
 		qnaList = qnaList.subList(page.getStartCount(), lastCount);
 		
+		int id;
+		if(session.getAttribute("session_member_idx") != null){
+			 id = 1;
+		}else{
+			 id = 2;
+		}
+		
+		mav.addObject("id",id);		
 		mav.addObject("totalCount", totalCount);
 		mav.addObject("pagingHtml", pagingHtml);
 		mav.addObject("currentPage", currentPage);
@@ -127,9 +150,10 @@ public class QnAController {
 	
 	// 공지 상세보기
 		@RequestMapping(value = "/qna/QnAView")
-		public ModelAndView qnaView(HttpServletRequest request) {
+		public ModelAndView qnaView(HttpServletRequest request, HttpSession session) {
 			ModelAndView mav = new ModelAndView();
-
+			int idcheck;
+			
 			int idx = Integer.parseInt(request.getParameter("idx"));
 
 			QnAModel qnaModel = qnAService.qnaView(idx);
@@ -138,6 +162,33 @@ public class QnAController {
 			qnacommList = qnAService.qnacommList(idx);
 			commentcount = qnacommList.size();
 			
+			if(session.getAttribute("session_member_idx") != null){
+			int memberidx = (int) session.getAttribute("session_member_idx");
+			memberModel = memberService.memberList(memberidx);
+			
+			System.out.println(memberModel.getNick());
+			System.out.println(qnaModel.getWriter());
+			
+			if(memberModel.getNick().equals(qnaModel.getWriter())){
+				idcheck = 1; // 값이 같으면
+			}else if(memberModel.getAuthority().equals("Y")){
+				idcheck = 1;
+			}
+			else{
+				idcheck = 0;
+			}
+			System.out.println(idcheck);
+			mav.addObject("idcheck", idcheck);
+			mav.addObject("qnaModel", qnaModel);
+			mav.addObject("qnacommList", qnacommList);
+			mav.addObject("commentcount", commentcount);
+			mav.setViewName("qnaView");
+
+			return mav;
+			
+			}
+			idcheck = 0;
+			mav.addObject("idcheck", idcheck);
 			mav.addObject("qnaModel", qnaModel);
 			mav.addObject("qnacommList", qnacommList);
 			mav.addObject("commentcount", commentcount);
@@ -192,7 +243,7 @@ public class QnAController {
 		
 		// qna 글 쓰기
 		@RequestMapping(value = "/qna/QnAWrite", method = RequestMethod.POST)
-		public String qnaWrite(QnAModel qnaModel,  BindingResult result,
+		public String qnaWrite(QnAModel qnaModel,  BindingResult result, HttpSession session,
 				MultipartHttpServletRequest multipartHttpServletRequest) throws Exception, Exception{
 			System.out.println("글쓰기ex 실행");
 			System.out.println(qnaModel.getSubject());
@@ -205,6 +256,13 @@ public class QnAController {
 			
 			String content = qnaModel.getContent().replaceAll("\r\n", "<br />");
 			qnaModel.setContent(content);
+			
+			session.getAttribute("session_member_idx");
+			int memberidx = (int) session.getAttribute("session_member_idx");
+			memberModel = memberService.memberList(memberidx);
+			String writer = memberModel.getNick();		
+			
+			qnaModel.setWriter(writer);
 
 			//날짜 및 시간 
 			Date currentTime = new Date ( );

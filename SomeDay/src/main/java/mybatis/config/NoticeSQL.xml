@@ -56,9 +56,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 글쓰기 -->
 	<insert id="noticeWrite" parameterType="noticeModel" >
 		INSERT INTO
-		NOTICE_BOARD(IDX, TYPE, SUBJECT, READHIT, CONTENT, TIMES)
+		NOTICE_BOARD(IDX, TYPE, WRITER, SUBJECT, READHIT, CONTENT, TIMES)
 		VALUES
-		(NOTICE_BOARD_IDX_SEQ.NEXTVAL, #{type} , #{subject}, 0, #{content}, #{times})
+		(NOTICE_BOARD_IDX_SEQ.NEXTVAL, #{type}, #{writer}, #{subject}, 0, #{content}, #{times})
 	</insert>
 	
 	<!-- 아이디로 idx 찾기 -->
