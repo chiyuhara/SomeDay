@@ -341,7 +341,7 @@ public class QnAController {
 		public ModelAndView load(){
 			
 			ModelAndView mav = new ModelAndView();
-			mav.setViewName("qna/load");
+			mav.setViewName("load");
 			return mav;
 		}
 
