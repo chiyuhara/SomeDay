@@ -36,7 +36,6 @@ public class TodayController {
 		MemberModel my = new MemberModel();
 		MemberModel target = new MemberModel();
 
-		if (session.getAttribute("session_member_idx") != null) {
 		int idx = (int) session.getAttribute("session_member_idx");
 		System.out.println("로그인된 IDX : " + idx);
 
@@ -88,9 +87,7 @@ public class TodayController {
 				mav.setViewName("today");
 			}
 		}
-		return mav;
-	}
-      	checkId = 1;
+		checkId = 1;
       	mav.addObject("checkId",checkId);
       	mav.setViewName("member/loginSuccess");
 		return mav;
@@ -104,6 +101,7 @@ public class TodayController {
 
 		TodayMemberModel targetfemale = new TodayMemberModel();
 		TodayMemberModel targetmale = new TodayMemberModel();
+		MemberModel my = new MemberModel();
 
 		int idx = (int) session.getAttribute("session_member_idx");
 
@@ -119,11 +117,14 @@ public class TodayController {
 			if (female_today != null) {
 				System.out.println("미팅 idx : " + female_today.getIdx());
 				System.out.println("상대방 남자 idx : " + female_today.getMale_idx());
-
+				// 나의 정보 가져옴
+				my = memberService.my(idx);
+				
 				// 남자의 정보와 오늘 미팅 남자의 점수를 가져옴
 				targetmale = memberService.targetmale(female_today.getMale_idx());
 				System.out.println("상대방 남자 이름 : " + targetmale.getName());
-
+				
+				mav.addObject("my", my);
 				mav.addObject("targetmale", targetmale);
 				mav.addObject("meeting", female_today);
 				mav.setViewName("todayView");
@@ -141,11 +142,14 @@ public class TodayController {
 			if (male_today != null) {
 				System.out.println("미팅 idx : " + male_today.getIdx());
 				System.out.println("상대방 여자 idx : " + male_today.getFemale_idx());
+				// 나의 정보 가져옴
+				my = memberService.my(idx);
 
 				// 여자의 정보와 오늘 미팅 여자의 점수를 가져옴
 				targetfemale = memberService.targetfemale(male_today.getFemale_idx());
 				System.out.println("상대방 여자 이름 : " + targetfemale.getName());
 
+				mav.addObject("my", my);
 				mav.addObject("targetfemale", targetfemale);
 				mav.addObject("meeting", male_today);
 				mav.setViewName("todayView");

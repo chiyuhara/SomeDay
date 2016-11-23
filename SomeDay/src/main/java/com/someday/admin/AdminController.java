@@ -198,15 +198,15 @@ public class AdminController {
 		
 		 MemberModel memberlist = adminService.member(idx);
 		 
-		 System.out.println("결과값"+memberlist);
+		 System.out.println("결과값"+memberlist.getAuthority());
 		 
 		 if(memberlist.getAuthority().equals("N")){
-			 
-			 memberlist.setAuthority("Y");
-		 }else{
-			 
-			 memberlist.setAuthority("N");
-		 }
+	          
+	          memberlist.setAuthority("Y");
+	       }else{
+	          
+	          memberlist.setAuthority("N");
+	       }
 			
 		 
 		 adminService.authority(memberlist);

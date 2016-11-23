@@ -2132,24 +2132,43 @@ opacity
 										축하합니다! 커플이 성사되었습니다.<br> 먼저 연락해보세요!<br>
 									</p>
 
-									<div style="float: left">
-										<ahref-""> <img
-											src="/Hi_Admin/image/<s:property value='resultClass.file_savname' />"
-											style="width: auto; height: 150px; margin-left: -10px;" /> <br>
-											<b><s:property value="resultClass.name" /></b><br> <b><s:property
-														value="resultClass.phone" /></b><br>
+									<div style="float: left">	
+									<img src="/someday/resources/img/${my.file_savname}"
+										width="150" height="150" />	<br></br>
+											<td><b>${my.name}</b></td>
+											<td><b>${my.phone}</b></td>
 									</div>
 
 									<div style="float: left">
-										<img src="image/like_off.png" />
+										<img src="/someday/resources/img/heart.jpg"
+										width="80" height="80" />
 									</div>
 
 									<div style="float: right">
-										<img
-											src="/Hi_Admin/image/<s:property value='target_resultClass.file_savname' />"
-											style="width: auto; height: 150px; margin-left: -10px;" /><br>
-											<b><s:property value="target_resultClass.name" /></b><br>
-												<b><s:property value="target_resultClass.phone" /></b><br>
+										<c:choose>
+											<c:when test="${targetfemale != null}">
+											<img src="/someday/resources/img/${targetfemale.file_savname}"
+											width="150" height="150" />	<br></br>
+											<tr>
+												<td><b>${targetfemale.name}</b></td>
+											</tr>
+											<tr>
+												<td><b>${targetfemale.phone}</b></td>
+											</tr>
+												
+											</c:when>
+											<c:when test="${targetmale != null}">
+											<img src="/someday/resources/img/${targetmale.file_savname}"
+											width="150" height="150" />	<br></br>
+											<tr>
+												<td><b>${targetmale.name}</b></td>
+											</tr>
+											<tr>
+												<td><b>${targetmale.phone}</b></td>
+											</tr>
+												
+											</c:when>
+										</c:choose>
 									</div>
 
 									<div style="float: right" class="btn-r">

@@ -126,6 +126,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		addr1,
 		addr2,
 		intro,
+		authority,
 		times
 		)
 		VALUES (
@@ -144,6 +145,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		#{addr1},
 		#{addr2},
 		#{intro},
+		N,
 		sysdate
 		)
 	</insert>
