@@ -87,14 +87,18 @@
                 <div class="box">
                  <div class="col-lg-12 text-l">        
                     <ul class="nav navbar-nav"> 
+                     
+                     <li><a href="/someday/notice/NoticeList">공지사항</a></li> 
                                  
                      <li><a href="${contextpath}/someday/admin/admin">관리자홈</a></li>
                      
                      <li><a href="${contextpath}/someday/">MAIN으로 이동</a></li>
                                   
                      <li><a href="/someday/admin/memberadminList">회원목록</a></li>
+                     
+                     <li><a href="${contextpath}/someday/Meet/MeetList">미팅현황</a></li>
                                   
-                     <li><a href="/someday/notice/NoticeList">공지사항</a></li>         
+                             
          
          </div>
          </div>

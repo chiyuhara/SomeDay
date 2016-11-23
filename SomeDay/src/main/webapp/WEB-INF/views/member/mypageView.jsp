@@ -102,7 +102,7 @@ th, td {
 			<td>${member.addr2}</td>
 		</tr>
 		<tr>
-			<td width="200">가입일</td>
+			<td width="200"><h4>가입일</h4></td>
 			<td><fmt:formatDate value="${member.times}" pattern="YY.MM.dd" /></td>
 			<td width="100"><h4>평균 평점</h4></td>
 			<td>${member.score_avg}</td>
