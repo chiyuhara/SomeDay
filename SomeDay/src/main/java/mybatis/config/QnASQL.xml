@@ -92,9 +92,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 글쓰기 -->
 	<insert id="qnaWrite" parameterType="qnaModel" >
 		INSERT INTO
-		QNA(IDX, PASS, SUBJECT, CONTENT, TIMES)
+		QNA(IDX, PASS, WRITER, SUBJECT, CONTENT, TIMES)
 		VALUES
-		(QNA_IDX_SEQ.NEXTVAL, #{pass}, #{subject}, #{content}, #{times})
+		(QNA_IDX_SEQ.NEXTVAL, #{pass}, #{writer}, #{subject}, #{content}, #{times})
 	</insert>
 	
 	<!-- 글수정 -->

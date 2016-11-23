@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -80,7 +81,7 @@ td, th {
 					
 					</td>
 					<td align="center">${list.writer}</td>
-					<td align="center">${list.times }</td>
+					<td align="center"><fmt:formatDate value="${list.times}" pattern="YYYY.MM.dd hh:mm" /></td>
 					<td align="center">${list.readhit}</td>
 				</tr>
 			</c:forEach>
@@ -88,7 +89,9 @@ td, th {
 	</table>
 	<!-- </table> -->
      <div class="text-right">
-	<button type="button" onclick="onWrite()" class="btn btn-primary">글쓰기</button>
+     <c:if test="${session_member_authority == 'Y'}">
+        <button type="button" onclick="onWrite()" class="btn btn-primary">글쓰기</button>
+    </c:if>
 	</div>
 	
 	<!-- 검색 -->

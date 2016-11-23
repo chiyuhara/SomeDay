@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,14 +43,12 @@
 </script>
 
 <title>지브롱</title>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 </head>
 <body>
 <div class="container">
 	<div class="row">
 		<div class="box">
-	<h2>공지 목록</h2>
+	<h2>Q & A</h2>
 	<table style="border: 1px solid #ccc" bgcolor="gray">
 		<colgroup>
 			<col width="10%" />
@@ -157,40 +157,41 @@
 						</td>
 
 					<td align="center">${list.writer}</td>
-					<td align="center">${list.times}</td>
+					<td align="center"><fmt:formatDate value="${list.times}" pattern="YYYY.MM.dd hh:mm" /></td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
-
-	<button type="button" onclick="onWrite()" class="btn btn-primary">글쓰기</button>
-
-	<!-- 페이징  -->
-
-	<div class="paging" style="text-align: center;">${pagingHtml}</div>
-
+     
+     <div class="text-right">
+     <c:if test="${id == 1}">
+        <button type="button" onclick="onWrite()" class="btn btn-primary">글쓰기</button>
+    </c:if>
+	</div>
+	
 	<!-- 검색 -->
-	<div class="row">
-		<div style="text-align: center;">
-			<div id="dataTables-example_filter" class="dataTables_filter">
-				<form>
-					<select class="slcte" name="searchNum" id="searchNum">
+		<div class="row">
+		 
+			<div style="text-align: center;">
+				<div id="dataTables-example_filter" class="dataTables_filter">
+					<form>
+						<select class="slcte" name="searchNum" id="searchNum">
 
-						<option value="0">제목</option>
-						<option value="1">내용</option>
-						<option value="2">글쓴이</option>
-
-					</select> <input class="txte" type="text" name="isSearch" id="isSearch" />
-					<span class="btn btnC_03 btnP_04 mr10"> <input type="submit"
-						value="검색"
-						style="font-size: 11px; padding-bottom: 20; vertical-align: middle;" />
-					</span>
-				</form>
-			</div>
+							<option value="0">제목</option>
+							<option value="1">내용</option>
+							<option value="2">글쓴이</option>
+						</select> <input class="txte" type="text" name="isSearch" id="isSearch" />
+						<span class="btn btnC_03 btnP_04 mr10"> 
+						<input type="submit" value="검색" style="font-size: 15px; padding-bottom: 20; 
+						       vertical-align: middle;" />
+						</span>
+						   <div class="paging">${pagingHtml}</div>
+					</form>
+					</div>
+				</div>
+			</div> 
 		</div>
 	</div>
-</div>
-</div>
-</div>
+	
 </body>
 </html>

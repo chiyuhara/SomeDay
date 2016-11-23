@@ -93,7 +93,8 @@ body {
 				bgcolor="#FFF2E6">${qnaModel.writer}</td>
 				<td align="center" bgcolor="#FFC8C8">작성일 </td>
 			<td align="center" width="200" style="padding: 2px 5px;" 
-				bgcolor="#FFF2E6">${qnaModel.times}</td>
+				bgcolor="#FFF2E6">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<fmt:formatDate value="${qnaModel.times}" pattern="YYYY.MM.dd hh:mm" /></td>
 				
 		</tr>
 		<tr height="30">
@@ -155,8 +156,10 @@ body {
 	</div>
 
 	<button type="button" onclick="onList()" class="btn btn-primary">목록</button>
-	<button type="button" onclick="onModify()" class="btn btn-primary">수정</button>
+	<c:if test="${idcheck==1}">
+        <button type="button" onclick="onModify()" class="btn btn-primary">수정</button>
 	<button type="button" onclick="Delete()" class="btn btn-primary">삭제</button>
+    </c:if>
 </div>
 </div>
 </div>

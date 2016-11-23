@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -49,22 +50,11 @@ function check() {
        return false;
     }
 
-    if (f.id.value.search(f.pass.value) > -1) {
-       alert("아이디가 포함된 비밀번호는 사용할수 없습니다.");
-       f.pass.select();
-       return false;
-    }
-
     if (f.nick.value == "") {
-	   		alert("닉네임을 입력해주십시요.");
-	   		f.nick.focus();
-	        return false;
-	    }
-       if (f.name.value == "") {
-          alert("이름을 입력해주십시요.");
-          f.name.focus();
-          return false;
-       }
+        alert("닉네임을 입력해주세요.");
+        f.nick.focus();
+        return false;
+     }
 
 	      if (f.email.value == "") {
 	         alert("이메일을 입력해주세요.");
@@ -77,11 +67,6 @@ function check() {
 		         f.phone.focus();
 		         return false;     
 		      }
-    if ((f.num1.value == "") || (f.num1.value.length < 6)) {
-       alert("생년월일을 6자리로 입력해 주세요");
-       f.num1.focus();
-       return false;
-    }
 
     if (f.zipcode.value == "") {
        alert("우편번호를 검색하여 입력해주세요");
@@ -110,7 +95,8 @@ function check() {
   	  f.intro.focus();
   	  return false;
     }
-
+    alert("회원수정이 완료되었습니다");
+    return true;
  }
 
 </script>
@@ -184,7 +170,7 @@ th, td {
 			 <tr>
 				<td width="200">E-Mail</td>
 				<td><form:input id="email" name="email" type="text" path="email"/>@     
-               		<form:input id="email2" name="email2" type="text" path="email2" disabled="true"/>
+               		<form:input id="email2" name="email2" type="text" path="email2" />
 					<form:select id="selectEmail" name="selectEmail" path="selectEmail">
 					<form:option value="" label="- 이메일 선택  -" />
 					<form:option value="naver.com" label="naver.com" />
