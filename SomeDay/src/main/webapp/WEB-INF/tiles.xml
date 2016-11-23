@@ -144,10 +144,16 @@
 		<put-attribute name="body" value="/WEB-INF/views/faq/FAQ.jsp"/>
 	</definition>
 	
+	<!--  찾아오는길 load -->
 	<definition name="load" extends="main">
 		<put-attribute name="body" value="/WEB-INF/views/qna/load.jsp" />
 	</definition>
 	
-
+	<!-- 오늘의 현황 -->
+	<definition name="meeting" extends="main">
+		<put-attribute name="body" value="/WEB-INF/views/meeting/meetList.jsp" />
+	</definition>
+	
+	
 </tiles-definitions>
 

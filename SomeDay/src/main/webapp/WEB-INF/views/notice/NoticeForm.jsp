@@ -53,6 +53,7 @@
 
    <div id="wrapper">
       <form:form commandName="noticeModel" action="NoticeWrite" method="post" enctype="multipart/form-data">
+     <div class="container">
          <div id="page-wrapper">
             <div class="box">
                <div class="col-lg-12">
@@ -96,7 +97,8 @@
                      </tr>
                   </table>
          <!-- 취소 작성완료 버튼 -->
-         <div class="col-lg-12 text-rigth">
+          <div class="col-lg-12 text-rigth">
+          <div style="float: right">
             <input name="submit" type="submit" value="작성완료"
                class="btn btn-primary">
             <button type="button" onclick="noticeList();"
@@ -106,10 +108,13 @@
         </div>
        </div>
       </div>
+      </div>
+      </div>
+      
       </form:form>
 
       <br /> <br /> <br /> <br />
-   </div>
+   
 
 
 </body>

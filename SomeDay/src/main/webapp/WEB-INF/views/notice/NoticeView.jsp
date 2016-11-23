@@ -146,11 +146,12 @@ body {
 			<tr>
 				<div class="col-lg-12 text-right">		
 				<textarea name="content" style="margin: 5px; width: 700px; height: 55px;"></textarea>
-				<input name="submit" type="submit" value="댓글쓰기" class="bin ban-primary" />&nbsp;&nbsp;&nbsp;&nbsp;
+				<input name="submit" type="submit" value="댓글쓰기" class="btn btn-primary" />&nbsp;&nbsp;&nbsp;&nbsp;
 				
-				<button type="button" onclick="onList()" class="bin ban-primary">목록</button>
-	            <button type="button" onclick="onModify()" class="bin ban-primary">수정</button>
-	            <button type="button" onclick="Delete()" class="bin ban-primary">삭제</button>
+				<button type="button" onclick="onList()" class="btn btn-primary">목록</button>
+				<button type="button" onclick="onModify()" class="btn btn-primary">수정</button>
+				<button type="button" onclick="Delete()" class="btn btn-primary">삭제</button>
+			
 				</div>
 			</tr>
 		</form:form>
