@@ -154,5 +154,10 @@
 		<put-attribute name="body" value="/WEB-INF/views/meeting/meetList.jsp" />
 	</definition>
 	
+	<!-- 이용가이드 -->
+	<definition name="guide" extends="main">
+		<put-attribute name="body" value="/WEB-INF/views/guide/guide.jsp" />
+	</definition>
+	
 </tiles-definitions>
 

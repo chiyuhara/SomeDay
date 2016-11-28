@@ -104,7 +104,9 @@ p.outset {border-style: outset;}
 										<c:url var="viewURL3" value="/admin/authority" >
 											<c:param name="idx" value="${memberlist.idx}" />							
 										</c:url>
-										 <a href="${viewURL3}"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png"></a>&nbsp;&nbsp;</td>
+										 <%-- <a href="${viewURL3}"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png"></a>&nbsp;&nbsp;</td> --%>
+										 <a href="${viewURL3}"><img src="/someday/resources/img/admin.png" width="50" height="50"/></a>&nbsp;&nbsp;</td>
+										 
 									</tr>
 								</c:forEach>
 								<!--  등록된 상품이 없을때 -->

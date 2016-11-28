@@ -20,5 +20,12 @@ public class FAQController {
 		
 		return mav;
 	}
+	
+	@RequestMapping("/guide")
+	public ModelAndView guide(){
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("guide");
+		return mav;
+	}
 
 }

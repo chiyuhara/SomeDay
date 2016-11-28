@@ -72,7 +72,7 @@
                      DAY 가이드
                </a>
                    <ul class="dropdown-menu" role="menu">                  
-                     <li><a href="#">이 용 방 법</a></li>
+                     <li><a href="${contextpath}/someday/guide">이 용 방 법</a></li>
                      <li><a href="${contextpath}/someday/faq/FAQ">F A Q</a></li>
                      <li><a href="${contextpath}/someday/qna/QnAList">Q & A</a></li> 
                      <li><a href="${contextpath}/someday/load">찾아오시는길</a></li>
